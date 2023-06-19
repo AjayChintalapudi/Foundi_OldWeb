@@ -30,9 +30,10 @@
 --black:#000000;
 --lightorange:#F7B251;
 --aubergine:#231F20;
---darkshadow:rgba(35, 31, 32, 0.08);
+--lightgrey8:rgba(35, 31, 32, 0.08);
 --darkgreen:#194F59;
---lightgrey: rgba(35, 31, 32, 0.72);
+--lightgrey72: rgba(35, 31, 32, 0.72);
+--lightgrey16:rgba(35, 31, 32, 0.16);
 --lightgreyishblue:#E6E6E7;
 --whitetransparent72: rgba(255, 255, 255, 0.72);
 --grey:#808080;

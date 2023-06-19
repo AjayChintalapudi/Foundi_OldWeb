@@ -1,0 +1,145 @@
+  /* -----------------DeskTop view Starts----------------- */
+.navBar{
+    width: 100%;
+    background-color: var(--white);
+}
+.insideNavBar{
+    max-width: 1336px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 22px 80px;
+    align-items: center;
+    border-bottom: 1px solid var(--lightgrey16);
+}
+.leftSection{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+}
+.navBarLogo{
+    max-width: 56px;
+    max-height: 56px;
+}
+.imageWidth{
+    width: 100%;
+    height: 100%;
+}
+.LogoText{
+    font-family: 'Regular',sans-serif;
+font-weight: 500;
+font-size: 28px;
+line-height: 36px;
+color: var(--darkgreen);
+}
+.rightSection{
+    display: flex;
+    flex-direction: row;
+    gap: 64px;
+    align-items: center;
+}
+.eventsSection, .aboutSection, .productsSection{
+    display: block;
+    font-family: 'Regular', sans-serif;
+font-weight: 500;
+font-size: 18px;
+line-height: 30px;
+color: var(--lightgrey);
+}
+.cartSection{
+    max-width: 30px;
+    max-height: 30px;
+}
+.navBarButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 116px;
+height: 48px;
+background: #F7B251;
+border: 1px solid #231F20;
+box-shadow: 1px 8px 24px var(--darkshadow);
+border-radius: 40px;
+}
+.loginStyles{
+    font-family: 'Regular',sans-serif;
+font-weight: 500;
+font-size: 18px;
+line-height: 30px;
+color: var(--aubergine);
+
+}
+.hamburgerIcon{
+    display: none;
+}
+  /* -----------------DeskTop view Ends----------------- */
+
+
+
+  /* Styles Start at 1023px */
+
+  @media screen and (max-width:1023px){
+
+    .insideNavBar{
+    padding: 14px 40px;
+    /* gap: 60px; */
+    }
+
+    .rightSection{
+    gap: 32px;
+    }
+    
+  }
+
+  /* Styles End at 1023px */
+
+
+  /* Styles Start at 867px */
+@media screen and (max-width:867px){
+    .insideNavBar{
+        justify-content: space-between;
+        padding: 20px 24px;
+    }
+    .leftSection{
+        gap: 2px;
+        
+    }
+    .navBarLogo{
+        max-width: 40px;
+        max-height: 40px;
+    }
+    .LogoText{
+    font-size: 20px;
+    line-height: 25px;
+    }
+
+    .eventsSection, .aboutSection, .productsSection{
+        display: none;
+        
+    }
+    .rightSection{
+        gap: 24px;
+    }
+    .cartSection{
+        max-width: 24px;
+        max-height: 24px;
+    }
+    .navBarButton{
+        display: none;
+    }
+    .hamburgerIcon{
+        display: block;
+        max-width: 24px;
+        max-height: 24px;
+    }
+    
+
+
+
+}
+
+  /* Styles End at 867px */
+
+
