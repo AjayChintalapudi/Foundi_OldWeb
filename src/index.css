@@ -25,23 +25,21 @@
   src: url('assets/Fonts/Euclid\ Circular\ B\ Bold.ttf');
 }
 
-:root{
---white:#ffffff;
---black:#000000;
---lightorange:#F7B251;
---aubergine:#231F20;
---lightgrey8:rgba(35, 31, 32, 0.08);
---darkgreen:#194F59;
---lightgrey72: rgba(35, 31, 32, 0.72);
---lightgrey16:rgba(35, 31, 32, 0.16);
---lightgreyishblue:#E6E6E7;
---whitetransparent72: rgba(255, 255, 255, 0.72);
---grey:#808080;
---lightgreyshadow:rgba(25, 79, 89, 0.08);
---whitetransparent24:rgba(255, 255, 255, 0.24);
---skyblue:#C8D5D7;
-
-
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --lightorange: #f7b251;
+  --aubergine: #231f20;
+  --lightgrey8: rgba(35, 31, 32, 0.08);
+  --darkgreen: #194f59;
+  --lightgrey72: rgba(35, 31, 32, 0.72);
+  --lightgrey16: rgba(35, 31, 32, 0.16);
+  --lightgreyishblue: #e6e6e7;
+  --whitetransparent72: rgba(255, 255, 255, 0.72);
+  --grey: #808080;
+  --lightgreyshadow: rgba(25, 79, 89, 0.08);
+  --whitetransparent24: rgba(255, 255, 255, 0.24);
+  --skyblue: #c8d5d7;
 }
 
 *::-webkit-scrollbar {
