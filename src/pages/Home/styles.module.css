@@ -1,0 +1,94 @@
+.bannerSection{
+    width: 100%;
+    height: calc(100% - 100px);
+    background-color: var(--skyblue);
+}
+.insideBannerSection{
+    max-width: 1366px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding: 100px 80px 0px;
+    
+    
+}
+.insideBannerTopSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.bannerLeftSection{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.bannerHeader{
+    max-width: 797px;
+    width: 100%;
+    font-family: 'Semi-Bold',sans-serif;
+   font-weight: 600;
+   font-size: 56px;
+   line-height: 71px;
+    color: var(--aubergine);
+}
+.bannerDescp{
+    max-width: 593px;
+    width: 100%;
+font-family: 'Medium',sans-serif;
+font-weight: 400;
+font-size: 18px;
+line-height: 30px;
+color: var(--lightgrey72);
+}
+.bannerRightSection{
+    display: flex;
+    flex-direction: column;
+    gap: 73px;
+    justify-content: end;
+}
+.ellipseSection{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: end;
+}
+.ellipseOne{
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--aubergine);
+}
+.ellipseTwo{
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    background: var(--aubergine);
+}
+.scrollSection{
+display: flex;
+flex-direction: row;
+gap: 8px;
+align-items: center;
+}
+.scrollDesc{
+    font-family: 'Regular',sans-serif;
+font-weight: 500;
+font-size: 18px;
+line-height: 30px;
+text-align: right;
+color: var(--aubergine);
+}
+.downArrowIcon{
+    max-width: 24px;
+    max-height: 24px;
+}
+.imageWidth{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.bottomSection{
+    width: 91%;
+    height: 100%;
+}
