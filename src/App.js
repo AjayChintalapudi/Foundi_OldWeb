@@ -1,11 +1,11 @@
-import Button from 'components/Button/Button';
+import Footer from 'components/Footer/Footer';
 import AppRoutes from 'routes/AppRoutes';
 
 function App() {
   return (
     <div className="App">
-      <AppRoutes />
-      <Button />
+      {/* <AppRoutes /> */}
+      <Footer />
     </div>
   );
 }
