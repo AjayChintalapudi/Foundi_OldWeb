@@ -1,8 +1,12 @@
-.footerContainer {
+.footerMainContainer {
+  background-color: var(--aubergine);
+}
+.footerInsideContainer {
+  max-width: 1366px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 80px;
-  background-color: var(--aubergine);
   padding: 100px 80px;
 }
 
@@ -183,6 +187,10 @@
     gap: 48px;
     padding: 64px 24px;
   }
+  .footerInsideContainer {
+    padding: 64px 24px;
+    gap: 48px;
+  }
   .footerTopSection {
     text-align: start;
     align-items: flex-start;
@@ -223,6 +231,7 @@
   }
 
   .footerBottomSection {
+    gap: 32px;
     justify-content: flex-start;
     align-items: flex-start;
   }

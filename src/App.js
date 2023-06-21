@@ -1,10 +1,10 @@
-import Footer from 'components/Footer/Footer';
+import Products from 'pages/Products/Products';
 
 function App() {
   return (
     <div className="App">
       {/* <AppRoutes /> */}
-      <Footer />
+      <Products />
     </div>
   );
 }

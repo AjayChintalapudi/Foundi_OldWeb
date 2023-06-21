@@ -6,6 +6,8 @@ import { footerIconsData } from 'constants/CommonData/CommonData';
 import styles from './styles.module.css';
 
 const Footer = () => {
+  // Footer Section Strings
+
   const { footerStrings } = Strings;
 
   const footerTopSection = () => {
@@ -85,9 +87,11 @@ const Footer = () => {
     );
   };
   return (
-    <div className={styles.footerContainer}>
-      {footerTopSection()}
-      {footerBottomSection()}
+    <div className={styles.footerMainContainer}>
+      <div className={styles.footerInsideContainer}>
+        {footerTopSection()}
+        {footerBottomSection()}
+      </div>
     </div>
   );
 };

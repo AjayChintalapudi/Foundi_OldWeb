@@ -1,0 +1,149 @@
+.subscriptionCardContainer {
+  width: 389px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px;
+}
+
+.subscriptionCardTopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subscriptionPlanHeading {
+  font-family: 'Regular', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--aubergine);
+}
+
+.subscriptionPrice {
+  font-family: 'Regular', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  color: var(--aubergine);
+}
+
+.subscriptionValidity {
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--aubergine);
+}
+
+.subscriptionCardBottomSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subscriptionPlanLimit,
+.subscriptionValididty {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+}
+
+.subscriptionCheckImg {
+  width: 24px;
+  height: 24px;
+}
+
+.imageWidth {
+  width: 100%;
+  height: 100%;
+}
+
+.subscriptionPlanLimitDesc,
+.subscriptionValidityDesc {
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--lightgrey72);
+}
+
+/* Media Query Start */
+
+@media screen and (max-width: 1279px) {
+  .subscriptionCardContainer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .subscriptionCardContainer {
+    width: 100%;
+  }
+
+  .subscriptionPlanHeading {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .subscriptionPrice {
+    font-size: 36px;
+    line-height: 51px;
+  }
+  .subscriptionValidity {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: 868px) {
+  .subscriptionCardContainer {
+    width: 100%;
+  }
+
+  .subscriptionPlanHeading {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .subscriptionPrice {
+    font-size: 36px;
+    line-height: 51px;
+  }
+  .subscriptionValidity {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .subscriptionCardContainer {
+    width: 100%;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .subscriptionPlanHeading {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .subscriptionPrice {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .subscriptionValidity {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .subscriptionPlanLimitDesc,
+  .subscriptionValidityDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* Media Query End */
