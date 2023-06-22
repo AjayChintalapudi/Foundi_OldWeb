@@ -1,10 +1,10 @@
-import Products from 'pages/Products/Products';
+import ProductsReview from 'pages/ProductsReview/ProductsReview';
 
 function App() {
   return (
     <div className="App">
       {/* <AppRoutes /> */}
-      <Products />
+      <ProductsReview />
     </div>
   );
 }

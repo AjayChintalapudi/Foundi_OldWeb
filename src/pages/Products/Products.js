@@ -17,25 +17,37 @@ const Products = () => {
     return (
       <div className={styles.productsBannerMainContainer}>
         <div className={styles.productsBannerInsideContainer}>
-          <div className={styles.productsBannerInfoBlock}>
-            <h2 className={styles.productsBannerMainHeading}>
-              {productPageStrings.productsBannerMainHeading}
-            </h2>
-            <p className={styles.productsBannerSubDesc}>
-              {productPageStrings.productsBannerSubDesc}
-            </p>
-          </div>
-          <div className={styles.productsBannerButtonsBlock}>
-            <Button
-              btName={productPageStrings.productsBannerButtonName}
-              btnStyles={styles.productsBtnStyles}
-            />
-            <div className={styles.scollButtonBlock}>
-              <span className={styles.scrollButton}></span>
-              <span className={styles.scrollButton}></span>
-              <span className={styles.scrollButton}></span>
-            </div>
-          </div>
+          {productsBannerInfoSection()}
+          {productsBannerButtonsSection()}
+        </div>
+      </div>
+    );
+  };
+
+  const productsBannerInfoSection = () => {
+    return (
+      <div className={styles.productsBannerInfoBlock}>
+        <h2 className={styles.productsBannerMainHeading}>
+          {productPageStrings.productsBannerMainHeading}
+        </h2>
+        <p className={styles.productsBannerSubDesc}>
+          {productPageStrings.productsBannerSubDesc}
+        </p>
+      </div>
+    );
+  };
+
+  const productsBannerButtonsSection = () => {
+    return (
+      <div className={styles.productsBannerButtonsBlock}>
+        <Button
+          btName={productPageStrings.productsBannerButtonName}
+          btnStyles={styles.productsBtnStyles}
+        />
+        <div className={styles.scollButtonBlock}>
+          <span className={styles.scrollButton}></span>
+          <span className={styles.scrollButton}></span>
+          <span className={styles.scrollButton}></span>
         </div>
       </div>
     );
@@ -44,48 +56,67 @@ const Products = () => {
   const productDetailsSection = () => {
     return (
       <div className={styles.productDetailsContainer}>
-        <div className={styles.productDetailsTitleInfo}>
-          <h3 className={styles.productsMainHeading}>
-            {productPageStrings.productsMainHeading}
-          </h3>
-          <p className={styles.productsSubDesc}>
-            {productPageStrings.productsSubDesc}
-          </p>
-        </div>
-        <div className={styles.productCategoriesBlock}>
-          {productCategoriesHeadingData &&
-            productCategoriesHeadingData.map((item, index) => {
-              return (
-                <p
-                  key={index}
-                  className={
-                    index === 0
-                      ? styles.productCategoryHeading
-                      : styles.productCategoryHeadingHover
-                  }
-                >
-                  {item.productCategoryHeading}
-                </p>
-              );
-            })}
-        </div>
-        <div className={styles.productsDetails}>
-          {productsData &&
-            productsData.map((item, index) => {
-              return (
-                <ProductsCard
-                  key={index}
-                  productImg={item.productImg}
-                  productHeading={item.productHeading}
-                  productOfferPrice={item.productOfferPrice}
-                  productOriginalPrice={item.productOriginalPrice}
-                />
-              );
-            })}
-        </div>
+        {productDetailsTitleInfo()}
+        {productCategoriesSection()}
+        {productsDetailsSection()}
       </div>
     );
   };
+
+  const productDetailsTitleInfo = () => {
+    return (
+      <div className={styles.productDetailsTitleInfo}>
+        <h3 className={styles.productsMainHeading}>
+          {productPageStrings.productsMainHeading}
+        </h3>
+        <p className={styles.productsSubDesc}>
+          {productPageStrings.productsSubDesc}
+        </p>
+      </div>
+    );
+  };
+
+  const productCategoriesSection = () => {
+    return (
+      <div className={styles.productCategoriesBlock}>
+        {productCategoriesHeadingData &&
+          productCategoriesHeadingData.map((item, index) => {
+            return (
+              <p
+                key={index}
+                className={
+                  index === 0
+                    ? styles.productCategoryHeading
+                    : styles.productCategoryHeadingHover
+                }
+              >
+                {item.productCategoryHeading}
+              </p>
+            );
+          })}
+      </div>
+    );
+  };
+
+  const productsDetailsSection = () => {
+    return (
+      <div className={styles.productsDetails}>
+        {productsData &&
+          productsData.map((item, index) => {
+            return (
+              <ProductsCard
+                key={index}
+                productImg={item.productImg}
+                productHeading={item.productHeading}
+                productOfferPrice={item.productOfferPrice}
+                productOriginalPrice={item.productOriginalPrice}
+              />
+            );
+          })}
+      </div>
+    );
+  };
+
   return (
     <div>
       <NavBar />
