@@ -4,6 +4,11 @@ import Footer from 'components/Footer/Footer';
 import Button from 'components/Button/Button';
 import { Strings } from 'resources/Strings/eng';
 import styles from './styles.module.css';
+import {
+  productCategoriesHeadingData,
+  productsData,
+} from 'constants/CommonData/CommonData';
+import ProductsCard from 'components/Cards/ProductsCard/ProductsCard';
 
 const Products = () => {
   const { productPageStrings } = Strings;
@@ -37,14 +42,56 @@ const Products = () => {
   };
 
   const productDetailsSection = () => {
-    return <div></div>;
+    return (
+      <div className={styles.productDetailsContainer}>
+        <div className={styles.productDetailsTitleInfo}>
+          <h3 className={styles.productsMainHeading}>
+            {productPageStrings.productsMainHeading}
+          </h3>
+          <p className={styles.productsSubDesc}>
+            {productPageStrings.productsSubDesc}
+          </p>
+        </div>
+        <div className={styles.productCategoriesBlock}>
+          {productCategoriesHeadingData &&
+            productCategoriesHeadingData.map((item, index) => {
+              return (
+                <p
+                  key={index}
+                  className={
+                    index === 0
+                      ? styles.productCategoryHeading
+                      : styles.productCategoryHeadingHover
+                  }
+                >
+                  {item.productCategoryHeading}
+                </p>
+              );
+            })}
+        </div>
+        <div className={styles.productsDetails}>
+          {productsData &&
+            productsData.map((item, index) => {
+              return (
+                <ProductsCard
+                  key={index}
+                  productImg={item.productImg}
+                  productHeading={item.productHeading}
+                  productOfferPrice={item.productOfferPrice}
+                  productOriginalPrice={item.productOriginalPrice}
+                />
+              );
+            })}
+        </div>
+      </div>
+    );
   };
   return (
     <div>
       <NavBar />
       {productsBannerSection()}
       {productDetailsSection()}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

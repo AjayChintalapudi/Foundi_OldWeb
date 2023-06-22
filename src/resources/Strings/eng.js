@@ -88,7 +88,14 @@ const productPageStrings = {
   productsBannerSubDesc:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
   productsBannerButtonName: 'Browse now',
-  
+
+  productsMainHeading: 'Our products',
+  productsSubDesc:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
+  allProductsHeading: 'All',
+  productCategoryOne: 'Category 1',
+  productCategoryTwo: 'Category 2',
+  productCategoryThree: 'Category 3',
 };
 
 const footerStrings = {

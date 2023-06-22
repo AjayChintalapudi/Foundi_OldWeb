@@ -3,12 +3,45 @@ import {
   eventsbuissnessimgtwo,
   facebookicon,
   instagramicon,
+  productone,
+  productoneimg,
+  producttwo,
+  producttwoimg,
   subscriptioncheckimg,
   subscriptionpremiumcheckimg,
   twittericon,
 } from 'resources/Images/Images';
 import { Strings } from 'resources/Strings/eng';
-const { footerStrings, eventsPageStrings, aboutPageStrings } = Strings;
+const {
+  footerStrings,
+  eventsPageStrings,
+  aboutPageStrings,
+  productPageStrings,
+} = Strings;
+
+const eventsBuissnessData = [
+  {
+    eventsBuinessImg: eventsbuissnessimgone,
+    eventsDetailsHeadingOne: eventsPageStrings.eventsDetailsHeadingOne,
+    eventsDetailsSubHeadingOne: '',
+    eventsDetailsSubDescOne: eventsPageStrings.eventsDetailsSubDescOne,
+    eventsDetailsSubHeadingTwo: '',
+    eventsDetailsSubDescTwo: eventsPageStrings.eventsDetailsSubDescTwo,
+    eventsDetailsSubHeadingThree: '',
+    eventsDetailsSubDescThree: eventsPageStrings.eventsDetailsSubDescThree,
+  },
+  {
+    eventsBuinessImg: eventsbuissnessimgtwo,
+    eventsDetailsHeadingOne: eventsPageStrings.eventsDetailsHeadingTwo,
+    eventsDetailsSubHeadingOne: eventsPageStrings.eventsDetailsSubHeadingOne,
+    eventsDetailsSubDescOne: eventsPageStrings.evnetsDetailsSubInfoOne,
+    eventsDetailsSubHeadingTwo: eventsPageStrings.eventsDetailsSubHeadingTwo,
+    eventsDetailsSubDescTwo: eventsPageStrings.evnetsDetailsSubInfoTwo,
+    eventsDetailsSubHeadingThree:
+      eventsPageStrings.eventsDetailsSubHeadingThree,
+    eventsDetailsSubDescThree: eventsPageStrings.evnetsDetailsSubInfoThree,
+  },
+];
 
 const starPlanData = [
   {
@@ -74,27 +107,53 @@ const premiumPlansData = [
   },
 ];
 
-const eventsBuissnessData = [
+const productCategoriesHeadingData = [
+  { productCategoryHeading: productPageStrings.allProductsHeading },
+  { productCategoryHeading: productPageStrings.productCategoryOne },
+  { productCategoryHeading: productPageStrings.productCategoryTwo },
+  { productCategoryHeading: productPageStrings.productCategoryThree },
+];
+
+const productsData = [
   {
-    eventsBuinessImg: eventsbuissnessimgone,
-    eventsDetailsHeadingOne: eventsPageStrings.eventsDetailsHeadingOne,
-    eventsDetailsSubHeadingOne: '',
-    eventsDetailsSubDescOne: eventsPageStrings.eventsDetailsSubDescOne,
-    eventsDetailsSubHeadingTwo: '',
-    eventsDetailsSubDescTwo: eventsPageStrings.eventsDetailsSubDescTwo,
-    eventsDetailsSubHeadingThree: '',
-    eventsDetailsSubDescThree: eventsPageStrings.eventsDetailsSubDescThree,
+    productImg: productoneimg,
+    productHeading: 'Keychain tags - A pack of 4',
+    productOfferPrice: '$ 89.00 ',
+    productOriginalPrice: '$ 119.00 ',
+  },
+
+  {
+    productImg: producttwoimg,
+    productHeading: 'Regular tags - A pack of 4',
+    productOfferPrice: '$ 45.00 ',
+    productOriginalPrice: '$ 60.00  ',
+  },
+
+  {
+    productImg: producttwoimg,
+    productHeading: 'Regular tags - A pack of 4',
+    productOfferPrice: '$ 45.00 ',
+    productOriginalPrice: '$ 60.00',
+  },
+
+  {
+    productImg: productoneimg,
+    productHeading: 'Regular tags - A pack of 4',
+    productOfferPrice: '$ 89.00 ',
+    productOriginalPrice: '$ 119.00 ',
+  },
+
+  {
+    productImg: productoneimg,
+    productHeading: 'Regular tags - A pack of 4',
+    productOfferPrice: '$ 89.00 ',
+    productOriginalPrice: '$ 119.00 ',
   },
   {
-    eventsBuinessImg: eventsbuissnessimgtwo,
-    eventsDetailsHeadingOne: eventsPageStrings.eventsDetailsHeadingTwo,
-    eventsDetailsSubHeadingOne: eventsPageStrings.eventsDetailsSubHeadingOne,
-    eventsDetailsSubDescOne: eventsPageStrings.evnetsDetailsSubInfoOne,
-    eventsDetailsSubHeadingTwo: eventsPageStrings.eventsDetailsSubHeadingTwo,
-    eventsDetailsSubDescTwo: eventsPageStrings.evnetsDetailsSubInfoTwo,
-    eventsDetailsSubHeadingThree:
-      eventsPageStrings.eventsDetailsSubHeadingThree,
-    eventsDetailsSubDescThree: eventsPageStrings.evnetsDetailsSubInfoThree,
+    productImg: producttwoimg,
+    productHeading: 'Regular tags - A pack of 4',
+    productOfferPrice: '$ 45.00 ',
+    productOriginalPrice: '$ 60.00 ',
   },
 ];
 
@@ -113,4 +172,11 @@ const footerIconsData = [
   },
 ];
 
-export { footerIconsData, eventsBuissnessData, starPlanData, premiumPlansData };
+export {
+  footerIconsData,
+  eventsBuissnessData,
+  starPlanData,
+  premiumPlansData,
+  productCategoriesHeadingData,
+  productsData,
+};
