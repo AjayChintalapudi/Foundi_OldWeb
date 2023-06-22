@@ -21,6 +21,11 @@ export { default as subscriptionpremiumcheckimg } from 'assets/Images/subscripti
 
 export { default as productoneimg } from 'assets/Images/productoneimg.svg';
 export { default as producttwoimg } from 'assets/Images/producttwoimg.svg';
+
+// Product Review Images
+
+export { default as prodoctreviewleftarrow } from 'assets/Images/productreviewleftarrowimg.svg';
+export { default as prodoctreviewrightarrow } from 'assets/Images/productreviewrightarrow.svg';
 // Footer Images
 export { default as facebookicon } from 'assets/Images/facebookicon.svg';
 export { default as twittericon } from 'assets/Images/twittericon.svg';

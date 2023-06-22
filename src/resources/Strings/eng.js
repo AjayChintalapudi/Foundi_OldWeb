@@ -98,6 +98,17 @@ const productPageStrings = {
   productCategoryThree: 'Category 3',
 };
 
+const productReviewPageStrings = {
+  backText: 'Back',
+  productHeading: 'Keychain tags - A pack of 4',
+  productSubDesc:
+    'Product details here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
+  productOfferPriceReview: '$ 89.00',
+  productOriginalPrice: '$ 119.00',
+  productBtnName: 'Add to cart',
+  buyNowText:"Buy now",
+};
+
 const footerStrings = {
   footerMainHeading: 'Never miss updates from us!',
   footerSubDesc:
@@ -130,5 +141,6 @@ export const Strings = {
   eventsPageStrings,
   aboutPageStrings,
   productPageStrings,
+  productReviewPageStrings,
   footerStrings,
 };
