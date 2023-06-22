@@ -8,24 +8,38 @@ import {
 } from 'resources/Images/Images';
 import { Strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
+import { navigate, useNavigate } from 'react-router-dom';
 
 const { navbar } = Strings;
 const NavBar = () => {
+  const navigate = useNavigate();
   const [popOver, setPopOver] = useState(false);
 
   return (
     <div className={styles.navBar}>
       <div className={styles.insideNavBar}>
-        <div className={styles.leftSection}>
+        <div onClick={() => navigate('/')} className={styles.leftSection}>
           <div className={styles.navBarLogo}>
             <img src={navbarlogo} alt="" className={styles.imageWidth} />
           </div>
           <p className={styles.LogoText}>{navbar.logoHeading}</p>
         </div>
         <div className={styles.rightSection}>
-          <p className={styles.eventsSection}>{navbar.events}</p>
-          <p className={styles.aboutSection}>{navbar.about}</p>
-          <p className={styles.productsSection}>{navbar.products}</p>
+          <p
+            onClick={() => navigate('/events')}
+            className={styles.eventsSection}
+          >
+            {navbar.events}
+          </p>
+          <p onClick={() => navigate('/about')} className={styles.aboutSection}>
+            {navbar.about}
+          </p>
+          <p
+            onClick={() => navigate('/products')}
+            className={styles.productsSection}
+          >
+            {navbar.products}
+          </p>
           <div className={styles.cartSection}>
             <img src={cartImg} alt="" className={styles.imageWidth} />
           </div>

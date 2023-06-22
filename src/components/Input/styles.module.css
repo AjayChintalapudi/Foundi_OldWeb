@@ -1,0 +1,12 @@
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+.inputIcon {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+.inputStyles {
+  width: 100%;
+}

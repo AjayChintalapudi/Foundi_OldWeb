@@ -6,15 +6,21 @@ import {
   appstorelogo,
   awslogo,
   ebaylogo,
+  findertaglogo,
   googlelogo,
   homebglogo,
   homebgmobilelogo,
   ioslogo,
   leftarrowlogo,
+  locationlogo,
+  messagelogo,
+  phonelogo,
   playstorelogo,
+  qrcodetaglogo,
   rightarrowlogo,
   samsunglogo,
   scrolldownlogo,
+  smiletaglogo,
   subtractionlogo,
   tagslogo,
   uprightlogo,
@@ -22,6 +28,8 @@ import {
 import NavBar from 'components/NavBar/Navbar';
 import useWindowDimensions from 'hooks/UseWindowDimensionHook';
 import Button from 'components/Button/Button';
+import Footer from 'components/Footer/Footer';
+import Input from 'components/Input/Input';
 
 const Home = () => {
   const { homePage } = Strings;
@@ -29,8 +37,39 @@ const Home = () => {
 
   //state
   const [block, setBlock] = useState(0);
+  const [indexNo, setIndexNo] = useState(0);
 
   //mapping data
+
+  //Purchase Data
+  const purchaseData = [
+    {
+      header: '01 - Purchase tags',
+      image: tagslogo,
+      descp:
+        'Purchase physical Foundi tags from our app or the website. These tags will allow you to register your belongings within our database.',
+    },
+    {
+      header: '02 - Register belongings',
+      image: qrcodetaglogo,
+      descp:
+        'To add or register your belongings in our database, simply scan the QR or enter the SNO number present on the tags you purchased.',
+    },
+    {
+      header: '03 - Connect with finders',
+      image: findertaglogo,
+      descp:
+        'If you lost your registered item, finders can scan the tag attached to it and can text you via our in-built messenger while keeping your privacy intact.',
+    },
+    {
+      header: '04 - Recover lost items',
+      image: smiletaglogo,
+      descp:
+        'Conversing with finders you can work a way out to recover your beloved items back.',
+    },
+  ];
+
+  //Question Answer Data
   const questionAnswerData = [
     {
       question: homePage.questionOne,
@@ -49,10 +88,43 @@ const Home = () => {
       answer: homePage.answerOne,
     },
   ];
+
+  //Contact Data
+  const contactData = [
+    {
+      image: locationlogo,
+      text: homePage.contactLocation,
+    },
+    {
+      image: phonelogo,
+      text: homePage.contactNumber,
+    },
+    {
+      image: messagelogo,
+      text: homePage.contactMail,
+    },
+  ];
+
   const handleShow = (index) => {
     setBlock(index);
   };
-  console.log('index', block);
+
+  const handleLeftClick = () => {
+    if (indexNo === 0) {
+      setIndexNo(purchaseData.length - 1);
+    } else {
+      setIndexNo(indexNo - 1);
+    }
+  };
+
+  const handleRightClick = () => {
+    if (purchaseData.length === indexNo + 1) {
+      setIndexNo(0);
+    } else {
+      setIndexNo(indexNo + 1);
+    }
+  };
+
   const homebannerSection = () => {
     return (
       <div className={styles.bannerSection}>
@@ -150,11 +222,21 @@ const Home = () => {
       <div className={styles.purchaseSection}>
         <div className={styles.insidePurchaseSection}>
           <div className={styles.purchaseLeftArrowIcon}>
-            <img src={leftarrowlogo} alt="" className={styles.imageWidth} />
+            <img
+              onClick={() => handleLeftClick()}
+              src={leftarrowlogo}
+              alt=""
+              className={styles.imageWidth}
+            />
           </div>
           {purchaseMiddleSection()}
           <div className={styles.purchaseRightArrowIcon}>
-            <img src={rightarrowlogo} alt="" className={styles.imageWidth} />
+            <img
+              onClick={() => handleRightClick()}
+              src={rightarrowlogo}
+              alt=""
+              className={styles.imageWidth}
+            />
           </div>
           {purchaseArrowIcons()}
         </div>
@@ -164,18 +246,28 @@ const Home = () => {
 
   const purchaseMiddleSection = () => {
     return (
-      <div className={styles.purchaseMiddleSection}>
-        <h2 className={styles.purchaseTopSection}>
-          {homePage.purchaseHeading}
-        </h2>
-        <div className={styles.purchaseGapSection}>
-          <div className={styles.purchaseTagsIcon}>
-            <img src={tagslogo} alt="" className={styles.imageWidth} />
-          </div>
-          <p className={styles.purchaseDescpSection}>
-            {homePage.purchaseDescp}
-          </p>
-        </div>
+      <div className={styles.mapSection}>
+        {purchaseData.map((item, index) => {
+          return (
+            <React.Fragment>
+              {indexNo === index && (
+                <div key={index} className={styles.purchaseMiddleSection}>
+                  <h2 className={styles.purchaseTopSection}>{item.header}</h2>
+                  <div className={styles.purchaseGapSection}>
+                    <div className={styles.purchaseTagsIcon}>
+                      <img
+                        src={item.image}
+                        alt=""
+                        className={styles.imageWidth}
+                      />
+                    </div>
+                    <p className={styles.purchaseDescpSection}>{item.descp}</p>
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          );
+        })}
       </div>
     );
   };
@@ -313,6 +405,81 @@ const Home = () => {
     );
   };
 
+  const homeContactSection = () => {
+    return (
+      <div className={styles.contactSection}>
+        <div className={styles.insideContactSection}>
+          {contactLeftSection()}
+          {contactRightSection()}
+        </div>
+      </div>
+    );
+  };
+
+  const contactLeftSection = () => {
+    return (
+      <div className={styles.contactLeftSection}>
+        <div className={styles.contactLeftTopSection}>
+          <h3 className={styles.contactHeader}>{homePage.contactHeading}</h3>
+          <p className={styles.contactDescp}>{homePage.contactDescp}</p>
+        </div>
+        <div className={styles.contactLeftBottomSection}>
+          {contactData.map((item, index) => {
+            return (
+              <div key={index} className={styles.contactLocationSection}>
+                <div className={styles.locationImg}>
+                  <img src={item.image} alt="" className={styles.imageWidth} />
+                </div>
+                <p className={styles.locationText}>{item.text}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  const contactRightSection = () => {
+    return (
+      <div className={styles.contactRightSection}>
+        <div className={styles.contactInputSection}>
+          <div className={styles.nameSection}>
+            <p className={styles.nameText}>{homePage.contactName}</p>
+
+            <Input
+              customInputStyles={styles.nameInputStyles}
+              type="text"
+              placeholder={homePage.placeHolderName}
+            />
+          </div>
+
+          <div className={styles.emailSection}>
+            <p className={styles.emailText}>{homePage.contactMailId}</p>
+            <Input
+              customInputStyles={styles.emailInputStyles}
+              type="text"
+              placeholder={homePage.placeHolderMail}
+            />
+          </div>
+
+          <div className={styles.messageSection}>
+            <p className={styles.messageText}>{homePage.contactMessage}</p>
+            <textarea
+              className={styles.messageInputStyles}
+              placeholder={homePage.placeHolderMessage}
+            />
+          </div>
+        </div>
+        <div className={styles.contactButtonSection}>
+          <Button
+            btName={homePage.sendBtnName}
+            btnStyles={styles.sendBtnStyles}
+          />
+        </div>
+      </div>
+    );
+  };
+
   const homeLearnSection = () => {
     return (
       <div className={styles.learnSection}>
@@ -338,7 +505,9 @@ const Home = () => {
       {homeProductsSection()}
       {homequestionsSection()}
       {homeDownloadSection()}
+      {homeContactSection()}
       {homeLearnSection()}
+      <Footer />
     </div>
   );
 };

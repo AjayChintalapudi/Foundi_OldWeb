@@ -1,0 +1,80 @@
+.productsBannerMainContainer {
+  background-color: var(--darkgreen);
+}
+
+.productsBannerInsideContainer {
+  max-width: 1366px;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 117px;
+  text-align: center;
+}
+
+.productsBannerInfoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.productsBannerMainHeading {
+  max-width: 593px;
+  width: 100%;
+  font-family: 'Regular', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  color: var(--white);
+}
+
+.productsBannerSubDesc {
+  max-width: 593px;
+  width: 100%;
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--whitetransparent72);
+}
+
+.productsBannerButtonsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+}
+
+.productsBtnStyles {
+  width: 265px;
+  height: 56px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  background: var(--white);
+  box-shadow: 1px 8px 24px var(--lightgrey8);
+  border-radius: 8px;
+  justify-content: center;
+}
+
+.scollButtonBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.scollButtonBlock:nth-child(1){
+    
+}
+
+.scrollButton {
+  width: 12px;
+  height: 12px;
+  background-color: var(--white);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+}

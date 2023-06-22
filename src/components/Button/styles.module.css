@@ -1,4 +1,8 @@
-.btnStyles{
-    border: none;
-    background: none;
+.btnStyles {
+  border: none;
+  background: none;
+}
+.imgStyles {
+  width: 100%;
+  height: 100%;
 }
