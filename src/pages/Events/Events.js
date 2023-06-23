@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 import { bannerleftarrow, eventsbottomleftimg } from 'resources/Images/Images';
 import NavBar from 'components/NavBar/Navbar';
 import Footer from 'components/Footer/Footer';
 import { eventsBuissnessData } from 'constants/CommonData/CommonData';
 
 const Events = () => {
-  const { eventsPageStrings } = Strings;
+  const { eventsPageStrings } = strings;
 
   const eventsBannerSection = () => {
     return (

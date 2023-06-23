@@ -154,9 +154,38 @@ const homePage = {
   placeHolderMessage: 'Type your message here',
 };
 
-export const Strings = {
+const loginPageStrings = {
+  login: 'Log in',
+  email: 'Email address',
+  emailPlaceHolder: 'Enter your email address',
+  password: 'Password',
+  passwordPlaceHolder: 'Enter your password,',
+  forgotPassword: 'Forgot password?',
+  google: 'Sign in with Google',
+  noAccount: 'Don’t have an account?',
+  signup: 'Sign up',
+};
+
+const signUpPageStrings = {
+  signup: 'Sign up',
+  fullName: 'Full name',
+  fullNamePlaceHolder: 'Enter your full name',
+  email: 'Email address',
+  emailPlaceHolder: 'Enter your email address',
+  password: 'Password',
+  passwordPlaceHolder: '6+ characters, 1 capital letter',
+  passwordStrength: 'Strength: ---',
+  createAccount: 'Create account',
+  google: 'Sign in with Google',
+  alreadtAcc: 'Already have an account? ',
+  login: 'Log in',
+};
+
+export const strings = {
   navbar,
   homePage,
+  loginPageStrings,
+  signUpPageStrings,
   eventsPageStrings,
   aboutPageStrings,
   productPageStrings,

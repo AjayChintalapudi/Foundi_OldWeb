@@ -7,8 +7,8 @@ import {
   subscriptionpremiumcheckimg,
   twittericon,
 } from 'resources/Images/Images';
-import { Strings } from 'resources/Strings/eng';
-const { footerStrings, eventsPageStrings, aboutPageStrings } = Strings;
+import { strings } from 'resources/Strings/eng';
+const { footerStrings, eventsPageStrings, aboutPageStrings } = strings;
 
 const starPlanData = [
   {

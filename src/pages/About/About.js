@@ -1,5 +1,5 @@
 import React from 'react';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 import Footer from 'components/Footer/Footer';
 import NavBar from 'components/NavBar/Navbar';
 import { applestoreimg, playstoreimg } from 'resources/Images/Images';
@@ -10,7 +10,7 @@ import {
 } from 'constants/CommonData/CommonData';
 import styles from './styles.module.css';
 const About = () => {
-  const { aboutPageStrings } = Strings;
+  const { aboutPageStrings } = strings;
 
   const aboutBannerSection = () => {
     return (

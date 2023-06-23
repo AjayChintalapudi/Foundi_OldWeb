@@ -2,11 +2,11 @@ import React from 'react';
 import NavBar from 'components/NavBar/Navbar';
 import Footer from 'components/Footer/Footer';
 import Button from 'components/Button/Button';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 import styles from './styles.module.css';
 
 const Products = () => {
-  const { productPageStrings } = Strings;
+  const { productPageStrings } = strings;
 
   const productsBannerSection = () => {
     return (

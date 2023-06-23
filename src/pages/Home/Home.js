@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 import {
   additionlogo,
   appstorelogo,
@@ -32,7 +32,7 @@ import Footer from 'components/Footer/Footer';
 import Input from 'components/Input/Input';
 
 const Home = () => {
-  const { homePage } = Strings;
+  const { homePage } = strings;
   const { width } = useWindowDimensions();
 
   //state

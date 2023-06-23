@@ -6,11 +6,11 @@ import {
   hamburgerlogo,
   navbarlogo,
 } from 'resources/Images/Images';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
-import { navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const { navbar } = Strings;
+const { navbar } = strings;
 const NavBar = () => {
   const navigate = useNavigate();
   const [popOver, setPopOver] = useState(false);
@@ -44,7 +44,11 @@ const NavBar = () => {
             <img src={cartImg} alt="" className={styles.imageWidth} />
           </div>
           <div className={styles.navBarButton}>
-            <Button btName={navbar.login} btnStyles={styles.loginStyles} />
+            <Button
+              onClick={() => navigate('/login')}
+              btName={navbar.login}
+              btnStyles={styles.loginStyles}
+            />
           </div>
 
           <div className={styles.hamburgerIcon}>
@@ -66,6 +70,7 @@ const NavBar = () => {
                 <Button
                   btName={navbar.login}
                   btnStyles={styles.popOverLoginStyles}
+                  onClick={() => navigate('/login')}
                 />
               </div>
             </div>
