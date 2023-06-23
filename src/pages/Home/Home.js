@@ -32,10 +32,6 @@ import Button from 'components/Button/Button';
 import Footer from 'components/Footer/Footer';
 import Input from 'components/Input/Input';
 
-<<<<<<< HEAD
-const { homePage } = strings;
-=======
->>>>>>> 2352e4d9989a41b535641257dae4e695eb21af7c
 const Home = () => {
   const { homePage } = strings;
   const { width } = useWindowDimensions();
