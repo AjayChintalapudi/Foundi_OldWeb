@@ -1,94 +1,1187 @@
-.bannerSection{
-    width: 100%;
-    height: calc(100% - 100px);
-    background-color: var(--skyblue);
+/* -----------------------DeskTop View Starts----------------------- */
+
+/* homebannerSection section start*/
+.bannerSection {
+  width: 100%;
+  height: calc(100% - 100px);
+  background-color: var(--skyblue);
 }
-.insideBannerSection{
-    max-width: 1366px;
-    margin: auto;
+.insideBannerSection {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 100px 80px 0px;
+}
+.insideBannerTopSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bannerLeftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.bannerHeader {
+  max-width: 797px;
+  width: 100%;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 71px;
+  color: var(--aubergine);
+}
+.bannerDescp {
+  max-width: 593px;
+  width: 100%;
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--lightgrey72);
+}
+.bannerRightSection {
+  display: flex;
+  flex-direction: column;
+  gap: 73px;
+  justify-content: flex-end;
+}
+.ellipseSection {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: flex-end;
+}
+.ellipseOne {
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--aubergine);
+}
+.ellipseTwo {
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  background: var(--aubergine);
+}
+.scrollSection {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+.scrollDesc {
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: right;
+  color: var(--aubergine);
+}
+.downArrowIcon {
+  max-width: 24px;
+  max-height: 24px;
+}
+.imageWidth {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bottomSection {
+  width: 91%;
+  height: 100%;
+}
+/* homebannerSection section end*/
+
+/* homeReturnSection section start*/
+.returnSection {
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+}
+.insideReturnSection {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 122px;
+  justify-content: space-between;
+  padding: 100px 182px;
+  align-items: center;
+}
+.returnLeftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.returnHeader {
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  color: var(--aubergine);
+  max-width: 491px;
+}
+.returnDescp {
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--lightgrey72);
+  max-width: 491px;
+}
+.returnRightSection {
+  width: 389px;
+  height: 72px;
+  background: var(--aubergine);
+  box-shadow: 1px 8px 24px var(--lightgrey8);
+  border-radius: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.returnBtnStyles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Regular';
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--white);
+}
+.returnWrappperStyles {
+  width: 24px;
+  height: 24px;
+}
+/* homeReturnSection section end*/
+
+/* homeSocialSection section start*/
+.socialSection {
+  width: 100%;
+  height: 100%;
+  background: var(--lightgreyishblue);
+}
+.insideSocialSection {
+  max-width: 1366px;
+  margin: auto;
+  height: 192px;
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+}
+.ebaySection {
+  max-width: 80px;
+  max-height: 32px;
+}
+.samsungSection {
+  max-width: 210px;
+  height: 32px;
+}
+.awsSection {
+  max-width: 54px;
+  height: 32px;
+}
+.iosSection {
+  max-width: 60px;
+  max-height: 32px;
+}
+.googleSection {
+  max-width: 98px;
+  max-height: 32px;
+}
+/* homeSocialSection section end*/
+
+/* homePurchaseSection section start*/
+.purchaseSection {
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+}
+.insidePurchaseSection {
+  max-width: 1366px;
+  margin: auto;
+  padding: 100px 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.purchaseLeftArrowIcon,
+.purchaseRightArrowIcon {
+  display: block;
+  max-width: 40px;
+  max-height: 40px;
+}
+.purchaseMiddleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+.purchaseTopSection {
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  text-align: center;
+  color: var(--aubergine);
+}
+.purchaseGapSection {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+}
+
+.purchaseTagsIcon {
+  max-width: 224px;
+  max-height: 224px;
+}
+.purchaseDescpSection {
+  max-width: 491px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  color: var(--lightgrey72);
+}
+.purchaseArrowSection {
+  display: none;
+}
+.purchaseLeftArrowMobileIcon,
+.purchaseRightArrowMobileIcon {
+  display: none;
+}
+/* homePurchaseSection section end*/
+
+/* homeProductsSection section start*/
+.productsSection {
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/Images/productsbglogo.svg');
+  background-color: var(--darkgreen);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.insideProductsSection {
+  max-width: 1366px;
+  margin: auto;
+  padding: 80px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+}
+.productsTopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.productsHeader {
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  text-align: center;
+  color: var(--white);
+}
+.productsDescp {
+  max-width: 593px;
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  color: var(--whitetransparent72);
+}
+.productsButtonSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 265px;
+  height: 56px;
+  background: var(--white);
+  box-shadow: 1px 8px 24px var(--lightgrey8);
+  border-radius: 8px;
+}
+.productsBtnStyles {
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--aubergine);
+}
+/* homeProductsSection section end*/
+
+/* homequestionsSection section start*/
+.questionSection {
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+}
+.insideQuestionSection {
+  max-width: 1366px;
+  padding: 100px 182px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+}
+.questionTopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.questionHeading {
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  text-align: center;
+  color: var(--aubergine);
+}
+.questionsDescp {
+  max-width: 593px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  color: var(--lightgrey72);
+}
+.questionBottomSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.questionAnswerSection,
+.showQuestionAnswerSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--white);
+  padding: 32px;
+  border: 1px solid var(--lightgrey24);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.showQuestionAnswerSection {
+  background: var(--lightgreyishblue);
+}
+.questionLeftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.questionText {
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--aubergine);
+}
+.showQuestionText {
+  display: block;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--lightgrey72);
+}
+.answerText {
+  max-width: 624px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--lightgrey72);
+}
+.questionRightSection {
+  display: block;
+  max-width: 32px;
+  max-height: 32px;
+}
+
+/* homequestionsSection section end*/
+
+/* homeDownloadSection section start*/
+.downloadSection {
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/Images/downloadbglogo.svg') var(--darkgreen)
+    no-repeat center;
+  background-size: cover;
+}
+.insideDownloadSection {
+  max-width: 1366px;
+  margin: auto;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+}
+.downloadTopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.downloadHeader {
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  text-align: center;
+  color: var(--white);
+}
+.downloadDescp {
+  max-width: 593px;
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  color: var(--whitetransparent72);
+}
+.downloadBottomSection {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+.imageStoreStyles {
+  width: 100%;
+  height: 100%;
+}
+.appStoreSection,
+.playStoreSection {
+  padding: 12px 34px;
+  background: var(--white);
+  box-shadow: 1px 8px 24px var(--lightgrey8);
+  border-radius: 8px;
+}
+
+/* homeDownloadSection section end*/
+
+/* homeContactSection section start*/
+.contactSection {
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+}
+.insideContactSection {
+  max-width: 1366px;
+  margin: auto;
+  padding: 100px 182px;
+  display: flex;
+  flex-direction: row;
+  gap: 122px;
+}
+.contactLeftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+  max-width: 389px;
+}
+.contactLeftTopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contactHeader {
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  color: var(--aubergine);
+}
+.contactDescp {
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--lightgrey72);
+}
+.contactLeftBottomSection {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.contactLocationSection {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+.locationImg {
+  max-width: 32px;
+  max-height: 32px;
+}
+.locationText {
+  font-family: 'Medium', sans-serif;
+  max-width: 343px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--darkgreen);
+}
+.contactRightSection {
+  width: 100%;
+  padding: 32px;
+  background-color: var(--grey95);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  border-radius: 8px;
+}
+.contactInputSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.nameSection,
+.emailSection,
+.messageSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nameText,
+.emailText,
+.messageText {
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--lightgrey72);
+}
+.nameInputStyles,
+.emailInputStyles {
+  padding: 13px 52px 13px 16px;
+  max-width: 472px;
+  width: 100%;
+  height: 56px;
+  background: var(--white);
+  border: 1px solid var(--lightgrey24);
+  border-radius: 8px;
+  font-family: 'Light';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--grey);
+}
+.messageInputStyles {
+  padding: 13px 52px 0px 16px;
+  height: 116px;
+  background: var(--white);
+  border: 1px solid var(--lightgrey24);
+  border-radius: 8px;
+  font-family: 'Light';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--grey);
+  resize: none;
+}
+.contactButtonSection {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--darkgreen);
+  border-radius: 8px;
+  box-shadow: 1px 8px 24px 0px rgba(25, 79, 89, 0.08);
+}
+.sendBtnStyles {
+  color: var(--white);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+/* homeContactSection section end*/
+
+/* homeLearnSection section start*/
+.learnSection {
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/Images/learnmorebglogo.svg') var(--skyblue)
+    no-repeat center;
+  background-size: cover;
+}
+.insideLearnSection {
+  max-width: 1366px;
+  margin: auto;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+}
+.learnTopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.learnHeader {
+  max-width: 593px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  text-align: center;
+  color: var(--aubergine);
+}
+.learnDescp {
+  max-width: 593px;
+  font-family: 'Medium';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  color: var(--lightgrey72);
+}
+.learnBottomSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 265px;
+  height: 56px;
+  background: var(--aubergine);
+  box-shadow: 1px 8px 24px var(--lightgrey8);
+  border-radius: 8px;
+}
+.learnBtnStyles {
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--white);
+}
+/* homeLearnSection section end*/
+
+/* -----------------------DeskTop View Ends----------------------- */
+
+/* styles start at 1023px */
+@media screen and (max-width: 1023px) {
+  /* homebannerSection section start*/
+  /* homebannerSection section end*/
+
+  /* homeReturnSection section start*/
+  .insideReturnSection {
+    padding: 80px 40px;
+    gap: 80px;
+    align-items: center;
+  }
+  /* homeReturnSection section end*/
+
+  /* homeSocialSection section start*/
+  .insideSocialSection {
+    height: 160px;
+    display: flex;
+    gap: 40px;
+  }
+  /* homeSocialSection section start*/
+
+  /* homePurchaseSection section start*/
+  /* homePurchaseSection section end*/
+
+  /* homeProductsSection section start*/
+  /* homeProductsSection section end*/
+
+  /* homequestionsSection section start*/
+  .insideQuestionSection {
+    padding: 80px 100px;
+    gap: 60px;
+  }
+
+  /* homequestionsSection section end*/
+
+  /* homeDownloadSection section start*/
+  /* homeDownloadSection section end*/
+
+  /* homeContactSection section end*/
+  .insideContactSection {
+    padding: 80px 120px;
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+  }
+
+  /* homeContactSection section end*/
+
+  /* homeLearnSection section start*/
+  /* homeLearnSection section end*/
+}
+/* styles End at 1023px */
+
+/* styles start at 867px */
+@media screen and (max-width: 867px) {
+  /* homebannerSection section start*/
+
+  .insideBannerSection {
+    gap: 60px;
+    padding: 80px 40px 0px;
+  }
+  .insideBannerTopSection {
     display: flex;
     flex-direction: column;
-    gap: 80px;
-    padding: 100px 80px 0px;
-    
-    
-}
-.insideBannerTopSection{
+    gap: 48px;
+  }
+  .bannerLeftSection {
+    gap: 12px;
+  }
+  .bannerHeader {
+    max-width: 630px;
+    font-size: 40px;
+    line-height: 60px;
+  }
+  .bannerDescp {
+    max-width: 400px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .bannerRightSection {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-.bannerLeftSection{
+    align-items: center;
+  }
+  /* homebannerSection section end*/
+
+  /* homeReturnSection section start*/
+  .insideReturnSection {
+    padding: 60px 40px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-}
-.bannerHeader{
-    max-width: 797px;
+    gap: 32px;
+  }
+  .returnLeftSection {
+    gap: 12px;
+  }
+  .returnHeader {
+    font-size: 32px;
+    line-height: 41px;
+    max-width: 366px;
+    text-align: center;
+  }
+  .returnDescp {
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 366px;
+    text-align: center;
+  }
+  .returnRightSection {
     width: 100%;
-    font-family: 'Semi-Bold',sans-serif;
-   font-weight: 600;
-   font-size: 56px;
-   line-height: 71px;
-    color: var(--aubergine);
-}
-.bannerDescp{
-    max-width: 593px;
-    width: 100%;
-font-family: 'Medium',sans-serif;
-font-weight: 400;
-font-size: 18px;
-line-height: 30px;
-color: var(--lightgrey72);
-}
-.bannerRightSection{
+    max-width: 366px;
+    height: 68px;
+  }
+  .returnBtnStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* homeReturnSection section end*/
+
+  /* homeSocialSection section start*/
+  .insideSocialSection {
+    height: 100%;
+    padding: 48px 74px;
+    flex-wrap: wrap;
+  }
+  /* homeSocialSection section end*/
+
+  /* homePurchaseSection section start*/
+  .insidePurchaseSection {
     display: flex;
     flex-direction: column;
-    gap: 73px;
-    justify-content: end;
-}
-.ellipseSection{
+    gap: 72px;
+    padding: 48px 74px;
+    justify-content: center;
+  }
+  .purchaseLeftArrowIcon,
+  .purchaseRightArrowIcon {
+    display: none;
+  }
+  .purchaseArrowSection {
     display: flex;
     flex-direction: row;
-    gap: 12px;
-    justify-content: end;
+    gap: 64px;
+  }
+  .purchaseLeftArrowMobileIcon,
+  .purchaseRightArrowMobileIcon {
+    display: block;
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .purchaseTopSection {
+    font-size: 32px;
+    line-height: 41px;
+  }
+  /* homePurchaseSection section end*/
+
+  /* homeProductsSection section start*/
+  .insideProductsSection {
+    padding: 60px 80px;
+    gap: 32px;
+  }
+  .productsHeader {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .productsDescp {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* homeProductsSection section end*/
+
+  /* homequestionsSection section start*/
+  .insideQuestionSection {
+    padding: 80px 40px;
+    gap: 60px;
+  }
+  .questionHeading {
+    font-size: 34px;
+    line-height: 40px;
+  }
+  .questionsDescp {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .questionAnswerSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+    cursor: none;
+  }
+
+  .questionRightSection {
+    display: none;
+    max-width: 32px;
+    max-height: 32px;
+  }
+  .showQuestionText {
+    color: var(--aubergine);
+  }
+
+  /* homequestionsSection section end*/
+
+  /* homeContactSection section end*/
+  .insideContactSection {
+    padding: 60px 80px;
+    gap: 48px;
+    display: flex;
+    flex-direction: column;
+  }
+  .contactLeftSection {
+    gap: 32px;
+  }
+
+  /* homeContactSection section end*/
+
+  /* homeDownloadSection section start*/
+
+  .downloadHeader {
+    font-size: 34px;
+    line-height: 40px;
+  }
+  .downloadDescp {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .downloadBottomSection {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .appStoreSection,
+  .playStoreSection {
+    padding: 12px 36px;
+  }
+
+  /* homeDownloadSection section end*/
 }
-.ellipseOne{
-    width: 12px;
-    height: 12px;
-    border-radius: 12px;
-    border: 1px solid var(--aubergine);
-}
-.ellipseTwo{
-    width: 12px;
-    height: 12px;
-    border-radius: 12px;
-    background: var(--aubergine);
-}
-.scrollSection{
-display: flex;
-flex-direction: row;
-gap: 8px;
-align-items: center;
-}
-.scrollDesc{
-    font-family: 'Regular',sans-serif;
-font-weight: 500;
-font-size: 18px;
-line-height: 30px;
-text-align: right;
-color: var(--aubergine);
-}
-.downArrowIcon{
-    max-width: 24px;
-    max-height: 24px;
-}
-.imageWidth{
+
+/* styles End at 867px */
+
+/* styles start at 428px */
+@media screen and (max-width: 428px) {
+  /* homebannerSection section start*/
+  .insideBannerSection {
+    gap: 48px;
+    padding: 64px 24px 0px;
+  }
+  .bannerHeader {
+    max-width: 366px;
+    font-size: 32px;
+    line-height: 41px;
+  }
+  .bannerDescp {
+    max-width: 366px;
+  }
+  .scrollDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .bottomSection {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+  }
+
+  /* homebannerSection section end*/
+
+  /* homeReturnSection section start*/
+  .insideReturnSection {
+    padding: 64px 24px;
+  }
+  .returnHeader {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  /* homeReturnSection section end*/
+
+  /* homeSocialSection section start*/
+  .ebaySection {
+    max-width: 60px;
+    max-height: 24px;
+  }
+  .samsungSection {
+    max-width: 156px;
+    height: 24px;
+  }
+  .awsSection {
+    max-width: 40px;
+    height: 24px;
+  }
+  .iosSection {
+    max-width: 44px;
+    max-height: 24px;
+  }
+  .googleSection {
+    max-width: 72px;
+    max-height: 24px;
+  }
+
+  /* homeSocialSection section end*/
+
+  /* homePurchaseSection section start*/
+  .insidePurchaseSection {
+    padding: 64px 24px;
+    gap: 64px;
+  }
+  .purchaseMiddleSection {
+    gap: 64px;
+  }
+  .purchaseTopSection {
+    max-width: 366px;
+    font-size: 26px;
+    line-height: 36px;
+  }
+  .purchaseGapSection {
+    gap: 32px;
+  }
+  .purchaseTagsIcon {
+    max-width: 160px;
+    max-height: 160px;
+  }
+  .purchaseDescpSection {
+    max-width: 366px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  /* homePurchaseSection section end*/
+
+  /* homeProductsSection section start*/
+  .productsSection {
+    background-image: url('../../assets/Images/productsbgmobilelogo.svg');
+  }
+  .insideProductsSection {
+    padding: 64px 24px;
+    gap: 32px;
+  }
+  .productsTopSection {
+    gap: 12px;
+  }
+  .productsHeader {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .productsDescp {
+    max-width: 366px;
+  }
+  .productsButtonSection {
+    max-width: 100%;
+    width: 224px;
+    height: 56px;
+  }
+  .productsBtnStyles {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* homeProductsSection section end*/
+
+  /* homequestionsSection section start*/
+  .insideQuestionSection {
+    padding: 64px 32px;
+    gap: 32px;
+  }
+  .questionTopSection {
+    gap: 12px;
+  }
+  .questionHeading {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .questionsDescp {
+    max-width: 366px;
+  }
+  .questionAnswerSection {
+    padding: 24px;
+  }
+  .questionLeftSection {
+    gap: 8px;
+  }
+  .questionText {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .answerText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  /* homequestionsSection section end*/
+
+  /* homeContactSection section end*/
+  .insideContactSection {
+    padding: 64px 24px;
+  }
+
+  .contactLeftSection {
+    max-width: 366px;
+  }
+  .contactLeftTopSection {
+    gap: 12px;
+  }
+  .contactHeader {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .contactDescp {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .contactLeftBottomSection {
+    gap: 32px;
+  }
+
+  .locationImg {
+    max-width: 24px;
+    max-height: 24px;
+  }
+  .locationText {
+    max-width: 326px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .contactRightSection {
+    padding: 24px;
+  }
+  .contactInputSection {
+    gap: 24px;
+  }
+  .nameText,
+  .emailText,
+  .messageText {
+    font-size: 14px;
+  }
+  .nameInputStyles,
+  .emailInputStyles {
+    padding: 16px;
+    max-width: 318px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .messageInputStyles {
+    padding: 16px 16px 0px 16px;
+    height: 128px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* homeContactSection section end*/
+
+  /* homeDownloadSection section start*/
+  .downloadSection {
+    background: url('../../assets/Images/downloadbgmobilelogo.svg')
+      var(--darkgreen) no-repeat center;
+    background-size: contain;
+  }
+  .insideDownloadSection {
+    padding: 64px 24px;
+    gap: 32px;
+  }
+  .downloadTopSection {
+    gap: 12px;
+  }
+  .downloadHeader {
+    max-width: 366px;
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .downloadDescp {
+    max-width: 366px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  /* homeDownloadSection section end*/
+
+  /* homeLearnSection section start*/
+  .learnSection {
+    background-image: none;
+  }
+  .insideLearnSection {
+    padding: 64px 24px;
+    gap: 32px;
+  }
+  .learnTopSection {
+    gap: 12px;
+  }
+  .learnHeader {
+    max-width: 366px;
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .learnDescp {
+    max-width: 366px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .learnBottomSection {
+    width: 224px;
+    height: 56px;
+  }
+  .learnBtnStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* homeLearnSection section end*/
 }
-.bottomSection{
-    width: 91%;
-    height: 100%;
-}
+/* styles End at 428px */

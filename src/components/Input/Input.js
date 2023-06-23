@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
 import classNames from 'classnames';
-import Button from 'components/Button/Button';
 
 const Input = (props) => {
   const {
@@ -16,7 +15,6 @@ const Input = (props) => {
     image,
     alt,
     error,
-    button,
   } = props;
   return (
     <div className={styles.inputContainer}>

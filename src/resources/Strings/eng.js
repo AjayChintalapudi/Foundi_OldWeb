@@ -144,6 +144,7 @@ const navbar = {
   about: 'About',
   products: 'Products',
   login: 'Login',
+  userProfile: 'User profile',
 };
 
 const homePage = {
@@ -151,11 +152,77 @@ const homePage = {
   bannerDescription:
     'Lorem ipsum dolor sit amet, "consectetur adipiscing elit Mauris non lacus ac elit dictum tempor sed id lectus.',
   scrollText: 'Scroll down',
+  purchaseHeading: '01 - Purchase tags',
+  purchaseDescp:
+    'Purchase physical Foundi tags from our app or the website. These tags will allow you to register your belongings within our database.',
+  returnHeading: 'Found a lost item?',
+  returnDescp:
+    ' Scan the QR using your camera app or enter SNO number present on the item to get in touch with the onwer of the product. To get started, click “Return item.”',
+  productsHeading: '10% off on our products!',
+  productsDescp:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse risus urna, rutrum non quam in.',
+  questionandanswerHeading: 'FAQs',
+  questionandanswerDescp:
+    'Here are the questions that users keep asking us frequently. In case your query isn’t present below, feel free to contact us.',
+  questionOne: '01 - Here goes the question number one?',
+  questionTwo: '02 - Here goes the question number two?',
+  questionThree: '03 - Here goes the question number three?',
+  questionFour: '04 - Here goes the question number four?',
+  answerOne:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in, pretium pulvinar felis.',
+  downloadHeading: 'Downloaded our app yet?',
+  downloadingDescp:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
+  learnmoreHeading: 'Sustainability is one of our core beliefs',
+  learnmoreDescp:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
+  contactHeading: 'Contact us',
+  contactDescp:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
+  contactLocation: 'Järnvägsgatan 7, 252 24 Helsingborg',
+  contactNumber: '+46724430170',
+  contactMail: 'info@foundiapp.com',
+  contactName: 'Your name',
+  contactMailId: 'Your email ID',
+  contactMessage: 'Your message',
+  sendBtnName: 'Send',
+  placeHolderName: 'Enter your name',
+  placeHolderMail: 'Enter your mail ID',
+  placeHolderMessage: 'Type your message here',
+};
+
+const loginPageStrings = {
+  login: 'Log in',
+  email: 'Email address',
+  emailPlaceHolder: 'Enter your email address',
+  password: 'Password',
+  passwordPlaceHolder: 'Enter your password,',
+  forgotPassword: 'Forgot password?',
+  google: 'Sign in with Google',
+  noAccount: 'Don’t have an account?',
+  signup: 'Sign up',
+};
+
+const signUpPageStrings = {
+  signup: 'Sign up',
+  fullName: 'Full name',
+  fullNamePlaceHolder: 'Enter your full name',
+  email: 'Email address',
+  emailPlaceHolder: 'Enter your email address',
+  password: 'Password',
+  passwordPlaceHolder: '6+ characters, 1 capital letter',
+  passwordStrength: 'Strength: ---',
+  createAccount: 'Create account',
+  google: 'Sign in with Google',
+  alreadtAcc: 'Already have an account? ',
+  login: 'Log in',
 };
 
 export const strings = {
   navbar,
   homePage,
+  loginPageStrings,
+  signUpPageStrings,
   eventsPageStrings,
   aboutPageStrings,
   productPageStrings,

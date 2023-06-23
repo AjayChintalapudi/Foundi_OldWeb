@@ -3,10 +3,10 @@ import styles from './styles.module.css';
 import classNames from 'classnames';
 
 const Button = (props) => {
-  const { type, btnStyles, btName, imageWrapperStyles, image } = props;
+  const { type, btnStyles, btName, imageWrapperStyles, image, onClick } = props;
   return (
     <button
-      onClick={onclick}
+      onClick={onClick}
       type={type}
       className={classNames(btnStyles, styles.btnStyles)}
     >

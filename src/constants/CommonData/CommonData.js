@@ -12,12 +12,12 @@ import {
   twittericon,
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
-const {
-  footerStrings,
-  eventsPageStrings,
-  aboutPageStrings,
-  productPageStrings,
-} = strings;
+// const {
+//   footerStrings,
+//   eventsPageStrings,
+//   aboutPageStrings,
+//   productPageStrings,
+// } = strings;
 
 const eventsBuissnessData = [
   {
@@ -42,6 +42,7 @@ const eventsBuissnessData = [
     eventsDetailsSubDescThree: eventsPageStrings.evnetsDetailsSubInfoThree,
   },
 ];
+const { footerStrings, eventsPageStrings, aboutPageStrings } = strings;
 
 const starPlanData = [
   {
