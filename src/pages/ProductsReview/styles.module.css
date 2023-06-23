@@ -168,9 +168,347 @@
 }
 /* productDetailSection End */
 
+/* userExperianceContainer Start */
+.userExperianceMainContainer {
+  border: 1px solid var(--lightgrey24);
+  background: var(--lightgrey42);
+}
+.userExperianceContainer {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 122px;
+  padding: 100px 80px;
+}
+
+.userExperianceLeftBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.shareExperianceDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.shareExperianceHeading {
+  max-width: 491px;
+  width: 100%;
+  color: var(--aubergine);
+  font-size: 40px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+}
+
+.shareExperianceDesc {
+  max-width: 491px;
+  width: 100%;
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.shareExperianceNoteHeading {
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 400;
+  line-height: 30px;
+  color: var(--aubergine);
+}
+/* 
+.startBorder{
+  border: 2px solid red;
+} */
+
+.userExperianceRightBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.userExperianceRightTopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.thoughtsDesc {
+  color: var(--lightgrey72);
+  font-size: 16px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.userExperianceTextArea {
+  width: 593px;
+  height: 232px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  padding: 13px 0px 0px 16px;
+  color: var(--grey);
+  font-size: 18px;
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  line-height: 30px;
+  resize: none;
+}
+
+
+.thoughtBtnStyles {
+  width: 265px;
+  height: 56px;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+  background-color: var(--lightblue);
+  color: var(--white);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+/* userExperianceContainer End */
+
+/* rating Section Start */
+.ratingMainContainer {
+  max-width: 1366px;
+  margin: auto;
+}
+.ratingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 100px 182px;
+}
+
+.ratingTitleInfoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.ratingMainHeading {
+  max-width: 593px;
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+}
+
+.ratingSubDesc {
+  color: var(--lightgrey72);
+  text-align: center;
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.reviewRatingBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.productRatingSubContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.ratingTopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.ratedUserInfoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ratedUserName {
+  color: var(--aubergine);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.ratedDesc {
+  max-width: 1002px;
+  width: 100%;
+  color: rgba(35, 31, 32, 0.72);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.ratingBottomBorder {
+  border: 1px solid var(--lightgrey32);
+}
+
+.loadMoreButton {
+  margin: auto;
+}
+
+.ratingLoadMoreBtnStyles {
+  width: 265px;
+  height: 56px;
+  color: var(--aubergine);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  background: var(--lightgrey42);
+}
+
+/* rating Section End */
+
 /* Media Query Start */
 
+@media screen and (max-width: 1279px) {
+  /* Products Banner Section Start */
+  .productDetailsContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 64px 80px;
+    gap: 56px;
+  }
+
+  .productDetailLeftBlock {
+    /* width: 100%; */
+    /* height: auto; */
+    gap: 60px;
+    padding: 133px 133px 24px 133px;
+  }
+  .productDetailRightBlock {
+    gap: 32px;
+  }
+
+  .buyNowText {
+    white-space: nowrap;
+  }
+
+  /* Products Banner Section End */
+
+  /* Product Banner Section End */
+
+  .userExperianceContainer {
+    display: flex;
+    flex-direction: flex;
+    padding: 64px 80px;
+    gap: 64px;
+  }
+
+  .userExperianceLeftBlock {
+    gap: 40px;
+  }
+
+  .shareExperianceDetails {
+    gap: 16px;
+  }
+
+  .shareExperianceHeading {
+    font-size: 34px;
+    line-height: 30px;
+  }
+
+  .shareExperianceDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .userExperianceRightBlock {
+    gap: 32px;
+  }
+
+  .userExperianceRightTopSection {
+    gap: 16px;
+  }
+
+  .thoughtsDesc {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .userExperianceTextArea {
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .thoughtBtnStyles {
+    width: 224px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  /* User Experiance Section End */
+
+  /* rating Section Start */
+  .ratingContainer {
+    gap: 64px;
+    /* padding: 40px 60px; */
+  }
+
+  .ratingTitleInfoBlock {
+    gap: 12px;
+  }
+
+  .ratingMainHeading {
+    font-size: 40px;
+    line-height: 52px;
+  }
+
+  .ratingSubDesc {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .reviewRatingBlock {
+    gap: 24px;
+  }
+
+  .productRatingSubContainer {
+    gap: 24px;
+  }
+
+  .ratingTopSection {
+    gap: 24px;
+  }
+
+  .ratedUserInfoBlock {
+    gap: 24px;
+  }
+
+  .ratedUserName {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ratedDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
 @media screen and (max-width: 1023px) {
+  /* Product Banner Section Start */
   .productDetailsContainer {
     display: flex;
     flex-direction: row;
@@ -207,8 +545,8 @@
   }
 
   .productHeading {
-    font-size: 24px;
-    line-height: 34px;
+    font-size: 26px;
+    line-height: 36px;
   }
 
   .productSubDesc {
@@ -218,9 +556,8 @@
 
   .productDetailRightInfo {
     text-align: start;
-    gap: 8px;
+    gap: 12px;
   }
-
 
   .productDetailRightInfoBlock {
     gap: 24px;
@@ -229,7 +566,11 @@
   .productDetailRightBottomSection {
     flex-direction: row;
     gap: 12px;
-    align-items: flex-start;
+  }
+
+  .productOfferPrice {
+    font-size: 24px;
+    line-height: 30px;
   }
 
   .cartBtnStyles {
@@ -239,12 +580,121 @@
   }
 
   .buyNowText {
+    white-space: nowrap;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* Product Banner Section End */
+
+  .userExperianceContainer {
+    display: flex;
+    flex-direction: flex;
+    padding: 56px 60px;
+    gap: 56px;
+  }
+
+  .userExperianceLeftBlock {
+    gap: 32px;
+  }
+
+  .shareExperianceDetails {
+    gap: 16px;
+  }
+
+  .shareExperianceHeading {
+    font-size: 34px;
+    line-height: 30px;
+  }
+
+  .shareExperianceDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .userExperianceRightBlock {
+    gap: 32px;
+  }
+
+  .userExperianceRightTopSection {
+    gap: 12px;
+  }
+
+  .thoughtsDesc {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .userExperianceTextArea {
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .thoughtBtnStyles {
+    width: 224px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  /* User Experiance Section Start */
+
+  /* rating Section Start */
+  .ratingContainer {
+    gap: 64px;
+    padding: 56px 60px;
+  }
+
+  .ratingTitleInfoBlock {
+    gap: 12px;
+  }
+
+  .ratingMainHeading {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .ratingSubDesc {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .reviewRatingBlock {
+    gap: 12px;
+  }
+
+  .productRatingSubContainer {
+    gap: 40px;
+  }
+
+  .ratingTopSection {
+    gap: 16px;
+  }
+
+  .ratedUserInfoBlock {
+    gap: 16px;
+  }
+
+  .ratedUserName {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ratedDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ratingLoadMoreBtnStyles {
+    width: 224px;
+    height: 56px;
     font-size: 16px;
     line-height: 24px;
   }
 }
 
 @media screen and (max-width: 868px) {
+  /* Prodcu Banner Section Start */
   .productDetailsContainer {
     display: flex;
     flex-direction: column;
@@ -318,9 +768,120 @@
     font-size: 16px;
     line-height: 24px;
   }
+
+  /* Product Banner Section End */
+
+  /* User Experiance Section Start */
+
+  .userExperianceContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 64px 24px;
+    gap: 48px;
+  }
+
+  .userExperianceLeftBlock {
+    gap: 32px;
+  }
+
+  .shareExperianceDetails {
+    gap: 12px;
+  }
+
+  .shareExperianceHeading {
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .shareExperianceDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .userExperianceRightBlock {
+    gap: 32px;
+  }
+
+  .userExperianceRightTopSection {
+    gap: 12px;
+  }
+
+  .thoughtsDesc {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .userExperianceTextArea {
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .thoughtBtnStyles {
+    width: 224px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 24px;
+    margin: auto;
+  }
+  /* User Experiance Section Start */
+
+  /* rating Section Start */
+  .ratingContainer {
+    gap: 64px;
+    padding: 36px 80px;
+  }
+
+  .ratingTitleInfoBlock {
+    gap: 16px;
+  }
+
+  .ratingMainHeading {
+    font-size: 40px;
+    line-height: 52px;
+  }
+
+  .ratingSubDesc {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .reviewRatingBlock {
+    gap: 64px;
+  }
+
+  .productRatingSubContainer {
+    gap: 40px;
+  }
+
+  .ratingTopSection {
+    gap: 32px;
+  }
+
+  .ratedUserInfoBlock {
+    gap: 12px;
+  }
+
+  .ratedUserName {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ratedDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ratingLoadMoreBtnStyles {
+    width: 224px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 @media screen and (max-width: 550px) {
+  /* Products Banner Section Start */
   .productDetailsContainer {
     display: flex;
     flex-direction: column;
@@ -390,5 +951,117 @@
     font-size: 16px;
     line-height: 24px;
   }
+
+  /* Products Banner Section End */
+
+  /* User Experiance Section Start */
+
+  .userExperianceContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 64px 24px;
+    gap: 48px;
+  }
+
+  .userExperianceLeftBlock {
+    gap: 32px;
+  }
+
+  .shareExperianceDetails {
+    gap: 12px;
+  }
+
+  .shareExperianceHeading {
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .shareExperianceDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .userExperianceRightBlock {
+    gap: 32px;
+  }
+
+  .userExperianceRightTopSection {
+    gap: 12px;
+  }
+
+  .thoughtsDesc {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .userExperianceTextArea {
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .thoughtBtnStyles {
+    width: 224px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0px;
+  }
+  /* User Experiance Section Start */
+
+  /* rating Section Start */
+  .ratingContainer {
+    gap: 48px;
+    padding: 64px 24px;
+  }
+
+  .ratingTitleInfoBlock {
+    gap: 12px;
+  }
+
+  .ratingMainHeading {
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .ratingSubDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .reviewRatingBlock {
+    gap: 32px;
+  }
+
+  .productRatingSubContainer {
+    gap: 32px;
+  }
+
+  .ratingTopSection {
+    gap: 24px;
+  }
+
+  .ratedUserInfoBlock {
+    gap: 8px;
+  }
+
+  .ratedUserName {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ratedDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ratingLoadMoreBtnStyles {
+    width: 224px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* rating Section End */
 }
 /* Media Query End */

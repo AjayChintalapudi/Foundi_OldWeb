@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 import { homebglogo, scrolldownlogo } from 'resources/Images/Images';
 import NavBar from 'components/NavBar/Navbar';
 
-const { homePage } = Strings;
+const { homePage } = strings;
 const Home = () => {
   const homebannerSection = () => {
     return (

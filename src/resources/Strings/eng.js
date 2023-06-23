@@ -106,7 +106,25 @@ const productReviewPageStrings = {
   productOfferPriceReview: '$ 89.00',
   productOriginalPrice: '$ 119.00',
   productBtnName: 'Add to cart',
-  buyNowText:"Buy now",
+  buyNowText: 'Buy now',
+
+  // userExperiance Section
+
+  shareExperianceHeading: 'Share your experience!',
+  shareExperianceDesc:
+    'How many stars would you like to give for this product?',
+  shareExperianceNoteHeading: '(Note:',
+  shareExperianceDescOne:
+    'Only signed in users are allowed to share their reviews.)',
+  thoughtsDesc: 'Do you have any thoughts you’d like to share? (Optional)',
+  thoughtsPlaceHolderText: 'Type your thoughts here',
+  thoughtsBtnName: 'Submit',
+
+  // rating Section
+
+  ratingMainHeading: '4.0 out of 5 stars',
+  ratingSubDesc: 'A total of 100 customers rated this product',
+  ratingLoadMoreBtnName: 'Load more',
 };
 
 const footerStrings = {
@@ -131,11 +149,11 @@ const navbar = {
 const homePage = {
   bannerHeading: 'Lorem ipsum dolor sit amet, consectetur!',
   bannerDescription:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus.',
+    'Lorem ipsum dolor sit amet, "consectetur adipiscing elit Mauris non lacus ac elit dictum tempor sed id lectus.',
   scrollText: 'Scroll down',
 };
 
-export const Strings = {
+export const strings = {
   navbar,
   homePage,
   eventsPageStrings,

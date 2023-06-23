@@ -11,13 +11,13 @@ import {
   subscriptionpremiumcheckimg,
   twittericon,
 } from 'resources/Images/Images';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 const {
   footerStrings,
   eventsPageStrings,
   aboutPageStrings,
   productPageStrings,
-} = Strings;
+} = strings;
 
 const eventsBuissnessData = [
   {
@@ -157,6 +157,33 @@ const productsData = [
   },
 ];
 
+const productReviewData = [
+  {
+    rating: 4,
+    ratedUserName: 'Rohith Meduri - Fri, 20 May 2022',
+    ratedDesc:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in, pretium pulvinar felis. Duis suscipit quis nisl nec consectetur. Donec scelerisque congue felis non volutpat. Etiam sed magna bibendum, pharetra diam aliquam, vehicula magna. Aenean non accumsan dolor, in porta lectus. Ut vel semper eros. Etiam dictum est sit amet urna vulputate, ut pulvinar quam dictum.',
+  },
+  {
+    rating: 3,
+    ratedUserName: 'Username - Thu, 19 May 2022',
+    ratedDesc:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in, pretium pulvinar felis. Duis suscipit quis nisl nec consectetur. Donec scelerisque congue felis non volutpat. ',
+  },
+  {
+    rating: 4,
+    ratedUserName: 'Username - Wed, 18 May 2022',
+    ratedDesc:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna. ',
+  },
+  {
+    rating: 3,
+    ratedUserName: 'Username - Thu, 19 May 2022',
+    ratedDesc:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in, pretium pulvinar felis. Duis suscipit quis nisl nec consectetur. Donec scelerisque congue felis non volutpat. ',
+  },
+];
+
 const footerIconsData = [
   {
     footerSocialMediaImg: facebookicon,
@@ -179,4 +206,5 @@ export {
   premiumPlansData,
   productCategoriesHeadingData,
   productsData,
+  productReviewData,
 };

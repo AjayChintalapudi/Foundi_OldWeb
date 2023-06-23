@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { cartImg, hamburgerlogo, navbarlogo } from 'resources/Images/Images';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
 
-const { navbar } = Strings;
+const { navbar } = strings;
 const NavBar = () => {
   return (
     <div className={styles.navBar}>

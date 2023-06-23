@@ -1,5 +1,5 @@
 import React from 'react';
-import { Strings } from 'resources/Strings/eng';
+import { strings } from 'resources/Strings/eng';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { footerIconsData } from 'constants/CommonData/CommonData';
@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 const Footer = () => {
   // Footer Section Strings
 
-  const { footerStrings } = Strings;
+  const { footerStrings } = strings;
 
   const footerTopSection = () => {
     return (
