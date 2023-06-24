@@ -50,6 +50,9 @@
   --lightgreyshadow8: rgba(25, 79, 89, 0.08);
   --grey95: #f2f2f2;
   --darkblue: #446edc;
+  --green20: #ddf2df;
+  --green10: #009f10;
+  --tomato: #d00a0a;
 }
 
 *::-webkit-scrollbar {

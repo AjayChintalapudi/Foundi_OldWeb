@@ -5,6 +5,8 @@
   background-size: cover;
   background-position: center;
   height: calc(100vh - 100px);
+  position: relative;
+  z-index: -1;
 }
 
 .eventsBannerSubContainer {

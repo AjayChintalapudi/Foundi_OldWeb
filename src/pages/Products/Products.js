@@ -9,8 +9,10 @@ import {
   productsData,
 } from 'constants/CommonData/CommonData';
 import ProductsCard from 'components/Cards/ProductsCard/ProductsCard';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
+  const navigate = useNavigate();
   const { productPageStrings } = strings;
 
   const productsBannerSection = () => {
@@ -100,7 +102,10 @@ const Products = () => {
 
   const productsDetailsSection = () => {
     return (
-      <div className={styles.productsDetails}>
+      <div
+        className={styles.productsDetails}
+        onClick={() => navigate('/productreview')}
+      >
         {productsData &&
           productsData.map((item, index) => {
             return (

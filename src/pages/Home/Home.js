@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { strings } from 'resources/Strings/eng';
-import { homebglogo, scrolldownlogo } from 'resources/Images/Images';
 import {
   additionlogo,
   appstorelogo,

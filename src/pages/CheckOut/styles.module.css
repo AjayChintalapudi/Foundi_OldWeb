@@ -1,0 +1,1047 @@
+.checkOutPageMainContainer {
+  background-color: var(--lightgrey42);
+}
+.checkoutPageContainer {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 112px;
+  padding: 48px 80px;
+}
+
+.checkOutPageTitleBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+  padding: 40px 24px 64px 24px;
+}
+
+.checkOutBackArrow {
+  width: 48px;
+  height: 48px;
+}
+
+.imageWidth {
+  width: 100%;
+  height: 100%;
+}
+
+.checkOutTitle {
+  color: var(--aubergine);
+  font-size: 40px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+}
+
+.checkOutPageDetailsBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 122px;
+}
+
+.checkOutPageDetailsLeftBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  /* width: 100%; */
+}
+
+.checkOutPageLeftHeadingsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkOutPageLeftHeadingsBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 64px;
+}
+
+.checkoutHeading {
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.borderBottom {
+  border-bottom: 2px solid var(--lightgrey24);
+  width: 100%;
+}
+
+.checkOutPageLeftInputsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 593px;
+  width: 100%;
+}
+
+.contactTitle,
+.addressTitle,
+.paymentTitle {
+  color: var(--aubergine);
+  font-size: 24px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.contactInputsContainer,
+.addressInputsContainer,
+.paymentInputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.fisrtAndLastNameContainer,
+.cityAndZipCodeContainer,
+.monthAndDateNameContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.firstNameContainer,
+.lastNameContainer,
+.emailInputContainer,
+.phoneNumberContainer,
+.addressInputContainer,
+.cityContainer,
+.zipContainer,
+.stateInputContainer,
+.paymentInputContainer,
+.cardInputContainer,
+.monthContainer,
+.dateContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.firstName,
+.lastName,
+.emailAddress,
+.phoneNumber,
+.cityName,
+.zipCodeName,
+.doorAddress,
+.stateAndCity,
+.payment,
+.cardDesc,
+.cardName,
+.month,
+.date {
+  color: var(--lightgrey72);
+  font-size: 16px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.firstNameinputStyles,
+.lastNameinputStyles,
+.emailInputStyles,
+.cityNameinputStyles,
+.zipCodeinputStyles,
+.doorNoInputStyles,
+.stateAndCityInputStyles,
+.cardHolderInputStyles,
+.cardInputStyles,
+.monthInputStyles,
+.dateNameinputStyles {
+  width: 287px;
+  height: 56px;
+  border: 1px solid var(--lightgrey24);
+  border-radius: 8px;
+  padding: 13px 16px;
+  color: var(--grey);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.emailInputStyles,
+.doorNoInputStyles,
+.stateAndCityInputStyles,
+.cardHolderInputStyles,
+.cardInputStyles {
+  width: 593px;
+  height: 56px;
+}
+
+.phoneNumberTexts {
+  width: 593px;
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  background-color: var(--white);
+  border: 1px solid var(--lightgrey24);
+  border-radius: 8px;
+  padding: 13px 16px;
+  color: var(--grey);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.phoneCode {
+  color: var(--aubergine);
+}
+
+.phoneRightBorder {
+  border: 1px solid var(--lightgrey24);
+  height: 32px;
+}
+
+.phoneNumberInputStyles {
+  border: none;
+  background-color: none;
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.continueBtnStyles {
+  width: 265px;
+  height: 56px;
+  color: #fff;
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+  border-radius: 8px;
+  background: #194f59;
+  box-shadow: 1px 8px 24px 0px rgba(25, 79, 89, 0.08);
+}
+
+/* orderSummary Section Start */
+
+.checkOutPageDetailsRightBlock {
+  padding: 32px;
+  border-radius: 8px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.orderSummarySection {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.orderSummaryHeading {
+  color: var(--aubergine);
+  font-size: 24px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.orderDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.orderedProductContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+}
+
+.orderedProductContainer:nth-child(1) {
+  padding-bottom: 32px;
+  border-bottom: 2px solid var(--lightgrey24);
+}
+
+.orderdProductLeftImgBlock {
+  width: 64px;
+  height: 64px;
+  padding: 20px;
+  background-color: var(--lightgrey42);
+  border-radius: 8px;
+}
+
+.divider {
+  border: 1px solid var(--lightgrey24);
+  width: 24px;
+}
+
+.orderProductInfoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.orderProductHeading {
+  color: var(--aubergine);
+  font-size: 18px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+.orderProductPrice {
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.orderInputButtonSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.disCountInputStyles {
+  width: 427px;
+  height: 56px;
+  padding: 13px 13px 13px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  background: var(--grey95);
+  color: var(--grey);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.applyBtnStyles {
+  width: 427px;
+  height: 56px;
+  color: var(--white);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+  border-radius: 8px;
+  background: var(--darkblue);
+  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+}
+
+.orderPriceDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px solid var(--lightgrey24);
+  padding-bottom: 32px;
+}
+
+.pricesBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productChargeDesc {
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.price {
+  color: #231f20;
+  text-align: right;
+  font-size: 18px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+.totalPriceBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.totalPrice,
+.totalPriceDesc {
+  color: var(--aubergine);
+  font-size: 24px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.totalPriceDesc {
+  color: var(--darkblue);
+  text-align: right;
+}
+
+/* orderSummary Section End */
+
+/* Media Query Start */
+
+@media screen and (max-width: 1279px) {
+  .checkOutPageDetailsBlock {
+    /* width: 100%; */
+    gap: 64px;
+  }
+
+  .checkOutPageDetailsLeftBlock {
+    /* max-width: 593px; */
+    width: 100%;
+    gap: 60px;
+  }
+
+  .checkOutPageLeftInputsBlock {
+    gap: 32px;
+  }
+
+  .firstNameContainer,
+  .lastNameContainer,
+  .emailInputContainer,
+  .phoneNumberContainer,
+  .addressInputContainer,
+  .cityContainer,
+  .zipContainer,
+  .stateInputContainer,
+  .paymentInputContainer,
+  .cardInputContainer,
+  .monthContainer,
+  .dateContainer {
+    gap: 8px;
+  }
+
+  .checkOutPageLeftInputsBlock {
+    gap: 24px;
+  }
+
+  .firstName,
+  .lastName,
+  .emailAddress,
+  .phoneNumber,
+  .cityName,
+  .zipCodeName,
+  .doorAddress,
+  .stateAndCity,
+  .payment,
+  .cardDesc,
+  .cardName,
+  .month,
+  .date {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .orderSummaryHeading {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .orderSummarySection {
+    gap: 36px;
+  }
+
+  .orderedProductContainer {
+    gap: 28px;
+  }
+
+  .orderInputButtonSection {
+    gap: 32px;
+  }
+
+  .orderPriceDetails {
+    gap: 12px;
+  }
+
+  .orderPriceDetails {
+    gap: 24px;
+  }
+
+  .checkOutPageDetailsRightBlock {
+    /* max-width: 452px; */
+    width: 100%;
+    gap: 24px;
+  }
+
+  /* .disCountInputStyles,
+  .applyBtnStyles {
+    width: 100%;
+  } */
+}
+
+@media screen and (max-width: 1023px) {
+  .checkoutPageContainer {
+    gap: 22px;
+    padding: 0px;
+  }
+
+  .checkOutPageTitleBlock {
+    gap: 16px;
+    padding: 32px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .checkOutTitle {
+    font-size: 28px;
+  }
+
+  .checkOutPageDetailsBlock {
+    flex-direction: column-reverse;
+    gap: 56px;
+  }
+
+  .checkOutPageDetailsLeftBlock {
+    gap: 32px;
+    padding: 24px;
+    margin: auto;
+  }
+
+  .checkOutPageLeftHeadingsContainer {
+    gap: 16px;
+  }
+
+  .checkOutPageLeftHeadingsBlock {
+    gap: 60px;
+    justify-content: space-evenly;
+  }
+
+  .checkoutHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .checkOutPageLeftInputsBlock {
+    gap: 24px;
+    margin: auto;
+  }
+
+  .contactTitle,
+  .addressTitle,
+  .paymentTitle {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .contactInputsContainer,
+  .addressInputsContainer,
+  .paymentInputsContainer {
+    gap: 24px;
+  }
+
+  .fisrtAndLastNameContainer,
+  .cityAndZipCodeContainer,
+  .monthAndDateNameContainer {
+    flex-direction: row;
+    width: 100%;
+    gap: 24px;
+  }
+
+  .firstNameContainer,
+  .lastNameContainer,
+  .emailInputContainer,
+  .phoneNumberContainer,
+  .addressInputContainer,
+  .cityContainer,
+  .zipContainer,
+  .stateInputContainer,
+  .paymentInputContainer,
+  .cardInputContainer,
+  .monthContainer,
+  .dateContainer {
+    gap: 8px;
+  }
+  .firstName,
+  .lastName,
+  .emailAddress,
+  .phoneNumber,
+  .cityName,
+  .zipCodeName,
+  .doorAddress,
+  .stateAndCity,
+  .payment,
+  .cardDesc,
+  .cardName,
+  .month,
+  .date {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  /* .firstNameinputStyles,
+  .lastNameinputStyles,
+  .emailInputStyles,
+  .cityNameinputStyles,
+  .zipCodeinputStyles,
+  .doorNoInputStyles,
+  .stateAndCityInputStyles,
+  .cardHolderInputStyles,
+  .cardInputStyles,
+  .monthInputStyles,
+  .dateNameinputStyles {
+    width: 100%;
+  } */
+
+  .emailInputStyles,
+  .doorNoInputStyles,
+  .stateAndCityInputStyles,
+  .cardHolderInputStyles,
+  .cardInputStyles {
+    width: 100%;
+  }
+  .phoneNumberTexts {
+    width: 100%;
+  }
+  .phoneNumberInputStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .continueBtnStyles {
+    /* width: 100%; */
+    margin: auto;
+  }
+
+  /* orderSummary Section Start */
+
+  .checkOutPageDetailsRightBlock {
+    gap: 24px;
+    border-radius: 0px;
+    padding: 24px;
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .orderSummarySection {
+    gap: 28px;
+  }
+
+  .orderSummaryHeading {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .orderDetails {
+    gap: 24px;
+  }
+
+  .orderedProductContainer {
+    gap: 28px;
+  }
+
+  .orderProductHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .orderProductPrice {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .orderInputButtonSection {
+    gap: 24px;
+  }
+
+  .disCountInputStyles {
+    width: 100%;
+  }
+
+  .applyBtnStyles {
+    width: 100%;
+  }
+
+  .orderPriceDetails {
+    gap: 12px;
+  }
+
+  .productChargeDesc,
+  .price {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .totalPrice,
+  .totalPriceDesc {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  /* orderSummary Section End */
+}
+
+@media screen and (max-width: 868px) {
+  .checkoutPageContainer {
+    gap: 48px;
+    padding: 25px 32px;
+  }
+
+  .checkOutPageTitleBlock {
+    gap: 16px;
+    padding: 24px;
+    justify-content: center;
+  }
+
+  .checkOutTitle {
+    font-size: 28px;
+  }
+
+  .checkOutPageDetailsBlock {
+    flex-direction: column-reverse;
+    gap: 48px;
+  }
+
+  .checkOutPageDetailsLeftBlock {
+    gap: 48px;
+    padding: 24px;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .checkOutPageLeftHeadingsContainer {
+    gap: 16px;
+  }
+
+  .checkOutPageLeftHeadingsBlock {
+    gap: 64px;
+  }
+
+  .checkoutHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .checkOutPageLeftInputsBlock {
+    gap: 32px;
+  }
+
+  .contactTitle,
+  .addressTitle,
+  .paymentTitle {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .firstNameContainer,
+  .lastNameContainer,
+  .emailInputContainer,
+  .phoneNumberContainer,
+  .addressInputContainer,
+  .cityContainer,
+  .zipContainer,
+  .stateInputContainer,
+  .paymentInputContainer,
+  .cardInputContainer,
+  .monthContainer,
+  .dateContainer {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .contactInputsContainer,
+  .addressInputsContainer,
+  .paymentInputsContainer {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .fisrtAndLastNameContainer,
+  .cityAndZipCodeContainer,
+  .monthAndDateNameContainer {
+    flex-direction: row;
+    width: 100%;
+    gap: 16px;
+  }
+  .firstName,
+  .lastName,
+  .emailAddress,
+  .phoneNumber,
+  .cityName,
+  .zipCodeName,
+  .doorAddress,
+  .stateAndCity,
+  .payment,
+  .cardDesc,
+  .cardName,
+  .month,
+  .date {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .firstNameinputStyles,
+  .lastNameinputStyles,
+  .emailInputStyles,
+  .cityNameinputStyles,
+  .zipCodeinputStyles,
+  .doorNoInputStyles,
+  .stateAndCityInputStyles,
+  .cardHolderInputStyles,
+  .cardInputStyles,
+  .monthInputStyles,
+  .dateNameinputStyles {
+    width: 100%;
+  }
+
+  .emailInputStyles,
+  .doorNoInputStyles,
+  .stateAndCityInputStyles,
+  .cardHolderInputStyles,
+  .cardInputStyles {
+    width: 100%;
+  }
+  .phoneNumberTexts {
+    width: 100%;
+  }
+  .phoneNumberInputStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .continueBtnStyles {
+    width: 100%;
+    margin: auto;
+  }
+
+  /* orderSummary Section Start */
+
+  .checkOutPageDetailsRightBlock {
+    gap: 32px;
+    border-radius: 0px;
+    padding: 24px;
+  }
+
+  .orderSummarySection {
+    gap: 28px;
+  }
+
+  .orderSummaryHeading {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .orderDetails {
+    gap: 24px;
+  }
+
+  .orderedProductContainer {
+    gap: 28px;
+  }
+
+  .orderProductHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .orderProductPrice {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .orderInputButtonSection {
+    gap: 24px;
+  }
+
+  .disCountInputStyles {
+    width: 100%;
+  }
+
+  .applyBtnStyles {
+    width: 100%;
+  }
+
+  .orderPriceDetails {
+    gap: 12px;
+    padding-bottom: 24px;
+  }
+
+  .productChargeDesc,
+  .price {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .totalPrice,
+  .totalPriceDesc {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  /* orderSummary Section End */
+}
+
+@media screen and (max-width: 550px) {
+  .checkoutPageContainer {
+    gap: 22px;
+    padding: 0px;
+  }
+
+  .checkOutPageTitleBlock {
+    gap: 16px;
+    justify-content: flex-start;
+    /* flex-wrap: wrap; */
+  }
+
+  .checkOutTitle {
+    font-size: 28px;
+  }
+
+  .checkOutPageDetailsBlock {
+    flex-direction: column-reverse;
+    gap: 96px;
+  }
+
+  .checkOutPageDetailsLeftBlock {
+    gap: 64px;
+    padding: 24px;
+  }
+
+  .checkOutPageLeftHeadingsContainer {
+    gap: 16px;
+  }
+
+  .checkOutPageLeftHeadingsBlock {
+    gap: 40px;
+  }
+
+  .checkoutHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .checkOutPageLeftInputsBlock {
+    gap: 32px;
+  }
+
+  .contactTitle,
+  .addressTitle,
+  .paymentTitle {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .contactInputsContainer,
+  .addressInputsContainer,
+  .paymentInputsContainer {
+    gap: 24px;
+  }
+
+  .fisrtAndLastNameContainer,
+  .cityAndZipCodeContainer,
+  .monthAndDateNameContainer {
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+  }
+  .firstName,
+  .lastName,
+  .emailAddress,
+  .phoneNumber,
+  .cityName,
+  .zipCodeName,
+  .doorAddress,
+  .stateAndCity,
+  .payment,
+  .cardDesc,
+  .cardName,
+  .month,
+  .date {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .firstNameinputStyles,
+  .lastNameinputStyles,
+  .emailInputStyles,
+  .cityNameinputStyles,
+  .zipCodeinputStyles,
+  .doorNoInputStyles,
+  .stateAndCityInputStyles,
+  .cardHolderInputStyles,
+  .cardInputStyles,
+  .monthInputStyles,
+  .dateNameinputStyles {
+    width: 100%;
+  }
+
+  .emailInputStyles,
+  .doorNoInputStyles,
+  .stateAndCityInputStyles,
+  .cardHolderInputStyles,
+  .cardInputStyles {
+    width: 100%;
+  }
+  .phoneNumberTexts {
+    width: 100%;
+  }
+  .phoneNumberInputStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .continueBtnStyles {
+    width: 100%;
+  }
+
+  /* orderSummary Section Start */
+
+  .checkOutPageDetailsRightBlock {
+    gap: 32px;
+    border-radius: 0px;
+    padding: 24px;
+  }
+
+  .orderSummarySection {
+    gap: 32px;
+  }
+
+  .orderSummaryHeading {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .orderDetails {
+    gap: 24px;
+  }
+
+  .orderedProductContainer {
+    gap: 24px;
+  }
+
+  .orderProductHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .orderProductPrice {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .orderInputButtonSection {
+    gap: 16px;
+  }
+
+  .disCountInputStyles {
+    width: 100%;
+  }
+
+  .applyBtnStyles {
+    width: 100%;
+  }
+
+  .orderPriceDetails {
+    gap: 16px;
+  }
+
+  .productChargeDesc,
+  .price {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .totalPrice,
+  .totalPriceDesc {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  /* orderSummary Section End */
+}
+/* Media Query End */

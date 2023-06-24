@@ -12,8 +12,10 @@ import { Rating } from 'react-simple-star-rating';
 import { HiStar } from 'react-icons/hi';
 import styles from './styles.module.css';
 import { productReviewData } from 'constants/CommonData/CommonData';
+import { useNavigate } from 'react-router-dom';
 
 const ProductsReview = () => {
+  const navigate = useNavigate();
   const { productReviewPageStrings } = strings;
   const productDetailSection = () => {
     return (
@@ -27,7 +29,10 @@ const ProductsReview = () => {
 
   const backTextSection = () => {
     return (
-      <div className={styles.backTextBlockMobile}>
+      <div
+        className={styles.backTextBlockMobile}
+        onClick={() => navigate('/products')}
+      >
         <img
           src={prodoctreviewleftarrow}
           alt=""
@@ -78,7 +83,10 @@ const ProductsReview = () => {
 
   const backTextRightSection = () => {
     return (
-      <div className={styles.backTextBlock}>
+      <div
+        className={styles.backTextBlock}
+        onClick={() => navigate('/products')}
+      >
         <img
           src={prodoctreviewleftarrow}
           alt=""
@@ -118,6 +126,7 @@ const ProductsReview = () => {
         <Button
           btName={productReviewPageStrings.productBtnName}
           btnStyles={styles.cartBtnStyles}
+          onClick={() => navigate('/checkout')}
         />
         <div className={styles.productDetailRightDesc}>
           <p className={styles.buyNowText}>

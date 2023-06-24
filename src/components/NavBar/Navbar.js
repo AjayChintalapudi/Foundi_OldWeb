@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import { cartImg, hamburgerlogo, navbarlogo } from 'resources/Images/Images';
 import {
   cartImg,
   crossIcon,
   hamburgerlogo,
   navbarlogo,
 } from 'resources/Images/Images';
+
 import { strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-
-const { navbar } = strings;
 const NavBar = () => {
-  const navigate = useNavigate();
   const [popOver, setPopOver] = useState(false);
-
+  const { navbar } = strings;
+  // const navigate = useNavigate();
   return (
     <div className={styles.navBar}>
       <div className={styles.insideNavBar}>
-        <div onClick={() => navigate('/')} className={styles.leftSection}>
+        <div 
+        // onClick={
+        //   () => navigate('/')}
+           className={styles.leftSection}>
           <div className={styles.navBarLogo}>
             <img src={navbarlogo} alt="" className={styles.imageWidth} />
           </div>
@@ -27,16 +28,18 @@ const NavBar = () => {
         </div>
         <div className={styles.rightSection}>
           <p
-            onClick={() => navigate('/events')}
+            // onClick={() => navigate('/events')}
             className={styles.eventsSection}
           >
             {navbar.events}
           </p>
-          <p onClick={() => navigate('/about')} className={styles.aboutSection}>
+          <p 
+          // onClick={() => navigate('/about')}
+           className={styles.aboutSection}>
             {navbar.about}
           </p>
           <p
-            onClick={() => navigate('/products')}
+            // onClick={() => navigate('/products')}
             className={styles.productsSection}
           >
             {navbar.products}
@@ -46,7 +49,7 @@ const NavBar = () => {
           </div>
           <div className={styles.navBarButton}>
             <Button
-              onClick={() => navigate('/login')}
+              // onClick={() => navigate('/login')}
               btName={navbar.login}
               btnStyles={styles.loginStyles}
             />
@@ -71,7 +74,7 @@ const NavBar = () => {
                 <Button
                   btName={navbar.login}
                   btnStyles={styles.popOverLoginStyles}
-                  onClick={() => navigate('/login')}
+                  // onClick={() => navigate('/login')}
                 />
               </div>
             </div>

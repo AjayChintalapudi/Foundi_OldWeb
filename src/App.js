@@ -1,12 +1,11 @@
-import ProductsReview from 'pages/ProductsReview/ProductsReview';
-
+import OrderHistory from 'pages/OrderHistory/OrderHistory';
 import AppRoutes from 'routes/AppRoutes';
 
 function App() {
   return (
     <div className="App">
       {/* <AppRoutes /> */}
-      <ProductsReview />
+      <OrderHistory />
     </div>
   );
 }

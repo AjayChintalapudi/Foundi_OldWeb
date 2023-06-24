@@ -1,0 +1,451 @@
+.orderHistoryMainContainer {
+  background-color: var(--lightgrey42);
+}
+
+.orderHistorySubContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1366px;
+  margin: auto;
+  padding: 48px 80px;
+}
+
+.trackOrderContainer,
+.buyAgainContainer,
+.orderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px;
+  border-radius: 8px;
+  background-color: var(--white);
+}
+
+/* .trackOrderTopSection{
+    display: flex;
+} */
+
+.trackOrderDetailsBlock,
+.OrderDetailsBlock,
+.OrderedDetailsBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.trackOrderDetailsLeftBlock,
+.OrderDetailsLeftBlock,
+.OrderedDetailsLeftBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.trackOrderBottomBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.orderNo {
+  color: var(--aubergine);
+  font-size: 24px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.orderArrivingDetailsBlock,
+.orderedArrivingDetailsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.orderDate,
+.orderOn {
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.estimatedDelivery,
+.estimatedDeliveryTime,
+.status,
+.statusUpdate,
+.orderedStatus {
+  color: var(--darkblue);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.cancelled {
+  color: var(--tomato);
+}
+
+.estimatedDeliveryTime,
+.statusUpdate {
+  color: var(--lightgrey72);
+}
+
+.totalPrice,
+.orderedPrice {
+  color: var(--darkgreen);
+  font-size: 24px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  line-height: 32px;
+  /* text-decoration: underline var(--darkgreen); */
+  border-bottom: 1px solid var(--darkgreen);
+}
+
+.trackOrderBottomSection,
+.orderedBottomSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.traclOrderBottomBlock,
+.buyAgainBottomBlock,
+.orderedBottomBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.trackOrderBottomLeftBlock,
+.buyAgainBottomLeftBlock,
+.orderedBottomLeftBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+}
+
+.trackOrderBottomLeftImgBlock,
+.buyAgainBottomLeftImgBlock,
+.orderBottomLeftImgBlock {
+  background-color: var(--lightgrey42);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.trackOrderBottomLeftDetailsBlock,
+.buyAgainBottomLeftDetailsBlock,
+.orderedBottomLeftDetailsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.orderedProductName {
+  color: var(--aubergine);
+  font-size: 18px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+.orderedProductPricesDetails {
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  line-height: 30px;
+}
+
+.trackOrderBtnStyles,
+.cancelBtnStyles {
+  width: 265px;
+  height: 56px;
+  border-radius: 8px;
+  background-color: var(--darkgreen);
+  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow8);
+  color: var(--white);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.cancelBtnStyles {
+  color: var(--darkgreen);
+  border-radius: 8px;
+  border: 1px solid var(--darkgreen);
+  background: var(--lightgrey42);
+  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow8);
+}
+
+.trackAndCancelButtonBlock {
+  display: none;
+}
+.divider {
+  display: none;
+}
+
+/* Media Query Start */
+
+@media screen and (max-width: 1279px) {
+  .orderHistorySubContainer {
+    padding: 88px 80px;
+  }
+
+  .orderNo {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .orderDate,
+  .orderOn {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .trackOrderBottomLeftBlock,
+  .buyAgainBottomLeftBlock,
+  .orderedBottomLeftBlock {
+    gap: 28px;
+  }
+  .orderedProductName {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .orderedProductPricesDetails {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .trackOrderBtnStyles,
+  .cancelBtnStyles {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .totalPrice,
+  .orderedPrice {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .trackOrderBottomSection,
+  .orderedBottomSection {
+    gap: 12px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .orderHistorySubContainer {
+    padding: 30px 60px;
+  }
+  .orderNo {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .trackOrderBottomLeftBlock,
+  .buyAgainBottomLeftBlock,
+  .orderedBottomLeftBlock {
+    gap: 28px;
+  }
+
+  .trackOrderBottomSection,
+  .orderedBottomSection {
+    gap: 12px;
+  }
+  .orderedPrice {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+@media screen and (max-width: 868px) {
+  .orderHistorySubContainer {
+    padding: 64px 60px;
+    gap: 16px;
+  }
+  .trackOrderContainer,
+  .buyAgainContainer,
+  .orderContainer {
+    padding: 32px;
+    gap: 32px;
+  }
+
+  .trackOrderDetailsBlock,
+  .OrderDetailsBlock,
+  .OrderedDetailsBlock {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .trackOrderDetailsLeftBlock,
+  .OrderDetailsLeftBlock,
+  .OrderedDetailsLeftBlock {
+    gap: 8px;
+  }
+
+  .orderNo {
+    font-size: 28px;
+    line-height: 28px;
+  }
+  .orderDate,
+  .orderOn {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .estimatedDelivery,
+  .estimatedDeliveryTime,
+  .status,
+  .statusUpdate,
+  .orderedStatus {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .divider {
+    border: 1px solid var(--lightgrey24);
+    width: 100%;
+    display: block;
+  }
+
+  .totalPrice,
+  .orderedPrice {
+    font-size: 20px;
+    line-height: 28px;
+    border: none;
+  }
+  .trackAndCancelButtonBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .trackOrderBottomRightBlock {
+    display: none;
+  }
+
+  .trackOrderBottomSection,
+  .orderedBottomSection {
+    gap: 32px;
+  }
+  .traclOrderBottomBlock,
+  .buyAgainBottomBlock,
+  .orderedBottomBlock {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .trackOrderBottomLeftBlock,
+  .buyAgainBottomLeftBlock,
+  .orderedBottomLeftBlock {
+    gap: 24px;
+  }
+  .orderedProductName {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .orderedProductPricesDetails {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .trackOrderBtnStyles,
+  .cancelBtnStyles {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .orderHistorySubContainer {
+    padding: 42px 24px;
+    gap: 16px;
+  }
+  .trackOrderContainer,
+  .buyAgainContainer,
+  .orderContainer {
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .trackOrderDetailsBlock,
+  .OrderDetailsBlock,
+  .OrderedDetailsBlock {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .trackOrderDetailsLeftBlock,
+  .OrderDetailsLeftBlock,
+  .OrderedDetailsLeftBlock {
+    gap: 8px;
+  }
+
+  .orderNo {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .orderDate,
+  .orderOn {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .estimatedDelivery,
+  .estimatedDeliveryTime,
+  .status,
+  .statusUpdate,
+  .orderedStatus {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .divider {
+    border: 1px solid var(--lightgrey24);
+    width: 100%;
+    display: block;
+  }
+
+  .totalPrice,
+  .orderedPrice {
+    font-size: 18px;
+    line-height: 28px;
+    width: 50%;
+  }
+  .trackAndCancelButtonBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .trackOrderBottomRightBlock {
+    display: none;
+  }
+
+  .trackOrderBottomSection,
+  .orderedBottomSection {
+    gap: 24px;
+  }
+  .traclOrderBottomBlock,
+  .buyAgainBottomBlock,
+  .orderedBottomBlock {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .trackOrderBottomLeftBlock,
+  .buyAgainBottomLeftBlock,
+  .orderedBottomLeftBlock {
+    gap: 24px;
+  }
+  .orderedProductName {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .orderedProductPricesDetails {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .trackOrderBtnStyles,
+  .cancelBtnStyles {
+    width: 100%;
+  }
+}
+/* Media Query End */

@@ -1,23 +1,30 @@
 import {
+  environmentsustainabilityimg,
   eventsbuissnessimgone,
   eventsbuissnessimgtwo,
   facebookicon,
   instagramicon,
+  orderedproductimg,
+  orderhistoryimg,
   productone,
   productoneimg,
+  productssustainabilityimg,
   producttwo,
   producttwoimg,
+  socialsustainabilityimg,
   subscriptioncheckimg,
   subscriptionpremiumcheckimg,
   twittericon,
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
-// const {
-//   footerStrings,
-//   eventsPageStrings,
-//   aboutPageStrings,
-//   productPageStrings,
-// } = strings;
+const {
+  footerStrings,
+  eventsPageStrings,
+  aboutPageStrings,
+  productPageStrings,
+  checkOutPageStrings,
+  sustainabilityPageStrings,
+} = strings;
 
 const eventsBuissnessData = [
   {
@@ -42,7 +49,6 @@ const eventsBuissnessData = [
     eventsDetailsSubDescThree: eventsPageStrings.evnetsDetailsSubInfoThree,
   },
 ];
-const { footerStrings, eventsPageStrings, aboutPageStrings } = strings;
 
 const starPlanData = [
   {
@@ -185,6 +191,147 @@ const productReviewData = [
   },
 ];
 
+const checkOutData = [
+  {
+    checkoutHeading: checkOutPageStrings.contactHeading,
+  },
+  {
+    checkoutHeading: checkOutPageStrings.addressHeading,
+  },
+  {
+    checkoutHeading: checkOutPageStrings.paymentHeading,
+  },
+];
+
+const orderedDetailsData = [
+  {
+    orderProductImg: orderedproductimg,
+    orderProductHeading: 'Keychain tags - A pack of 4',
+    orderProductPrice: 'Price (x1) - $100',
+  },
+  {
+    orderProductImg: orderedproductimg,
+    orderProductHeading: 'Keychain tags - A pack of 4',
+    orderProductPrice: 'Price (x1) - $100',
+  },
+];
+
+const priceDetailsData = [
+  {
+    productChargeDesc: 'Price of added products -',
+    price: '$200',
+  },
+  {
+    productChargeDesc: 'Delivery charges -',
+    price: '$5',
+  },
+  {
+    productChargeDesc: 'Tax & extras -',
+    price: '$10',
+  },
+  {
+    productChargeDesc: 'Coupon discount -',
+    price: '-$25',
+  },
+];
+
+const sustainabilityEffortsData = [
+  {
+    sustainabiltyHeading: sustainabilityPageStrings.ourSustainabilityHeading,
+    sustainabiltyDescOne: sustainabilityPageStrings.ourSustainabilityDesc,
+    sustainabiltyDescTwo: '',
+    sustainabiltyborder: '',
+    sustainabiltyImg: environmentsustainabilityimg,
+  },
+
+  {
+    sustainabiltyHeading:
+      sustainabilityPageStrings.productSustainabilityHeading,
+    sustainabiltyDescOne:
+      sustainabilityPageStrings.productSustainabilityDescOne,
+    sustainabiltyDescTwo: sustainabilityPageStrings.productSutainabilityDescTwo,
+    sustainabiltyborder: '',
+    sustainabiltyImg: productssustainabilityimg,
+  },
+  {
+    sustainabiltyHeading:
+      sustainabilityPageStrings.environmentSustainabilityHeading,
+    sustainabiltyDescOne:
+      sustainabilityPageStrings.environmentSustainabilityDescOne,
+    sustainabiltyDescTwo:
+      sustainabilityPageStrings.environmentSutainabilityDescTwo,
+    sustainabiltyborder: '',
+    sustainabiltyImg: socialsustainabilityimg,
+  },
+
+  {
+    sustainabiltyHeading: sustainabilityPageStrings.socialSustainabilityHeading,
+    sustainabiltyDescOne: sustainabilityPageStrings.socialSustainabilityDescOne,
+    sustainabiltyDescTwo: sustainabilityPageStrings.socialSutainabilityDescTwo,
+    sustainabiltyborder: '',
+  },
+];
+
+const trackOrderData = [
+  {
+    orderNo: 'Order no. 1076069',
+    orderDate: 'Ordered on: 04-05-2022',
+    estimatedDelivery: 'Estimated delivery:',
+    estimatedDeliveryTime: 'By tomorrow 9 PM ',
+    totalPrice: 'Total price- $200',
+    trackingProductsInfo: [
+      {
+        orderedProductImg: orderhistoryimg,
+        orderedProductName: 'Keychain tags - A pack of 4',
+        orderedProductPricesDetails: 'Price (x1) - $100',
+      },
+      {
+        orderedProductImg: orderhistoryimg,
+        orderedProductName: 'Keychain tags - A pack of 4',
+        orderedProductPricesDetails: 'Price (x1) - $100',
+      },
+    ],
+    buyAgainProductData: [
+      {
+        orderNo: 'Order no. 1076069',
+        orderDate: 'Ordered on: 04-05-2022',
+        orderedOn: 'status:',
+        status: 'Delivered on 02-02-2022 ',
+        totalPrice: 'Total price- $100',
+        buyAgainProductInfo: [
+          {
+            buyProductImg: orderhistoryimg,
+            buyProductName: 'Keychain tags - A pack of 4',
+            buyProductPricesDetails: 'Price (x1) - $100',
+          },
+        ],
+      },
+    ],
+    orderAgainProductData: [
+      {
+        orderNo: 'Order no. 1076069',
+        orderDate: 'Ordered on: 01-01-2022',
+        orderedOnStatus: 'status:',
+        statusCancelled: 'Cancelled ',
+        totalPrice: 'Total price- $200',
+
+        orderAgainProductInfo: [
+          {
+            orderedProductImg: orderhistoryimg,
+            orderedProductName: 'Keychain tags - A pack of 4',
+            orderedProductPricesDetails: 'Price (x1) - $100',
+          },
+          {
+            orderedProductImg: orderhistoryimg,
+            orderedProductName: 'Keychain tags - A pack of 4',
+            orderedProductPricesDetails: 'Price (x1) - $100',
+          },
+        ],
+      },
+    ],
+  },
+];
+
 const footerIconsData = [
   {
     footerSocialMediaImg: facebookicon,
@@ -208,4 +355,9 @@ export {
   productCategoriesHeadingData,
   productsData,
   productReviewData,
+  checkOutData,
+  orderedDetailsData,
+  priceDetailsData,
+  trackOrderData,
+  sustainabilityEffortsData,
 };
