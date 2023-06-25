@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import {
   eyelogo,
@@ -12,6 +12,8 @@ import Button from 'components/Button/Button';
 
 const SignUp = () => {
   const { signUpPageStrings } = strings;
+
+  const [pwdVisible, setPwdVisible] = useState(false);
 
   const signUpLeftSection = () => {
     return (
@@ -63,9 +65,10 @@ const SignUp = () => {
             <p className={styles.passwordText}>{signUpPageStrings.password}</p>
             <Input
               customInputStyles={styles.passwordInputStyles}
-              type="password"
+              type={pwdVisible ? 'text' : 'password'}
               placeholder={signUpPageStrings.passwordPlaceHolder}
-              image={eyelogo}
+              image={pwdVisible ? eyelogo : eyelogo}
+              onClick={() => setPwdVisible(!pwdVisible)}
             />
           </div>
           <p className={styles.forgotPassWordStyles}>

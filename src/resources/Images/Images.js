@@ -55,3 +55,6 @@ export { default as loginbglogo } from 'assets/Images/loginbglogo.svg';
 export { default as signupleftarrowlogo } from 'assets/Images/signupleftarrowlogo.svg';
 export { default as eyelogo } from 'assets/Images/eyelogo.svg';
 export { default as googleglogo } from 'assets/Images/googlesvglogo.svg';
+
+//privacy policy Images
+export { default as privacyLocklogo } from 'assets/Images/privacypolicylogo.svg';

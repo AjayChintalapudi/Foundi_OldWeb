@@ -2,7 +2,8 @@
 .navBar {
   width: 100%;
   background-color: var(--white);
-  position: relative;
+  position: sticky;
+  top: 0;
 }
 .insideNavBar {
   max-width: 1366px;
@@ -54,10 +55,12 @@
   color: var(--lightgrey);
 }
 .cartSection {
+  cursor: pointer;
   max-width: 30px;
   max-height: 30px;
 }
 .navBarButton {
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,6 +72,7 @@
   border-radius: 40px;
 }
 .loginStyles {
+  cursor: pointer;
   font-family: 'Regular', sans-serif;
   font-weight: 500;
   font-size: 18px;

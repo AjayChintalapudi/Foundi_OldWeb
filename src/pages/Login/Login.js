@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import {
   eyelogo,
@@ -9,10 +9,13 @@ import {
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { strings } from 'resources/Strings/eng';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const { loginPageStrings } = strings;
+  const navigate = useNavigate();
 
+  const { loginPageStrings } = strings;
+  const [pwvisible, setPwVisible] = useState(false);
   const loginLeftSection = () => {
     return (
       <div className={styles.loginLeftSection}>
@@ -52,12 +55,16 @@ const Login = () => {
             <p className={styles.passwordText}>{loginPageStrings.password}</p>
             <Input
               customInputStyles={styles.passwordInputStyles}
-              type="password"
+              type={pwvisible ? 'text' : 'password'}
               placeholder={loginPageStrings.passwordPlaceHolder}
-              image={eyelogo}
+              image={pwvisible ? eyelogo : eyelogo}
+              onClick={() => setPwVisible(!pwvisible)}
             />
           </div>
-          <p className={styles.forgotPassWordStyles}>
+          <p
+            onClick={() => navigate('/forgotpassword')}
+            className={styles.forgotPassWordStyles}
+          >
             {loginPageStrings.forgotPassword}
           </p>
         </div>

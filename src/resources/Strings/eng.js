@@ -1,3 +1,5 @@
+import { privacyLocklogo } from 'resources/Images/Images';
+
 const eventsPageStrings = {
   // BannerSection
 
@@ -181,11 +183,91 @@ const signUpPageStrings = {
   login: 'Log in',
 };
 
+const forgotPwdStrings = {
+  forgotHeading: 'Create new password',
+  forgotDescp:
+    'We recommend you to create a password with at least 6+ characters for better security.',
+  newPassword: 'New password',
+  newPwdPlaceHolder: '6+ characters, 1 capital letter',
+  pwdStrength: 'Strength: ---',
+  confirmPassword: 'Confirm password',
+  confirmPwdPlaceHolder: 'Re-enter password',
+  saveBtn: 'Save',
+};
+
+const privacyPolicyStrings = {
+  privacy: 'Privcay policy',
+  privacyTime: 'Last updated:',
+  privacyDate: '15th June 2022, ',
+  privacyReview: 'Last reviewed:',
+  privacyDateTwo: '15th June 2022',
+  topHeading: 'At Foundi, honesty goes first. ',
+  topDescpOne: `We want to inspire honesty, and that starts with Foundi being transparent with how we handle our customer's privacy and security. `,
+  topDescpTwo:
+    '  One way we are keeping your security a top priority is with our integrated chat function which allows you to choose what information you want to share with others. Your identification marker is the unique SNO-code present on your Foundi products, everything else is up to you to share.',
+  topDescpThree:
+    ' We value the information you chose to share with us, giving us the ability to make your experience as personal as possible. However, with trust comes responsibility, which means we never sell your data or information to other parties. ',
+  topDescpFour: `Our mission is to make you feel safe in your day-to-day activities. Your safety and privacy should not be a matter of concern when you are using Foundi. If you want to read more about Foundi's honesty policy, see below.'`,
+  dataControllerHeading: 'Data controller',
+  dataControllerTopDescp:
+    'Vilje Tech AB (“Vilje Tech”, “we”, “us”, “our”), the developer of the Foundi app (“Foundi”), is a data controller of personal data (“Data”). At Vilje Tech, we take your privacy very seriously and ensure that all applicable data privacy regulations are observed. In this section, you can learn about how we process your Data when you use:',
+  controllerMiddleSpan: ' www.foundiapp.com ',
+  controllerMiddleDescpOne: '(“Site”)',
+  controllerMiddleDescpTwo: ' the Foundi web or mobile app (“App”, “Apps”), or',
+  controllerMiddleDescpThree:
+    ' corresponding products and services offered by Vilje Tech (“Service”, “Services”, “Solutions”).',
+  dataControllerBottomDescp:
+    '  This Policy does not apply to third-party applications, websites, products, services, or platforms that may be accessed through links that we provide to you. These third parties are owned and operated independently from us and have their own separate privacy and data-collection practices. Any personal data that you provide to these third parties will be governed by the third party’s own privacy policy. We cannot accept liability for the actions or policies of these independent third parties, and we are not responsible for the content or privacy practices of such sites.',
+  aboutFoundiHeading: 'About Foundi',
+  aboutFoundiDescpOne:
+    'Foundi is a QR code solution built to help recover your lost items while protecting your identity and privacy. You can tag all your belongings by registering your products in our App by scanning the QR code or entering the serial number (SNO). While registering the product, you can select a gift card to reward the finder of your lost item.',
+
+  aboutFoundiDescpTwo:
+    'Foundi products come in multiple variants, ranging from simple keychains to laptop stickers, so that all of your items can be tagged with ease. In case you lose your belongings, the finder can easily scan the QR code or enter the SNO and be in touch with you to return the item.',
+  personalDataHeading: 'Catergories of personal data',
+  personalDataTopDescp:
+    'Depending on your interaction with Vilje Tech, we may process different categories of your Data. When using our Site or Apps, the categories of Data that we may process include:',
+  personalName: 'Name',
+  personalPostalAddress: 'Postal address',
+  personalEmail: 'Email address ',
+  personalSubmittedData: 'Submitted video data',
+  personalDevice:
+    ' Device-specific data (e.g. hardware model, operating system, and crash data)',
+  personalTelePhone: 'Telephone number ',
+  personalFeedback: ' Feedback, support, and error submissions ',
+  personalCookie: ' Cookie and marketing preferences',
+  personalPaymentInformation: ' Payment information',
+  personalBottomDescp:
+    'Additionally, when submitting feedback, support, or error forms, you may be asked to provide your name, contact information, feedback or error message, and the identification number of the product in question.',
+  personalBottomDescpOne:
+    ' This Data is collected when you register or use our Site, Apps, or Solutions, opt-in to cookies, opt-in to receiving marketing material, submit feedback or booking forms, from public records, and through direct correspondence between Vilje Tech and yourself.',
+  purposeHeading: 'Purpose',
+  purposeTopDescp:
+    'Vilje Tech processes your Data in order to be able to provide to you in completion our services in accordance with your wishes, to improve and expand our Solutions and Apps, for insight and research purposes, to communicate with you, to screen for potential risk or fraud, and, when in line with the preferences that you have indicated, to provide you with advertisement or promotional material.',
+  purposeMiddleDescp:
+    ' As we develop insights and research, we ensure that data is aggregated in order to prevent any individual from being identified, in effect anonymising the data set. Our legal bases for processing are:',
+  purposeBottomDescpOne: ' Based on your consent,',
+  purposeBottomDescpTwo: 'Necessary for the performance of contract,',
+  purposeBottomDescpThree: 'Due to other legal obligations, or',
+  purposeBottomDescpFour: 'Legitimate interest.',
+  dataRetentionHeading: 'Data Retetion',
+  dataRetentionTopDescp:
+    'Unless required by law, Data is retained for up to 24 months after your last interaction with Vilje Tech, after which it is erased or anonymised. Interaction with Vilje Tech includes, for example, using our Site, Apps, or Services, or opening marketing communications from us. ',
+  dataRetentionBottomDescp:
+    'You can at any time opt-out of receiving marketing communications or close your account by following on-screen instructions, or by contacting us at',
+  dataRetentionSpan: ' privacy@foundiapp.com',
+  employmentApplicationsHeading: 'Employment applications',
+  employmentApplicationsTopDescp:
+    'For both published vacancies and open applications, our recruitment process may involve the processing of the following categories of Data of our applicants: name; postal address; email address; telephone number; government-issued identification; references and CVs. This Data is retained for up to 5 years after the application date, or for as long as we have a legitimate business need for it. This Data is collected from public records, third-party recommendations and referrals, and through direct correspondence between Vilje Tech and yourself.',
+};
+
 export const strings = {
   navbar,
   homePage,
   loginPageStrings,
   signUpPageStrings,
+  forgotPwdStrings,
+  privacyPolicyStrings,
   eventsPageStrings,
   aboutPageStrings,
   productPageStrings,
