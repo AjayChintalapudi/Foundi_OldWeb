@@ -88,13 +88,156 @@ const productPageStrings = {
   productsBannerSubDesc:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
   productsBannerButtonName: 'Browse now',
+
+  productsMainHeading: 'Our products',
+  productsSubDesc:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
+  allProductsHeading: 'All',
+  productCategoryOne: 'Category 1',
+  productCategoryTwo: 'Category 2',
+  productCategoryThree: 'Category 3',
+};
+
+const productReviewPageStrings = {
+  backText: 'Back',
+  productHeading: 'Keychain tags - A pack of 4',
+  productSubDesc:
+    'Product details here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
+  productOfferPriceReview: '$ 89.00',
+  productOriginalPrice: '$ 119.00',
+  productBtnName: 'Add to cart',
+  buyNowText: 'Buy now',
+
+  // userExperiance Section
+
+  shareExperianceHeading: 'Share your experience!',
+  shareExperianceDesc:
+    'How many stars would you like to give for this product?',
+  shareExperianceNoteHeading: '(Note:',
+  shareExperianceDescOne:
+    'Only signed in users are allowed to share their reviews.)',
+  thoughtsDesc: 'Do you have any thoughts you’d like to share? (Optional)',
+  thoughtsPlaceHolderText: 'Type your thoughts here',
+  thoughtsBtnName: 'Submit',
+
+  // rating Section
+
+  ratingMainHeading: '4.0 out of 5 stars',
+  ratingSubDesc: 'A total of 100 customers rated this product',
+  ratingLoadMoreBtnName: 'Load more',
+};
+
+const checkOutPageStrings = {
+  checkOutTitle: 'Checkout',
+  contactHeading: 'Contact',
+  addressHeading: 'Address',
+  paymentHeading: 'Payment',
+
+  // Contact Details
+
+  contactTitle: '01 - Contact details',
+  firstName: 'First name',
+  firstNamePlaceHolderText: 'Enter your first name',
+  lastName: 'Last name',
+  lastNamePlaceHolderText: 'Enter your last name',
+  emailAddress: 'Email address',
+  emailPlaceHolderText: 'Enter your email address',
+  phoneNumber: 'Phone number',
+  phoneCode: '+42',
+  phoneNumberPlaceHolderText: 'Enter your phone number',
+  continueBtnText: 'Continue',
+
+  // Address Details
+
+  addressTitle: '02 - Shipping address',
+  doorAddress: 'Door no, Floor, Building/Apt, & Street',
+  doorAddressPlaceHolderText:
+    'Enter your Door no, Floor, Building/Apt, & Street',
+  cityName: 'City',
+  cityNamePlaceHolderText: 'Enter city name',
+  zipCodeName: 'ZIP code',
+  zipCodePlaceHolderText: 'Enter ZIP code',
+  stateAndCountry: 'State & Country',
+  stateAndCityPlaceHolderText: 'Enter your state & country',
+  // continueBtnText: 'Continue',
+
+  //Payment Details
+
+  paymentTitle: '03 - Payment',
+  cardHolderName: 'Card holder name',
+  cardPlaceHolderText: 'Enter name on your card',
+  debitCardName: 'Debit/Credit card number',
+  debitCardNamePlaceHolderText: 'Enter 16-digit Debit/Credit card number',
+  expiryDate: 'Expiration date',
+  expiryMonthPlaceHolderText: 'MM / YY',
+  cvvCode: 'CVV',
+  cvvCodePlaceHolderText: 'Enter card’s CVV ',
+
+  // CheckOut Button Names
+
+  continueBtnName: 'Continue',
+  purchaseBtnName: 'Purchase!',
+
+  // Order Details
+
+  orderSummaryHeading: 'Order summary',
+  enterDiscountCode: 'Enter discount code',
+  applyBtnName: 'Apply',
+  totalPrice: 'Total -',
+  totalPriceDesc: '$190',
+};
+
+const sustainabilityPageStrings = {
+  sustainabilityBannerHeading: 'We believe in creating',
+  sustainabilityBannerSubHeading: 'positive impact',
+  sustainabilityBannerSubHeadingOne: 'on the planet!',
+
+  sustainabilityBannerDesc:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse risus urna, rutrum non quam in.',
+  learMoreBtnName: 'Learn more',
+
+  // ourSustainability Efforts
+
+  ourSustainabilityHeading: 'Our sustainability efforts',
+  ourSustainabilityDesc:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus. Duis suscipit quis nisl nec consectetur. Donec scelerisque congue felis non volutpat.',
+
+  // product Sustainability
+  productSustainabilityHeading: 'Product sustainability',
+  productSustainabilityDescOne:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus. Duis suscipit quis nisl nec consectetur. Donec scelerisque congue felis non volutpat. Etiam sed magna bibendum, pharetra diam aliquam, vehicula magna. Aenean non accumsan dolor, in porta lectus. Ut vel semper eros. Etiam dictum est sit amet urna vulputate, ut pulvinar quam dictum.',
+  productSutainabilityDescTwo:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus. Duis suscipit quis nisl nec consectetur.',
+
+  // Environment Sustainabilty
+
+  environmentSustainabilityHeading: 'Environmental sustainability',
+  environmentSustainabilityDescOne:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus. Duis suscipit quis nisl nec consectetur. Donec scelerisque congue felis non volutpat. Etiam sed magna bibendum, pharetra diam aliquam, vehicula magna. Aenean non accumsan dolor, in porta lectus. Ut vel semper eros. Etiam dictum est sit amet urna vulputate, ut pulvinar quam dictum.',
+  environmentSutainabilityDescTwo:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus. Duis suscipit quis nisl nec consectetur.',
+
+  // Social  Sustainabilty
+
+  socialSustainabilityHeading: 'Social sustainability',
+  socialSustainabilityDescOne:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus. Duis suscipit quis nisl nec consectetur. Donec scelerisque congue felis non volutpat. Etiam sed magna bibendum, pharetra diam aliquam, vehicula magna. Aenean non accumsan dolor, in porta lectus. Ut vel semper eros. Etiam dictum est sit amet urna vulputate, ut pulvinar quam dictum.',
+  socialSutainabilityDescTwo:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus. Duis suscipit quis nisl nec consectetur.',
+};
+
+const orderHistoryPageStrings = {
+  trackOrderBtName: 'Track order',
+  cancelOrderBtName: 'Cancel order',
+  buyAgain: 'Buy again',
+  orderAgain: 'Order again',
 };
 
 const footerStrings = {
   footerMainHeading: 'Never miss updates from us!',
   footerSubDesc:
     'Always stay on the top of Foundi-related updates by subscribing to our newsletter.',
-  footerCopyRightDesc: 'Copyright © 2022 - Vilja Tech Labs',
+  footerCopyRightDesc: 'Copyright © 2022 - Vilje Tech Labs',
   facebookAltText: 'facebook',
   twitterAltText: 'twitter',
   instagramAltText: 'instagram',
@@ -113,7 +256,7 @@ const navbar = {
 const homePage = {
   bannerHeading: 'Lorem ipsum dolor sit amet, consectetur!',
   bannerDescription:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non lacus ac elit dictum tempor sed id lectus.',
+    'Lorem ipsum dolor sit amet, "consectetur adipiscing elit Mauris non lacus ac elit dictum tempor sed id lectus.',
   scrollText: 'Scroll down',
   purchaseHeading: '01 - Purchase tags',
   purchaseDescp:
@@ -339,5 +482,9 @@ export const strings = {
   eventsPageStrings,
   aboutPageStrings,
   productPageStrings,
+  productReviewPageStrings,
+  checkOutPageStrings,
+  sustainabilityPageStrings,
+  orderHistoryPageStrings,
   footerStrings,
 };

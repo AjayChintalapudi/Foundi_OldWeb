@@ -1,3 +1,7 @@
+// Modal Component Images
+
+export { default as modalcloseiconimg } from 'assets/Images/closeiconmodal.svg';
+
 // Events Banner Images
 
 export { default as bannerimg } from 'assets/Images/bannerimg.svg';
@@ -16,6 +20,35 @@ export { default as playstoreimg } from 'assets/Images/playstoreimg (2).svg';
 
 export { default as subscriptioncheckimg } from 'assets/Images/subcriptioncheckimg.svg';
 export { default as subscriptionpremiumcheckimg } from 'assets/Images/subscriptionpremiumcheckimg.svg';
+
+// Products Page Images
+
+export { default as productoneimg } from 'assets/Images/productoneimg.svg';
+export { default as producttwoimg } from 'assets/Images/producttwoimg.svg';
+
+// Product Review Images
+
+export { default as prodoctreviewleftarrow } from 'assets/Images/productreviewleftarrowimg.svg';
+export { default as prodoctreviewrightarrow } from 'assets/Images/productreviewrightarrow.svg';
+
+// CheckOut Page Images
+
+export { default as checkoutleftarrow } from 'assets/Images/checkoutleftarrowimg.svg';
+export { default as checkouttickmark } from 'assets/Images/checkouttickmark.svg';
+export { default as orderedproductimg } from 'assets/Images/orderedproductimg.svg';
+export { default as checkoutcheckmark } from 'assets/Images/checkoucheckmark.svg';
+export { default as checkoutuncheckmark } from 'assets/Images/checkoutuncheckmark.svg';
+
+// Sustainability Page Images
+
+export { default as sustainabilityglobeimg } from 'assets/Images/sustainabilityglobeomg.svg';
+export { default as environmentsustainabilityimg } from 'assets/Images/environmentsustainability.svg';
+export { default as productssustainabilityimg } from 'assets/Images/productsustainabiltyimg.svg';
+export { default as socialsustainabilityimg } from 'assets/Images/socialsustainabilityimg.svg';
+
+// Order Histrory Images
+
+export { default as orderhistoryimg } from 'assets/Images/orderhistoryproductimg.svg';
 // Footer Images
 export { default as facebookicon } from 'assets/Images/facebookicon.svg';
 export { default as twittericon } from 'assets/Images/twittericon.svg';

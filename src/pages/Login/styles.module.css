@@ -145,6 +145,7 @@
 .signUpTextSection {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
 .accountText {
   color: var(--lightgrey72);

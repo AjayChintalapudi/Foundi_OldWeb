@@ -15,9 +15,12 @@ import {
   FullNameValidationSchema,
   PassWordValidationSchema,
 } from 'validators/Validators';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   //formik Validation
+
+  const navigate = useNavigate();
 
   const handleSignUp = (values) => {
     console.log(values, 'signup calling');
@@ -52,7 +55,10 @@ const SignUp = () => {
         </div>
         {signUpInputSection()}
         {buttonSection()}
-        <div className={styles.loginTextSection}>
+        <div
+          className={styles.loginTextSection}
+          onClick={() => navigate('/login')}
+        >
           <p className={styles.accountText}>{signUpPageStrings.alreadtAcc}</p>
           &nbsp;
           <p className={styles.loginText}> {signUpPageStrings.login}</p>

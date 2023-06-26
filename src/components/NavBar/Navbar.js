@@ -6,15 +6,14 @@ import {
   hamburgerlogo,
   navbarlogo,
 } from 'resources/Images/Images';
+
 import { strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-
-const { navbar } = strings;
 const NavBar = () => {
-  const navigate = useNavigate();
+  const navigate=useNavigate()
   const [popOver, setPopOver] = useState(false);
-
+const {navbar}=strings
   const leftSection = () => {
     return (
       <div onClick={() => navigate('/')} className={styles.leftSection}>
@@ -79,7 +78,7 @@ const NavBar = () => {
                 <Button
                   btName={navbar.login}
                   btnStyles={styles.popOverLoginStyles}
-                  onClick={() => navigate('/login')}
+                  // onClick={() => navigate('/login')}
                 />
               </div>
             </div>

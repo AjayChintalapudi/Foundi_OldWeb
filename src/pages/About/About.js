@@ -64,7 +64,7 @@ const About = () => {
   const subscriptionPlansSection = () => {
     return (
       <div className={styles.subscriptionPlanContainer}>
-        {subscriptionPlanTitleInfoSection()}
+        {/* {subscriptionPlanTitleInfoSection()} */}
         <div className={styles.subscriptionPlanDetails}>
           {subscriptionPlanLeftSection()}
 
