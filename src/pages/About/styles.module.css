@@ -1,5 +1,9 @@
 /* aboutBanner Section Start */
 
+.formTextStyles {
+  background-color: red;
+}
+
 .aboutBannerContainer {
   background-color: var(--darkgreen);
   /* height: calc(100vh - 100px); */

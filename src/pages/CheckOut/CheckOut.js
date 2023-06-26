@@ -19,12 +19,10 @@ import Button from 'components/Button/Button';
 const CheckOut = () => {
   const { checkOutPageStrings } = strings;
 
-  // Title Section
+  // Title Section Tab Change [contact-address-payment]
 
   const [tab, setTab] = useState('contact');
-  const [buttonName, setButtonName] = useState(
-    checkOutPageStrings.continueBtnText
-  );
+  const [showContent, setShowContent] = useState(true);
 
   const checkOutPageSection = () => {
     return (
@@ -61,9 +59,13 @@ const CheckOut = () => {
     return (
       <div className={styles.checkOutPageDetailsLeftBlock}>
         {checkOutPageLeftHeadingsSection()}
-        {tab === 'contact' && checkOutPageLeftContactInputsSection()}
-        {tab === 'address' && checkOutPageLeftAddressInputsSection()}
-        {tab === 'payment' && checkOutPageLeftPaymentInputsSection()}
+        {showContent && (
+          <>
+            {tab === 'contact' && checkOutPageLeftContactInputsSection()}
+            {tab === 'address' && checkOutPageLeftAddressInputsSection()}
+            {tab === 'payment' && checkOutPageLeftPaymentInputsSection()}
+          </>
+        )}
         {checkOutLeftButtonSection()}
       </div>
     );
@@ -76,7 +78,14 @@ const CheckOut = () => {
           {checkOutData &&
             checkOutData.map((item, index) => {
               return (
-                <div className={styles.headingCheckBlock} key={index}>
+                <div
+                  className={styles.headingCheckBlock}
+                  key={index}
+                  onClick={() => {
+                    setTab(item.value);
+                    setShowContent(true);
+                  }}
+                >
                   <div className={styles.checkOutCheckMarkImgBlock}>
                     {tab === item.value ? (
                       <img
@@ -87,7 +96,7 @@ const CheckOut = () => {
                     ) : (
                       <img
                         src={checkoutuncheckmark}
-                        alt="checkmark"
+                        alt="uncheckmark"
                         className={styles.imageWidth}
                       />
                     )}
@@ -178,10 +187,29 @@ const CheckOut = () => {
   };
 
   const checkOutLeftButtonSection = () => {
+    const handleButtonClick = () => {
+      if (tab === 'contact') {
+        setTab('address');
+      } else if (tab === 'address') {
+        setTab('payment');
+      } else {
+        // setTab('contact');
+      }
+      setShowContent(true);
+    };
+
     return (
       <Button
-        btName={checkOutPageStrings.continueBtnText}
+        // btName={checkOutPageStrings.continueBtnText}
+        btName={
+          tab === 'contact'
+            ? checkOutPageStrings.continueBtnName
+            : tab === 'address'
+            ? checkOutPageStrings.continueBtnName
+            : checkOutPageStrings.purchaseBtnName
+        }
         btnStyles={styles.continueBtnStyles}
+        onClick={handleButtonClick}
       />
     );
   };

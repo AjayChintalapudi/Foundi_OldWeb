@@ -173,6 +173,11 @@ const checkOutPageStrings = {
   cvvCode: 'CVV',
   cvvCodePlaceHolderText: 'Enter card’s CVV ',
 
+  // CheckOut Button Names
+
+  continueBtnName: 'Continue',
+  purchaseBtnName: 'Purchase!',
+
   // Order Details
 
   orderSummaryHeading: 'Order summary',

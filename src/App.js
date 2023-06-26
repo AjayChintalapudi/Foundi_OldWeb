@@ -5,11 +5,12 @@ import Products from 'pages/Products/Products';
 import ProductsReview from 'pages/ProductsReview/ProductsReview';
 import Sustainability from '../src/pages/Sustainability/Sutainability';
 import OrderHistory from 'pages/OrderHistory/OrderHistory';
+import { useEffect, useState } from 'react';
 function App() {
   return (
     <div className="App">
       {/* <Events /> */}
-      {/* <About /> */}
+      <About />
       {/* <Products /> */}
       {/* <ProductsReview /> */}
       {/* <CheckOut /> */}
