@@ -143,6 +143,7 @@
   flex-direction: row;
   gap: 8px;
   align-items: center;
+  cursor: pointer;
 }
 
 .cartBtnStyles {
@@ -157,6 +158,7 @@
   border-radius: 8px;
   background: var(--darkgreen);
   box-shadow: 1px 8px 24px 0px var(--lightgreyshadow);
+  cursor: pointer;
 }
 
 .buyNowText {
@@ -260,7 +262,6 @@
   resize: none;
 }
 
-
 .thoughtBtnStyles {
   width: 265px;
   height: 56px;
@@ -273,6 +274,7 @@
   font-family: 'Regular', sans-serif;
   font-weight: 500;
   line-height: 30px;
+  cursor: pointer;
 }
 
 /* userExperianceContainer End */
@@ -375,6 +377,7 @@
   border-radius: 8px;
   border: 1px solid var(--lightgrey24);
   background: var(--lightgrey42);
+  cursor: pointer;
 }
 
 /* rating Section End */
@@ -577,6 +580,7 @@
     width: 300px;
     font-size: 16px;
     line-height: 24px;
+    cursor: pointer;
   }
 
   .buyNowText {

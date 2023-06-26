@@ -51,7 +51,10 @@ const Login = () => {
         </div>
         {loginInputSection()}
         {buttonSection()}
-        <div className={styles.signUpTextSection}>
+        <div
+          className={styles.signUpTextSection}
+          onClick={() => navigate('/signup')}
+        >
           <p className={styles.accountText}>{loginPageStrings.noAccount}</p>
           <p className={styles.signupText}> {loginPageStrings.signup}</p>
         </div>

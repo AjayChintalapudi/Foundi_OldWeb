@@ -238,7 +238,8 @@
   line-height: 30px;
   border-radius: 8px;
   background: #194f59;
-  box-shadow: 1px 8px 24px 0px rgba(25, 79, 89, 0.08);
+  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow);
+  cursor: pointer;
 }
 
 /* orderSummary Section Start */
@@ -348,6 +349,7 @@
   border-radius: 8px;
   background: var(--darkblue);
   box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+  cursor: pointer;
 }
 
 .orderPriceDetails {

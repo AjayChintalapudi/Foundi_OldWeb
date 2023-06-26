@@ -30,9 +30,11 @@ import useWindowDimensions from 'hooks/UseWindowDimensionHook';
 import Button from 'components/Button/Button';
 import Footer from 'components/Footer/Footer';
 import Input from 'components/Input/Input';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const { homePage } = strings;
+  const navigate = useNavigate();
   const { width } = useWindowDimensions();
 
   //state
@@ -496,7 +498,11 @@ const Home = () => {
             <p className={styles.learnDescp}>{homePage.learnmoreDescp}</p>
           </div>
           <div className={styles.learnBottomSection}>
-            <Button btName={'Learn more'} btnStyles={styles.learnBtnStyles} />
+            <Button
+              btName={'Learn more'}
+              btnStyles={styles.learnBtnStyles}
+              onClick={() => navigate('/sustainability')}
+            />
           </div>
         </div>
       </div>

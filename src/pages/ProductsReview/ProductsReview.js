@@ -15,7 +15,7 @@ import { productReviewData } from 'constants/CommonData/CommonData';
 import { useNavigate } from 'react-router-dom';
 
 const ProductsReview = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { productReviewPageStrings } = strings;
   const productDetailSection = () => {
     return (
@@ -126,7 +126,7 @@ const ProductsReview = () => {
         <Button
           btName={productReviewPageStrings.productBtnName}
           btnStyles={styles.cartBtnStyles}
-          // onClick={() => navigate('/checkout')}
+          onClick={() => navigate('/checkout')}
         />
         <div className={styles.productDetailRightDesc}>
           <p className={styles.buyNowText}>

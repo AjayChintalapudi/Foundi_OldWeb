@@ -59,6 +59,7 @@
   box-shadow: 1px 8px 24px var(--lightgrey8);
   border-radius: 8px;
   justify-content: center;
+  cursor: pointer;
 }
 
 .scollButtonBlock {
@@ -166,6 +167,7 @@
   display: grid;
   grid-template-columns: auto auto;
   gap: 20px;
+  cursor: pointer;
 }
 /* product Details Section End */
 

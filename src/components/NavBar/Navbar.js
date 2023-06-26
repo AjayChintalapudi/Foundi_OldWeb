@@ -11,6 +11,7 @@ import { strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 const NavBar = () => {
+  const navigate=useNavigate()
   const [popOver, setPopOver] = useState(false);
 const {navbar}=strings
   const leftSection = () => {
