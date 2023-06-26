@@ -5,8 +5,8 @@ import About from 'pages/About/About';
 import Products from 'pages/Products/Products';
 import Login from 'pages/Login/Login';
 import SignUp from 'pages/SignUp/SignUp';
-import ProductsReview from 'pages/ProductsReview/ProductsReview';
-import CheckOut from 'pages/CheckOut/CheckOut';
+import ForGotPassWord from 'pages/ForGotPassWord/ForGotPassWord';
+import PrivacyPolicy from 'PrivacyPolicy/PrivacyPolicy';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +20,8 @@ const AppRoutes = () => {
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/productreview" element={<ProductsReview />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
+        <Route path="/forgotpassword" element={<ForGotPassWord />}></Route>
+        <Route path="/privacypolicy" element={<PrivacyPolicy />}></Route>
       </Routes>
     </BrowserRouter>
   );

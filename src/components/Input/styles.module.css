@@ -10,3 +10,9 @@
 .inputStyles {
   width: 100%;
 }
+.errorStyles {
+  color: red;
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  line-height: 30px;
+}

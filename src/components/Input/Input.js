@@ -15,6 +15,7 @@ const Input = (props) => {
     image,
     alt,
     error,
+    onClick,
   } = props;
   return (
     <div className={styles.inputContainer}>
@@ -29,12 +30,12 @@ const Input = (props) => {
         value={value}
       />
       {image && (
-        <div className={styles.inputIcon}>
+        <div className={styles.inputIcon} onClick={onClick}>
           <img src={image} alt={alt} className={styles.inputImageStyles} />
         </div>
       )}
 
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <div className={styles.errorStyles}>{error}</div>}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import {
   eyelogo,
@@ -9,13 +9,36 @@ import {
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { strings } from 'resources/Strings/eng';
+import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import {
+  EmailValidationSchema,
+  PassWordValidationSchema,
+} from 'validators/Validators';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  //formik validation
+  const handleLogin = (values) => {
+    console.log(values, 'values calling');
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: EmailValidationSchema.concat(PassWordValidationSchema),
+    onSubmit: handleLogin,
+  });
+
   const { loginPageStrings } = strings;
+  const [pwvisible, setPwVisible] = useState(false);
 
   const loginLeftSection = () => {
     return (
-      <div className={styles.loginLeftSection}>
+      <form onSubmit={formik.handleSubmit} className={styles.loginLeftSection}>
         <div className={styles.loginHeaderSection}>
           <div className={styles.loginLeftArrow}>
             <img
@@ -32,7 +55,7 @@ const Login = () => {
           <p className={styles.accountText}>{loginPageStrings.noAccount}</p>
           <p className={styles.signupText}> {loginPageStrings.signup}</p>
         </div>
-      </div>
+      </form>
     );
   };
 
@@ -42,22 +65,38 @@ const Login = () => {
         <div className={styles.emailSection}>
           <p className={styles.emailText}>{loginPageStrings.email}</p>
           <Input
+            name="email"
             customInputStyles={styles.emailInputStyles}
             type="email"
             placeholder={loginPageStrings.emailPlaceHolder}
+            value={formik.values.email}
+            // onFocus={formik.handle}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            error={formik.touched.email && formik.errors.email}
           />
         </div>
         <div className={styles.passwordGapSection}>
           <div className={styles.passwordSection}>
             <p className={styles.passwordText}>{loginPageStrings.password}</p>
             <Input
+              name="password"
               customInputStyles={styles.passwordInputStyles}
-              type="password"
+              type={pwvisible ? 'text' : 'password'}
               placeholder={loginPageStrings.passwordPlaceHolder}
-              image={eyelogo}
+              image={pwvisible ? eyelogo : eyelogo}
+              onClick={() => setPwVisible(!pwvisible)}
+              value={formik.values.password}
+              // onFocus={formik.handleBlur}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              error={formik.touched.password && formik.errors.password}
             />
           </div>
-          <p className={styles.forgotPassWordStyles}>
+          <p
+            onClick={() => navigate('/forgotpassword')}
+            className={styles.forgotPassWordStyles}
+          >
             {loginPageStrings.forgotPassword}
           </p>
         </div>
@@ -72,6 +111,7 @@ const Login = () => {
           <Button
             btName={loginPageStrings.login}
             btnStyles={styles.loginbtnStyles}
+            type="submit"
           />
         </div>
         <div className={styles.googleButtonSection}>
@@ -79,6 +119,7 @@ const Login = () => {
             btName={loginPageStrings.google}
             btnStyles={styles.googlebtnStyles}
             image={googleglogo}
+            type="type"
           />
         </div>
       </div>
