@@ -47,7 +47,7 @@
 .topDescpThree,
 .topDescpFour {
   max-width: 593px;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--whitetransparent72);
   font-size: 18px;
   font-family: 'Light', sans-serif;
   line-height: 30px;
@@ -81,7 +81,7 @@
   font-weight: 600;
 }
 .privacyDescp {
-  color: #446edc;
+  color: var(--darkblue);
   text-align: center;
   font-size: 18px;
   font-family: 'Medium', sans-serif;
@@ -101,7 +101,13 @@
 .personalDataSection,
 .purposeSection,
 .dataRetentionSection,
-.employmentApplicationsSection {
+.employmentApplicationsSection,
+.thirdPartiesSection,
+.cookiesSection,
+.cyberSecuritySection,
+.yourRightsSection,
+.changesToViljeTechSection,
+.contactInformationSection {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -111,7 +117,13 @@
 .personalDataHeader,
 .purposeHeader,
 .dataRetentionHeader,
-.employmentApplicationsHeader {
+.employmentApplicationsHeader,
+.thirdPartiesHeader,
+.cookiesHeader,
+.cyberSecurityHeader,
+.yourRightsHeader,
+.changesToViljeTechHeader,
+.contactInformationHeader {
   color: var(--aubergine);
   font-size: 24px;
   font-family: 'Semi-Bold', sans-serif;
@@ -122,13 +134,20 @@
 .aboutFoundiDescpSection,
 .personalDataDescpSection,
 .purposeDescpSection,
-.dataRetentionDescpSection {
+.dataRetentionDescpSection,
+.thirdPartiesDescpSection,
+.cookiesDescpSection,
+.yourRightsDescpSection {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 .controllerMiddleSpan,
-.dataRetentionSpan {
+.dataRetentionSpan,
+.thirdPartiesSpan,
+.cookiesMiddleSpan,
+.yourRightsBottomSpan,
+.contactSpan {
   color: var(--darkblue);
   border-bottom: 3px solid var(--darkblue);
   font-size: 18px;
@@ -162,8 +181,53 @@
 .purposeBottomDescpFour,
 .dataRetentionTopDescp,
 .dataRetentionBottomDescp,
-.employmentApplicationsTopDescp {
+.employmentApplicationsTopDescp,
+.thirdPartiesTopDescp,
+.cloudStorage,
+.processingPayments,
+.productDevelopment,
+.appDevelopment,
+.cyberSecurity,
+.marketReSearch,
+.advertisments,
+.communicating,
+.legalConsultancy,
+.customerRelationShip,
+.support,
+.thirdPartiesBottomDescp,
+.thirdPartiesBottomDescpOne,
+.thirdPartiesBottomDescpTwo,
+.cookiesTopDescp,
+.cookiesMiddleDescpOne,
+.cookiesMiddleDescpTwo,
+.cookiesMiddleDescpThree,
+.cyberSecurityTopDescp,
+.yourRightsTopDescp,
+.yourRightsMiddleOne,
+.yourRightsMiddleTwo,
+.yourRightsMiddleThree,
+.yourRightsMiddleFour,
+.yourRightsMiddleFive,
+.yourRightsMiddleSix,
+.yourRightsMiddleSeven,
+.yourRightsBottomDescpOne,
+.yourRightsBottomDescpTwo,
+.yourRightsBottomDescpThree,
+.yourRightsBottomSpanTwo,
+.changesToViljeTechTopDescp,
+.contactInformationTopDescp {
   color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  line-height: 30px;
+}
+.cookiesBottomDescpOne,
+.cookiesBottomDescpTwo,
+.cookiesBottomDescpThree,
+.cookiesBottomDescpFour,
+.yourRightsBottomSpanOne,
+.yourRightsBottomSpanThree {
+  color: var(--darkblue);
   font-size: 18px;
   font-family: 'Medium', sans-serif;
   line-height: 30px;
@@ -172,3 +236,206 @@
 /* bottom View styles end */
 
 /* -----------------------DeskTop View Ends----------------------- */
+
+/* styles start at 867px */
+
+/* top View styles start */
+@media screen and (max-width: 867px) {
+  .insideTopSection {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  .leftIconSection {
+    width: 100%;
+    max-width: 160px;
+    max-height: 160px;
+  }
+  .rightTextSection {
+    align-items: center;
+    max-width: 366px;
+  }
+
+  .topHeader {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .topDescp {
+    gap: 16px;
+  }
+  .topDescpOne,
+  .topDescpTwo,
+  .topDescpThree,
+  .topDescpFour {
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  /* top View styles end */
+
+  /* bottom View styles start */
+  .insideBottomSection {
+    padding: 80px 60px;
+    gap: 48px;
+  }
+  .privacySection {
+    gap: 12px;
+  }
+  .privacyHeader {
+    font-size: 28px;
+  }
+  .privacyDescp {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .privacyDate {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .controllerSection,
+  .aboutFoundiSection,
+  .personalDataSection,
+  .purposeSection,
+  .dataRetentionSection,
+  .employmentApplicationsSection,
+  .thirdPartiesSection,
+  .cookiesSection,
+  .cyberSecuritySection,
+  .yourRightsSection,
+  .changesToViljeTechSection,
+  .contactInformationSection {
+    gap: 8px;
+  }
+  .controllerHeader,
+  .aboutFoundiHeader,
+  .personalDataHeader,
+  .purposeHeader,
+  .dataRetentionHeader,
+  .employmentApplicationsHeader,
+  .thirdPartiesHeader,
+  .cookiesHeader,
+  .cyberSecurityHeader,
+  .yourRightsHeader,
+  .changesToViljeTechHeader,
+  .contactInformationHeader {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .controllerDescp,
+  .aboutFoundiDescpSection,
+  .personalDataDescpSection,
+  .purposeDescpSection,
+  .dataRetentionDescpSection,
+  .thirdPartiesDescpSection,
+  .cookiesDescpSection,
+  .yourRightsDescpSection {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .controllerMiddleSpan,
+  .dataRetentionSpan,
+  .thirdPartiesSpan,
+  .cookiesMiddleSpan,
+  .yourRightsBottomSpan,
+  .contactSpan {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .controllerTopDescp,
+  .controllerMiddleDescpOne,
+  .controllerMiddleDescpTwo,
+  .controllerMiddleDescpThree,
+  .controllerBottomDescp,
+  .aboutFoundiDescpOne,
+  .aboutFoundiDescpTwo,
+  .personalDataTopDescp,
+  .personalName,
+  .personalPostalAddress,
+  .personalEmail,
+  .personalSubmittedData,
+  .personalDevice,
+  .personalTelePhone,
+  .personalFeedback,
+  .personalCookie,
+  .personalPaymentInformation,
+  .personalBottomDescp,
+  .personalBottomDescpOne,
+  .purposeTopDescp,
+  .purposeMiddleDescp,
+  .purposeBottomDescpOne,
+  .purposeBottomDescpTwo,
+  .purposeBottomDescpThree,
+  .purposeBottomDescpFour,
+  .dataRetentionTopDescp,
+  .dataRetentionBottomDescp,
+  .employmentApplicationsTopDescp,
+  .thirdPartiesTopDescp,
+  .cloudStorage,
+  .processingPayments,
+  .productDevelopment,
+  .appDevelopment,
+  .cyberSecurity,
+  .marketReSearch,
+  .advertisments,
+  .communicating,
+  .legalConsultancy,
+  .customerRelationShip,
+  .support,
+  .thirdPartiesBottomDescp,
+  .thirdPartiesBottomDescpOne,
+  .thirdPartiesBottomDescpTwo,
+  .cookiesTopDescp,
+  .cookiesMiddleDescpOne,
+  .cookiesMiddleDescpTwo,
+  .cookiesMiddleDescpThree,
+  .cyberSecurityTopDescp,
+  .yourRightsTopDescp,
+  .yourRightsMiddleOne,
+  .yourRightsMiddleTwo,
+  .yourRightsMiddleThree,
+  .yourRightsMiddleFour,
+  .yourRightsMiddleFive,
+  .yourRightsMiddleSix,
+  .yourRightsMiddleSeven,
+  .yourRightsBottomDescpOne,
+  .yourRightsBottomDescpTwo,
+  .yourRightsBottomDescpThree,
+  .yourRightsBottomSpanTwo,
+  .changesToViljeTechTopDescp,
+  .contactInformationTopDescp {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .cookiesBottomDescpOne,
+  .cookiesBottomDescpTwo,
+  .cookiesBottomDescpThree,
+  .cookiesBottomDescpFour,
+  .yourRightsBottomSpanOne,
+  .yourRightsBottomSpanThree {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* bottom View styles end */
+}
+/* styles End at 867px */
+
+/* styles start at 428px */
+/* top View styles start */
+@media screen and (max-width: 428px) {
+  .insideTopSection {
+    padding: 64px 24px;
+  }
+  /* top View styles end */
+
+  /* bottom View styles start */
+  .insideBottomSection {
+    padding: 64px 24px;
+  }
+}
+
+/* styles end at 428px */

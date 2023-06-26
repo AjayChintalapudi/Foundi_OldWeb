@@ -9,15 +9,35 @@ import {
 import { strings } from 'resources/Strings/eng';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
+import { useFormik } from 'formik';
+import {
+  EmailValidationSchema,
+  FullNameValidationSchema,
+  PassWordValidationSchema,
+} from 'validators/Validators';
 
 const SignUp = () => {
-  const { signUpPageStrings } = strings;
+  //formik Validation
 
+  const handleSignUp = (values) => {
+    console.log(values, 'signup calling');
+  };
+
+  const formik = useFormik({
+    initialValues: { fullName: '', email: '', password: '' },
+    validationSchema: FullNameValidationSchema.concat(
+      EmailValidationSchema
+    ).concat(PassWordValidationSchema),
+
+    onSubmit: handleSignUp,
+  });
+
+  const { signUpPageStrings } = strings;
   const [pwdVisible, setPwdVisible] = useState(false);
 
   const signUpLeftSection = () => {
     return (
-      <div className={styles.signUpLeftSection}>
+      <form onSubmit={formik.handleSubmit} className={styles.signUpLeftSection}>
         <div className={styles.signUpHeaderSection}>
           <div className={styles.signUpLeftArrow}>
             <img
@@ -37,7 +57,7 @@ const SignUp = () => {
           &nbsp;
           <p className={styles.loginText}> {signUpPageStrings.login}</p>
         </div>
-      </div>
+      </form>
     );
   };
 
@@ -50,6 +70,11 @@ const SignUp = () => {
             customInputStyles={styles.fullNameInputStyles}
             type="text"
             placeholder={signUpPageStrings.fullNamePlaceHolder}
+            value={formik.values.fullName}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            name="fullName"
+            error={formik.touched.fullName && formik.errors.fullName}
           />
         </div>
         <div className={styles.emailSection}>
@@ -58,6 +83,11 @@ const SignUp = () => {
             customInputStyles={styles.emailInputStyles}
             type="email"
             placeholder={signUpPageStrings.emailPlaceHolder}
+            value={formik.values.email}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            name="email"
+            error={formik.touched.email && formik.errors.email}
           />
         </div>
         <div className={styles.passwordGapSection}>
@@ -69,6 +99,11 @@ const SignUp = () => {
               placeholder={signUpPageStrings.passwordPlaceHolder}
               image={pwdVisible ? eyelogo : eyelogo}
               onClick={() => setPwdVisible(!pwdVisible)}
+              name="password"
+              value={formik.values.password}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              error={formik.touched.password && formik.errors.password}
             />
           </div>
           <p className={styles.forgotPassWordStyles}>
@@ -86,6 +121,7 @@ const SignUp = () => {
           <Button
             btName={signUpPageStrings.createAccount}
             btnStyles={styles.createbtnStyles}
+            type="submit"
           />
         </div>
         <div className={styles.googleButtonSection}>
@@ -93,6 +129,7 @@ const SignUp = () => {
             btName={signUpPageStrings.google}
             btnStyles={styles.googlebtnStyles}
             image={googleglogo}
+            type="type"
           />
         </div>
       </div>

@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { privacyLocklogo } from 'resources/Images/Images';
+import { privacyLocklogo, privacyMobilelogo } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
+import useWindowDimensions from 'hooks/UseWindowDimensionHook';
 
 const PrivacyPolicy = () => {
   const { privacyPolicyStrings } = strings;
+  const { width } = useWindowDimensions();
 
   const privacyPolicyTopSection = () => {
     return (
@@ -12,7 +14,7 @@ const PrivacyPolicy = () => {
         <div className={styles.insideTopSection}>
           <div className={styles.leftIconSection}>
             <img
-              src={privacyLocklogo}
+              src={width > 867 ? privacyLocklogo : privacyMobilelogo}
               alt=""
               className={styles.imageWidthStyles}
             />
@@ -52,6 +54,12 @@ const PrivacyPolicy = () => {
           {purpose()}
           {dataRetention()}
           {employmentApplications()}
+          {thirdParties()}
+          {cookiesSection()}
+          {cyberSecuritySection()}
+          {yourRightsSection()}
+          {changesToViljeTech()}
+          {contactInformation()}
         </div>
       </div>
     );
@@ -242,6 +250,216 @@ const PrivacyPolicy = () => {
         </h3>
         <p className={styles.employmentApplicationsTopDescp}>
           {privacyPolicyStrings.employmentApplicationsTopDescp}
+        </p>
+      </div>
+    );
+  };
+
+  const thirdParties = () => {
+    return (
+      <div className={styles.thirdPartiesSection}>
+        <h3 className={styles.thirdPartiesHeader}>
+          {privacyPolicyStrings.thirdPartiesHeading}
+        </h3>
+        <div className={styles.thirdPartiesDescpSection}>
+          <p className={styles.thirdPartiesTopDescp}>
+            {privacyPolicyStrings.thirdPartiesTopDescp}
+          </p>
+          <div className={styles.thirdPartiesMiddleSection}>
+            <p className={styles.cloudStorage}>
+              - &nbsp;{privacyPolicyStrings.cloudStorage}
+            </p>
+            <p className={styles.processingPayments}>
+              - &nbsp;{privacyPolicyStrings.processingPayments}
+            </p>
+            <p className={styles.productDevelopment}>
+              - &nbsp;{privacyPolicyStrings.productDevelopment}
+            </p>
+            <p className={styles.appDevelopment}>
+              - &nbsp;{privacyPolicyStrings.appDevelopment}
+            </p>
+            <p className={styles.cyberSecurity}>
+              - &nbsp;{privacyPolicyStrings.cyberSecurity}
+            </p>
+            <p className={styles.marketReSearch}>
+              - &nbsp;{privacyPolicyStrings.marketReSearch}
+            </p>
+            <p className={styles.advertisments}>
+              - &nbsp;{privacyPolicyStrings.advertisments}
+            </p>
+            <p className={styles.communicating}>
+              - &nbsp;{privacyPolicyStrings.communicating}
+            </p>
+            <p className={styles.legalConsultancy}>
+              - &nbsp;{privacyPolicyStrings.legalConsultancy}
+            </p>
+            <p className={styles.customerRelationShip}>
+              - &nbsp;{privacyPolicyStrings.customerRelationShip}
+            </p>
+            <p className={styles.support}>
+              - &nbsp;{privacyPolicyStrings.support}
+            </p>
+          </div>
+          <p className={styles.thirdPartiesBottomDescp}>
+            {privacyPolicyStrings.thirdPartiesBottomDescp}
+          </p>
+          <p className={styles.thirdPartiesBottomDescpOne}>
+            {privacyPolicyStrings.thirdPartiesBottomDescpOne}
+          </p>
+          <p className={styles.thirdPartiesBottomDescpTwo}>
+            {privacyPolicyStrings.thirdPartiesBottomDescpTwo} &nbsp;
+            <span className={styles.thirdPartiesSpan}>
+              {privacyPolicyStrings.thirdPartiesSpan}
+            </span>
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  const cookiesSection = () => {
+    return (
+      <div className={styles.cookiesSection}>
+        <h3 className={styles.cookiesHeader}>
+          {privacyPolicyStrings.cookiesHeading}
+        </h3>
+
+        <div className={styles.cookiesDescpSection}>
+          <p className={styles.cookiesTopDescp}>
+            {privacyPolicyStrings.cookiesTopDescp}
+          </p>
+          <p className={styles.cookiesMiddleDescpOne}>
+            {privacyPolicyStrings.cookiesMiddleDescpOne}
+          </p>
+          <p className={styles.cookiesMiddleDescpTwo}>
+            {privacyPolicyStrings.cookiesMiddleDescpTwo}
+          </p>
+          <p className={styles.cookiesMiddleDescpThree}>
+            {privacyPolicyStrings.cookiesMiddleDescpThree}&nbsp;
+            <span className={styles.cookiesMiddleSpan}>
+              {privacyPolicyStrings.cookiesMiddleSpan}
+            </span>
+          </p>
+
+          <div className={styles.cookiesBottomDescpSection}>
+            <p className={styles.cookiesBottomDescpOne}>
+              - &nbsp;{privacyPolicyStrings.cookiesBottomDescpOne}
+            </p>
+            <p className={styles.cookiesBottomDescpTwo}>
+              - &nbsp;{privacyPolicyStrings.cookiesBottomDescpTwo}
+            </p>
+            <p className={styles.cookiesBottomDescpThree}>
+              - &nbsp;{privacyPolicyStrings.cookiesBottomDescpThree}
+            </p>
+            <p className={styles.cookiesBottomDescpFour}>
+              - &nbsp;{privacyPolicyStrings.cookiesBottomDescpFour}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const cyberSecuritySection = () => {
+    return (
+      <div className={styles.cyberSecuritySection}>
+        <h3 className={styles.cyberSecurityHeader}>
+          {privacyPolicyStrings.cyberSecurityHeading}
+        </h3>
+        <p className={styles.cyberSecurityTopDescp}>
+          {privacyPolicyStrings.cyberSecurityTopDescp}
+        </p>
+      </div>
+    );
+  };
+
+  const yourRightsSection = () => {
+    return (
+      <div className={styles.yourRightsSection}>
+        <h3 className={styles.yourRightsHeader}>
+          {privacyPolicyStrings.yourRightsHeading}
+        </h3>
+        <div className={styles.yourRightsDescpSection}>
+          <p className={styles.yourRightsTopDescp}>
+            {privacyPolicyStrings.yourRightsTopDescp}
+          </p>
+          <div className={styles.yourRightsMiddleSection}>
+            <p className={styles.yourRightsMiddleOne}>
+              - &nbsp;{privacyPolicyStrings.yourRightsMiddleOne}
+            </p>
+            <p className={styles.yourRightsMiddleTwo}>
+              - &nbsp;{privacyPolicyStrings.yourRightsMiddleTwo}
+            </p>
+            <p className={styles.yourRightsMiddleThree}>
+              - &nbsp;{privacyPolicyStrings.yourRightsMiddleThree}
+            </p>
+            <p className={styles.yourRightsMiddleFour}>
+              - &nbsp;{privacyPolicyStrings.yourRightsMiddleFour}
+            </p>
+            <p className={styles.yourRightsMiddleFive}>
+              - &nbsp;{privacyPolicyStrings.yourRightsMiddleFive}
+            </p>
+            <p className={styles.yourRightsMiddleSix}>
+              - &nbsp;{privacyPolicyStrings.yourRightsMiddleSix}
+            </p>
+            <p className={styles.yourRightsMiddleSeven}>
+              - &nbsp;{privacyPolicyStrings.yourRightsMiddleSeven}
+            </p>
+          </div>
+          <p className={styles.yourRightsBottomDescpOne}>
+            {privacyPolicyStrings.yourRightsBottomDescpOne}
+            &nbsp;
+            <span className={styles.yourRightsBottomSpan}>
+              {privacyPolicyStrings.yourRightsBottomSpan}
+            </span>
+          </p>
+          <p className={styles.yourRightsBottomDescpTwo}>
+            {privacyPolicyStrings.yourRightsBottomDescpTwo}
+          </p>
+          <p className={styles.yourRightsBottomDescpThree}>
+            {privacyPolicyStrings.yourRightsBottomDescpThree}
+            &nbsp;
+            <span className={styles.yourRightsBottomSpanOne}>
+              {privacyPolicyStrings.yourRightsBottomSpanOne}
+            </span>
+            &nbsp;
+            <span className={styles.yourRightsBottomSpanTwo}>
+              {privacyPolicyStrings.yourRightsBottomSpanTwo}
+            </span>
+            &nbsp;
+            <span className={styles.yourRightsBottomSpanThree}>
+              {privacyPolicyStrings.yourRightsBottomSpanThree}
+            </span>
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  const changesToViljeTech = () => {
+    return (
+      <div className={styles.changesToViljeTechSection}>
+        <h3 className={styles.changesToViljeTechHeader}>
+          {privacyPolicyStrings.changesToViljeTechHeading}
+        </h3>
+        <p className={styles.changesToViljeTechTopDescp}>
+          {privacyPolicyStrings.changesToViljeTechTopDescp}
+        </p>
+      </div>
+    );
+  };
+
+  const contactInformation = () => {
+    return (
+      <div className={styles.contactInformationSection}>
+        <h3 className={styles.contactInformationHeader}>
+          {privacyPolicyStrings.contactInformationHeading}
+        </h3>
+        <p className={styles.contactInformationTopDescp}>
+          {privacyPolicyStrings.contactInformationTopDescp}&nbsp;
+          <span className={styles.contactSpan}>
+            {privacyPolicyStrings.contactSpan}
+          </span>
         </p>
       </div>
     );

@@ -1,5 +1,3 @@
-import { privacyLocklogo } from 'resources/Images/Images';
-
 const eventsPageStrings = {
   // BannerSection
 
@@ -161,7 +159,7 @@ const loginPageStrings = {
   email: 'Email address',
   emailPlaceHolder: 'Enter your email address',
   password: 'Password',
-  passwordPlaceHolder: 'Enter your password,',
+  passwordPlaceHolder: 'Enter your password',
   forgotPassword: 'Forgot password?',
   google: 'Sign in with Google',
   noAccount: 'Don’t have an account?',
@@ -259,6 +257,76 @@ const privacyPolicyStrings = {
   employmentApplicationsHeading: 'Employment applications',
   employmentApplicationsTopDescp:
     'For both published vacancies and open applications, our recruitment process may involve the processing of the following categories of Data of our applicants: name; postal address; email address; telephone number; government-issued identification; references and CVs. This Data is retained for up to 5 years after the application date, or for as long as we have a legitimate business need for it. This Data is collected from public records, third-party recommendations and referrals, and through direct correspondence between Vilje Tech and yourself.',
+  thirdPartiesHeading: 'Third parties and Countries',
+  thirdPartiesTopDescp:
+    'We may share your Data with affiliated companies with which we have partnered in order to provide to you a greater set of services, and with trusted third-party service providers as necessary for them to perform services on our behalf, such as:',
+  cloudStorage: 'Cloud data storage ',
+  processingPayments: ' Processing payments ',
+  productDevelopment: 'Product development',
+  appDevelopment: ' Application deployment and publication',
+  cyberSecurity: ' Cybersecurity',
+  marketReSearch: 'Market research ',
+  advertisments: 'Serving advertisements and conducting surveys',
+  communicating:
+    ' Communicating with you, such as by way of email or survey delivery',
+  legalConsultancy: 'Legal consultancy',
+  customerRelationShip:
+    'Customer relationship management, including social media ',
+  support: ' Support and related services',
+  thirdPartiesBottomDescp:
+    ' As often as is appropriate and practical, third parties are only provided with aggregated data (through which individuals cannot be identified) and are obligated not to disclose or use the information for any purpose other than those listed above.',
+  thirdPartiesBottomDescpOne:
+    ' Vilje Tech uses servers located within the EU; however, if we transfer Data outside of the EU, we check that the third country meets the requirements of applicable data privacy legislation and make the necessary contractual arrangements to ensure third-party compliance. Vilje Tech does not sell your personal data.',
+  thirdPartiesBottomDescpTwo:
+    ' For a full list of our third parties, please send your request to',
+  thirdPartiesSpan: 'privacy@foundiapp.com',
+  cookiesHeading: 'Cookies',
+  cookiesTopDescp:
+    'A cookie is a small text file that the website or application that you are visiting requests to save on your device. They are widely used in order to make websites and applications work, or work more efficiently, as well as to provide information to the owners of the site or app.',
+  cookiesMiddleDescpOne:
+    'Vilje Tech only uses essential cookies, those that allow our Site and Apps to work – as such, these cannot be disabled.',
+  cookiesMiddleDescpTwo:
+    'Should Vilje Tech ever update its cookie collection for other processing purposes, we will first request your consent.',
+  cookiesMiddleDescpThree:
+    ' PTS, the regulatory authority in the field, provides additional information about cookies on its website, ',
+  cookiesMiddleSpan: 'pts,se',
+  cookiesBottomDescpOne: 'Chrome',
+  cookiesBottomDescpTwo: 'Internet Explorer ',
+  cookiesBottomDescpThree: 'Firefox',
+  cookiesBottomDescpFour: 'Safari',
+  cyberSecurityHeading: 'Cybersecurity',
+  cyberSecurityTopDescp:
+    'Vilje Tech protects your Data using technical and organisational security measures. In order to prevent unauthorised access and ensure data accuracy, we have implemented strict guidelines for the organisation regarding the processing of personal data, including the use of two-factor authentication (2FA), SSL encryption, and trusted third-party cloud data storage, with servers located within the EU.',
+  yourRightsHeading: 'Your rights',
+  yourRightsTopDescp:
+    'Under the EU General Data Protection Regulation (EU GDPR), you have the right to transparency in how your Data is processed. This means that you can at any time:',
+  yourRightsMiddleOne: 'Request an extract of what Data we process about you,',
+  yourRightsMiddleTwo: ' Request that we correct any Data that is incorrect,',
+  yourRightsMiddleThree: 'Request that we erase your Data,',
+  yourRightsMiddleFour: 'Request that we limit how your Data is used,',
+  yourRightsMiddleFive:
+    ' Object to the processing of your Data that we deem legitimate',
+  yourRightsMiddleSix:
+    ' Request to have your Data transferred from Vilje Tech’s system to another body, i.e. data portability, and',
+  yourRightsMiddleSeven:
+    'Revoke previously granted consent to any of our personal data processes.',
+  yourRightsBottomDescpOne:
+    'If you would like to request any of the above, please contact us at privacy@foundiapp.',
+  yourRightsBottomSpan: ' privacy@foundiapp.',
+  yourRightsBottomDescpTwo:
+    'You are entitled to contact Sweden’s data protection authority, Integritetsskyddsmyndigheten (IMY), to file a complaint if you are dissatisfied with how we process your Data.',
+  yourRightsBottomDescpThree:
+    'More information about the EU GDPR can be found at ',
+  yourRightsBottomSpanOne: 'imy.se',
+  yourRightsBottomSpanTwo: 'and',
+  yourRightsBottomSpanThree: '  ec.europa.eu',
+  changesToViljeTechHeading: 'Changes to Vilje Tech’s Privacy Policy',
+  changesToViljeTechTopDescp:
+    'We may periodically update this Policy in order to accurately reflect changes to operations, or for regulatory reasons. When this happens, we will inform you by reasonable correspondence - for example, by email, through our Apps, or on our Site.',
+  contactInformationHeading: 'Contact information',
+  contactInformationTopDescp:
+    'If you have questions about how Vilje Tech processes your personal data, or the contents of this Policy, you can at any time email ',
+  contactSpan: 'privacy@foundiapp.com',
 };
 
 export const strings = {

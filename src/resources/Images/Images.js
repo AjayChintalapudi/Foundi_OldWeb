@@ -58,3 +58,4 @@ export { default as googleglogo } from 'assets/Images/googlesvglogo.svg';
 
 //privacy policy Images
 export { default as privacyLocklogo } from 'assets/Images/privacypolicylogo.svg';
+export { default as privacyMobilelogo } from 'assets/Images/privacymobilelogo.svg';

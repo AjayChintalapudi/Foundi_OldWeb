@@ -35,7 +35,7 @@ const Input = (props) => {
         </div>
       )}
 
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <div className={styles.errorStyles}>{error}</div>}
     </div>
   );
 };

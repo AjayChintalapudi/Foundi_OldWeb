@@ -128,7 +128,6 @@ const Home = () => {
   const homebannerSection = () => {
     return (
       <div className={styles.bannerSection}>
-        <NavBar />
         <div className={styles.insideBannerSection}>
           {bannerTopSection()}
           {bannerBottomSection()}
@@ -246,29 +245,27 @@ const Home = () => {
 
   const purchaseMiddleSection = () => {
     return (
-      <div className={styles.mapSection}>
+      <React.Fragment>
         {purchaseData.map((item, index) => {
           return (
-            <React.Fragment>
-              {indexNo === index && (
-                <div key={index} className={styles.purchaseMiddleSection}>
-                  <h2 className={styles.purchaseTopSection}>{item.header}</h2>
-                  <div className={styles.purchaseGapSection}>
-                    <div className={styles.purchaseTagsIcon}>
-                      <img
-                        src={item.image}
-                        alt=""
-                        className={styles.imageWidth}
-                      />
-                    </div>
-                    <p className={styles.purchaseDescpSection}>{item.descp}</p>
+            indexNo === index && (
+              <div key={index} className={styles.purchaseMiddleSection}>
+                <h2 className={styles.purchaseTopSection}>{item.header}</h2>
+                <div className={styles.purchaseGapSection}>
+                  <div className={styles.purchaseTagsIcon}>
+                    <img
+                      src={item.image}
+                      alt=""
+                      className={styles.imageWidth}
+                    />
                   </div>
+                  <p className={styles.purchaseDescpSection}>{item.descp}</p>
                 </div>
-              )}
-            </React.Fragment>
+              </div>
+            )
           );
         })}
-      </div>
+      </React.Fragment>
     );
   };
 
@@ -276,10 +273,20 @@ const Home = () => {
     return (
       <div className={styles.purchaseArrowSection}>
         <div className={styles.purchaseLeftArrowMobileIcon}>
-          <img src={leftarrowlogo} alt="" className={styles.imageWidth} />
+          <img
+            onClick={() => handleLeftClick()}
+            src={leftarrowlogo}
+            alt=""
+            className={styles.imageWidth}
+          />
         </div>
         <div className={styles.purchaseRightArrowMobileIcon}>
-          <img src={rightarrowlogo} alt="" className={styles.imageWidth} />
+          <img
+            onClick={() => handleRightClick()}
+            src={rightarrowlogo}
+            alt=""
+            className={styles.imageWidth}
+          />
         </div>
       </div>
     );
@@ -498,6 +505,7 @@ const Home = () => {
 
   return (
     <div>
+      <NavBar />
       {homebannerSection()}
       {homeReturnSection()}
       {homeSocialSection()}
