@@ -1,0 +1,397 @@
+/* aboutBanner Section Start */
+
+.aboutBannerContainer {
+  background-color: var(--darkgreen);
+  /* height: calc(100vh - 100px); */
+}
+
+.aboutBannerInsideContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 100px;
+  max-width: 1366px;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.aboutBannerInfoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.aboutBannerMainHeading {
+  font-family: 'Regular', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  color: var(--white);
+}
+
+.aboutBannerSubDescOne,
+.aboutBannerSubDescTwo {
+  max-width: 798px;
+  width: 100%;
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--whitetransparent72);
+  margin: auto;
+}
+
+.aboutBannerButtonsBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+  justify-content: center;
+}
+
+.appStoreImgBlock,
+.playStoreImgBlock {
+  background-color: var(--white);
+  padding: 12px 34px;
+  box-shadow: 1px 8px 24px var(--lightgrey8);
+  border-radius: 8px;
+}
+.imageWidth {
+  width: 100%;
+  height: 100%;
+}
+
+/* about Banner Section End */
+
+/* about Subscription Plan Section Start */
+
+.subscriptionPlanContainer {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 100px 80px;
+}
+
+.subscriptionPlanTitleInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 122px;
+  /* align-items: center; */
+}
+
+.subscriptionMainHeading {
+  max-width: 491px;
+  width: 100%;
+  font-family: 'Regular', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  color: var(--aubergine);
+}
+
+.subscriptionSubDesc {
+  max-width: 593px;
+  width: 100%;
+  font-family: 'Regular', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--lightgrey72);
+}
+
+.subscriptionPlanDetails {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.subscriptionPlanLeftBlock,
+.subscriptionPlanRightBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.starPlansHeading,
+.premiumPlansHeading {
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.subscriptionPlanRightBlockDetails {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px;
+}
+
+.starPlanStyles {
+  background: var(--skyblue);
+  border-radius: 8px;
+}
+
+.premiumPriceStyles {
+  color: var(--darkgreen);
+}
+
+.premiumPlanBorder {
+  border: 1px solid var(--skyblue);
+  border-radius: 8px;
+}
+
+/* about Subscription Plan Section End */
+
+/* Media Query Start */
+
+@media screen and (max-width: 1279px) {
+  .aboutBannerContainer {
+    height: auto;
+  }
+  .aboutBannerInsideContainer {
+    padding: 100px 80px;
+    gap: 64px;
+  }
+
+  .aboutBannerMainHeading {
+    font-size: 40px;
+    line-height: 52px;
+  }
+
+  .aboutBannerSubDescOne,
+  .aboutBannerSubDescTwo {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* Subscription Plan Start */
+
+  /* Subscription Plan End */
+}
+
+@media screen and (max-width: 1023px) {
+  .aboutBannerContainer {
+    height: auto;
+  }
+  .aboutBannerInsideContainer {
+    padding: 80px 60px;
+    gap: 56px;
+  }
+
+  .aboutBannerInfoBlock {
+    gap: 12px;
+  }
+
+  .aboutBannerMainHeading {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .aboutBannerSubDescOne,
+  .aboutBannerSubDescTwo {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .aboutBannerButtonsBlock {
+    gap: 24px;
+  }
+
+  /* Subscription Plan Section Start */
+  .subscriptionPlanContainer {
+    padding: 80px 60px;
+    gap: 56px;
+  }
+  .subscriptionPlanTitleInfo {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .subscriptionMainHeading {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .subscriptionSubDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .subscriptionPlanDetails {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+  .subscriptionPlanLeftBlock,
+  .subscriptionPlanRightBlock {
+    gap: 30px;
+  }
+
+  .starPlansHeading,
+  .premiumPlansHeading {
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 868px) {
+  .aboutBannerContainer {
+    height: auto;
+  }
+  .aboutBannerInsideContainer {
+    padding: 80px 32px;
+    gap: 64px;
+  }
+
+  .aboutBannerInfoBlock {
+    gap: 12px;
+  }
+
+  .aboutBannerMainHeading {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .aboutBannerSubDescOne,
+  .aboutBannerSubDescTwo {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .aboutBannerButtonsBlock {
+    gap: 24px;
+  }
+
+  /* Subscription Plan Section Start */
+  .subscriptionPlanContainer {
+    padding: 80px 32px;
+    gap: 64px;
+  }
+  .subscriptionPlanTitleInfo {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    /* margin: auto; */
+    align-items: center;
+  }
+
+  .subscriptionMainHeading {
+    font-size: 30px;
+    line-height: 40px;
+    /* margin: auto; */
+  }
+
+  .subscriptionSubDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .subscriptionPlanDetails {
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+  }
+  .subscriptionPlanLeftBlock,
+  .subscriptionPlanRightBlock {
+    width: 80%;
+    gap: 24px;
+  }
+
+  .starPlansHeading,
+  .premiumPlansHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .subscriptionPlanRightBlockDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Subscription Plan Section End */
+}
+
+@media screen and (max-width: 550px) {
+  .aboutBannerContainer {
+    height: auto;
+  }
+  .aboutBannerInsideContainer {
+    padding: 64px 24px;
+    gap: 48px;
+  }
+
+  .aboutBannerInfoBlock {
+    gap: 12px;
+  }
+
+  .aboutBannerMainHeading {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .aboutBannerSubDescOne,
+  .aboutBannerSubDescTwo {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .aboutBannerButtonsBlock {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Subscription Plan Section Start */
+  .subscriptionPlanContainer {
+    padding: 64px 24px;
+    gap: 48px;
+  }
+  .subscriptionPlanTitleInfo {
+    flex-direction: column;
+    gap: 12px;
+    text-align: start;
+  }
+
+  .subscriptionMainHeading {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .subscriptionSubDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .subscriptionPlanDetails {
+    flex-direction: column;
+    gap: 48px;
+  }
+  .subscriptionPlanLeftBlock,
+  .subscriptionPlanRightBlock {
+    width: 100%;
+    gap: 32px;
+  }
+
+  .starPlansHeading,
+  .premiumPlansHeading {
+    text-align: start;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .subscriptionPlanRightBlockDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Subscription Plan Section End */
+}
+/* Media Query End */

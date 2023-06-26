@@ -1,0 +1,18 @@
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+.inputIcon {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+.inputStyles {
+  width: 100%;
+}
+.errorStyles {
+  color: red;
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  line-height: 30px;
+}

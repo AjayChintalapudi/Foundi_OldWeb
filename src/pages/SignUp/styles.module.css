@@ -1,0 +1,258 @@
+/* ----------------------DeskTop View Starts---------------------- */
+.signUpSection {
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+}
+.insideSignUpSection {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 122px;
+  padding: 0px 0px 80px 80px;
+}
+.signUpLeftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-top: 80px;
+  width: 100%;
+  max-width: 491px;
+}
+.signUpHeaderSection {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+.signUpLeftArrow {
+  max-width: 48px;
+  max-height: 48px;
+}
+.imageWidth {
+  width: 100%;
+  height: 100%;
+}
+.signupHeaderText {
+  color: var(--aubergine);
+  font-size: 40px;
+  line-height: 48px;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+}
+
+.signUpInputSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+.emailSection,
+.passwordSection,
+.nameSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.emailText,
+.passwordText,
+.nameText {
+  color: var(--lightgrey72);
+  font-size: 16px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+}
+.emailInputStyles,
+.fullNameInputStyles {
+  height: 56px;
+  padding: 13px 17px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  background: var(--white);
+  color: var(--grey);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  line-height: 30px;
+}
+.passwordInputStyles {
+  height: 56px;
+  padding: 13px 45px 13px 13px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  background: var(--white);
+  color: var(--grey);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  line-height: 30px;
+}
+.passwordGapSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.forgotPassWordStyles {
+  text-align: right;
+  color: var(--darkblue);
+  font-size: 16px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.buttonSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.createButtonSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  border-radius: 8px;
+  background: var(--darkgreen);
+  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow);
+}
+.googleButtonSection {
+  display: flex;
+  width: 100%;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--darkgreen);
+  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow8);
+}
+
+.createbtnStyles {
+  color: var(--white);
+}
+.googlebtnStyles {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 16px;
+  color: var(--darkgreen);
+  font-size: 18px;
+  line-height: 18px;
+  font-family: 'Medium', sans-serif;
+}
+
+.loginTextSection {
+  display: flex;
+  flex-direction: row;
+}
+.accountText {
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  line-height: 30px;
+}
+.loginText {
+  color: var(--darkgreen);
+  font-size: 18px;
+  font-family: 'Medium', sans-serif;
+  line-height: 30px;
+}
+
+.signUpRightSection {
+  width: 100%;
+  max-width: 673px;
+  max-height: 785px;
+}
+.loginBgStyles {
+  width: 100%;
+  height: 100%;
+}
+
+/* ----------------------DeskTop View Ends---------------------- */
+
+/* styles start at 1023px */
+@media screen and (max-width: 1023px) {
+}
+/* styles End at 1023px */
+
+/* styles start at 867px */
+
+@media screen and (max-width: 867px) {
+  .insideSignUpSection {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 60px;
+    padding: 0px;
+    align-items: center;
+  }
+  .signUpLeftSection {
+    gap: 60px;
+    padding: 0px 24px 60px;
+  }
+  .googlebtnStyles {
+    line-height: 14px;
+  }
+  .signUpRightSection {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+/* styles End at 867px */
+
+/* styles End at 428px */
+
+@media screen and (max-width: 428px) {
+  .insideSignUpSection {
+    gap: 48px;
+    padding: 0px;
+  }
+  .signUpLeftSection {
+    gap: 64px;
+    padding: 0px 24px 48px;
+    width: 100%;
+    max-width: 366px;
+  }
+  .signUpLeftArrow {
+    max-width: 32px;
+    max-height: 32px;
+  }
+  .signupHeaderText {
+    font-size: 28px;
+    line-height: 28px;
+  }
+  .emailInputStyles,
+  .fullNameInputStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .passwordInputStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .buttonSection {
+    gap: 16px;
+  }
+  .createbtnStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .googlebtnStyles {
+    font-size: 16px;
+    line-height: 14px;
+  }
+  .loginTextSection {
+    display: flex;
+    flex-direction: row;
+  }
+  .accountText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .loginText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* styles End at 428px */

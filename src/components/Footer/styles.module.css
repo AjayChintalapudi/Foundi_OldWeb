@@ -1,0 +1,259 @@
+.footerMainContainer {
+  background-color: var(--aubergine);
+}
+.footerInsideContainer {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 100px 80px;
+}
+
+.footerTopSection {
+  display: flex;
+  flex-direction: row;
+  /* gap: 122px; */
+  justify-content: space-between;
+}
+
+.footerTopSectionLeftBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.footerMainHeading {
+  max-width: 460px;
+  width: 100%;
+  font-family: 'Semi-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 51px;
+  color: var(--white);
+}
+
+.footerSubDesc {
+  max-width: 491px;
+  width: 100%;
+  font-family: 'Medium', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--whitetransparent72);
+}
+
+.footerInputContainer {
+  position: relative;
+}
+.footerInputStyles {
+  width: 593px;
+  max-width: 100%;
+  height: 72px;
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  padding: 0px 146px 0px 24px;
+  background-color: var(--white);
+  border: 2px solid var(--white);
+  border-radius: 8px;
+}
+
+.footerButtonContainer {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+.footerBtnStyles,
+.footerBtnIconStyles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 124px;
+  height: 56px;
+  max-width: 100%;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  background-color: var(--lightorange);
+  border: 2px solid var(--lightorange);
+  box-shadow: var(--lightgrey8);
+  border-radius: 8px;
+  color: var(--aubergine);
+  cursor: pointer;
+}
+.footerBtnIconStyles {
+  display: none;
+}
+.footerBottomSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerBottomSectionLeftBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.socialMediaImgBlock {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.imageWidth {
+  width: 100%;
+  height: 100%;
+}
+
+.footerBottomSectionRightBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+}
+
+.rightBorderDivider {
+  border-right: 1px solid var(--whitetransparent24);
+  height: 40px;
+}
+
+.bottomBorder {
+  display: none;
+}
+
+.footerCopyRightDesc {
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--whitetransparent72);
+}
+
+@media screen and (max-width: 1279px) {
+  .footerMainHeading {
+    font-size: 38px;
+  }
+  .footerTopSection {
+    gap: 100px;
+  }
+  .footerInputStyles {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .footerContainer {
+    padding: 80px 60px;
+  }
+  .footerTopSection {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footerBottomSection {
+    justify-content: center;
+    gap: 80px;
+  }
+}
+
+@media screen and (max-width: 867px) {
+  .footerContainer {
+    padding: 60px 60px;
+  }
+  .footerTopSection {
+    gap: 60px;
+  }
+  .footerBottomSection {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .rightBorderDivider {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footerContainer {
+    gap: 48px;
+    padding: 64px 24px;
+  }
+  .footerInsideContainer {
+    padding: 64px 24px;
+    gap: 48px;
+  }
+  .footerTopSection {
+    text-align: start;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  .footerTopSectionLeftBlock {
+    gap: 12px;
+  }
+
+  .footerMainHeading {
+    font-size: 28px;
+    line-height: 36px;
+    max-width: 312px;
+  }
+  .footerSubDesc {
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 367px;
+  }
+  .footerTopSectionRightBlock {
+    width: 100%;
+  }
+  .footerInputStyles {
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+
+    padding: 0px 80px 0px 24px;
+  }
+  .footerBtnStyles {
+    display: none;
+  }
+  .footerBtnIconStyles {
+    display: block;
+    width: 56px;
+    height: 56px;
+    font-size: 25px;
+  }
+
+  .footerBottomSection {
+    gap: 32px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .footerBottomSectionRightBlock {
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    align-items: start;
+  }
+  .bottomBorder {
+    display: block;
+    border: 1px solid var(--whitetransparent24);
+    width: 100%;
+  }
+
+  .socialMediaImgBlock {
+    width: 32px;
+    height: 32px;
+  }
+
+  .footerCopyRightDesc {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
