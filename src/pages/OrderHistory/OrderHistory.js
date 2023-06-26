@@ -30,6 +30,7 @@ const OrderHistory = () => {
                     <p className={styles.orderDate}>{item.orderDate}</p>
                     <p className={styles.estimatedDelivery}>
                       {item.estimatedDelivery}
+                      &nbsp;
                       <span className={styles.estimatedDeliveryTime}>
                         {item.estimatedDeliveryTime}
                       </span>
@@ -72,7 +73,6 @@ const OrderHistory = () => {
               </div>
               <div className={styles.trackOrderBottomRightBlock}>
                 <Button
-                  // btName={orderHistoryPageStrings.trackOrderBtName}
                   btName={
                     index === 1
                       ? orderHistoryPageStrings.cancelOrderBtName
@@ -84,7 +84,6 @@ const OrderHistory = () => {
                       : styles.trackOrderBtnStyles
                   }
                 />
-                {/* <Button btName={orderHistoryPageStrings.cancelOrderBtName} /> */}
               </div>
             </div>
           );
@@ -129,6 +128,7 @@ const OrderHistory = () => {
                   <p className={styles.orderOn}>{item.orderDate}</p>
                   <p className={styles.status}>
                     {item.orderedOn}
+                    &nbsp;
                     <span className={styles.statusUpdate}>{item.status}</span>
                   </p>
                 </div>
@@ -202,6 +202,7 @@ const OrderHistory = () => {
                   <p className={styles.orderDate}>{item.orderDate}</p>
                   <p className={styles.orderedStatus}>
                     {item.orderedOnStatus}
+                    &nbsp;
                     <span className={styles.cancelled}>
                       {item.statusCancelled}
                     </span>

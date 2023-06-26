@@ -1,5 +1,10 @@
-import React from 'react';
-import { checkoutleftarrow, checkouttickmark } from 'resources/Images/Images';
+import React, { useState } from 'react';
+import {
+  checkoutcheckmark,
+  checkoutleftarrow,
+  checkouttickmark,
+  checkoutuncheckmark,
+} from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
 import styles from './styles.module.css';
 import { string } from 'yup';
@@ -13,6 +18,14 @@ import Button from 'components/Button/Button';
 
 const CheckOut = () => {
   const { checkOutPageStrings } = strings;
+
+  // Title Section
+
+  const [tab, setTab] = useState('contact');
+  const [buttonName, setButtonName] = useState(
+    checkOutPageStrings.continueBtnText
+  );
+
   const checkOutPageSection = () => {
     return (
       <div className={styles.checkoutPageContainer}>
@@ -44,14 +57,13 @@ const CheckOut = () => {
     );
   };
 
-
   const checkOutPageDetailsLeftSection = () => {
     return (
       <div className={styles.checkOutPageDetailsLeftBlock}>
         {checkOutPageLeftHeadingsSection()}
-        {checkOutPageLeftInputsSection()}
-        {/* {checkOutPageLeftAddressInputsSection()} */}
-        {/* {checkOutPageLeftPaymentInputsSection()} */}
+        {tab === 'contact' && checkOutPageLeftContactInputsSection()}
+        {tab === 'address' && checkOutPageLeftAddressInputsSection()}
+        {tab === 'payment' && checkOutPageLeftPaymentInputsSection()}
         {checkOutLeftButtonSection()}
       </div>
     );
@@ -60,24 +72,45 @@ const CheckOut = () => {
   const checkOutPageLeftHeadingsSection = () => {
     return (
       <div className={styles.checkOutPageLeftHeadingsContainer}>
-        <div  className={styles.checkOutPageLeftHeadingsBlock}>
+        <div className={styles.checkOutPageLeftHeadingsBlock}>
           {checkOutData &&
             checkOutData.map((item, index) => {
               return (
-                <p key={index}  className={styles.checkoutHeading}>
-                  {item.checkoutHeading}
-                </p>
+                <div className={styles.headingCheckBlock} key={index}>
+                  <div className={styles.checkOutCheckMarkImgBlock}>
+                    {tab === item.value ? (
+                      <img
+                        src={checkoutcheckmark}
+                        alt="checkmark"
+                        className={styles.imageWidth}
+                      />
+                    ) : (
+                      <img
+                        src={checkoutuncheckmark}
+                        alt="checkmark"
+                        className={styles.imageWidth}
+                      />
+                    )}
+                  </div>
+                  <p
+                    className={`${styles.checkoutHeading} ${
+                      tab === item.value ? styles.selectedHeading : ''
+                    }`}
+                    onClick={() => setTab(item.value)}
+                  >
+                    {item.checkoutHeading}
+                  </p>
+                </div>
               );
             })}
         </div>
-        <div className={styles.borderBottom}></div>
       </div>
     );
   };
 
-    // Contact Section Start
+  // Contact Section Start
 
-  const checkOutPageLeftInputsSection = () => {
+  const checkOutPageLeftContactInputsSection = () => {
     return (
       <div className={styles.checkOutPageLeftInputsBlock}>
         <p className={styles.contactTitle}>
@@ -286,6 +319,8 @@ const CheckOut = () => {
 
   // Payment Section End
 
+  // Order Summary Section Start
+
   const checkOutPageDetailsRightSection = () => {
     return (
       <div className={styles.checkOutPageDetailsRightBlock}>
@@ -374,6 +409,8 @@ const CheckOut = () => {
       </div>
     );
   };
+
+  // Order Summary Section End
 
   return (
     <div className={styles.checkOutPageMainContainer}>

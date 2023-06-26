@@ -1,3 +1,7 @@
+// Modal Component Images
+
+export { default as modalcloseiconimg } from 'assets/Images/closeiconmodal.svg';
+
 // Events Banner Images
 
 export { default as bannerimg } from 'assets/Images/bannerimg.svg';
@@ -32,6 +36,8 @@ export { default as prodoctreviewrightarrow } from 'assets/Images/productreviewr
 export { default as checkoutleftarrow } from 'assets/Images/checkoutleftarrowimg.svg';
 export { default as checkouttickmark } from 'assets/Images/checkouttickmark.svg';
 export { default as orderedproductimg } from 'assets/Images/orderedproductimg.svg';
+export { default as checkoutcheckmark } from 'assets/Images/checkoucheckmark.svg';
+export { default as checkoutuncheckmark } from 'assets/Images/checkoutuncheckmark.svg';
 
 // Sustainability Page Images
 

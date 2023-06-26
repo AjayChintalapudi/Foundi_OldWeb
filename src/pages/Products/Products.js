@@ -12,7 +12,7 @@ import ProductsCard from 'components/Cards/ProductsCard/ProductsCard';
 import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { productPageStrings } = strings;
 
   const productsBannerSection = () => {
@@ -104,7 +104,7 @@ const Products = () => {
     return (
       <div
         className={styles.productsDetails}
-        onClick={() => navigate('/productreview')}
+        // onClick={() => navigate('/productreview')}
       >
         {productsData &&
           productsData.map((item, index) => {

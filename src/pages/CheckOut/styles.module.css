@@ -36,8 +36,9 @@
 }
 
 .checkOutPageDetailsBlock {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  /* flex-direction: row; */
+  grid-template-columns: 50% 40%;
   gap: 122px;
 }
 
@@ -58,6 +59,8 @@
   display: flex;
   flex-direction: row;
   gap: 64px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--lightgrey24);
 }
 
 .checkoutHeading {
@@ -66,6 +69,22 @@
   font-family: 'Medium', sans-serif;
   font-weight: 500;
   line-height: 30px;
+  padding-bottom: 16px;
+}
+
+.headingCheckBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.checkOutCheckMarkImgBlock {
+  width: 24px;
+  height: 24px;
+}
+
+.selectedHeading {
+  border-bottom: 4px solid var(--darkgreen);
 }
 
 .borderBottom {
@@ -414,6 +433,7 @@
   .monthContainer,
   .dateContainer {
     gap: 8px;
+    width: 100%;
   }
 
   .checkOutPageLeftInputsBlock {
@@ -435,6 +455,30 @@
   .date {
     font-size: 14px;
     line-height: 24px;
+  }
+  .firstNameinputStyles,
+  .lastNameinputStyles,
+  .emailInputStyles,
+  .cityNameinputStyles,
+  .zipCodeinputStyles,
+  .doorNoInputStyles,
+  .stateAndCityInputStyles,
+  .cardHolderInputStyles,
+  .cardInputStyles,
+  .monthInputStyles,
+  .dateNameinputStyles {
+    width: 100%;
+  }
+
+  .emailInputStyles,
+  .doorNoInputStyles,
+  .stateAndCityInputStyles,
+  .cardHolderInputStyles,
+  .cardInputStyles {
+    width: 100%;
+  }
+  .phoneNumberTexts {
+    width: 100%;
   }
 
   .orderSummaryHeading {
@@ -467,10 +511,10 @@
     gap: 24px;
   }
 
-  /* .disCountInputStyles,
+  .disCountInputStyles,
   .applyBtnStyles {
     width: 100%;
-  } */
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -491,6 +535,7 @@
   }
 
   .checkOutPageDetailsBlock {
+    display: flex;
     flex-direction: column-reverse;
     gap: 56px;
   }
@@ -689,6 +734,7 @@
   }
 
   .checkOutPageDetailsBlock {
+    display: flex;
     flex-direction: column-reverse;
     gap: 48px;
   }
@@ -886,6 +932,7 @@
   }
 
   .checkOutPageDetailsBlock {
+    display: flex;
     flex-direction: column-reverse;
     gap: 96px;
   }

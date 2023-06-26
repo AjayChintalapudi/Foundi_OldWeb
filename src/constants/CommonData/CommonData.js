@@ -194,12 +194,15 @@ const productReviewData = [
 const checkOutData = [
   {
     checkoutHeading: checkOutPageStrings.contactHeading,
+    value: 'contact',
   },
   {
     checkoutHeading: checkOutPageStrings.addressHeading,
+    value: 'address',
   },
   {
     checkoutHeading: checkOutPageStrings.paymentHeading,
+    value: 'payment',
   },
 ];
 
