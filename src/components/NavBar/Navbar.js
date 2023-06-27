@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './styles.module.css';
 import {
   cartImg,
   crossIcon,
   hamburgerlogo,
   navbarlogo,
+  userprofileimg,
+  userprofileuparrow,
 } from 'resources/Images/Images';
 
 import { strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { UserDataContext } from 'providers/UserDataProvider';
+import PopUp from 'components/PopUp/PopUp';
+import { userProfileData } from 'constants/CommonData/CommonData';
 const NavBar = () => {
-  const navigate=useNavigate()
+  const { userData, handleLogout } = useContext(UserDataContext);
+
+  const navigate = useNavigate();
+
   const [popOver, setPopOver] = useState(false);
-const {navbar}=strings
+  const { navbar } = strings;
   const leftSection = () => {
     return (
       <div onClick={() => navigate('/')} className={styles.leftSection}>
@@ -26,6 +34,33 @@ const {navbar}=strings
   };
 
   const rightSection = () => {
+    const authToken = localStorage.getItem('auth');
+    const popoverContent = (
+      <div className={styles.userProfileSection}>
+        <p></p>
+        <p></p>
+        {userProfileData &&
+          userProfileData.map((item, index) => {
+            if (index === 3) {
+              handleLogout();
+              alert('user deleted');
+            }
+            return (
+              <div key={index} className={styles.userProfileFeaturesBlock}>
+                <div className={styles.userProfileImgBlock}>
+                  <img
+                    src={item.profileImg}
+                    className={styles.imageWidth}
+                    alt="userProfileFeature"
+                  />
+                </div>
+                <p className={styles.userProfileOptions}>{item.profileDesc}</p>
+              </div>
+            );
+          })}
+      </div>
+    );
+
     return (
       <div className={styles.rightSection}>
         <p onClick={() => navigate('/events')} className={styles.eventsSection}>
@@ -43,13 +78,39 @@ const {navbar}=strings
         <div className={styles.cartSection}>
           <img src={cartImg} alt="" className={styles.imageWidth} />
         </div>
-        <div className={styles.navBarButton}>
-          <Button
-            onClick={() => navigate('/login')}
-            btName={navbar.login}
-            btnStyles={styles.loginStyles}
-          />
-        </div>
+
+        {authToken ? (
+          <div className={styles.userSignup}>
+            <div className={styles.userProfileImgBlock}>
+              <img
+                src={userprofileimg}
+                alt="userprofileimg"
+                className={styles.imageWidth}
+              />
+            </div>
+
+            <div className={styles.userProfileuparrowBlock}>
+              <PopUp
+                content={popoverContent}
+                triggerElement={
+                  <img
+                    src={userprofileuparrow}
+                    alt="userprofileimg"
+                    className={styles.imageWidth}
+                  />
+                }
+              />
+            </div>
+          </div>
+        ) : (
+          <div className={styles.navBarButton}>
+            <Button
+              onClick={() => navigate('/login')}
+              btName={navbar.login}
+              btnStyles={styles.loginStyles}
+            />
+          </div>
+        )}
 
         <div className={styles.hamburgerIcon}>
           <img

@@ -15,6 +15,9 @@ import {
   subscriptioncheckimg,
   subscriptionpremiumcheckimg,
   twittericon,
+  userprofileclock,
+  userprofilemessage,
+  userprofilsignout,
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
 const {
@@ -24,7 +27,23 @@ const {
   productPageStrings,
   checkOutPageStrings,
   sustainabilityPageStrings,
+  userProfileStrings,
 } = strings;
+
+const userProfileData = [
+  {
+    profileImg: userprofilemessage,
+    profileDesc: userProfileStrings.messages,
+  },
+  {
+    profileImg: userprofileclock,
+    profileDesc: userProfileStrings.myOrders,
+  },
+  {
+    profileImg: userprofilsignout,
+    profileDesc: userProfileStrings.signOut,
+  },
+];
 
 const eventsBuissnessData = [
   {
@@ -351,6 +370,7 @@ const footerIconsData = [
 ];
 
 export {
+  userProfileData,
   footerIconsData,
   eventsBuissnessData,
   starPlanData,

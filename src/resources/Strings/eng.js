@@ -1,3 +1,9 @@
+const userProfileStrings = {
+  messages: 'Messages (2)',
+  myOrders: 'My orders',
+  signOut: 'Sign out',
+};
+
 const eventsPageStrings = {
   // BannerSection
 
@@ -473,6 +479,7 @@ const privacyPolicyStrings = {
 };
 
 export const strings = {
+  userProfileStrings,
   navbar,
   homePage,
   loginPageStrings,

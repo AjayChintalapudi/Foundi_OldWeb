@@ -71,6 +71,60 @@
   box-shadow: 1px 8px 24px var(--darkshadow);
   border-radius: 40px;
 }
+
+.userSignup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--white);
+  border: 1px solid var(--lightgrey24);
+  border-radius: 40px;
+  width: fit-content;
+  padding: 4px;
+}
+
+.userProfileImgBlock {
+  width: 40px;
+  height: 40px;
+}
+
+.userProfileuparrowBlock {
+  width: 24px;
+  height: 24px;
+}
+
+.userProfileSection {
+  width: 265px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+  padding: 24px;
+}
+
+.userProfileFeaturesBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.userProfileImgBlock {
+  width: 24px;
+  height: 24px;
+}
+
+.userProfileOptions {
+  color: var(--lightgrey72);
+  font-size: 18px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+}
+
 .loginStyles {
   cursor: pointer;
   font-family: 'Regular', sans-serif;
