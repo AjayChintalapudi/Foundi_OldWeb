@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './styles.module.css';
 import {
   cartImg,
   crossIcon,
   hamburgerlogo,
   navbarlogo,
+  userprofileimg,
+  userprofileuparrow,
 } from 'resources/Images/Images';
 
 import { strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { UserDataContext } from 'providers/UserDataProvider';
+import PopUp from 'components/PopUp/PopUp';
+import { userProfileData } from 'constants/CommonData/CommonData';
+import { Typography } from '@mui/material';
 const NavBar = () => {
-  const navigate=useNavigate()
+  const { userDetails, handleLogout } = useContext(UserDataContext);
+
+  const navigate = useNavigate();
+
   const [popOver, setPopOver] = useState(false);
-const {navbar}=strings
+  const { navbar } = strings;
   const leftSection = () => {
     return (
       <div onClick={() => navigate('/')} className={styles.leftSection}>
@@ -26,6 +35,7 @@ const {navbar}=strings
   };
 
   const rightSection = () => {
+    const authToken = localStorage.getItem('authToken');
     return (
       <div className={styles.rightSection}>
         <p onClick={() => navigate('/events')} className={styles.eventsSection}>
@@ -43,13 +53,18 @@ const {navbar}=strings
         <div className={styles.cartSection}>
           <img src={cartImg} alt="" className={styles.imageWidth} />
         </div>
-        <div className={styles.navBarButton}>
-          <Button
-            onClick={() => navigate('/login')}
-            btName={navbar.login}
-            btnStyles={styles.loginStyles}
-          />
-        </div>
+
+        {authToken ? (
+          <div>{userProfileSection()}</div>
+        ) : (
+          <div className={styles.navBarButton}>
+            <Button
+              onClick={() => navigate('/login')}
+              btName={navbar.login}
+              btnStyles={styles.loginStyles}
+            />
+          </div>
+        )}
 
         <div className={styles.hamburgerIcon}>
           <img
@@ -59,6 +74,66 @@ const {navbar}=strings
             onClick={() => setPopOver(!popOver)}
           />
         </div>
+      </div>
+    );
+  };
+
+  // userProfile Section
+
+  const userProfileSection = () => {
+    return (
+      <div className={styles.userSignup}>
+        <div className={styles.userProfileImgBlock}>
+          <img
+            src={userprofileimg}
+            alt="userprofileimg"
+            className={styles.imageWidth}
+          />
+        </div>
+
+        <div className={styles.userProfileuparrowBlock}>
+          <PopUp
+            triggerElement={
+              <img
+                src={userprofileuparrow}
+                alt="userprofileimg"
+                className={styles.imageWidth}
+              />
+            }
+            content={handlePopoverContent()}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  // PopUpContent
+  const handlePopoverContent = () => {
+    return (
+      <div className={styles.userProfileSection}>
+        {userProfileData &&
+          userProfileData.map((item, index) => {
+            if (index === 3) {
+              // handleLogout();
+              alert('user deleted');
+            }
+            return (
+              <div key={index} className={styles.userProfileFeaturesBlock}>
+                <div className={styles.userProfileImgBlock}>
+                  <img
+                    src={item.profileImg}
+                    className={styles.imageWidth}
+                    alt="userProfileFeature"
+                  />
+                </div>
+                <div>
+                  <p className={styles.userProfileOptions}>
+                    {item.profileDesc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
       </div>
     );
   };

@@ -6,7 +6,7 @@ import Products from 'pages/Products/Products';
 import Login from 'pages/Login/Login';
 import SignUp from 'pages/SignUp/SignUp';
 import ForGotPassWord from 'pages/ForGotPassWord/ForGotPassWord';
-import PrivacyPolicy from 'PrivacyPolicy/PrivacyPolicy';
+import PrivacyPolicy from 'pages/PrivacyPolicy/PrivacyPolicy';
 import CheckOut from 'pages/CheckOut/CheckOut';
 import ProductsReview from 'pages/ProductsReview/ProductsReview';
 import Sutainability from 'pages/Sustainability/Sutainability';
