@@ -21,7 +21,7 @@ import { UserDataContext } from 'providers/UserDataProvider';
 
 const SignUp = () => {
   // getting user data
-  const { handleUserData } = useContext(UserDataContext);
+  const { setUserData } = useContext(UserDataContext);
 
   //formik Validation
   const navigate = useNavigate();
@@ -37,13 +37,7 @@ const SignUp = () => {
       const signUpResponse = await signUp(signUpData);
       if ((signUpResponse.data.type = 'success')) {
         navigate('/');
-        // localStorage.setItem(
-        //   'userdata',
-        //   JSON.stringify(signUpResponse.data.user)
-        // );
-        // localStorage.setItem('auth', signUpResponse.data.accessToken);
-
-        handleUserData(signUpResponse.data);
+        setUserData(signUpResponse.data.user);
       } else {
         console.log('error in signup');
       }

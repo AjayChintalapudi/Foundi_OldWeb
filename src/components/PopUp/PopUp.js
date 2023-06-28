@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Popover, Button } from '@material-ui/core';
+import React from 'react';
+import { Button, Typography, Popover } from '@mui/material';
 
-const PopUp = ({ content, triggerElement }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
+const PopUp = ({ triggerElement, content }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -13,28 +13,33 @@ const PopUp = ({ content, triggerElement }) => {
   };
 
   const open = Boolean(anchorEl);
+  const id = open ? 'popover' : undefined;
+
+  const popoverStyle = {
+    margin: '35px',
+  };
 
   return (
-    <>
-      <div onClick={handleClick}>{triggerElement}</div>
+    <div>
+      <span onClick={handleClick}>{triggerElement}</span>
       <Popover
+        id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'right',
+          horizontal: 'left',
         }}
         transformOrigin={{
           vertical: 'top',
           horizontal: 'right',
         }}
-        getContentAnchorEl={null}
-        style={{ marginTop: '34px' }}
+        style={popoverStyle}
       >
-        {content}
+        <Typography>{content}</Typography>
       </Popover>
-    </>
+    </div>
   );
 };
 
