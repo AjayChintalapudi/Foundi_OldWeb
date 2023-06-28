@@ -2,6 +2,17 @@
 
 export { default as modalcloseiconimg } from 'assets/Images/closeiconmodal.svg';
 
+// User SignUp Images
+
+export { default as userprofileimg } from 'assets/Images/userprofileimg.svg';
+export { default as userprofileuparrow } from 'assets/Images/userprofileuparrow.svg';
+
+// User Profile Images
+
+export { default as userprofilemessage } from 'assets/Images/userprofilemessage.svg';
+export { default as userprofileclock } from 'assets/Images/userprofileclock.svg';
+export { default as userprofilsignout } from 'assets/Images/userprofilesignout.svg';
+
 // Events Banner Images
 
 export { default as bannerimg } from 'assets/Images/bannerimg.svg';
@@ -90,5 +101,5 @@ export { default as eyelogo } from 'assets/Images/eyelogo.svg';
 export { default as googleglogo } from 'assets/Images/googlesvglogo.svg';
 
 //privacy policy Images
-export { default as privacyLocklogo } from 'assets/Images/privacypolicylogo.svg';
+export { default as privacyLocklogo } from 'assets/Images/privacybglogo.svg';
 export { default as privacyMobilelogo } from 'assets/Images/privacymobilelogo.svg';

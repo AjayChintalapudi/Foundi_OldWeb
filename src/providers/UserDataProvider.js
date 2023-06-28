@@ -1,11 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react';
-
-export const UserLoginContext = createContext({
+export const UserDataContext = createContext({
   userDetails: null,
 });
 
 export const UserDataProvider = (props) => {
   const [userDetails, setUserDetails] = useState(null);
+
+  // onload the page getting userdata
 
   useEffect(() => {
     let userDetails = localStorage.getItem('user');
@@ -14,13 +15,26 @@ export const UserDataProvider = (props) => {
     }
   }, []);
 
+  //   set user details
   const setUserData = (user) => {
-    localStorage.setItem('user', JSON.stringify(user));
     setUserDetails(user);
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('authToken', user.accessToken);
   };
+
+  // log out user
+
+  const handleLogout = () => {
+    setUserData(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('authToken');
+  };
+
   return (
-    <UserLoginContext.Provider value={{ setUserData, userDetails }}>
+    <UserDataContext.Provider
+      value={{ userDetails, setUserData, handleLogout }}
+    >
       {props.children}
-    </UserLoginContext.Provider>
+    </UserDataContext.Provider>
   );
 };

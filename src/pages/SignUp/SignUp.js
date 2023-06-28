@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './styles.module.css';
 import {
   eyelogo,
@@ -16,14 +16,35 @@ import {
   PassWordValidationSchema,
 } from 'validators/Validators';
 import { useNavigate } from 'react-router-dom';
+import { signUp } from 'networking/Apis/signUp';
+import { UserDataContext } from 'providers/UserDataProvider';
 
 const SignUp = () => {
-  //formik Validation
+  // getting user data
+  const { setUserData } = useContext(UserDataContext);
 
+  //formik Validation
   const navigate = useNavigate();
 
-  const handleSignUp = (values) => {
-    console.log(values, 'signup calling');
+  const handleSignUp = async (values) => {
+    try {
+      let signUpData = {
+        full_name: values.fullName,
+        email: values.email,
+        password: values.password,
+        type: 1,
+      };
+      const signUpResponse = await signUp(signUpData);
+      if ((signUpResponse.data.type = 'success')) {
+        navigate('/');
+        setUserData(signUpResponse.data.user);
+      } else {
+        console.log('error in signup');
+      }
+      console.log('signupResponse', signUpResponse);
+    } catch {
+      console.log('signup error');
+    }
   };
 
   const formik = useFormik({
