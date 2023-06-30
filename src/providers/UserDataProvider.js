@@ -6,6 +6,13 @@ export const UserDataContext = createContext({
 export const UserDataProvider = (props) => {
   const [userDetails, setUserDetails] = useState(null);
 
+  //   set user details
+  const setUserData = (data) => {
+    console.log('signUpResponse', data);
+    setUserDetails(data.user);
+    localStorage.setItem('user', JSON.stringify(data.user));
+  };
+
   // onload the page getting userdata
 
   useEffect(() => {
@@ -15,17 +22,10 @@ export const UserDataProvider = (props) => {
     }
   }, []);
 
-  //   set user details
-  const setUserData = (user) => {
-    setUserDetails(user);
-    localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('authToken', user.accessToken);
-  };
-
   // log out user
 
   const handleLogout = () => {
-    setUserData(null);
+    setUserDetails(null);
     localStorage.removeItem('user');
     localStorage.removeItem('authToken');
   };

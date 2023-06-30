@@ -110,15 +110,22 @@ const NavBar = () => {
   // PopUpContent
   const handlePopoverContent = () => {
     return (
-      <div className={styles.userProfileSection}>
-        {userProfileData &&
-          userProfileData.map((item, index) => {
-            if (index === 3) {
-              // handleLogout();
-              alert('user deleted');
-            }
-            return (
-              <div key={index} className={styles.userProfileFeaturesBlock}>
+        <div className={styles.userProfileSection}>
+          <div className={styles.userNameAndEmail}>
+            <p className={styles.userName}>{userDetails?.full_name}</p>
+            <p className={styles.userEmail}>{userDetails?.email}</p>
+          </div>
+          {userProfileData &&
+            userProfileData.map((item, index) => (
+              <div
+                key={index}
+                className={styles.userProfileFeaturesBlock}
+                onClick={() => {
+                  if (index === 2) {
+                    handleLogout();
+                  }
+                }}
+              >
                 <div className={styles.userProfileImgBlock}>
                   <img
                     src={item.profileImg}
@@ -132,9 +139,8 @@ const NavBar = () => {
                   </p>
                 </div>
               </div>
-            );
-          })}
-      </div>
+            ))}
+        </div>
     );
   };
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import {
   eyelogo,
@@ -18,10 +18,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { signUp } from 'networking/Apis/signUp';
 import { UserDataContext } from 'providers/UserDataProvider';
+import { NetworkStatusContext } from 'providers/NetWorkProvider';
 
 const SignUp = () => {
   // getting user data
   const { setUserData } = useContext(UserDataContext);
+  const { isOnline, showMessage } = useContext(NetworkStatusContext);
+
+  const [errorMessage, setErrorMessage] = useState();
 
   //formik Validation
   const navigate = useNavigate();
@@ -35,15 +39,20 @@ const SignUp = () => {
         type: 1,
       };
       const signUpResponse = await signUp(signUpData);
-      if ((signUpResponse.data.type = 'success')) {
+      if (
+        signUpResponse.status === 200 &&
+        signUpResponse.data.type === 'success'
+      ) {
+        setUserData(signUpResponse.data);
+        localStorage.setItem('authToken', signUpResponse.data.accessToken);
         navigate('/');
-        setUserData(signUpResponse.data.user);
+        console.log('signUpResponse', signUpResponse);
       } else {
+        setErrorMessage(signUpResponse.data.message);
         console.log('error in signup');
       }
-      console.log('signupResponse', signUpResponse);
-    } catch {
-      console.log('signup error');
+    } catch (error) {
+      console.log(error.toString(), 'signup error');
     }
   };
 
@@ -137,6 +146,7 @@ const SignUp = () => {
             {signUpPageStrings.passwordStrength}
           </p>
         </div>
+        {errorMessage && <p>{errorMessage}</p>}
       </div>
     );
   };
@@ -173,6 +183,9 @@ const SignUp = () => {
 
   return (
     <div className={styles.signUpSection}>
+      {isOnline
+        ? showMessage && <p className={styles.onLine}>Your online</p>
+        : showMessage && <p className={styles.offLine}>Your offline</p>}
       <div className={styles.insideSignUpSection}>
         {signUpLeftSection()}
         {signUpRightSection()}
