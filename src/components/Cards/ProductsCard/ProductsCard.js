@@ -7,6 +7,8 @@ const ProductsCard = (props) => {
     productHeading,
     productOfferPrice,
     productOriginalPrice,
+    productCurrency,
+    productCurrencyOne,
   } = props;
   return (
     <div className={styles.productContainerCard}>
@@ -16,10 +18,19 @@ const ProductsCard = (props) => {
       <div className={styles.productDetailsBlock}>
         <p className={styles.productHeading}>{productHeading}</p>
         <div className={styles.productpricesBlock}>
-          <p className={styles.productOfferPrice}>{productOfferPrice}</p>
-          <span className={styles.productOriginalPrice}>
-            {productOriginalPrice}
-          </span>
+          <p className={styles.productCurrency}>
+            {productCurrency} &nbsp;
+            <span className={styles.productOfferPrice}>
+              {productOfferPrice}
+            </span>
+          </p>
+
+          <p className={styles.productCurrencyOne}>
+            {productCurrencyOne}
+            <span className={styles.productOriginalPrice}>
+              {productOriginalPrice}
+            </span>
+          </p>
         </div>
       </div>
     </div>

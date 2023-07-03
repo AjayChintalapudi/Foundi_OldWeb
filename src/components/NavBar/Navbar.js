@@ -15,10 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
 import { userProfileData } from 'constants/CommonData/CommonData';
-import { Typography } from '@mui/material';
 const NavBar = () => {
-  const { userDetails, handleLogout } = useContext(UserDataContext);
-
+  const { handleLogout } = useContext(UserDataContext);
+  const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
   const [popOver, setPopOver] = useState(false);
@@ -113,12 +112,16 @@ const NavBar = () => {
       <div className={styles.userProfileSection}>
         {userProfileData &&
           userProfileData.map((item, index) => {
-            if (index === 3) {
-              // handleLogout();
-              alert('user deleted');
-            }
             return (
-              <div key={index} className={styles.userProfileFeaturesBlock}>
+              <div
+                key={index}
+                className={styles.userProfileFeaturesBlock}
+                onClick={() => {
+                  if (index === 2) {
+                    handleLogout();
+                  }
+                }}
+              >
                 <div className={styles.userProfileImgBlock}>
                   <img
                     src={item.profileImg}
@@ -147,16 +150,21 @@ const NavBar = () => {
       {popOver && (
         <div className={styles.popOverSection}>
           <div className={styles.insidePopOver}>
-            <div className={styles.useProfileSection}>
-              <p className={styles.userProfileText}>{navbar.userProfile}</p>
-              <div className={styles.loginButtonSection}>
-                <Button
-                  btName={navbar.login}
-                  btnStyles={styles.popOverLoginStyles}
-                  // onClick={() => navigate('/login')}
-                />
+            {authToken ? (
+              <div>hi</div>
+            ) : (
+              <div className={styles.useProfileSection}>
+                <p className={styles.userProfileText}>{navbar.userProfile}</p>
+                <div className={styles.loginButtonSection}>
+                  <Button
+                    btName={navbar.login}
+                    btnStyles={styles.popOverLoginStyles}
+                    onClick={() => navigate('/login')}
+                  />
+                </div>
               </div>
-            </div>
+            )}
+
             <p
               onClick={() => navigate('/events')}
               className={styles.popOverBusinessText}

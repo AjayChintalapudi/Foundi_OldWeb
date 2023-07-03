@@ -37,7 +37,7 @@ const PopUp = ({ triggerElement, content }) => {
         }}
         style={popoverStyle}
       >
-        <Typography>{content}</Typography>
+        {content}
       </Popover>
     </div>
   );

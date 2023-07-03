@@ -13,7 +13,8 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { EmailValidationSchema } from 'validators/Validators';
 import { Userlogin } from 'networking/Apis/login';
-import { UserLoginContext } from 'providers/UserDataProvider';
+import { UserDataContext } from 'providers/UserDataProvider';
+import GoogleAuth from 'helpers/GoogleAuth';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,16 +22,17 @@ const Login = () => {
   const [pwvisible, setPwVisible] = useState(false);
 
   const { loginPageStrings } = strings;
-  const { setUserData } = useContext(UserLoginContext);
+  const { setUserData } = useContext(UserDataContext);
+
   //formik validation
   const handleLogin = async (values) => {
     try {
       const response = await Userlogin(values);
-      if (response.data.type === 'success') {
+      if (response.status === 200 && response.data.type === 'success') {
         localStorage.setItem('authToken', response.data.accessToken);
         setUserData(response.data.user);
-        console.log(response);
         navigate('/');
+        console.log(response);
       } else {
         setErrorMsg(response.data.message);
       }
@@ -134,12 +136,14 @@ const Login = () => {
           />
         </div>
         <div className={styles.googleButtonSection}>
-          <Button
+          {/* <Button
             btName={loginPageStrings.google}
             btnStyles={styles.googlebtnStyles}
             image={googleglogo}
             type="type"
-          />
+          /> */}
+
+          <GoogleAuth />
         </div>
       </div>
     );

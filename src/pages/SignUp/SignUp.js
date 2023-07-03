@@ -42,7 +42,7 @@ const SignUp = () => {
         console.log('error in signup');
       }
       console.log('signupResponse', signUpResponse);
-    } catch {
+    } catch (error) {
       console.log('signup error');
     }
   };
