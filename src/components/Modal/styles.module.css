@@ -11,16 +11,29 @@
 }
 
 .modalContainer {
-  width: 455px;
-  height: 484px;
+  /* width: 455px;
+  height: 484px; */
   background-color: var(--white);
   border-radius: 8px;
   background: #fff;
   box-shadow: 1px 8px 24px 0px var(--lightgrey8);
 }
 
+.modalBtnStyles {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  color: var(--white);
+}
+
+.modalWrappperStyles {
+  width: 24px;
+  height: 24px;
+}
+
 .modalContent {
-  padding: 32px;
+  padding: 24px;
 }
 
 .modalCloseImgBlock {
