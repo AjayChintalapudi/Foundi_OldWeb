@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { strings } from 'resources/Strings/eng';
 import NavBar from 'components/NavBar/Navbar';
 import Footer from 'components/Footer/Footer';
@@ -12,11 +12,73 @@ import { Rating } from 'react-simple-star-rating';
 import { HiStar } from 'react-icons/hi';
 import styles from './styles.module.css';
 import { productReviewData } from 'constants/CommonData/CommonData';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { ProductDetails } from 'networking/Apis/singleproduct';
 
 const ProductsReview = () => {
+  //mapping data
+  const scrollButtonData = [
+    {
+      scrollButton: '',
+    },
+    {
+      scrollButton: '',
+    },
+    {
+      scrollButton: '',
+    },
+    {
+      scrollButton: '',
+    },
+  ];
+
+  const imageData = [
+    {
+      image: productoneimg,
+    },
+    {
+      image: productoneimg,
+    },
+    {
+      image: productoneimg,
+    },
+    {
+      image: productoneimg,
+    },
+  ];
+
   const navigate = useNavigate();
+  const location = useLocation();
   const { productReviewPageStrings } = strings;
+  //state
+  const [productData, setProductData] = useState();
+  const [productImages, setProductImages] = useState();
+
+  //useEffect
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
+    if (location.state) {
+      productDetails(location.state);
+    }
+  }, [location.state]);
+
+  //api's
+  const productDetails = async (id) => {
+    try {
+      const response = await ProductDetails(id);
+      if (response.status === 200 && response.data.type === 'success') {
+        console.log(response, '....singleproduct');
+        setProductData(response.data.data);
+        setProductImages(response.data.data.images.additional);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const productDetailSection = () => {
     return (
       <div className={styles.productDetailsContainer}>
@@ -31,13 +93,15 @@ const ProductsReview = () => {
     return (
       <div
         className={styles.backTextBlockMobile}
-        // onClick={() => navigate('/products')}
+        onClick={() => navigate('/products')}
       >
-        <img
-          src={prodoctreviewleftarrow}
-          alt=""
-          className={styles.imageWidth}
-        />
+        <div className={styles.leftArrowStyles}>
+          <img
+            src={prodoctreviewleftarrow}
+            alt=""
+            className={styles.imageWidth}
+          />
+        </div>
         <p className={styles.backText}>{productReviewPageStrings.backText}</p>
       </div>
     );
@@ -46,18 +110,26 @@ const ProductsReview = () => {
   const productDetailLeftSection = () => {
     return (
       <div className={styles.productDetailLeftBlock}>
-        <div className={styles.productDetailLeftImgBlock}>
-          <img
-            src={productoneimg}
-            alt="productImg"
-            className={styles.productImageWidth}
-          />
-        </div>
+        {productImages &&
+          productImages.map((item, index) => {
+            if (index === 0) {
+              return (
+                <div className={styles.productsDetailsImgBlock} key={index}>
+                  <img src={item} alt="" className={styles.imageWidth} />
+                </div>
+              );
+            }
+          })}
+
         <div className={styles.scrollButtonsBlock}>
-          <span className={styles.scrollButton}></span>
-          <span className={styles.scrollButton}></span>
-          <span className={styles.scrollButton}></span>
-          <span className={styles.scrollButton}></span>
+          {productImages &&
+            productImages.map((item, index) => {
+              return (
+                <span key={index} className={styles.scrollButton}>
+                  {item.scrollButton}
+                </span>
+              );
+            })}
         </div>
       </div>
     );
@@ -85,28 +157,31 @@ const ProductsReview = () => {
     return (
       <div
         className={styles.backTextBlock}
-        // onClick={() => navigate('/products')}
+        onClick={() => navigate('/products')}
       >
-        <img
-          src={prodoctreviewleftarrow}
-          alt=""
-          className={styles.imageWidth}
-        />
+        <div className={styles.leftArrowStyles}>
+          <img
+            src={prodoctreviewleftarrow}
+            alt=""
+            className={styles.imageWidth}
+          />
+        </div>
         <p className={styles.backText}>{productReviewPageStrings.backText}</p>
       </div>
     );
   };
-
   const productDetailRightInfoSection = () => {
     return (
       <div className={styles.productDetailRightInfoBlock}>
         <div className={styles.productDetailRightInfo}>
-          <h4 className={styles.productHeading}>
-            {productReviewPageStrings.productHeading}
-          </h4>
-          <p className={styles.productSubDesc}>
-            {productReviewPageStrings.productSubDesc}
-          </p>
+          {productData?.name && (
+            <h4 className={styles.productHeading}>{productData?.name}</h4>
+          )}
+          {productData?.short_description && (
+            <p className={styles.productSubDesc}>
+              {productData?.short_description}
+            </p>
+          )}
         </div>
         <div className={styles.productDetailRightPrices}>
           <p className={styles.productOfferPrice}>

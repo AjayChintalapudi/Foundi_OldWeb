@@ -27,7 +27,6 @@ const Products = () => {
     try {
       const response = await EcomProducts();
       if (response.status === 200 && response.data.type === 'success') {
-        console.log('....products', response);
         setProductDetails(response.data.data);
       }
     } catch (error) {}
@@ -120,10 +119,7 @@ const Products = () => {
 
   const productsDetailsSection = () => {
     return (
-      <div
-        className={styles.productsDetails}
-        onClick={() => navigate('/productreview')}
-      >
+      <div className={styles.productsDetails}>
         {productDetails &&
           productDetails.map((item, index) => {
             return (
@@ -135,6 +131,7 @@ const Products = () => {
                 productOfferPrice={item.price.selling_price}
                 productCurrencyOne={item.price.currency}
                 productOriginalPrice={item.price.original_price}
+                onClick={() => navigate('/productreview', { state: item._id })}
               />
             );
           })}

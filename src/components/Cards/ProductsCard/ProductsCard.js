@@ -9,9 +9,10 @@ const ProductsCard = (props) => {
     productOriginalPrice,
     productCurrency,
     productCurrencyOne,
+    onClick,
   } = props;
   return (
-    <div className={styles.productContainerCard}>
+    <div className={styles.productContainerCard} onClick={onClick}>
       <div className={styles.productImgBlock}>
         <img src={productImg} alt="products" className={styles.imageWidth} />
       </div>
