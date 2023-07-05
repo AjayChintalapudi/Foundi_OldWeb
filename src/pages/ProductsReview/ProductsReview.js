@@ -6,7 +6,6 @@ import Button from 'components/Button/Button';
 import {
   prodoctreviewleftarrow,
   prodoctreviewrightarrow,
-  productoneimg,
 } from 'resources/Images/Images';
 import { Rating } from 'react-simple-star-rating';
 import { HiStar } from 'react-icons/hi';
@@ -17,37 +16,6 @@ import { useEffect } from 'react';
 import { ProductDetails } from 'networking/Apis/singleproduct';
 
 const ProductsReview = () => {
-  //mapping data
-  const scrollButtonData = [
-    {
-      scrollButton: '',
-    },
-    {
-      scrollButton: '',
-    },
-    {
-      scrollButton: '',
-    },
-    {
-      scrollButton: '',
-    },
-  ];
-
-  const imageData = [
-    {
-      image: productoneimg,
-    },
-    {
-      image: productoneimg,
-    },
-    {
-      image: productoneimg,
-    },
-    {
-      image: productoneimg,
-    },
-  ];
-
   const navigate = useNavigate();
   const location = useLocation();
   const { productReviewPageStrings } = strings;
@@ -184,9 +152,11 @@ const ProductsReview = () => {
           )}
         </div>
         <div className={styles.productDetailRightPrices}>
-          <p className={styles.productOfferPrice}>
-            {productReviewPageStrings.productOfferPriceReview}
-          </p>
+          {productData?.price && (
+            <p className={styles.productOfferPrice}>
+              <span className={styles.productOfferPrice}>{}</span>
+            </p>
+          )}
           <p className={styles.productOriginalPrice}>
             {productReviewPageStrings.productOriginalPrice}
           </p>

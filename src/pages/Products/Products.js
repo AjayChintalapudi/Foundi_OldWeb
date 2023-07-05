@@ -4,10 +4,7 @@ import Footer from 'components/Footer/Footer';
 import Button from 'components/Button/Button';
 import { strings } from 'resources/Strings/eng';
 import styles from './styles.module.css';
-import {
-  productCategoriesHeadingData,
-  productsData,
-} from 'constants/CommonData/CommonData';
+import { productCategoriesHeadingData } from 'constants/CommonData/CommonData';
 import ProductsCard from 'components/Cards/ProductsCard/ProductsCard';
 import { useNavigate } from 'react-router-dom';
 import { EcomProducts } from 'networking/Apis/ecomproducts';
