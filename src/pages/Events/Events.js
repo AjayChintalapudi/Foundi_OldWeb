@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './styles.module.css';
 import { strings } from 'resources/Strings/eng';
 import { bannerleftarrow, eventsbottomleftimg } from 'resources/Images/Images';
@@ -8,6 +8,10 @@ import { eventsBuissnessData } from 'constants/CommonData/CommonData';
 
 const Events = () => {
   const { eventsPageStrings } = strings;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const eventsBannerSection = () => {
     return (

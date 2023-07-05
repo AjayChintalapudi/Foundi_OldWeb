@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
-export const UserDataContext = createContext({
-  userDetails: null,
-});
+
+export const UserDataContext = createContext();
 
 export const UserDataProvider = (props) => {
   const [userDetails, setUserDetails] = useState(null);
@@ -23,7 +22,6 @@ export const UserDataProvider = (props) => {
   }, []);
 
   // log out user
-
   const handleLogout = () => {
     setUserDetails(null);
     localStorage.removeItem('user');

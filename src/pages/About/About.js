@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { strings } from 'resources/Strings/eng';
 import Footer from 'components/Footer/Footer';
 import NavBar from 'components/NavBar/Navbar';
@@ -11,6 +11,10 @@ import {
 import styles from './styles.module.css';
 const About = () => {
   const { aboutPageStrings } = strings;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const aboutBannerSection = () => {
     return (

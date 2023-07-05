@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './styles.module.css';
 import {
   eyelogo,
@@ -11,17 +11,34 @@ import Button from 'components/Button/Button';
 import { strings } from 'resources/Strings/eng';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import {
-  EmailValidationSchema,
-  PassWordValidationSchema,
-} from 'validators/Validators';
+import { EmailValidationSchema } from 'validators/Validators';
+import { Userlogin } from 'networking/Apis/login';
+import { UserDataContext } from 'providers/UserDataProvider';
+import GoogleAuth from 'helpers/GoogleAuth';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState('');
+  const [pwvisible, setPwVisible] = useState(false);
+
+  const { loginPageStrings } = strings;
+  const { setUserData } = useContext(UserDataContext);
 
   //formik validation
-  const handleLogin = (values) => {
-    console.log(values, 'values calling');
+  const handleLogin = async (values) => {
+    try {
+      const response = await Userlogin(values);
+      if (response.status === 200 && response.data.type === 'success') {
+        localStorage.setItem('authToken', response.data.accessToken);
+        setUserData(response.data.user);
+        navigate('/');
+        console.log(response);
+      } else {
+        setErrorMsg(response.data.message);
+      }
+    } catch (error) {
+      setErrorMsg(error.message);
+    }
   };
 
   const formik = useFormik({
@@ -29,12 +46,9 @@ const Login = () => {
       email: '',
       password: '',
     },
-    validationSchema: EmailValidationSchema.concat(PassWordValidationSchema),
+    validationSchema: EmailValidationSchema,
     onSubmit: handleLogin,
   });
-
-  const { loginPageStrings } = strings;
-  const [pwvisible, setPwVisible] = useState(false);
 
   const loginLeftSection = () => {
     return (
@@ -45,6 +59,7 @@ const Login = () => {
               src={signupleftarrowlogo}
               alt=""
               className={styles.imageWidth}
+              onClick={() => navigate('/')}
             />
           </div>
           <h3 className={styles.loginHeaderText}>{loginPageStrings.login}</h3>
@@ -73,7 +88,6 @@ const Login = () => {
             type="email"
             placeholder={loginPageStrings.emailPlaceHolder}
             value={formik.values.email}
-            // onFocus={formik.handle}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             error={formik.touched.email && formik.errors.email}
@@ -90,7 +104,6 @@ const Login = () => {
               image={pwvisible ? eyelogo : eyelogo}
               onClick={() => setPwVisible(!pwvisible)}
               value={formik.values.password}
-              // onFocus={formik.handleBlur}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               error={formik.touched.password && formik.errors.password}
@@ -110,6 +123,11 @@ const Login = () => {
   const buttonSection = () => {
     return (
       <div className={styles.buttonSection}>
+        {errorMsg && (
+          <div>
+            <p className={styles.errorMsgStyles}>{errorMsg}</p>
+          </div>
+        )}
         <div className={styles.loginButtonSection}>
           <Button
             btName={loginPageStrings.login}
@@ -118,12 +136,14 @@ const Login = () => {
           />
         </div>
         <div className={styles.googleButtonSection}>
-          <Button
+          {/* <Button
             btName={loginPageStrings.google}
             btnStyles={styles.googlebtnStyles}
             image={googleglogo}
             type="type"
-          />
+          /> */}
+
+          <GoogleAuth />
         </div>
       </div>
     );

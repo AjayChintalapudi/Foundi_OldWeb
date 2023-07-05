@@ -1,5 +1,5 @@
 import * as endpoints from 'networking/EndPoints/endpoints';
 import axios from 'networking/Axios/axios';
 
-export const Userlogin = async (data) =>
-  Promise.resolve(axios.post(endpoints.logIn, data));
+export const EcomProducts = async () =>
+  Promise.resolve(axios.get(endpoints.products));
