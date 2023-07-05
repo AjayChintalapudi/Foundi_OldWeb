@@ -18,7 +18,3 @@ export const PassWordValidationSchema = Yup.object().shape({
 export const FullNameValidationSchema = Yup.object().shape({
   fullName: Yup.string().required('Full Name is required'),
 });
-
-export const SnoCodeValidationSchema = Yup.object().shape({
-  snoCode: Yup.string().required('Sno Code Required'),
-});
