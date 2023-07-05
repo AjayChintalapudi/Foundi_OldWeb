@@ -36,6 +36,8 @@ export { default as subscriptionpremiumcheckimg } from 'assets/Images/subscripti
 
 export { default as productoneimg } from 'assets/Images/productoneimg.svg';
 export { default as producttwoimg } from 'assets/Images/producttwoimg.svg';
+export { default as addlogo } from 'assets/Images/addlogo.png';
+export { default as subtractlogo } from 'assets/Images/subtractlogo.svg';
 
 // Product Review Images
 

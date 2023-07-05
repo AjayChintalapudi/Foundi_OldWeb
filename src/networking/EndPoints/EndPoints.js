@@ -8,3 +8,5 @@ export const googleSignUp = 'auth/googleSignin';
 export const products = 'ecom/products/get';
 // individual Endpoint
 export const individualProduct = 'ecom/products/get/{product_id}';
+// feedback Endpoint
+export const feedback = 'feedback/post';

@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: row;
   gap: 122px;
-  justify-content: center;
+  padding: 60px 80px;
   align-items: center;
 }
 
@@ -121,6 +121,13 @@
   line-height: 32px;
   border-bottom: 2px solid var(--lightblue);
 }
+productOfferPriceOne {
+  color: var(--lightblue);
+  font-size: 24px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 32px;
+}
 
 .productOriginalPrice {
   color: var(--lightgrey72);
@@ -136,6 +143,38 @@
   flex-direction: row;
   gap: 48px;
   align-items: center;
+}
+.cartButtonSection {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+.subtractButtonSection,
+.addButtonSection {
+  width: 56px;
+  height: 56px;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  background: #fff;
+  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+}
+.numTextSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+}
+.numText {
+  color: var(--darkgreen);
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Medium';
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
 }
 
 .productDetailRightDesc {
@@ -510,8 +549,12 @@
   .productDetailsContainer {
     display: flex;
     flex-direction: row;
-    padding: 56px 60px;
+    padding: 60px 40px;
     gap: 56px;
+  }
+  .productsDetailsImgBlock {
+    width: 400px;
+    height: 560px;
   }
 
   .productImageWidth {
@@ -566,7 +609,7 @@
   }
 
   .cartBtnStyles {
-    width: 300px;
+    width: 250px;
     font-size: 16px;
     line-height: 24px;
     cursor: pointer;
@@ -693,6 +736,10 @@
     flex-direction: column;
     padding: 32px 24px 64px 24px;
     gap: 32px;
+  }
+  .productsDetailsImgBlock {
+    width: 428px;
+    height: 428px;
   }
 
   .productImageWidth {
@@ -876,9 +923,9 @@
     gap: 32px;
   }
 
-  .productImageWidth {
-    width: 100px;
-    height: 100px;
+  .productsDetailsImgBlock {
+    width: 366px;
+    height: 366px;
   }
 
   .productDetailRightBlock {
