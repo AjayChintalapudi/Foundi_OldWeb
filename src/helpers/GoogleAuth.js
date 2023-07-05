@@ -17,7 +17,7 @@ const GoogleAuth = () => {
       if (response.status === 200 && response.data.type === 'success') {
         console.log(response, 'api response');
         localStorage.setItem('authToken', response.data.accessToken);
-        setUserData(response.data.user);
+        setUserData(response.data);
         navigate('/');
       }
     } catch (error) {}

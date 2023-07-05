@@ -16,7 +16,7 @@ import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
 import { userProfileData } from 'constants/CommonData/CommonData';
 const NavBar = () => {
-  const { handleLogout } = useContext(UserDataContext);
+  const { handleLogout, userDetails } = useContext(UserDataContext);
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
