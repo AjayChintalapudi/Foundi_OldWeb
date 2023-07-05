@@ -110,37 +110,35 @@ const NavBar = () => {
   // PopUpContent
   const handlePopoverContent = () => {
     return (
-        <div className={styles.userProfileSection}>
-          <div className={styles.userNameAndEmail}>
-            <p className={styles.userName}>{userDetails?.full_name}</p>
-            <p className={styles.userEmail}>{userDetails?.email}</p>
-          </div>
-          {userProfileData &&
-            userProfileData.map((item, index) => (
-              <div
-                key={index}
-                className={styles.userProfileFeaturesBlock}
-                onClick={() => {
-                  if (index === 2) {
-                    handleLogout();
-                  }
-                }}
-              >
-                <div className={styles.userProfileImgBlock}>
-                  <img
-                    src={item.profileImg}
-                    className={styles.imageWidth}
-                    alt="userProfileFeature"
-                  />
-                </div>
-                <div>
-                  <p className={styles.userProfileOptions}>
-                    {item.profileDesc}
-                  </p>
-                </div>
-              </div>
-            ))}
+      <div className={styles.userProfileSection}>
+        <div className={styles.userNameAndEmail}>
+          <p className={styles.userName}>{userDetails?.full_name}</p>
+          <p className={styles.userEmail}>{userDetails?.email}</p>
         </div>
+        {userProfileData &&
+          userProfileData.map((item, index) => (
+            <div
+              key={index}
+              className={styles.userProfileFeaturesBlock}
+              onClick={() => {
+                if (index === 2) {
+                  handleLogout();
+                }
+              }}
+            >
+              <div className={styles.userProfileImgBlock}>
+                <img
+                  src={item.profileImg}
+                  className={styles.imageWidth}
+                  alt="userProfileFeature"
+                />
+              </div>
+              <div>
+                <p className={styles.userProfileOptions}>{item.profileDesc}</p>
+              </div>
+            </div>
+          ))}
+      </div>
     );
   };
 

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, Typography, Popover } from '@mui/material';
+import { Button, Typography, Popover, useMediaQuery } from '@mui/material';
 
 const PopUp = ({ triggerElement, content }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const isScreenSmall = useMediaQuery('(max-width: 867px)');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,7 +25,7 @@ const PopUp = ({ triggerElement, content }) => {
       <span onClick={handleClick}>{triggerElement}</span>
       <Popover
         id={id}
-        open={open}
+        open={open && !isScreenSmall}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{

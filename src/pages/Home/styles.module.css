@@ -777,6 +777,27 @@
 
 /* -----------------------DeskTop View Ends----------------------- */
 
+@media screen and (max-width: 1279px) {
+
+  /* return section start */
+  .snoTitleBlock {
+    align-items: center;
+    margin: auto;
+  }
+
+  .snoNumberInputTextBlock {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .snoCodeBtnStyles {
+    margin: auto;
+  }
+
+  /* return section end */
+}
+
 /* styles start at 1023px */
 @media screen and (max-width: 1023px) {
   /* homebannerSection section start*/
@@ -787,6 +808,21 @@
     padding: 80px 40px;
     gap: 80px;
     align-items: center;
+  }
+
+  .snoTitleBlock {
+    align-items: center;
+    margin: auto;
+  }
+
+  .snoNumberInputTextBlock {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .snoCodeBtnStyles {
+    margin: auto;
   }
   /* homeReturnSection section end*/
 
@@ -894,6 +930,20 @@
   .returnBtnStyles {
     font-size: 16px;
     line-height: 24px;
+  }
+  .snoTitleBlock {
+    align-items: center;
+    margin: auto;
+  }
+
+  .snoNumberInputTextBlock {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .snoCodeBtnStyles {
+    margin: auto;
   }
 
   /* homeReturnSection section end*/
@@ -1054,6 +1104,10 @@
   .returnHeader {
     font-size: 28px;
     line-height: 36px;
+  }
+
+  .snoCodeBtnStyles {
+    width: 100%;
   }
 
   /* homeReturnSection section end*/

@@ -97,6 +97,13 @@ export { default as messagelogo } from 'assets/Images/messagelogo.svg';
 // return section images
 export { default as returncloseicon } from 'assets/Images/returncloseIcon.svg';
 
+// sno code images
+
+export { default as snohomeicon } from 'assets/Images/snohomeicon.svg';
+export { default as snohambergericon } from 'assets/Images/snohambergericon.svg';
+export { default as snoproduct } from 'assets/Images/snoproduct.svg';
+export { default as snonotefinder } from 'assets/Images/snonotefinder.svg';
+
 //login  & signupImages
 export { default as loginbglogo } from 'assets/Images/loginbglogo.svg';
 export { default as signupleftarrowlogo } from 'assets/Images/signupleftarrowlogo.svg';

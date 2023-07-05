@@ -150,7 +150,9 @@ const Home = () => {
         snoCodeResponse.status === 200 &&
         snoCodeResponse.data.type === 'success'
       ) {
-        navigate('/lostproduct');
+        navigate('/lostproduct', {
+          state: { snoCodeData: snoCodeResponse.data.data },
+        });
       } else {
         setErrorMessage(snoCodeResponse.data.message);
       }
@@ -249,10 +251,7 @@ const Home = () => {
             <p className={styles.snoTitle}>{homePage.snoTitle}</p>
             <p className={styles.enterSnoCode}>{homePage.enterSnoCode}</p>
           </div>
-          <div
-            className={styles.snoCloseImgBlock}
-            onClick={() => setCloseModal(false)}
-          >
+          <div className={styles.snoCloseImgBlock}>
             <img src={returncloseicon} alt="" className={styles.imageWidth} />
           </div>
         </div>

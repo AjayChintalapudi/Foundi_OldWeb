@@ -310,6 +310,15 @@ const homePage = {
   enterSnoNumber: 'Enter the SNO number',
 };
 
+const snoProductDetailsStrings = {
+  overViewHeading: 'Overview',
+  itemInfoHeading: 'Item info',
+  snoNumber: 'SNO number:',
+  itemCategory: 'Item category:',
+  noteFinderHeading: 'Note to finder',
+  contactOwnerBtnName: 'Contact item owner',
+};
+
 const loginPageStrings = {
   login: 'Log in',
   email: 'Email address',
@@ -489,6 +498,7 @@ export const strings = {
   userProfileStrings,
   navbar,
   homePage,
+  snoProductDetailsStrings,
   loginPageStrings,
   signUpPageStrings,
   forgotPwdStrings,
