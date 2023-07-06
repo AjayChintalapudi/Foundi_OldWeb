@@ -1,22 +1,25 @@
 .productContainerCard {
   width: 491px;
   max-height: 414px;
-  align-items: center;
   border-radius: 8px;
   border: 1px solid var(--lightgrey32);
 }
 
 .productImgBlock {
-  padding: 60px 168px;
-  text-align: center;
+  width: 491px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
   background-color: var(--lightgrey42);
   border-radius: 8px 8px 0px 0px;
 }
 
-/* .imageWidth {
+.imageWidth {
   width: 100%;
   height: 100%;
-} */
+  object-fit: cover;
+}
 
 .productDetailsBlock {
   display: flex;
@@ -45,7 +48,14 @@
 }
 
 .productOfferPrice {
-  font-family: 'Regular', sans-serif;
+  font-family: 'Medium', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--lightblue);
+}
+.productCurrency {
+  font-family: 'Medium', sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 30px;
@@ -53,7 +63,8 @@
   border-bottom: 1px solid var(--lightblue);
 }
 
-.productOriginalPrice {
+.productOriginalPrice,
+.productCurrencyOne {
   font-family: 'Light', sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -143,8 +154,9 @@
   }
 
   .imageWidth {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .productHeading {

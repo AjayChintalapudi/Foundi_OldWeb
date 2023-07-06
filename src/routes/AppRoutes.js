@@ -10,6 +10,7 @@ import PrivacyPolicy from 'pages/PrivacyPolicy/PrivacyPolicy';
 import CheckOut from 'pages/CheckOut/CheckOut';
 import ProductsReview from 'pages/ProductsReview/ProductsReview';
 import Sutainability from 'pages/Sustainability/Sutainability';
+import SnoProductDetails from 'pages/SnoProductDetails/SnoProductDetails';
 
 const AppRoutes = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         <Route path="/forgotpassword" element={<ForGotPassWord />}></Route>
         <Route path="/sustainability" element={<Sutainability />}></Route>
         <Route path="/privacypolicy" element={<PrivacyPolicy />}></Route>
+        <Route path="/lostproduct" element={<SnoProductDetails />}></Route>
       </Routes>
     </BrowserRouter>
   );

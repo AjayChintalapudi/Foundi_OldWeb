@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Button from 'components/Button/Button';
 import styles from './styles.module.css';
-import { modalcloseiconimg } from 'resources/Images/Images';
-const Modal = ({ children }) => {
+import { modalcloseiconimg, uprightlogo } from 'resources/Images/Images';
+import { HiLockClosed } from 'react-icons/hi';
+const Modal = ({ children, showCloseIcon }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -16,20 +17,28 @@ const Modal = ({ children }) => {
   };
 
   return (
-    <div>
-      <Button btName="openModal" onClick={openModal} />
+    <div className={styles.modalMainContainer}>
+      <Button
+        btName="Return item"
+        onClick={openModal}
+        btnStyles={styles.modalBtnStyles}
+        image={uprightlogo}
+        imageWrapperStyles={styles.modalWrappperStyles}
+      />
       {isOpen && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalContainer}>
             <div className={styles.modalContent}>
               {children}
-              <div className={styles.modalCloseImgBlock} onClick={closeModal}>
-                <img
-                  src={modalcloseiconimg}
-                  alt=""
-                  className={styles.imageWidth}
-                />
-              </div>
+              {showCloseIcon && (
+                <div className={styles.modalCloseImgBlock} onClick={closeModal}>
+                  <img
+                    src={modalcloseiconimg}
+                    alt=""
+                    className={styles.imageWidth}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

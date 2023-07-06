@@ -15,5 +15,4 @@ axiosInstance.interceptors.response.use(
       (error.response && error.response.data) || 'something went wrong'
     )
 );
-
 export default axiosInstance;

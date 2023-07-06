@@ -94,8 +94,16 @@
   height: 24px;
 }
 
+.userNameAndEmail {
+  /* padding: 32px; */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align:center;
+}
+
 .userProfileSection {
-  width: 265px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -103,6 +111,7 @@
   background: var(--white);
   box-shadow: 1px 8px 24px 0px var(--lightgrey8);
   padding: 24px;
+  cursor: pointer;
 }
 
 .userProfileFeaturesBlock {
@@ -117,14 +126,15 @@
   height: 24px;
 }
 
-.userProfileOptions {
+.userProfileOptions,
+.userName,
+.userEmail {
   color: var(--lightgrey72);
   font-size: 18px;
   font-family: 'Regular', sans-serif;
   font-weight: 500;
   line-height: 30px;
 }
-
 
 .loginStyles {
   cursor: pointer;

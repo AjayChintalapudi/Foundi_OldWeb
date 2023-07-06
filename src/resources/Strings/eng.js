@@ -301,6 +301,13 @@ const homePage = {
   placeHolderName: 'Enter your name',
   placeHolderMail: 'Enter your mail ID',
   placeHolderMessage: 'Type your message here',
+
+  // sno code strings
+
+  snoTitle: 'with SNO',
+  enterSnoCode: ' Enter SNO no. manually',
+  serialNumber: 'SNO NO.',
+  enterSnoNumber: 'Enter the SNO number',
 };
 
 const loginPageStrings = {

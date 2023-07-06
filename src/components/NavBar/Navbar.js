@@ -15,10 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
 import { userProfileData } from 'constants/CommonData/CommonData';
-import { Typography } from '@mui/material';
 const NavBar = () => {
-  const { userDetails, handleLogout } = useContext(UserDataContext);
-
+  const { handleLogout, userDetails } = useContext(UserDataContext);
+  const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
   const [popOver, setPopOver] = useState(false);
@@ -111,29 +110,33 @@ const NavBar = () => {
   const handlePopoverContent = () => {
     return (
       <div className={styles.userProfileSection}>
+        <div className={styles.userNameAndEmail}>
+          <p className={styles.userName}>{userDetails?.full_name}</p>
+          <p className={styles.userEmail}>{userDetails?.email}</p>
+        </div>
         {userProfileData &&
-          userProfileData.map((item, index) => {
-            if (index === 3) {
-              // handleLogout();
-              alert('user deleted');
-            }
-            return (
-              <div key={index} className={styles.userProfileFeaturesBlock}>
-                <div className={styles.userProfileImgBlock}>
-                  <img
-                    src={item.profileImg}
-                    className={styles.imageWidth}
-                    alt="userProfileFeature"
-                  />
-                </div>
-                <div>
-                  <p className={styles.userProfileOptions}>
-                    {item.profileDesc}
-                  </p>
-                </div>
+          userProfileData.map((item, index) => (
+            <div
+              key={index}
+              className={styles.userProfileFeaturesBlock}
+              onClick={() => {
+                if (index === 2) {
+                  handleLogout();
+                }
+              }}
+            >
+              <div className={styles.userProfileImgBlock}>
+                <img
+                  src={item.profileImg}
+                  className={styles.imageWidth}
+                  alt="userProfileFeature"
+                />
               </div>
-            );
-          })}
+              <div>
+                <p className={styles.userProfileOptions}>{item.profileDesc}</p>
+              </div>
+            </div>
+          ))}
       </div>
     );
   };
@@ -147,16 +150,21 @@ const NavBar = () => {
       {popOver && (
         <div className={styles.popOverSection}>
           <div className={styles.insidePopOver}>
-            <div className={styles.useProfileSection}>
-              <p className={styles.userProfileText}>{navbar.userProfile}</p>
-              <div className={styles.loginButtonSection}>
-                <Button
-                  btName={navbar.login}
-                  btnStyles={styles.popOverLoginStyles}
-                  // onClick={() => navigate('/login')}
-                />
+            {authToken ? (
+              <div>hi</div>
+            ) : (
+              <div className={styles.useProfileSection}>
+                <p className={styles.userProfileText}>{navbar.userProfile}</p>
+                <div className={styles.loginButtonSection}>
+                  <Button
+                    btName={navbar.login}
+                    btnStyles={styles.popOverLoginStyles}
+                    onClick={() => navigate('/login')}
+                  />
+                </div>
               </div>
-            </div>
+            )}
+
             <p
               onClick={() => navigate('/events')}
               className={styles.popOverBusinessText}

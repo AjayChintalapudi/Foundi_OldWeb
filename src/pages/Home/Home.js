@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styles from './styles.module.css';
 import { strings } from 'resources/Strings/eng';
 import {
   additionlogo,
@@ -17,6 +16,7 @@ import {
   phonelogo,
   playstorelogo,
   qrcodetaglogo,
+  returncloseicon,
   rightarrowlogo,
   samsunglogo,
   scrolldownlogo,
@@ -31,6 +31,7 @@ import Button from 'components/Button/Button';
 import Footer from 'components/Footer/Footer';
 import Input from 'components/Input/Input';
 import { useNavigate } from 'react-router-dom';
+import styles from './styles.module.css';
 
 const Home = () => {
   const { homePage } = strings;
@@ -40,8 +41,6 @@ const Home = () => {
   //state
   const [block, setBlock] = useState(0);
   const [indexNo, setIndexNo] = useState(0);
-
-  //mapping data
 
   //Purchase Data
   const purchaseData = [

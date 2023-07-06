@@ -94,6 +94,9 @@ export { default as locationlogo } from 'assets/Images/locationlogo.svg';
 export { default as phonelogo } from 'assets/Images/phonelogo.svg';
 export { default as messagelogo } from 'assets/Images/messagelogo.svg';
 
+// return section images
+export { default as returncloseicon } from 'assets/Images/returncloseIcon.svg';
+
 //login  & signupImages
 export { default as loginbglogo } from 'assets/Images/loginbglogo.svg';
 export { default as signupleftarrowlogo } from 'assets/Images/signupleftarrowlogo.svg';
