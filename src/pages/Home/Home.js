@@ -32,6 +32,10 @@ import Footer from 'components/Footer/Footer';
 import Input from 'components/Input/Input';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
+import Modal from 'components/Modal/Modal';
+import { snoCode } from 'networking/Apis/snoCode';
+import { useFormik } from 'formik';
+import { SnoCodeValidationSchema } from 'validators/Validators';
 
 const Home = () => {
   const { homePage } = strings;

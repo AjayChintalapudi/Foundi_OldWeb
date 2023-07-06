@@ -158,6 +158,111 @@
   width: 24px;
   height: 24px;
 }
+
+/* return modal styles start */
+
+.returnModalContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.snoInputButtonBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.snoTopInfoBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.snoTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.snoTitle {
+  font-family: 'Regular', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 51px;
+  color: var(--aubergine);
+  max-width: 491px;
+}
+
+.enterSnoCode {
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  max-width: 491px;
+}
+
+.snoErrorMessage {
+  font-family: 'Light', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  max-width: 491px;
+}
+
+.snoCloseImgBlock {
+  width: 24px;
+  height: 24px;
+}
+
+.snoNumberInputTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.serialNumber,
+.returnInputStyles {
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--lightgrey72);
+  max-width: 491px;
+}
+
+.returnInputStyles {
+  border-bottom: 2px solid var(--grey);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding-bottom: 12px;
+}
+
+.returnInputStyles:focus {
+  outline: none;
+}
+
+.snoCodeBtnStyles {
+  width: 390px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.snoErrorMessage {
+  font-family: 'Medium', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  max-width: 491px;
+  color: var(--red);
+}
+/* return modal styles end */
+
+/* Return modal section end */
 /* homeReturnSection section end*/
 
 /* homeSocialSection section start*/
@@ -675,7 +780,6 @@
 /* -----------------------DeskTop View Ends----------------------- */
 
 @media screen and (max-width: 1279px) {
-
   /* return section start */
   .snoTitleBlock {
     align-items: center;
