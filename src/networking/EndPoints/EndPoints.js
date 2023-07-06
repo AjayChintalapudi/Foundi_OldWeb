@@ -6,3 +6,5 @@ export const signUp = '/auth/register';
 export const googleSignUp = 'auth/googleSignin';
 // products Endpoint
 export const products = 'ecom/products/get';
+// individual Endpoint
+export const individualProduct = 'ecom/products/get/{product_id}';
