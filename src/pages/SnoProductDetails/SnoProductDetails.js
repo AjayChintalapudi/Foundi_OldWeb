@@ -23,17 +23,9 @@ const SnoProductDetails = () => {
         <h5 className={styles.itemInfoHeading}>
           {snoProductDetailsStrings.itemInfoHeading}
         </h5>
-        {/* <div className={styles.homeImgBlock}>
-            <img src={snohomeicon} alt="" className={styles.imageWidth} />
-          </div> */}
         <div className={styles.hambergerIconBlock}>
-          <img
-            src={snohambergericon}
-            alt="snohambergericon"
-            className={styles.imageWidth}
-          />
+          <UserProfile />
         </div>
-        <UserProfile />
       </div>
     );
   };

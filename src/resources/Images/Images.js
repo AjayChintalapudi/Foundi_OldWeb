@@ -106,6 +106,7 @@ export { default as snonotefinder } from 'assets/Images/snonotefinder.svg';
 export { default as userprofileimage } from 'assets/Images/userprofileimage.svg';
 export { default as downarrowimage } from 'assets/Images/downarrowimage.svg';
 // export { default as userprofileuparrow } from 'assets/Images/userprofileuparrow.svg';
+export { default as userprofilecloseimg } from 'assets/Images/userprofilecloseimg.svg';
 
 //login  & signupImages
 export { default as loginbglogo } from 'assets/Images/loginbglogo.svg';

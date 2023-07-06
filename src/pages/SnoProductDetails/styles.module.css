@@ -34,24 +34,6 @@
   gap: 32px;
 }
 
-.homeImgBlock {
-  width: 48px;
-  height: 48px;
-  border-radius: 40px;
-  background: #194f59;
-  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow);
-  padding: 8px;
-}
-
-.hambergerIconBlock {
-  width: 48px;
-  height: 48px;
-  padding: 9px;
-  border-radius: 40px;
-  background: #fff;
-  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
-}
-
 .imageWidth {
   width: 100%;
   height: 100%;

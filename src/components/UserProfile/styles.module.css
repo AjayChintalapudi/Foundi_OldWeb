@@ -43,6 +43,28 @@
   cursor: pointer;
 }
 
+.userProfileHomeCloseImgBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.homeImgBlock,
+.closeImgBlock,
+.UserProfileHambergerIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 40px;
+  background: #194f59;
+  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow);
+  padding: 8px;
+  cursor: pointer;
+}
+.closeImgBlock,
+.UserProfileHambergerIcon {
+  background-color: var(--white);
+}
+
 .userProfileFeatures {
   display: flex;
   flex-direction: column;

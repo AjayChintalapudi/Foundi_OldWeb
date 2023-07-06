@@ -36,6 +36,7 @@ const PopUp = ({ triggerElement, content }) => {
           horizontal: 'right',
         }}
         style={popoverStyle}
+        disableRestoreFocus
       >
         {content}
       </Popover>

@@ -3,6 +3,9 @@ import PopUp from 'components/PopUp/PopUp';
 import styles from './styles.module.css';
 import {
   downarrowimage,
+  snohambergericon,
+  snohomeicon,
+  userprofilecloseimg,
   userprofileimage,
   userprofileuparrow,
 } from 'resources/Images/Images';
@@ -14,6 +17,7 @@ const UserProfile = () => {
   const { userDetails, handleLogout } = useContext(UserDataContext);
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const userProfileSection = () => {
     return (
@@ -84,26 +88,32 @@ const UserProfile = () => {
               })}
           </div>
         )}
-        <div className={styles.userProfileOptions}>
-          <p
-            className={styles.userProfileOptionsHeading}
-            onClick={() => navigate('/events')}
-          >
-            Events & business
-          </p>
-          <p
-            className={styles.userProfileOptionsHeading}
-            onClick={() => navigate('/products')}
-          >
-            Products
-          </p>
-          <p
-            className={styles.userProfileOptionsHeading}
-            onClick={() => navigate('/about')}
-          >
-            About
-          </p>
-        </div>
+        {userProfileOptions()}
+      </div>
+    );
+  };
+
+  const userProfileOptions = () => {
+    return (
+      <div className={styles.userProfileOptions}>
+        <p
+          className={styles.userProfileOptionsHeading}
+          onClick={() => navigate('/events')}
+        >
+          Events & business
+        </p>
+        <p
+          className={styles.userProfileOptionsHeading}
+          onClick={() => navigate('/products')}
+        >
+          Products
+        </p>
+        <p
+          className={styles.userProfileOptionsHeading}
+          onClick={() => navigate('/about')}
+        >
+          About
+        </p>
       </div>
     );
   };
@@ -111,8 +121,40 @@ const UserProfile = () => {
   return (
     <>
       <PopUp
-        triggerElement={<div className={styles.UserProfileContainer}>X</div>}
-        content={<>{userProfileSection()}</>}
+        triggerElement={
+          <div onClick={() => setShowMenu(!showMenu)}>
+            {showMenu ? (
+              <div className={styles.userProfileHomeCloseImgBlock}>
+                <div
+                  className={styles.homeImgBlock}
+                  onClick={() => navigate('/')}
+                >
+                  <img
+                    src={snohomeicon}
+                    alt="homeicon"
+                    className={styles.imageWidth}
+                  />
+                </div>
+                <div className={styles.closeImgBlock}>
+                  <img
+                    src={userprofilecloseimg}
+                    alt="closeicon"
+                    className={styles.imageWidth}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className={styles.UserProfileHambergerIcon}>
+                <img
+                  src={snohambergericon}
+                  alt="snoHambergerIcon"
+                  className={styles.imageWidth}
+                />
+              </div>
+            )}
+          </div>
+        }
+        content={<div>{userProfileSection()}</div>}
       />
     </>
   );
