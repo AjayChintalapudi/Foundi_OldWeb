@@ -48,8 +48,15 @@ const Home = () => {
 
   // return section close icon
 
-  const [closeModal, setCloseModal] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
   // sno error message handling
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -223,13 +230,14 @@ const Home = () => {
             <p className={styles.returnDescp}>{homePage.returnDescp}</p>
           </div>
           <div className={styles.returnRightSection}>
-            <Modal showCloseIcon={false}>
-              {/* <Button
-                btName={'Return item'}
-                btnStyles={styles.returnBtnStyles}
-                image={uprightlogo}
-                imageWrapperStyles={styles.returnWrappperStyles}
-              /> */}
+            <Button
+              btName={'Return item'}
+              btnStyles={styles.returnBtnStyles}
+              image={uprightlogo}
+              imageWrapperStyles={styles.returnWrappperStyles}
+              onClick={handleOpenModal}
+            />
+            <Modal open={modalOpen} onClose={handleCloseModal}>
               <div className={styles.returnModalContainer}>
                 {snoTitleSection()}
                 {snoInputAndButtonSection()}
@@ -251,7 +259,7 @@ const Home = () => {
             <p className={styles.snoTitle}>{homePage.snoTitle}</p>
             <p className={styles.enterSnoCode}>{homePage.enterSnoCode}</p>
           </div>
-          <div className={styles.snoCloseImgBlock}>
+          <div className={styles.snoCloseImgBlock} onClick={handleCloseModal}>
             <img src={returncloseicon} alt="" className={styles.imageWidth} />
           </div>
         </div>

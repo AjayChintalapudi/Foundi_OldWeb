@@ -1,48 +1,26 @@
-import React, { useState } from 'react';
-import Button from 'components/Button/Button';
+import React, { useEffect } from 'react';
 import styles from './styles.module.css';
-import { modalcloseiconimg, uprightlogo } from 'resources/Images/Images';
-import { HiLockClosed } from 'react-icons/hi';
-const Modal = ({ children, showCloseIcon }) => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => {
-    setIsOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
+const Modal = ({ open, onClose, children }) => {
+  // After opening the Modal Stop Scrolling of the Page
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add(styles.noscroll);
+    } else {
+      document.body.classList.remove(styles.noscroll);
+    }
+  }, [open]);
 
-  const closeModal = () => {
-    setIsOpen(false);
-    document.body.style.overflow = '';
-  };
-
+  if (!open) {
+    return null;
+  }
+  // console.log(children);
   return (
-    <div className={styles.modalMainContainer}>
-      <Button
-        btName="Return item"
-        onClick={openModal}
-        btnStyles={styles.modalBtnStyles}
-        image={uprightlogo}
-        imageWrapperStyles={styles.modalWrappperStyles}
-      />
-      {isOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContainer}>
-            <div className={styles.modalContent}>
-              {children}
-              {showCloseIcon && (
-                <div className={styles.modalCloseImgBlock} onClick={closeModal}>
-                  <img
-                    src={modalcloseiconimg}
-                    alt=""
-                    className={styles.imageWidth}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+    <div className={styles.modal}>
+      <div className={styles.modalContent}>
+        <span className={styles.closeIcon} onClick={onClose}></span>
+        {children}
+      </div>
     </div>
   );
 };
