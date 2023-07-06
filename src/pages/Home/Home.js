@@ -31,11 +31,7 @@ import Button from 'components/Button/Button';
 import Footer from 'components/Footer/Footer';
 import Input from 'components/Input/Input';
 import { useNavigate } from 'react-router-dom';
-import Modal from 'components/Modal/Modal';
 import styles from './styles.module.css';
-import { useFormik } from 'formik';
-import { SnoCodeValidationSchema } from 'validators/Validators';
-import { snoCode } from 'networking/Apis/snoCode';
 
 const Home = () => {
   const { homePage } = strings;

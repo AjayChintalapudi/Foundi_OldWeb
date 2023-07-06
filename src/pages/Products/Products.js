@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from 'components/NavBar/Navbar';
 import Footer from 'components/Footer/Footer';
 import Button from 'components/Button/Button';
@@ -10,10 +10,28 @@ import {
 } from 'constants/CommonData/CommonData';
 import ProductsCard from 'components/Cards/ProductsCard/ProductsCard';
 import { useNavigate } from 'react-router-dom';
+import { EcomProducts } from 'networking/Apis/ecomproducts';
 
 const Products = () => {
   const navigate = useNavigate();
   const { productPageStrings } = strings;
+
+  const [productDetails, setProductDetails] = useState();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    productsResponse();
+  }, []);
+
+  const productsResponse = async () => {
+    try {
+      const response = await EcomProducts();
+      if (response.status === 200 && response.data.type === 'success') {
+        console.log('....products', response);
+        setProductDetails(response.data.data);
+      }
+    } catch (error) {}
+  };
 
   const productsBannerSection = () => {
     return (
@@ -106,15 +124,17 @@ const Products = () => {
         className={styles.productsDetails}
         onClick={() => navigate('/productreview')}
       >
-        {productsData &&
-          productsData.map((item, index) => {
+        {productDetails &&
+          productDetails.map((item, index) => {
             return (
               <ProductsCard
                 key={index}
-                productImg={item.productImg}
-                productHeading={item.productHeading}
-                productOfferPrice={item.productOfferPrice}
-                productOriginalPrice={item.productOriginalPrice}
+                productImg={item.images.additional[0]}
+                productHeading={item.name}
+                productCurrency={item.price.currency}
+                productOfferPrice={item.price.selling_price}
+                productCurrencyOne={item.price.currency}
+                productOriginalPrice={item.price.original_price}
               />
             );
           })}

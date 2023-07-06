@@ -19,6 +19,7 @@ import { userProfileData } from 'constants/CommonData/CommonData';
 const NavBar = () => {
   const { userDetails, handleLogout } = useContext(UserDataContext);
   const isWideScreen = useMediaQuery('(min-width: 867px)');
+  const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
   const [popOver, setPopOver] = useState(false);
@@ -157,16 +158,21 @@ const NavBar = () => {
       {popOver && (
         <div className={styles.popOverSection}>
           <div className={styles.insidePopOver}>
-            <div className={styles.useProfileSection}>
-              <p className={styles.userProfileText}>{navbar.userProfile}</p>
-              <div className={styles.loginButtonSection}>
-                <Button
-                  btName={navbar.login}
-                  btnStyles={styles.popOverLoginStyles}
-                  // onClick={() => navigate('/login')}
-                />
+            {authToken ? (
+              <div>hi</div>
+            ) : (
+              <div className={styles.useProfileSection}>
+                <p className={styles.userProfileText}>{navbar.userProfile}</p>
+                <div className={styles.loginButtonSection}>
+                  <Button
+                    btName={navbar.login}
+                    btnStyles={styles.popOverLoginStyles}
+                    onClick={() => navigate('/login')}
+                  />
+                </div>
               </div>
-            </div>
+            )}
+
             <p
               onClick={() => navigate('/events')}
               className={styles.popOverBusinessText}

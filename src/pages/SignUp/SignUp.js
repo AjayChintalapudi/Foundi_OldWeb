@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { signUp } from 'networking/Apis/signUp';
 import { UserDataContext } from 'providers/UserDataProvider';
 import { NetworkStatusContext } from 'providers/NetWorkProvider';
+import GoogleAuth from 'helpers/GoogleAuth';
 
 const SignUp = () => {
   // getting user data
@@ -162,12 +163,13 @@ const SignUp = () => {
           />
         </div>
         <div className={styles.googleButtonSection}>
-          <Button
+          {/* <Button
             btName={signUpPageStrings.google}
             btnStyles={styles.googlebtnStyles}
             image={googleglogo}
             type="type"
-          />
+          /> */}
+          <GoogleAuth />
         </div>
       </div>
     );
