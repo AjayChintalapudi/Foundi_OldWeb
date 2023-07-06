@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Typography, Popover } from '@mui/material';
 
 const PopUp = ({ triggerElement, content }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -36,7 +36,6 @@ const PopUp = ({ triggerElement, content }) => {
           horizontal: 'right',
         }}
         style={popoverStyle}
-        disableRestoreFocus
       >
         {content}
       </Popover>

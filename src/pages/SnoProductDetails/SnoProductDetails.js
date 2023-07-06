@@ -10,6 +10,7 @@ import Button from 'components/Button/Button';
 import { strings } from 'resources/Strings/eng';
 import { useLocation } from 'react-router-dom';
 import UserProfile from 'components/UserProfile/UserProfile';
+import Popover from 'components/PopOver/PopOver';
 
 const SnoProductDetails = () => {
   const location = useLocation();

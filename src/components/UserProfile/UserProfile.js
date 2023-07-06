@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PopUp from 'components/PopUp/PopUp';
 import styles from './styles.module.css';
 import {
@@ -69,7 +69,7 @@ const UserProfile = () => {
                     onClick={() => {
                       if (index === 2) {
                         handleLogout();
-                        alert('hello');
+                        alert('user logedout');
                       }
                     }}
                   >
@@ -80,7 +80,7 @@ const UserProfile = () => {
                         className={styles.imageWidth}
                       />
                     </div>
-                    <p className={styles.userFaetureHeading}>
+                    <p className={styles.userFeatureHeading}>
                       {item.profileDesc}
                     </p>
                   </div>
@@ -127,7 +127,9 @@ const UserProfile = () => {
               <div className={styles.userProfileHomeCloseImgBlock}>
                 <div
                   className={styles.homeImgBlock}
-                  onClick={() => navigate('/')}
+                  onClick={() => {
+                    navigate('/');
+                  }}
                 >
                   <img
                     src={snohomeicon}

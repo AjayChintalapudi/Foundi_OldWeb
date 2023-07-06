@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 48px;
   padding: 24px;
-  width: 350px;
 }
 
 .userProfileInfo {
@@ -31,7 +30,7 @@
 
 .userName,
 .userProfileOptionsHeading,
-.userFaetureHeading {
+.userFeatureHeading {
   color: var(--lightgrey72);
   font-family: 'Regular', sans-serif;
   font-size: 18px;
