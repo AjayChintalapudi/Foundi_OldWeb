@@ -11,6 +11,7 @@ import CheckOut from 'pages/CheckOut/CheckOut';
 import ProductsReview from 'pages/ProductsReview/ProductsReview';
 import Sutainability from 'pages/Sustainability/Sutainability';
 import SnoProductDetails from 'pages/SnoProductDetails/SnoProductDetails';
+import Chat from 'pages/Chat/Chat';
 
 const AppRoutes = () => {
   return (
@@ -28,6 +29,7 @@ const AppRoutes = () => {
         <Route path="/sustainability" element={<Sutainability />}></Route>
         <Route path="/privacypolicy" element={<PrivacyPolicy />}></Route>
         <Route path="/lostproduct" element={<SnoProductDetails />}></Route>
+        <Route path="/chat" element={<Chat />}></Route>
       </Routes>
     </BrowserRouter>
   );

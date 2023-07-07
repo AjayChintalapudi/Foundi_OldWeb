@@ -48,9 +48,9 @@
 .snoProductLeftImgBlock {
   width: 593px;
   height: 573px;
-  border: 1px solid #e6e6e7;
+  border: 1px solid var(--lightgreyishblue);
   border-radius: 8px;
-  background: #e6e6e7;
+  background: var(--lightgreyishblue);
 }
 
 .snoProductRightDetailsBlock {
@@ -135,6 +135,136 @@
   box-shadow: 1px 8px 24px 0px var(--lightgreyshadow8);
   color: var(--white);
 }
+
+/*  Guest Modal Content Start*/
+.userNotLoggedInBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.userNotLoggedInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notLoggedHeading {
+  max-width: 486px;
+  width: 100%;
+  color: var(--aubergine);
+  font-family: 'Semi-Bold', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+}
+.notLoggedDesc,
+.existingUserMessage {
+  max-width: 486px;
+  width: 100%;
+  color: var(--lightgrey72);
+  font-family: 'Regular', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+.existingUserMessage {
+  text-align: center;
+  color: var(--red);
+}
+
+.emailInputStyles {
+  width: 486px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  background: var(--white);
+  color: var(--grey);
+  font-family: 'Light', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  padding: 13px 0px 13px 16px;
+}
+.emailInputStyles:focus {
+  outline: none;
+}
+
+.continueBtnStyles {
+  width: 486px;
+  height: 56px;
+  border-radius: 8px;
+  background: var(--darkgreen);
+  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow);
+  color: var(--white);
+  font-family: 'Regular', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.inputAndButtonBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.loginAndSignUpText {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginText,
+.orText,
+.signUpText {
+  color: var(--darkgreen);
+  font-family: 'Medium', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  cursor: pointer;
+}
+.orText {
+  color: var(--grey);
+}
+
+.dividerAndDownloadBtnBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.divider {
+  border: 1px solid var(--lightgrey24);
+}
+
+.downloadAppBtnStyles {
+  width: 173px;
+  height: 48px;
+  border-radius: 40px;
+  border: 1px solid var(--aubergine);
+  background: var(--lightorange);
+  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+  margin: auto;
+  color: var(--aubergine);
+  text-align: center;
+  font-family: 'Regular', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  cursor: pointer;
+}
+/* Guest Modal Content End*/
 
 /* Media Query Start */
 
@@ -312,6 +442,17 @@
     width: 400px;
     margin: auto;
   }
+
+  /* Guest Modal Start */
+
+  .emailInputStyles {
+    width: 100%;
+  }
+
+  .continueBtnStyles {
+    width: 100%;
+  }
+  /* Guest Modal End */
 }
 
 @media screen and (max-width: 550px) {
@@ -386,5 +527,52 @@
     font-size: 16px;
     line-height: 24px;
   }
+
+  /* Guest Modal Content Start */
+  .userNotLoggedInBlock {
+    gap: 32px;
+  }
+
+  .userNotLoggedInfo {
+    gap: 8px;
+  }
+  .notLoggedHeading {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .notLoggedDesc,
+  .existingUserMessage {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .emailInputStyles {
+    width: 100%;
+  }
+
+  .continueBtnStyles {
+    width: 100%;
+  }
+
+  .inputAndButtonBlock {
+    gap: 32px;
+  }
+
+  .loginText,
+  .orText,
+  .signUpText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .dividerAndDownloadBtnBlock {
+    gap: 24px;
+  }
+
+  .downloadAppBtnStyles {
+    width: 159px;
+    height: 48px;
+  }
+  /* Guest Modal Content End */
 }
 /* Media Query End */

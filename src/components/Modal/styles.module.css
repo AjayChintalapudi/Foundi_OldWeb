@@ -15,9 +15,9 @@
 }
 
 .modalContent {
-  padding: 20px;
+  padding: 32px;
   position: relative;
-  border-radius: 20px;
+  border-radius: 8px;
   background-color: var(--white);
 }
 
@@ -28,3 +28,24 @@
   font-size: 24px;
   cursor: pointer;
 }
+
+/* Media Query Start */
+
+@media screen and (max-width: 868px) {
+  .modalContent {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .modalContent {
+    width: 366px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .modalContent {
+    width: 300px;
+  }
+}
+/* Media Query End */

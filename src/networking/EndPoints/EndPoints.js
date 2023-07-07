@@ -1,4 +1,4 @@
-//login endpoint
+//login Endpoint
 export const logIn = '/auth/login';
 // signUp  EndPoint
 export const signUp = '/auth/register';
@@ -9,3 +9,7 @@ export const products = 'ecom/products/get';
 
 // snocode EndPoint
 export const snoCode = '/products/getproductdetails';
+
+// guestLogin EndPoint
+
+export const guestLogin = '/auth/isguest';

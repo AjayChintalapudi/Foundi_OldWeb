@@ -91,3 +91,22 @@
   flex-direction: column;
   gap: 48px;
 }
+
+/* Media Query Start */
+
+@media screen and (max-width: 550px) {
+  .userName,
+  .userProfileOptionsHeading,
+  .userFeatureHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .homeImgBlock,
+  .closeImgBlock,
+  .UserProfileHambergerIcon {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* Media Query End */

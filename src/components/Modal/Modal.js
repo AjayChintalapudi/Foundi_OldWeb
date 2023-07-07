@@ -9,6 +9,9 @@ const Modal = ({ open, onClose, children }) => {
     } else {
       document.body.classList.remove(styles.noscroll);
     }
+    return () => {
+      document.body.classList.remove(styles.noscroll);
+    };
   }, [open]);
 
   if (!open) {

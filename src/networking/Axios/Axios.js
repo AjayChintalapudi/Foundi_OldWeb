@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://192.168.1.11:3001/api/v1',
+  baseURL: 'http://192.168.29.238:3001/api/v1',
 });
 
 axiosInstance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
