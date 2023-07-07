@@ -27,12 +27,12 @@
   line-height: normal;
 }
 
-.snoMenuBlock {
+/* .snoMenuBlock {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 32px;
-}
+} */
 
 .imageWidth {
   width: 100%;
@@ -135,3 +135,256 @@
   box-shadow: 1px 8px 24px 0px var(--lightgreyshadow8);
   color: var(--white);
 }
+
+/* Media Query Start */
+
+@media screen and (max-width: 1279px) {
+  .snoItemDetailsContainer {
+    padding: 42px 32px;
+    gap: 40px;
+  }
+
+  .itemInfoHeading {
+    font-size: 40px;
+  }
+
+  .overViewHeading {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .snoProductImgBlock {
+    width: 56px;
+    height: 56px;
+  }
+
+  .productName,
+  .noteFinderHeading {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .productSerialNumber,
+  .productItemCategory,
+  .noteFinderDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .snoItemDetailsContainer {
+    padding: 42px 32px;
+    gap: 30px;
+  }
+
+  .itemInfoHeading {
+    font-size: 32px;
+  }
+
+  .snoProductDetailsBlock {
+    flex-direction: row;
+    gap: 48px;
+  }
+
+  .snoProductLeftImgBlock {
+    width: 100%;
+    height: 400px;
+  }
+
+  .snoProductRightDetailsBlock {
+    gap: 48px;
+  }
+
+  .snoProductOverViewBlock {
+    gap: 32px;
+  }
+
+  .overViewHeading {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .snoProductInfoBlock {
+    gap: 32px;
+  }
+
+  .snoProductInfoSubBlock,
+  .noteFinderInfoBlock {
+    gap: 24px;
+  }
+
+  .snoProductImgBlock {
+    width: 56px;
+    height: 56px;
+  }
+
+  .snoProductInfo,
+  .noteFinder {
+    gap: 8px;
+  }
+
+  .productName,
+  .noteFinderHeading {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .productSerialNumber,
+  .productItemCategory,
+  .noteFinderDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .contactOwnerBtnStyles {
+    width: 300px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 868px) {
+  .snoItemDetailsContainer {
+    padding: 42px 32px;
+    gap: 30px;
+  }
+
+  .itemInfoHeading {
+    font-size: 32px;
+  }
+
+  .snoProductDetailsBlock {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .snoProductLeftImgBlock {
+    width: 100%;
+    height: 400px;
+  }
+
+  .snoProductRightDetailsBlock {
+    gap: 48px;
+    align-items: center;
+  }
+
+  .snoProductOverViewBlock {
+    gap: 32px;
+  }
+
+  .overViewHeading {
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .snoProductInfoBlock {
+    gap: 32px;
+  }
+
+  .snoProductInfoSubBlock,
+  .noteFinderInfoBlock {
+    gap: 24px;
+  }
+
+  .snoProductImgBlock {
+    width: 56px;
+    height: 56px;
+  }
+
+  .snoProductInfo,
+  .noteFinder {
+    gap: 8px;
+  }
+
+  .productName,
+  .noteFinderHeading {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .productSerialNumber,
+  .productItemCategory,
+  .noteFinderDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .contactOwnerBtnStyles {
+    width: 400px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .snoItemDetailsContainer {
+    padding: 42px 24px;
+    gap: 26px;
+  }
+
+  .itemInfoHeading {
+    font-size: 28px;
+  }
+
+  .snoProductDetailsBlock {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .snoProductLeftImgBlock {
+    width: 100%;
+    height: 366px;
+  }
+
+  .snoProductRightDetailsBlock {
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  .snoProductOverViewBlock {
+    gap: 32px;
+  }
+
+  .overViewHeading {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: start;
+  }
+
+  .snoProductInfoBlock {
+    gap: 32px;
+  }
+
+  .snoProductInfoSubBlock,
+  .noteFinderInfoBlock {
+    gap: 24px;
+  }
+
+  .snoProductImgBlock {
+    width: 56px;
+    height: 56px;
+  }
+
+  .snoProductInfo,
+  .noteFinder {
+    gap: 8px;
+  }
+
+  .productName,
+  .noteFinderHeading {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .productSerialNumber,
+  .productItemCategory,
+  .noteFinderDesc {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .contactOwnerBtnStyles {
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+/* Media Query End */

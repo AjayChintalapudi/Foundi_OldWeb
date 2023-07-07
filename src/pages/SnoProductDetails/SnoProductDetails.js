@@ -84,12 +84,10 @@ const SnoProductDetails = () => {
               </div>
             </div>
           </div>
-          <div className={styles.contactButtonBlock}>
-            <Button
-              btName={snoProductDetailsStrings.contactOwnerBtnName}
-              btnStyles={styles.contactOwnerBtnStyles}
-            />
-          </div>
+          <Button
+            btName={snoProductDetailsStrings.contactOwnerBtnName}
+            btnStyles={styles.contactOwnerBtnStyles}
+          />
         </div>
       </div>
     );

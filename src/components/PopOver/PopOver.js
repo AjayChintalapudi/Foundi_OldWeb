@@ -14,7 +14,7 @@ const Popover = ({ trigger, content }) => {
         {trigger}
       </div>
       {isOpen && (
-        <div className={styles.popoverContent}>
+        <div className={`${styles.popoverContent} ${styles.open}`}>
           <div className={styles.arrowUp}></div>
           {content}
         </div>

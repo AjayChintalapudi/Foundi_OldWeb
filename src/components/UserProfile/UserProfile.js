@@ -12,6 +12,7 @@ import {
 import { userProfileData } from 'constants/CommonData/CommonData';
 import { UserDataContext } from 'providers/UserDataProvider';
 import { useNavigate } from 'react-router-dom';
+import Popover from 'components/PopOver/PopOver';
 
 const UserProfile = () => {
   const { userDetails, handleLogout } = useContext(UserDataContext);
@@ -120,8 +121,8 @@ const UserProfile = () => {
 
   return (
     <>
-      <PopUp
-        triggerElement={
+      <Popover
+        trigger={
           <div onClick={() => setShowMenu(!showMenu)}>
             {showMenu ? (
               <div className={styles.userProfileHomeCloseImgBlock}>
