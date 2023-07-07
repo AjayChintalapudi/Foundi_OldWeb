@@ -59,6 +59,133 @@
   max-width: 30px;
   max-height: 30px;
 }
+.shoppingCart {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 32px;
+}
+.gapSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.shoppingTopSection {
+  display: flex;
+  flex-direction: row;
+  gap: 293px;
+}
+.shopppingHeader {
+  color: var(--aubergine);
+  font-family: 'Semi-Bold', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+}
+.shoppingCrossImg {
+  width: 32px;
+  height: 32px;
+}
+.shoppingBottomSection {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+.shoppingImgSection {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--lightgrey42);
+}
+.shoppingRightSection {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+.textSection {
+  display: flex;
+  flex-direction: column;
+}
+.productHeader {
+  color: var(--aubergine);
+  font-family: 'Semi-Bold', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px;
+}
+.priceSection {
+  color: var(--lightgrey72);
+  font-family: 'Medium', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+.removeSection {
+  display: flex;
+  flex-direction: row;
+  gap: 190px;
+}
+.addSection {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+.subtractSection,
+.addSectionOne {
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid var(--lightgrey24);
+  background: var(--white);
+  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+}
+.numSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+}
+.numSectionStyles {
+  color: var(--darkgreen);
+  font-family: 'Regular', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+.deleteSection {
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: var(--lightgreyishblue);
+}
+.checkoutBtn {
+  display: flex;
+  align-items: center;
+  max-width: 486px;
+  width: 100%;
+  height: 56px;
+  border-radius: 8px;
+  background: var(--darkgreen);
+  box-shadow: 1px 8px 24px 0px rgba(25, 79, 89, 0.08);
+}
+.checkOutStyles {
+  color: var(--white);
+  font-family: 'Regular', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+
 .navBarButton {
   cursor: pointer;
   display: flex;
@@ -66,8 +193,8 @@
   justify-content: center;
   width: 116px;
   height: 48px;
-  background: #f7b251;
-  border: 1px solid #231f20;
+  background: var(--lightorange);
+  border: 1px solid var(--aubergine);
   box-shadow: 1px 8px 24px var(--darkshadow);
   border-radius: 40px;
 }
@@ -186,6 +313,21 @@
     max-width: 24px;
     max-height: 24px;
   }
+  .shoppingCart {
+    padding: 24px;
+  }
+  .shoppingTopSection {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-between;
+  }
+  .removeSection {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-between;
+  }
   .navBarButton {
     display: none;
   }
@@ -255,6 +397,75 @@
   .popOverSection {
     width: 100%;
     height: 100%;
+  }
+
+  .shoppingCart {
+    gap: 32px;
+  }
+  .gapSection {
+    gap: 24px;
+  }
+  /* .shoppingTopSection {
+  display: flex;
+  flex-direction: row;
+  gap: 293px;
+} */
+  .shopppingHeader {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .shoppingCrossImg {
+    width: 28px;
+    height: 28px;
+  }
+  .shoppingBottomSection {
+    gap: 24px;
+  }
+  .shoppingImgSection {
+    width: 100px;
+    height: 100px;
+  }
+  .shoppingRightSection {
+    gap: 24px;
+  }
+  .productHeader {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .priceSection {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .removeSection {
+    justify-content: space-between;
+  }
+  .addSection {
+    gap: 4px;
+  }
+  .subtractSection,
+  .addSectionOne {
+    width: 28px;
+    height: 28px;
+  }
+  .numSection {
+    width: 28px;
+    height: 28px;
+  }
+  .numSectionStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .deleteSection {
+    width: 28px;
+    height: 28px;
+  }
+  .checkoutBtn {
+    max-width: 350px;
+    width: 100%;
+  }
+  .checkOutStyles {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 

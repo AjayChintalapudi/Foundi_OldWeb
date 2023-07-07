@@ -1,10 +1,14 @@
 import React, { useContext, useState } from 'react';
 import styles from './styles.module.css';
 import {
+  addImg,
   cartImg,
   crossIcon,
+  deleteIcon,
   hamburgerlogo,
+  modalcloseiconimg,
   navbarlogo,
+  subtractlogo,
   userprofileimg,
   userprofileuparrow,
 } from 'resources/Images/Images';
@@ -21,7 +25,17 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const [popOver, setPopOver] = useState(false);
+  const [productCount, setProductCount] = useState(1);
   const { navbar } = strings;
+
+  const addFunction = () => {
+    setProductCount(productCount + 1);
+  };
+  const subtractFunction = () => {
+    if (productCount > 1) {
+      setProductCount(productCount - 1);
+    }
+  };
   const leftSection = () => {
     return (
       <div onClick={() => navigate('/')} className={styles.leftSection}>
@@ -50,7 +64,83 @@ const NavBar = () => {
           {navbar.products}
         </p>
         <div className={styles.cartSection}>
-          <img src={cartImg} alt="" className={styles.imageWidth} />
+          <PopUp
+            triggerElement={
+              <img src={cartImg} alt="" className={styles.imageWidth} />
+            }
+            content={
+              <div className={styles.shoppingCart}>
+                <div className={styles.gapSection}>
+                  <div className={styles.shoppingTopSection}>
+                    <h4 className={styles.shopppingHeader}>Shopping cart</h4>
+                    <div className={styles.shoppingCrossImg}>
+                      <img
+                        src={modalcloseiconimg}
+                        alt=""
+                        className={styles.imageWidth}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.shoppingBottomSection}>
+                    <div className={styles.shoppingImgSection}>
+                      <img src="" alt="" />
+                    </div>
+                    <div className={styles.shoppingRightSection}>
+                      <div className={styles.textSection}>
+                        <h4 className={styles.productHeader}>
+                          Keychain tags - A pack of 4
+                        </h4>
+                        <p className={styles.priceSection}>Price - $100</p>
+                      </div>
+                      <div className={styles.removeSection}>
+                        <div className={styles.addSection}>
+                          <div
+                            className={styles.subtractSection}
+                            onClick={() => subtractFunction()}
+                          >
+                            <img
+                              src={subtractlogo}
+                              alt=""
+                              className={styles.imageWidth}
+                            />
+                          </div>
+                          <div className={styles.numSection}>
+                            <p className={styles.numSectionStyles}>
+                              {productCount}
+                            </p>
+                          </div>
+
+                          <div
+                            className={styles.addSectionOne}
+                            onClick={() => addFunction()}
+                          >
+                            <img
+                              src={addImg}
+                              alt=""
+                              className={styles.imageWidth}
+                            />
+                          </div>
+                        </div>
+                        <div className={styles.deleteSection}>
+                          <img
+                            src={deleteIcon}
+                            alt=""
+                            className={styles.imageWidth}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.checkoutBtn}>
+                  <Button
+                    btName={'Proceed to checkout'}
+                    btnStyles={styles.checkOutStyles}
+                  />
+                </div>
+              </div>
+            }
+          />
         </div>
 
         {authToken ? (

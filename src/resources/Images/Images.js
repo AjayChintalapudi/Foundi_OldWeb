@@ -71,6 +71,8 @@ export { default as navbarlogo } from 'assets/Images/navbarlogo.svg';
 export { default as cartImg } from 'assets/Images/cartImg.svg';
 export { default as hamburgerlogo } from 'assets/Images/hamburgerlogo.svg';
 export { default as crossIcon } from 'assets/Images/crossIogo.svg';
+export { default as deleteIcon } from 'assets/Images/deletelogo.svg';
+export { default as addImg } from 'assets/Images/addimg.svg';
 
 // home Images
 export { default as scrolldownlogo } from 'assets/Images/arrow-down.svg';

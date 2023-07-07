@@ -38,7 +38,13 @@
   background-color: var(--aubergine);
   border-radius: 50%;
 }
-
+.scrollActiveButton {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--aubergine);
+  background-color: white;
+  border-radius: 50%;
+}
 .productDetailRightBlock {
   display: flex;
   flex-direction: column;
@@ -52,6 +58,8 @@
 }
 
 .backTextBlock {
+  width: fit-content;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -566,11 +574,9 @@ productOfferPriceOne {
     gap: 24px;
   }
 
-  .backTextBlock {
-    display: none;
-  }
-
   .backTextBlockMobile {
+    cursor: pointer;
+    width: fit-content;
     display: none;
     flex-direction: row;
     gap: 16px;
@@ -756,6 +762,7 @@ productOfferPriceOne {
   }
 
   .backTextBlockMobile {
+    width: fit-content;
     display: flex;
     flex-direction: row;
     gap: 16px;
@@ -940,7 +947,7 @@ productOfferPriceOne {
     display: flex;
     flex-direction: row;
     gap: 16px;
-    width: 100%;
+    /* width: 100%; */
   }
   .productDetailRightTopSection {
     gap: 24px;

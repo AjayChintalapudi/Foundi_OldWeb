@@ -26,6 +26,11 @@ const ProductsReview = () => {
   const [productData, setProductData] = useState();
   const [productImages, setProductImages] = useState();
   const [productCount, setProductCount] = useState(0);
+  const [feedback, setFeedback] = useState({
+    rating: '',
+    feedbackDescp: '',
+  });
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const addFunction = () => {
     setProductCount(productCount + 1);
@@ -39,8 +44,6 @@ const ProductsReview = () => {
   //useEffect
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-  useEffect(() => {
     if (location.state) {
       productDetails(location.state);
     }
@@ -61,12 +64,13 @@ const ProductsReview = () => {
   };
 
   const handleFeedback = async (data) => {
-    try {
-      const response = await FeedBack(data);
-      if (response.status === 200 && response.data.type === 'success') {
-        console.log(data, 'review......');
-      }
-    } catch (error) {}
+    console.log(feedback, '....');
+    // try {
+    //   const response = await FeedBack(data);
+    //   if (response.status === 200 && response.data.type === 'success') {
+    //     console.log(data, 'review......');
+    //   }
+    // } catch (error) {}
   };
 
   const productDetailSection = () => {
@@ -104,7 +108,7 @@ const ProductsReview = () => {
           productImages.map((item, index) => {
             return (
               <React.Fragment key={index}>
-                {index === 0 && (
+                {index === currentIndex && (
                   <div className={styles.productsDetailsImgBlock}>
                     <img src={item} alt="" className={styles.imageWidth} />
                   </div>
@@ -117,7 +121,15 @@ const ProductsReview = () => {
           {productImages &&
             productImages.map((item, index) => {
               return (
-                <span key={index} className={styles.scrollButton}>
+                <span
+                  onClick={() => setCurrentIndex(index)}
+                  key={index}
+                  className={
+                    index === currentIndex
+                      ? styles.scrollActiveButton
+                      : styles.scrollButton
+                  }
+                >
                   {item.scrollButton}
                 </span>
               );
@@ -296,10 +308,10 @@ const ProductsReview = () => {
       <div className={styles.userRatingBlock}>
         <Rating
           customIcons={customIcons}
-          initialValue="3"
+          initialValue="0"
           allowFraction
-          readonly={true}
           fillColorArray={fillColor}
+          onClick={(index) => setFeedback({ ...feedback, rating: index })}
         />
       </div>
     );
@@ -315,11 +327,15 @@ const ProductsReview = () => {
           <textarea
             className={styles.userExperianceTextArea}
             placeholder={productReviewPageStrings.thoughtsPlaceHolderText}
+            onChange={(e) =>
+              setFeedback({ ...feedback, feedbackDescp: e.target.value })
+            }
           ></textarea>
         </div>
         <Button
           btName={productReviewPageStrings.thoughtsBtnName}
           btnStyles={styles.thoughtBtnStyles}
+          onClick={handleFeedback}
         />
       </div>
     );
