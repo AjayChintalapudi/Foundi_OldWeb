@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography, Popover } from '@mui/material';
+import { Popover } from '@mui/material';
 
 const PopUp = ({ triggerElement, content }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -16,7 +16,8 @@ const PopUp = ({ triggerElement, content }) => {
   const id = open ? 'popover' : undefined;
 
   const popoverStyle = {
-    margin: '35px',
+    top: '35px',
+    width: '100%',
   };
 
   return (
@@ -36,6 +37,9 @@ const PopUp = ({ triggerElement, content }) => {
           horizontal: 'right',
         }}
         style={popoverStyle}
+        // classes={{
+        //   paper: classes.popover,
+        // }}
       >
         {content}
       </Popover>

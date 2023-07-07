@@ -375,7 +375,8 @@
   cursor: pointer;
 }
 .showQuestionAnswerSection {
-  background: var(--lightgreyishblue);
+  /* background: var(--lightgreyishblue); */
+  background: none;
 }
 .questionLeftSection {
   display: flex;
@@ -1048,6 +1049,11 @@
     font-size: 28px;
     line-height: 36px;
   }
+  .showQuestionText {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
   .questionsDescp {
     max-width: 366px;
   }

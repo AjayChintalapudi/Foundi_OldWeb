@@ -354,8 +354,10 @@ const Home = () => {
               <div className={styles.questionLeftSection}>
                 <h3
                   className={
-                    block === index
-                      ? styles.questionText
+                    width > 827
+                      ? block === index
+                        ? styles.questionText
+                        : styles.showQuestionText
                       : styles.showQuestionText
                   }
                 >

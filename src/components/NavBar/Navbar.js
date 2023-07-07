@@ -19,22 +19,62 @@ import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
 import { userProfileData } from 'constants/CommonData/CommonData';
+
 const NavBar = () => {
   const { handleLogout } = useContext(UserDataContext);
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
+  //mapping data
+  const cartData = [
+    {
+      id: 1,
+      image: '',
+      heading: 'Keychain tags - A pack of 4',
+      descp: 'Price - ',
+      currency: '$',
+      quantity: 1,
+      price: '100',
+    },
+    {
+      id: 2,
+      image: '',
+      heading: 'Keychain tags - A pack of 4',
+      descp: 'Price - ',
+      currency: '$',
+      quantity: 1,
+      price: '100',
+    },
+  ];
+
+  //useState
   const [popOver, setPopOver] = useState(false);
-  const [productCount, setProductCount] = useState(1);
+
+  const [purchaseData, setPurchaseData] = useState(cartData);
+
   const { navbar } = strings;
 
-  const addFunction = () => {
-    setProductCount(productCount + 1);
+  const addFunction = (id) => {
+    const newArray = purchaseData.map((product) => {
+      if (product.id === id) {
+        return { ...product, quantity: product.quantity + 1 };
+      }
+      return product;
+    });
+    setPurchaseData(newArray);
   };
-  const subtractFunction = () => {
-    if (productCount > 1) {
-      setProductCount(productCount - 1);
-    }
+  const subtractFunction = (id) => {
+    const newArray = purchaseData.map((product) => {
+      if (product.id === id) {
+        if (product.quantity === 1) {
+          return product;
+        } else {
+          return { ...product, quantity: product.quantity - 1 };
+        }
+      }
+      return product;
+    });
+    setPurchaseData(newArray);
   };
   const leftSection = () => {
     return (
@@ -72,7 +112,9 @@ const NavBar = () => {
               <div className={styles.shoppingCart}>
                 <div className={styles.gapSection}>
                   <div className={styles.shoppingTopSection}>
-                    <h4 className={styles.shopppingHeader}>Shopping cart</h4>
+                    <h4 className={styles.shopppingHeader}>
+                      {navbar.shopping}
+                    </h4>
                     <div className={styles.shoppingCrossImg}>
                       <img
                         src={modalcloseiconimg}
@@ -81,61 +123,81 @@ const NavBar = () => {
                       />
                     </div>
                   </div>
-                  <div className={styles.shoppingBottomSection}>
-                    <div className={styles.shoppingImgSection}>
-                      <img src="" alt="" />
-                    </div>
-                    <div className={styles.shoppingRightSection}>
-                      <div className={styles.textSection}>
-                        <h4 className={styles.productHeader}>
-                          Keychain tags - A pack of 4
-                        </h4>
-                        <p className={styles.priceSection}>Price - $100</p>
-                      </div>
-                      <div className={styles.removeSection}>
-                        <div className={styles.addSection}>
-                          <div
-                            className={styles.subtractSection}
-                            onClick={() => subtractFunction()}
-                          >
-                            <img
-                              src={subtractlogo}
-                              alt=""
-                              className={styles.imageWidth}
-                            />
-                          </div>
-                          <div className={styles.numSection}>
-                            <p className={styles.numSectionStyles}>
-                              {productCount}
-                            </p>
-                          </div>
 
+                  <div className={styles.shoppingBottomSection}>
+                    {purchaseData.map((item, index) => {
+                      return (
+                        <div className={styles.cartStylesSection}>
                           <div
-                            className={styles.addSectionOne}
-                            onClick={() => addFunction()}
+                            key={index}
+                            className={styles.shoppingImgSection}
                           >
-                            <img
-                              src={addImg}
-                              alt=""
-                              className={styles.imageWidth}
-                            />
+                            <img src={item.image} alt="" />
+                          </div>
+                          <div className={styles.shoppingRightSection}>
+                            <div className={styles.textSection}>
+                              <h4 className={styles.productHeader}>
+                                {item.heading}
+                              </h4>
+                              <p className={styles.priceSection}>
+                                {item.descp} &nbsp;
+                                <span className={styles.priceSection}>
+                                  {item.currency}
+                                </span>
+                                <span className={styles.priceSection}>
+                                  {item.price}
+                                </span>
+                              </p>
+                            </div>
+                            <div className={styles.removeSection}>
+                              <div className={styles.addSection}>
+                                <div
+                                  className={styles.subtractSection}
+                                  onClick={() => subtractFunction(item.id)}
+                                >
+                                  <img
+                                    src={subtractlogo}
+                                    alt=""
+                                    className={styles.imageWidth}
+                                  />
+                                </div>
+                                <div className={styles.numSection}>
+                                  <p className={styles.numSectionStyles}>
+                                    {item.quantity}
+                                  </p>
+                                </div>
+
+                                <div
+                                  className={styles.addSectionOne}
+                                  onClick={() => addFunction(item.id)}
+                                >
+                                  <img
+                                    src={addImg}
+                                    alt=""
+                                    className={styles.imageWidth}
+                                  />
+                                </div>
+                              </div>
+                              <div className={styles.deleteSection}>
+                                <img
+                                  src={deleteIcon}
+                                  alt=""
+                                  className={styles.imageWidth}
+                                />
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <div className={styles.deleteSection}>
-                          <img
-                            src={deleteIcon}
-                            alt=""
-                            className={styles.imageWidth}
-                          />
-                        </div>
-                      </div>
-                    </div>
+                      );
+                    })}
                   </div>
                 </div>
+
                 <div className={styles.checkoutBtn}>
                   <Button
                     btName={'Proceed to checkout'}
                     btnStyles={styles.checkOutStyles}
+                    onClick={() => navigate('/checkout')}
                   />
                 </div>
               </div>

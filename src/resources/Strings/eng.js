@@ -257,6 +257,7 @@ const navbar = {
   products: 'Products',
   login: 'Login',
   userProfile: 'User profile',
+  shopping: 'Shopping cart',
 };
 
 const homePage = {

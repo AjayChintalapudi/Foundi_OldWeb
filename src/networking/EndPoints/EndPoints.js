@@ -10,3 +10,5 @@ export const products = 'ecom/products/get';
 export const individualProduct = 'ecom/products/get/{product_id}';
 // feedback Endpoint
 export const feedback = 'feedback/post';
+// cart Endpoint
+export const cart = 'cart/add';
