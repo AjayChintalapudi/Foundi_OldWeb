@@ -152,6 +152,7 @@
   font-size: 18px;
   line-height: 30px;
   color: var(--white);
+  cursor: pointer;
 }
 
 .returnWrappperStyles {
@@ -214,6 +215,7 @@
 .snoCloseImgBlock {
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 
 .snoNumberInputTextBlock {
@@ -250,6 +252,7 @@
   border-radius: 8px;
   background-color: var(--black);
   color: var(--white);
+  cursor: pointer;
 }
 
 .snoErrorMessage {

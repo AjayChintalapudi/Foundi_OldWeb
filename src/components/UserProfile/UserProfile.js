@@ -21,44 +21,63 @@ const UserProfile = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const userProfileSection = () => {
+    const authToken = localStorage.getItem('authToken');
     return (
       <div className={styles.userProfileSubContainer}>
-        <div className={styles.userProfileInfo}>
-          <div className={styles.userPorfileInfoLeftBlock}>
-            <div className={styles.userProfileImgBlock}>
-              <img
-                src={userprofileimage}
-                alt="userprofileimage"
-                className={styles.imageWidth}
-              />
-            </div>
-            <p className={styles.userName}>{userDetails?.full_name}</p>
+        {authToken ? (
+          <div className={styles.userProfileBlock}>
+            {userDetailsSection()}
+            {userProfileFeaturesSection()}
           </div>
-          {showOptions ? (
-            <div
-              className={styles.userProfileInfoRightImgBlock}
-              onClick={() => setShowOptions(!showOptions)}
-            >
-              <img
-                src={downarrowimage}
-                alt="downarrowimage"
-                className={styles.imageWidth}
-              />
-            </div>
-          ) : (
-            <div
-              className={styles.userProfileInfoRightImgBlock}
-              onClick={() => setShowOptions(!showOptions)}
-            >
-              <img
-                src={userprofileuparrow}
-                alt="downarrowimage"
-                className={styles.imageWidth}
-              />
-            </div>
-          )}
-        </div>
+        ) : null}
+        {userProfileOptions()}
+      </div>
+    );
+  };
 
+  const userDetailsSection = () => {
+    return (
+      <div className={styles.userProfileInfo}>
+        <div className={styles.userPorfileInfoLeftBlock}>
+          <div className={styles.userProfileImgBlock}>
+            <img
+              src={userprofileimage}
+              alt="userprofileimage"
+              className={styles.imageWidth}
+            />
+          </div>
+          <p className={styles.userName}>{userDetails?.full_name}</p>
+        </div>
+        {showOptions ? (
+          <div
+            className={styles.userProfileInfoRightImgBlock}
+            onClick={() => setShowOptions(!showOptions)}
+          >
+            <img
+              src={downarrowimage}
+              alt="downarrowimage"
+              className={styles.imageWidth}
+            />
+          </div>
+        ) : (
+          <div
+            className={styles.userProfileInfoRightImgBlock}
+            onClick={() => setShowOptions(!showOptions)}
+          >
+            <img
+              src={userprofileuparrow}
+              alt="downarrowimage"
+              className={styles.imageWidth}
+            />
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const userProfileFeaturesSection = () => {
+    return (
+      <>
         {showOptions && (
           <div className={styles.userProfileFeatures}>
             {userProfileData &&
@@ -89,8 +108,7 @@ const UserProfile = () => {
               })}
           </div>
         )}
-        {userProfileOptions()}
-      </div>
+      </>
     );
   };
 

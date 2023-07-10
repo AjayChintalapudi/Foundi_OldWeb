@@ -4,6 +4,11 @@
   gap: 48px;
   padding: 24px;
 }
+.userProfileBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
 .userProfileInfo {
   display: flex;
@@ -38,6 +43,9 @@
   font-weight: 500;
   line-height: 30px;
 }
+.userProfileInfoRightImgBlock {
+  cursor: pointer;
+}
 .userProfileOptionsHeading {
   cursor: pointer;
 }
@@ -63,7 +71,6 @@
 .UserProfileHambergerIcon {
   background-color: var(--white);
 }
-
 .userProfileFeatures {
   display: flex;
   flex-direction: column;
@@ -79,6 +86,7 @@
   flex-direction: row;
   gap: 16px;
   align-items: center;
+  cursor: pointer;
 }
 
 .userFeaturesImgBlock {

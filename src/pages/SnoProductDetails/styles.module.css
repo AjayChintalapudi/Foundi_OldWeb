@@ -134,6 +134,7 @@
   background: var(--darkgreen);
   box-shadow: 1px 8px 24px 0px var(--lightgreyshadow8);
   color: var(--white);
+  cursor: pointer;
 }
 
 /*  Guest Modal Content Start*/
@@ -567,9 +568,12 @@
 
   .dividerAndDownloadBtnBlock {
     gap: 24px;
+    padding-top: 24px;
   }
 
   .downloadAppBtnStyles {
+    font-size: 16px;
+    line-height: 24px;
     width: 159px;
     height: 48px;
   }

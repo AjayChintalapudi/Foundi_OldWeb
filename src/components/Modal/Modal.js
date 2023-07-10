@@ -1,8 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 
 const Modal = ({ open, onClose, children }) => {
-  // After opening the Modal Stop Scrolling of the Page
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [open, onClose]);
+
   useEffect(() => {
     if (open) {
       document.body.classList.add(styles.noscroll);
@@ -17,10 +42,10 @@ const Modal = ({ open, onClose, children }) => {
   if (!open) {
     return null;
   }
-  // console.log(children);
+
   return (
     <div className={styles.modal}>
-      <div className={styles.modalContent}>
+      <div className={styles.modalContent} ref={modalRef}>
         <span className={styles.closeIcon} onClick={onClose}></span>
         {children}
       </div>
