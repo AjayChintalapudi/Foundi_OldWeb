@@ -13,3 +13,5 @@ export const snoCode = '/products/getproductdetails';
 // guestLogin EndPoint
 
 export const guestLogin = '/auth/isguest';
+// individual Endpoint
+export const individualProduct = 'ecom/products/get/{product_id}';
