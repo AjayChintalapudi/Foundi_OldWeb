@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: row;
   gap: 122px;
-  justify-content: center;
+  padding: 60px 80px;
   align-items: center;
 }
 
@@ -19,10 +19,12 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  width: 100%;
 }
 .productsDetailsImgBlock {
-  width: 491px;
-  height: 668px;
+  max-width: 491px;
+  max-height: 668px;
+  width: 100%;
 }
 
 .scrollButtonsBlock {
@@ -38,11 +40,18 @@
   background-color: var(--aubergine);
   border-radius: 50%;
 }
-
+.scrollActiveButton {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--aubergine);
+  background-color: white;
+  border-radius: 50%;
+}
 .productDetailRightBlock {
   display: flex;
   flex-direction: column;
   gap: 64px;
+  width: 100%;
 }
 
 .productDetailRightTopSection {
@@ -52,6 +61,8 @@
 }
 
 .backTextBlock {
+  width: fit-content;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -121,6 +132,13 @@
   line-height: 32px;
   border-bottom: 2px solid var(--lightblue);
 }
+.productOfferPriceOne {
+  color: var(--lightblue);
+  font-size: 24px;
+  font-family: 'Regular', sans-serif;
+  font-weight: 500;
+  line-height: 32px;
+}
 
 .productOriginalPrice {
   color: var(--lightgrey72);
@@ -137,6 +155,38 @@
   gap: 48px;
   align-items: center;
 }
+.cartButtonSection {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+.subtractButtonSection,
+.addButtonSection {
+  width: 56px;
+  height: 56px;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  background: #fff;
+  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+}
+.numTextSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+}
+.numText {
+  color: var(--darkgreen);
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Medium';
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+}
 
 .productDetailRightDesc {
   display: flex;
@@ -148,7 +198,8 @@
 }
 
 .cartBtnStyles {
-  width: 265px;
+  width: 100%;
+  max-width: 265px;
   height: 56px;
   color: #fff;
   font-size: 18px;
@@ -510,8 +561,12 @@
   .productDetailsContainer {
     display: flex;
     flex-direction: row;
-    padding: 56px 60px;
+    padding: 60px 40px;
     gap: 56px;
+  }
+  .productsDetailsImgBlock {
+    max-width: 400px;
+    max-height: 560px;
   }
 
   .productImageWidth {
@@ -523,11 +578,9 @@
     gap: 24px;
   }
 
-  .backTextBlock {
-    display: none;
-  }
-
   .backTextBlockMobile {
+    cursor: pointer;
+    width: fit-content;
     display: none;
     flex-direction: row;
     gap: 16px;
@@ -566,7 +619,7 @@
   }
 
   .cartBtnStyles {
-    width: 300px;
+    max-width: 250px;
     font-size: 16px;
     line-height: 24px;
     cursor: pointer;
@@ -694,6 +747,10 @@
     padding: 32px 24px 64px 24px;
     gap: 32px;
   }
+  .productsDetailsImgBlock {
+    max-width: 428px;
+    max-height: 428px;
+  }
 
   .productImageWidth {
     width: 100px;
@@ -709,6 +766,7 @@
   }
 
   .backTextBlockMobile {
+    width: fit-content;
     display: flex;
     flex-direction: row;
     gap: 16px;
@@ -746,7 +804,7 @@
   }
 
   .cartBtnStyles {
-    width: 300px;
+    max-width: 300px;
     font-size: 16px;
     line-height: 24px;
   }
@@ -876,9 +934,9 @@
     gap: 32px;
   }
 
-  .productImageWidth {
-    width: 100px;
-    height: 100px;
+  .productsDetailsImgBlock {
+    max-width: 366px;
+    max-height: 366px;
   }
 
   .productDetailRightBlock {
@@ -893,7 +951,7 @@
     display: flex;
     flex-direction: row;
     gap: 16px;
-    width: 100%;
+    /* width: 100%; */
   }
   .productDetailRightTopSection {
     gap: 24px;
@@ -924,6 +982,7 @@
 
   .cartBtnStyles {
     width: 100%;
+    max-width: 366px;
     font-size: 16px;
     line-height: 24px;
   }

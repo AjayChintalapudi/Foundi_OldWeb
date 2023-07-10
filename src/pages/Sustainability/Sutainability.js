@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from 'components/NavBar/Navbar';
 import Button from 'components/Button/Button';
 import Footer from 'components/Footer/Footer';
@@ -10,7 +10,10 @@ import { useNavigate } from 'react-router-dom';
 
 const Sutainability = () => {
   const { sustainabilityPageStrings } = strings;
-  const navigate=useNavigate()
+  useEffect(() => {
+    window.screenTop(0, 0);
+  }, []);
+  const navigate = useNavigate();
   const sustainabilityBannerSection = () => {
     return (
       <div className={styles.bannerMainContainer}>

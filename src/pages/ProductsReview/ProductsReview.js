@@ -4,9 +4,10 @@ import NavBar from 'components/NavBar/Navbar';
 import Footer from 'components/Footer/Footer';
 import Button from 'components/Button/Button';
 import {
+  addlogo,
   prodoctreviewleftarrow,
   prodoctreviewrightarrow,
-  productoneimg,
+  subtractlogo,
 } from 'resources/Images/Images';
 import { Rating } from 'react-simple-star-rating';
 import { HiStar } from 'react-icons/hi';
@@ -15,51 +16,34 @@ import { productReviewData } from 'constants/CommonData/CommonData';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ProductDetails } from 'networking/Apis/singleproduct';
+import { FeedBack } from 'networking/Apis/feedback';
 
 const ProductsReview = () => {
-  //mapping data
-  const scrollButtonData = [
-    {
-      scrollButton: '',
-    },
-    {
-      scrollButton: '',
-    },
-    {
-      scrollButton: '',
-    },
-    {
-      scrollButton: '',
-    },
-  ];
-
-  const imageData = [
-    {
-      image: productoneimg,
-    },
-    {
-      image: productoneimg,
-    },
-    {
-      image: productoneimg,
-    },
-    {
-      image: productoneimg,
-    },
-  ];
-
   const navigate = useNavigate();
   const location = useLocation();
   const { productReviewPageStrings } = strings;
   //state
   const [productData, setProductData] = useState();
   const [productImages, setProductImages] = useState();
+  const [productCount, setProductCount] = useState(0);
+  const [feedback, setFeedback] = useState({
+    rating: '',
+    feedbackDescp: '',
+  });
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const addFunction = () => {
+    setProductCount(productCount + 1);
+  };
+  const subtractFunction = () => {
+    if (productCount > 0) {
+      setProductCount(productCount - 1);
+    }
+  };
 
   //useEffect
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-  useEffect(() => {
     if (location.state) {
       productDetails(location.state);
     }
@@ -77,6 +61,16 @@ const ProductsReview = () => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  const handleFeedback = async (data) => {
+    console.log(feedback, '....');
+    // try {
+    //   const response = await FeedBack(data);
+    //   if (response.status === 200 && response.data.type === 'success') {
+    //     console.log(data, 'review......');
+    //   }
+    // } catch (error) {}
   };
 
   const productDetailSection = () => {
@@ -112,20 +106,30 @@ const ProductsReview = () => {
       <div className={styles.productDetailLeftBlock}>
         {productImages &&
           productImages.map((item, index) => {
-            if (index === 0) {
-              return (
-                <div className={styles.productsDetailsImgBlock} key={index}>
-                  <img src={item} alt="" className={styles.imageWidth} />
-                </div>
-              );
-            }
+            return (
+              <React.Fragment key={index}>
+                {index === currentIndex && (
+                  <div className={styles.productsDetailsImgBlock}>
+                    <img src={item} alt="" className={styles.imageWidth} />
+                  </div>
+                )}
+              </React.Fragment>
+            );
           })}
 
         <div className={styles.scrollButtonsBlock}>
           {productImages &&
             productImages.map((item, index) => {
               return (
-                <span key={index} className={styles.scrollButton}>
+                <span
+                  onClick={() => setCurrentIndex(index)}
+                  key={index}
+                  className={
+                    index === currentIndex
+                      ? styles.scrollActiveButton
+                      : styles.scrollButton
+                  }
+                >
                   {item.scrollButton}
                 </span>
               );
@@ -184,12 +188,23 @@ const ProductsReview = () => {
           )}
         </div>
         <div className={styles.productDetailRightPrices}>
-          <p className={styles.productOfferPrice}>
-            {productReviewPageStrings.productOfferPriceReview}
-          </p>
-          <p className={styles.productOriginalPrice}>
-            {productReviewPageStrings.productOriginalPrice}
-          </p>
+          {productData?.price && (
+            <p className={styles.productOfferPrice}>
+              <span className={styles.productOfferPriceOne}>
+                {productData?.price.currency}
+              </span>
+              {productData?.price.selling_price}
+            </p>
+          )}
+          {productData?.price && (
+            <p className={styles.productOriginalPrice}>
+              &nbsp;
+              <span className={styles.productOriginalPrice}>
+                {productData?.price.currency}
+                {productData?.price.original_price}
+              </span>
+            </p>
+          )}
         </div>
       </div>
     );
@@ -198,11 +213,33 @@ const ProductsReview = () => {
   const productDetailRightBottomSection = () => {
     return (
       <div className={styles.productDetailRightBottomSection}>
-        <Button
-          btName={productReviewPageStrings.productBtnName}
-          btnStyles={styles.cartBtnStyles}
-          onClick={() => navigate('/checkout')}
-        />
+        {productCount > 0 ? (
+          <div className={styles.cartButtonSection}>
+            <div
+              className={styles.subtractButtonSection}
+              onClick={() => subtractFunction()}
+            >
+              <img src={subtractlogo} alt="" className={styles.imageWidth} />
+            </div>
+            <div className={styles.numTextSection}>
+              <p className={styles.numText}>{productCount}</p>
+            </div>
+
+            <div
+              className={styles.addButtonSection}
+              onClick={() => addFunction()}
+            >
+              <img src={addlogo} alt="" className={styles.imageWidth} />
+            </div>
+          </div>
+        ) : (
+          <Button
+            btName={productReviewPageStrings.productBtnName}
+            btnStyles={styles.cartBtnStyles}
+            onClick={() => addFunction()}
+          />
+        )}
+
         <div className={styles.productDetailRightDesc}>
           <p className={styles.buyNowText}>
             {productReviewPageStrings.buyNowText}
@@ -271,10 +308,10 @@ const ProductsReview = () => {
       <div className={styles.userRatingBlock}>
         <Rating
           customIcons={customIcons}
-          initialValue="3"
+          initialValue="0"
           allowFraction
-          readonly={true}
           fillColorArray={fillColor}
+          onClick={(index) => setFeedback({ ...feedback, rating: index })}
         />
       </div>
     );
@@ -290,11 +327,15 @@ const ProductsReview = () => {
           <textarea
             className={styles.userExperianceTextArea}
             placeholder={productReviewPageStrings.thoughtsPlaceHolderText}
+            onChange={(e) =>
+              setFeedback({ ...feedback, feedbackDescp: e.target.value })
+            }
           ></textarea>
         </div>
         <Button
           btName={productReviewPageStrings.thoughtsBtnName}
           btnStyles={styles.thoughtBtnStyles}
+          onClick={handleFeedback}
         />
       </div>
     );
