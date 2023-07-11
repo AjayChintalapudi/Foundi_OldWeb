@@ -129,11 +129,8 @@ const NavBar = () => {
                   <div className={styles.shoppingBottomSection}>
                     {purchaseData.map((item, index) => {
                       return (
-                        <div className={styles.cartStylesSection}>
-                          <div
-                            key={index}
-                            className={styles.shoppingImgSection}
-                          >
+                        <div key={index} className={styles.cartStylesSection}>
+                          <div className={styles.shoppingImgSection}>
                             <img src={item.image} alt="" />
                           </div>
                           <div className={styles.shoppingRightSection}>

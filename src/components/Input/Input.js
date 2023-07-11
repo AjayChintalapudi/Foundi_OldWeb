@@ -19,22 +19,24 @@ const Input = (props) => {
   } = props;
   return (
     <div className={styles.inputContainer}>
-      <input
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        onChange={onChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        className={classNames(styles.inputStyles, customInputStyles)}
-        value={value}
-      />
-      {image && (
-        <div className={styles.inputIcon} onClick={onClick}>
-          <img src={image} alt={alt} className={styles.inputImageStyles} />
-        </div>
-      )}
-
+      <div className={styles.inputSubContainer}>
+        {type === 'tel' && <p className={styles.phoneCode}>+41</p>}
+        <input
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          className={classNames(styles.inputStyles, customInputStyles)}
+          value={value}
+        />
+        {image && (
+          <div className={styles.inputIcon} onClick={onClick}>
+            <img src={image} alt={alt} className={styles.inputImageStyles} />
+          </div>
+        )}
+      </div>
       {error && <div className={styles.errorStyles}>{error}</div>}
     </div>
   );

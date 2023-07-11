@@ -1,6 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { Button, Typography, Popover } from '@mui/material';
-import React from 'react';
 import { Popover } from '@mui/material';
 
 const PopUp = ({ triggerElement, content }) => {

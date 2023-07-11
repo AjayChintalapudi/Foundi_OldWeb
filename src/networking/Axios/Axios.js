@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
-  'auth'
+  'authToken'
 )}`;
 
 axiosInstance.interceptors.response.use(

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { strings } from 'resources/Strings/eng';
 import NavBar from 'components/NavBar/Navbar';
 import Footer from 'components/Footer/Footer';
@@ -17,11 +17,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ProductDetails } from 'networking/Apis/singleproduct';
 import { FeedBack } from 'networking/Apis/feedback';
+import { getCartData } from 'networking/Apis/getCartData';
+import { UserDataContext } from 'providers/UserDataProvider';
 
 const ProductsReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { productReviewPageStrings } = strings;
+  const {userDetails}=useContext(UserDataContext)
   //state
   const [productData, setProductData] = useState();
   const [productImages, setProductImages] = useState();
@@ -63,6 +66,8 @@ const ProductsReview = () => {
     }
   };
 
+  // handle Feedback
+
   const handleFeedback = async (data) => {
     console.log(feedback, '....');
     // try {
@@ -71,6 +76,18 @@ const ProductsReview = () => {
     //     console.log(data, 'review......');
     //   }
     // } catch (error) {}
+  };
+
+  // // handle getCart Data
+
+  const handleGetCartData = async () => {
+    try {
+// console.log(userDetails)
+      const handleGetCartDataResponse = await getCartData(userDetails._id);
+      console.log('handleGetCartResponse', handleGetCartDataResponse);
+    } catch (error) {
+      console.log(error.toString(), 'Some Error in the handleCart Response');
+    }
   };
 
   const productDetailSection = () => {
@@ -240,7 +257,11 @@ const ProductsReview = () => {
           />
         )}
 
-        <div className={styles.productDetailRightDesc}>
+        <div
+          className={styles.productDetailRightDesc}
+          // onClick={() => navigate('/checkout')}
+          onClick={() => handleGetCartData()}
+        >
           <p className={styles.buyNowText}>
             {productReviewPageStrings.buyNowText}
           </p>

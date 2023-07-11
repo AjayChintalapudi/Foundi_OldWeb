@@ -21,6 +21,7 @@
 .checkOutBackArrow {
   width: 48px;
   height: 48px;
+  cursor: pointer;
 }
 
 .imageWidth {
@@ -42,7 +43,8 @@
   gap: 122px;
 }
 
-.checkOutPageDetailsLeftBlock {
+.checkOutPageDetailsLeftBlock,
+.formContainer {
   display: flex;
   flex-direction: column;
   gap: 80px;
@@ -137,7 +139,8 @@
 .paymentInputContainer,
 .cardInputContainer,
 .monthContainer,
-.dateContainer {
+.dateContainer,
+.cvvContainer {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -155,7 +158,8 @@
 .cardDesc,
 .cardName,
 .month,
-.date {
+.date,
+.cvv {
   color: var(--lightgrey72);
   font-size: 16px;
   font-family: 'Medium', sans-serif;
@@ -412,7 +416,8 @@
     gap: 64px;
   }
 
-  .checkOutPageDetailsLeftBlock {
+  .checkOutPageDetailsLeftBlock,
+  .formContainer {
     /* max-width: 593px; */
     width: 100%;
     gap: 60px;
@@ -433,7 +438,8 @@
   .paymentInputContainer,
   .cardInputContainer,
   .monthContainer,
-  .dateContainer {
+  .dateContainer,
+  .cvvContainer {
     gap: 8px;
     width: 100%;
   }
@@ -454,7 +460,8 @@
   .cardDesc,
   .cardName,
   .month,
-  .date {
+  .date,
+  .cvv {
     font-size: 14px;
     line-height: 24px;
   }
@@ -542,7 +549,8 @@
     gap: 56px;
   }
 
-  .checkOutPageDetailsLeftBlock {
+  .checkOutPageDetailsLeftBlock,
+  .formContainer {
     gap: 32px;
     padding: 24px;
     margin: auto;
@@ -599,7 +607,8 @@
   .paymentInputContainer,
   .cardInputContainer,
   .monthContainer,
-  .dateContainer {
+  .dateContainer,
+  .cvvContainer {
     gap: 8px;
   }
   .firstName,
@@ -614,7 +623,8 @@
   .cardDesc,
   .cardName,
   .month,
-  .date {
+  .date,
+  .cvv {
     font-size: 14px;
     line-height: 20px;
   }
@@ -741,7 +751,8 @@
     gap: 48px;
   }
 
-  .checkOutPageDetailsLeftBlock {
+  .checkOutPageDetailsLeftBlock,
+  .formContainer {
     gap: 48px;
     padding: 24px;
     max-width: 600px;
@@ -783,7 +794,8 @@
   .paymentInputContainer,
   .cardInputContainer,
   .monthContainer,
-  .dateContainer {
+  .dateContainer,
+  .cvvContainer {
     width: 100%;
     gap: 8px;
   }
@@ -814,7 +826,8 @@
   .cardDesc,
   .cardName,
   .month,
-  .date {
+  .date,
+  .cvv {
     font-size: 14px;
     line-height: 20px;
   }
@@ -939,7 +952,8 @@
     gap: 96px;
   }
 
-  .checkOutPageDetailsLeftBlock {
+  .checkOutPageDetailsLeftBlock,
+  .formContainer {
     gap: 64px;
     padding: 24px;
   }
@@ -993,7 +1007,8 @@
   .cardDesc,
   .cardName,
   .month,
-  .date {
+  .date,
+  .cvv {
     font-size: 14px;
     line-height: 20px;
   }

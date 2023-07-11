@@ -5,7 +5,7 @@ export const signUp = '/auth/register';
 // googleAuth Endpoint
 export const googleSignUp = 'auth/googleSignin';
 // products Endpoint
-export const products = 'ecom/products/get';
+export const products = 'admin/ecom/product/get/all';
 
 // snocode EndPoint
 export const snoCode = '/products/getproductdetails';
@@ -14,8 +14,11 @@ export const snoCode = '/products/getproductdetails';
 
 export const guestLogin = '/auth/isguest';
 // individual Endpoint
-export const individualProduct = 'ecom/products/get/{product_id}';
+export const individualProduct = 'admin/ecom/product/get/{product_id}';
 // feedback Endpoint
 export const feedback = 'feedback/post';
 // cart Endpoint
 export const cart = 'cart/add';
+// Getting Cart Data Endpoint
+
+export const getCartData = 'cart/get/{user_id}';
