@@ -284,17 +284,22 @@
   align-items: center;
 }
 
-.orderedProductContainer:nth-child(1) {
+.orderedProductContainer:nth-child(even),
+.orderedProductContainer:nth-child(odd) {
   padding-bottom: 32px;
   border-bottom: 2px solid var(--lightgrey24);
+}
+.orderedProductContainer:last-child {
+  border-bottom: none;
 }
 
 .orderdProductLeftImgBlock {
   width: 64px;
   height: 64px;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: var(--lightgrey42);
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .divider {
@@ -323,7 +328,8 @@
   line-height: 30px;
 }
 
-.orderInputButtonSection {
+.orderInputButtonSection,
+.orderInputBlock {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -502,7 +508,8 @@
     gap: 28px;
   }
 
-  .orderInputButtonSection {
+  .orderInputButtonSection,
+  .orderInputBlock {
     gap: 32px;
   }
 
@@ -700,7 +707,8 @@
     font-size: 14px;
     line-height: 20px;
   }
-  .orderInputButtonSection {
+  .orderInputButtonSection,
+  .orderInputBlock {
     gap: 24px;
   }
 
@@ -900,7 +908,8 @@
     font-size: 14px;
     line-height: 20px;
   }
-  .orderInputButtonSection {
+  .orderInputButtonSection,
+  .orderInputBlock {
     gap: 24px;
   }
 
@@ -1080,7 +1089,8 @@
     font-size: 14px;
     line-height: 20px;
   }
-  .orderInputButtonSection {
+  .orderInputButtonSection,
+  .orderInputBlock {
     gap: 16px;
   }
 

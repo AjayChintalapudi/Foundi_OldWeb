@@ -11,7 +11,6 @@ import { Schema, string } from 'yup';
 import {
   checkOutData,
   orderedDetailsData,
-  priceDetailsData,
 } from 'constants/CommonData/CommonData';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
@@ -30,15 +29,76 @@ import {
   StateAndCountryValidationSchema,
   ZipCodeValidationSchema,
 } from 'validators/Validators';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { checkOut } from 'networking/Apis/checkOut';
 
 const CheckOut = () => {
   const { checkOutPageStrings } = strings;
+  const [discountPrice, setDiscountPrice] = useState(0);
+  const [couponCode, setCouponCode] = useState('');
 
   // navigation
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const data = [location.state];
 
+  // product price caluculation
+
+  const productsPrice = data.reduce((sum, item) => {
+    return Number(item.price.selling_price) + sum;
+  }, 0);
+  const deliveryPrice = productsPrice > 1000 ? 0 : 50;
+  const taxPrice = Number((productsPrice * 0.05).toFixed(2));
+  const totalPrice = productsPrice + deliveryPrice + taxPrice - discountPrice;
+
+  // coupon codes
+
+  const coupons = ['AJD10', 'OEA05', '6HF15'];
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (couponCode) {
+      // if any coupon code entered
+      if (coupons.includes(couponCode)) {
+        // if coupon code valid
+        setDiscountPrice(
+          (Number(couponCode.slice(-2)) / 100) * (productsPrice + deliveryPrice)
+        );
+      } else {
+        // if coupon code not entered
+        setDiscountPrice(0);
+        alert(' coupan code not valid');
+      }
+    } else {
+      //if coupon code empty
+      setDiscountPrice(0);
+      alert('enter a valid coupan code');
+    }
+  };
+
+  const handleChange = (event) => {
+    setCouponCode(event.target.value);
+  };
+
+  const priceDetailsData = [
+    {
+      productChargeDesc: 'Price of added products -',
+      price: productsPrice,
+    },
+    {
+      productChargeDesc: 'Delivery charges -',
+      price: deliveryPrice,
+    },
+    {
+      productChargeDesc: 'Tax & extras -',
+      price: taxPrice,
+    },
+    {
+      productChargeDesc: 'Coupon discount price-',
+      price: discountPrice,
+    },
+  ];
   // Title Section Tab Change [contact-address-payment]
 
   const [tab, setTab] = useState('contact');
@@ -88,6 +148,8 @@ const CheckOut = () => {
       if (tab === 'payment') {
         console.log(values);
       }
+      const handleCheckOutResponse = await checkOut();
+      console.log('handleCheckOutResponse', handleCheckOutResponse);
     } catch (error) {}
     // console.log("subbmited")
   };
@@ -112,6 +174,8 @@ const CheckOut = () => {
     validationSchema: schema,
     onSubmit: handleCheckOut,
   });
+
+  // getting product  data from product review page
 
   const checkOutPageSection = () => {
     return (
@@ -544,23 +608,23 @@ const CheckOut = () => {
   const orderDetailsSection = () => {
     return (
       <div className={styles.orderDetails}>
-        {orderedDetailsData &&
-          orderedDetailsData.map((item, index) => {
+        {data &&
+          data.map((item, index) => {
             return (
               <div key={index} className={styles.orderedProductContainer}>
                 <div className={styles.orderdProductLeftImgBlock}>
                   <img
-                    src={item.orderProductImg}
+                    src={item.images.thumbnail}
                     alt=""
                     className={styles.imageWidth}
                   />
                 </div>
                 <div className={styles.orderProductInfoBlock}>
-                  <p className={styles.orderProductHeading}>
-                    {item.orderProductHeading}
-                  </p>
+                  <p className={styles.orderProductHeading}>{item.name}</p>
                   <p className={styles.orderProductPrice}>
-                    {item.orderProductPrice}
+                    <span>{checkOutPageStrings.price}(X1)-</span>
+                    <span>{item.price.currency}</span>
+                    {item.price.selling_price}
                   </p>
                 </div>
               </div>
@@ -573,14 +637,20 @@ const CheckOut = () => {
   const orderInputButtonSection = () => {
     return (
       <div className={styles.orderInputButtonSection}>
-        <Input
-          placeholder={checkOutPageStrings.enterDiscountCode}
-          customInputStyles={styles.disCountInputStyles}
-        />
-        <Button
-          btName={checkOutPageStrings.applyBtnName}
-          btnStyles={styles.applyBtnStyles}
-        />
+        <form onSubmit={handleSubmit} className={styles.orderInputBlock}>
+          <Input
+            placeholder={checkOutPageStrings.enterDiscountCode}
+            customInputStyles={styles.disCountInputStyles}
+            type="text"
+            value={couponCode}
+            onChange={handleChange}
+          />
+          <Button
+            btName={checkOutPageStrings.applyBtnName}
+            btnStyles={styles.applyBtnStyles}
+            type="submit"
+          />
+        </form>
       </div>
     );
   };
@@ -595,7 +665,7 @@ const CheckOut = () => {
                 <p className={styles.productChargeDesc}>
                   {item.productChargeDesc}
                 </p>
-                <p className={styles.price}>{item.price}</p>
+                <p className={styles.price}>sek{item.price}</p>
               </div>
             );
           })}
@@ -607,9 +677,7 @@ const CheckOut = () => {
     return (
       <div className={styles.totalPriceBlock}>
         <p className={styles.totalPrice}>{checkOutPageStrings.totalPrice}</p>
-        <p className={styles.totalPriceDesc}>
-          {checkOutPageStrings.totalPriceDesc}
-        </p>
+        <p className={styles.totalPriceDesc}>sek{totalPrice}</p>
       </div>
     );
   };

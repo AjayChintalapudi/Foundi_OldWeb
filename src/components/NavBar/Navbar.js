@@ -56,6 +56,8 @@ const NavBar = () => {
 
   const { navbar } = strings;
 
+  // adding of product
+
   const addFunction = (id) => {
     const newArray = purchaseData.map((product) => {
       if (product.id === id) {
@@ -65,6 +67,9 @@ const NavBar = () => {
     });
     setPurchaseData(newArray);
   };
+
+  // subtract the product
+
   const subtractFunction = (id) => {
     const newArray = purchaseData.map((product) => {
       if (product.id === id) {
@@ -78,6 +83,7 @@ const NavBar = () => {
     });
     setPurchaseData(newArray);
   };
+
   const leftSection = () => {
     return (
       <div onClick={() => navigate('/')} className={styles.leftSection}>
@@ -105,6 +111,9 @@ const NavBar = () => {
         >
           {navbar.products}
         </p>
+
+        {/* Cart Section Start */}
+
         <div className={styles.cartSection}>
           <PopUp
             triggerElement={
@@ -203,6 +212,8 @@ const NavBar = () => {
             }
           />
         </div>
+
+        {/* Cart Section End */}
 
         {authToken ? (
           <div>{userProfileSection()}</div>

@@ -19,6 +19,6 @@ export const individualProduct = 'admin/ecom/product/get/{product_id}';
 export const feedback = 'feedback/post';
 // cart Endpoint
 export const cart = 'cart/add';
-// Getting Cart Data Endpoint
+// stripe ednpoint
 
-export const getCartData = 'cart/get/{user_id}';
+export const checkOut = 'stripe/order-checkout';

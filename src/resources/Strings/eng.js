@@ -138,6 +138,7 @@ const checkOutPageStrings = {
   contactHeading: 'Contact',
   addressHeading: 'Address',
   paymentHeading: 'Payment',
+  price: 'Price',
 
   // Contact Details
 

@@ -17,17 +17,16 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ProductDetails } from 'networking/Apis/singleproduct';
 import { FeedBack } from 'networking/Apis/feedback';
-import { getCartData } from 'networking/Apis/getCartData';
+// import { getCartData } from 'networking/Apis/getCartData';
 import { UserDataContext } from 'providers/UserDataProvider';
 
 const ProductsReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { productReviewPageStrings } = strings;
-  const {userDetails}=useContext(UserDataContext)
+  const { userDetails } = useContext(UserDataContext);
   //state
   const [productData, setProductData] = useState();
-  const [productImages, setProductImages] = useState();
   const [productCount, setProductCount] = useState(0);
   const [feedback, setFeedback] = useState({
     rating: '',
@@ -57,9 +56,8 @@ const ProductsReview = () => {
     try {
       const response = await ProductDetails(id);
       if (response.status === 200 && response.data.type === 'success') {
-        console.log(response, '....singleproduct');
+        // console.log(response, '....singleproduct');
         setProductData(response.data.data);
-        setProductImages(response.data.data.images.additional);
       }
     } catch (error) {
       console.log(error.message);
@@ -78,16 +76,10 @@ const ProductsReview = () => {
     // } catch (error) {}
   };
 
-  // // handle getCart Data
+  // handle productdata
 
-  const handleGetCartData = async () => {
-    try {
-// console.log(userDetails)
-      const handleGetCartDataResponse = await getCartData(userDetails._id);
-      console.log('handleGetCartResponse', handleGetCartDataResponse);
-    } catch (error) {
-      console.log(error.toString(), 'Some Error in the handleCart Response');
-    }
+  const handleProductData = async () => {
+  navigate("/checkout",{state:productData})
   };
 
   const productDetailSection = () => {
@@ -119,6 +111,8 @@ const ProductsReview = () => {
   };
 
   const productDetailLeftSection = () => {
+    const productImages =
+      productData && productData.images && productData.images.additional;
     return (
       <div className={styles.productDetailLeftBlock}>
         {productImages &&
@@ -260,7 +254,7 @@ const ProductsReview = () => {
         <div
           className={styles.productDetailRightDesc}
           // onClick={() => navigate('/checkout')}
-          onClick={() => handleGetCartData()}
+          onClick={() => handleProductData()}
         >
           <p className={styles.buyNowText}>
             {productReviewPageStrings.buyNowText}
