@@ -20,6 +20,9 @@ import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
 import { useMediaQuery } from '@mui/material';
 import { userProfileData } from 'constants/CommonData/CommonData';
+import { getCartData } from 'networking/Apis/getCartData';
+import { useEffect } from 'react';
+import { removeProductApi } from 'networking/Apis/removeProduct';
 
 const NavBar = () => {
   const { userDetails, handleLogout } = useContext(UserDataContext);
@@ -27,34 +30,40 @@ const NavBar = () => {
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
-  //mapping data
-  const cartData = [
-    {
-      id: 1,
-      image: '',
-      heading: 'Keychain tags - A pack of 4',
-      descp: 'Price - ',
-      currency: '$',
-      quantity: 1,
-      price: '100',
-    },
-    {
-      id: 2,
-      image: '',
-      heading: 'Keychain tags - A pack of 4',
-      descp: 'Price - ',
-      currency: '$',
-      quantity: 1,
-      price: '100',
-    },
-  ];
-
   //useState
   const [popOver, setPopOver] = useState(false);
 
-  const [purchaseData, setPurchaseData] = useState(cartData);
+  const [purchaseData, setPurchaseData] = useState();
 
   const { navbar } = strings;
+
+  // cart data handling
+
+  const handleCartData = async () => {
+    try {
+      const gettingCartDataResponse = await getCartData(userDetails?._id);
+      setPurchaseData(gettingCartDataResponse.data.data.items);
+      console.log('gettingCartDataResponse', gettingCartDataResponse);
+    } catch {
+      console.log('error in getting cart data');
+    }
+  };
+
+  useEffect(() => {
+    handleCartData();
+  }, [userDetails]);
+
+  // remove product from cart
+
+  const removeProductFromCart = async (id) => {
+    const response = await removeProductApi({
+      user_id: userDetails?._id,
+      product_id: id,
+    });
+    if (response.data.type === 'success' && response.status === 200) {
+      handleCartData();
+    }
+  };
 
   // adding of product
 
@@ -136,24 +145,28 @@ const NavBar = () => {
                   </div>
 
                   <div className={styles.shoppingBottomSection}>
-                    {purchaseData.map((item, index) => {
+                    {purchaseData?.map((item, index) => {
                       return (
                         <div key={index} className={styles.cartStylesSection}>
                           <div className={styles.shoppingImgSection}>
-                            <img src={item.image} alt="" />
+                            <img
+                              src={item.product.images.thumbnail}
+                              alt=""
+                              className={styles.imageWidth}
+                            />
                           </div>
                           <div className={styles.shoppingRightSection}>
                             <div className={styles.textSection}>
                               <h4 className={styles.productHeader}>
-                                {item.heading}
+                                {item.product.name}
                               </h4>
                               <p className={styles.priceSection}>
-                                {item.descp} &nbsp;
+                                Price - &nbsp;
                                 <span className={styles.priceSection}>
-                                  {item.currency}
+                                  {item.product.price.currency}
                                 </span>
                                 <span className={styles.priceSection}>
-                                  {item.price}
+                                  {item.product.price.selling_price}
                                 </span>
                               </p>
                             </div>
@@ -186,7 +199,12 @@ const NavBar = () => {
                                   />
                                 </div>
                               </div>
-                              <div className={styles.deleteSection}>
+                              <div
+                                className={styles.deleteSection}
+                                onClick={() =>
+                                  removeProductFromCart(item.product._id)
+                                }
+                              >
                                 <img
                                   src={deleteIcon}
                                   alt=""

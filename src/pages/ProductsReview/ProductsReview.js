@@ -17,8 +17,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ProductDetails } from 'networking/Apis/singleproduct';
 import { FeedBack } from 'networking/Apis/feedback';
-// import { getCartData } from 'networking/Apis/getCartData';
 import { UserDataContext } from 'providers/UserDataProvider';
+import { Cart } from 'networking/Apis/cart';
+import { getCartData } from 'networking/Apis/getCartData';
 
 const ProductsReview = () => {
   const navigate = useNavigate();
@@ -79,8 +80,31 @@ const ProductsReview = () => {
   // handle productdata
 
   const handleProductData = async () => {
-  navigate("/checkout",{state:productData})
+    try {
+      let buyNowProductData = {
+        user_id: userDetails._id,
+        product_id: location.state,
+        quantity: 1,
+      };
+      const addingProductToCartResponse = await Cart(buyNowProductData);
+      if (
+        addingProductToCartResponse.data.type === 'success' &&
+        addingProductToCartResponse.status === 200
+      ) {
+        console.log(addingProductToCartResponse,"product added");
+
+        navigate('/checkout', { state: productData._id });
+
+        console.log('addingProductToCartResponse', addingProductToCartResponse);
+      } else {
+        console.log('error in handling product api response');
+      }
+    } catch {
+      console.log('error in adding to cart ');
+    }
   };
+
+
 
   const productDetailSection = () => {
     return (

@@ -104,6 +104,7 @@
   padding-bottom: 0px;
 }
 .shoppingImgSection {
+  overflow: hidden;
   width: 120px;
   height: 120px;
   object-fit: cover;

@@ -31,29 +31,66 @@ import {
 } from 'validators/Validators';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { checkOut } from 'networking/Apis/checkOut';
+import { useContext } from 'react';
+import { UserDataContext } from 'providers/UserDataProvider';
+import { getCartData } from 'networking/Apis/getCartData';
 
 const CheckOut = () => {
   const { checkOutPageStrings } = strings;
   const [discountPrice, setDiscountPrice] = useState(0);
   const [couponCode, setCouponCode] = useState('');
-
+  const { userDetails } = useContext(UserDataContext);
+  const [productData, setProductData] = useState();
   // navigation
 
   const navigate = useNavigate();
   const location = useLocation();
-  const data = [location.state];
+
+  // handling getting cart data
+
+  const handleGettingCartData = async () => {
+    try {
+      const cartProductsResponse = await getCartData(userDetails._id);
+      console.log('cartProductsResponse', cartProductsResponse);
+      if (
+        cartProductsResponse.data.type === 'success' &&
+        cartProductsResponse.status === 200
+      ) {
+        if (location.state) {
+          const existedProductInCart =
+            cartProductsResponse.data.data.items.filter(
+              (item) => item.product._id === location.state
+            );
+          setProductData(existedProductInCart);
+        } else {
+          setProductData(cartProductsResponse.data.data.items);
+        }
+      } else {
+        console.log('product not found in cart');
+      }
+    } catch {
+      console.log('error in gettingCartDataResponse');
+    }
+  };
+
+  useEffect(() => {
+    handleGettingCartData();
+  }, [userDetails]);
 
   // product price caluculation
 
-  const productsPrice = data.reduce((sum, item) => {
-    return Number(item.price.selling_price) + sum;
+  const productsPrice = productData?.reduce((sum, item) => {
+    return (
+      Number(item.product.price.selling_price) *
+        (item.quantity ? item.quantity : 1) +
+      sum
+    );
   }, 0);
   const deliveryPrice = productsPrice > 1000 ? 0 : 50;
   const taxPrice = Number((productsPrice * 0.05).toFixed(2));
   const totalPrice = productsPrice + deliveryPrice + taxPrice - discountPrice;
 
   // coupon codes
-
   const coupons = ['AJD10', 'OEA05', '6HF15'];
 
   const handleSubmit = (event) => {
@@ -148,8 +185,24 @@ const CheckOut = () => {
       if (tab === 'payment') {
         console.log(values);
       }
-      const handleCheckOutResponse = await checkOut();
-      console.log('handleCheckOutResponse', handleCheckOutResponse);
+
+      let checkoutData = {
+        items: productData?.items || [],
+        shipping: {
+          address: {
+            address_text: values.doorAndAddress,
+            carrier: 'post',
+            door_number: values.doorAndAddress,
+            tracking_number: productData?._id,
+            zipcode: values.zipCode,
+          },
+        },
+        user_id: userDetails?._id,
+      };
+      console.log('checkoutData', checkoutData);
+
+      // const handleCheckOutResponse = await checkOut(checkoutData);
+      // console.log('handleCheckOutResponse', handleCheckOutResponse);
     } catch (error) {}
     // console.log("subbmited")
   };
@@ -604,27 +657,31 @@ const CheckOut = () => {
       </div>
     );
   };
-
+  // console.log(JSON.stringify(data))
   const orderDetailsSection = () => {
     return (
       <div className={styles.orderDetails}>
-        {data &&
-          data.map((item, index) => {
+        {productData &&
+          productData.map((item, index) => {
             return (
               <div key={index} className={styles.orderedProductContainer}>
                 <div className={styles.orderdProductLeftImgBlock}>
                   <img
-                    src={item.images.thumbnail}
+                    src={item.product.images.thumbnail}
                     alt=""
                     className={styles.imageWidth}
                   />
                 </div>
                 <div className={styles.orderProductInfoBlock}>
-                  <p className={styles.orderProductHeading}>{item.name}</p>
+                  <p className={styles.orderProductHeading}>
+                    {item.product.name}
+                  </p>
                   <p className={styles.orderProductPrice}>
-                    <span>{checkOutPageStrings.price}(X1)-</span>
-                    <span>{item.price.currency}</span>
-                    {item.price.selling_price}
+                    <span>
+                      {checkOutPageStrings.price}(X{item.quantity})-
+                    </span>
+                    <span>{item.product.price.currency}</span>
+                    {item.product.price.selling_price}
                   </p>
                 </div>
               </div>

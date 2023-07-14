@@ -22,3 +22,9 @@ export const cart = 'cart/add';
 // stripe ednpoint
 
 export const checkOut = 'stripe/order-checkout';
+
+// getting cart data
+
+export const getCartData = 'cart/get/{user_id}';
+
+export const removeProductFromCart='cart/remove'
