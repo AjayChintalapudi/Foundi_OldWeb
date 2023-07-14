@@ -11,7 +11,7 @@ import Button from 'components/Button/Button';
 import { strings } from 'resources/Strings/eng';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { EmailValidationSchema } from 'validators/Validators';
+import {emailValidationSchema } from 'validators/Validators';
 import { Userlogin } from 'networking/Apis/login';
 
 import { UserDataContext } from 'providers/UserDataProvider';
@@ -47,7 +47,7 @@ const Login = () => {
       email: '',
       password: '',
     },
-    validationSchema: EmailValidationSchema,
+    validationSchema: emailValidationSchema,
     onSubmit: handleLogin,
   });
 

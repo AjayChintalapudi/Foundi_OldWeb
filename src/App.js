@@ -1,3 +1,4 @@
+import CartDataProvider from 'providers/CartDataProvider';
 import { NetWorkProvider } from 'providers/NetWorkProvider';
 import { UserDataProvider } from 'providers/UserDataProvider';
 import AppRoutes from 'routes/AppRoutes';
@@ -5,7 +6,9 @@ function App() {
   return (
     <NetWorkProvider>
       <UserDataProvider>
-        <AppRoutes />
+        <CartDataProvider>
+          <AppRoutes />
+        </CartDataProvider>
       </UserDataProvider>
     </NetWorkProvider>
   );

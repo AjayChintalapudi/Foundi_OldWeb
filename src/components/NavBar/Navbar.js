@@ -20,12 +20,12 @@ import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
 import { useMediaQuery } from '@mui/material';
 import { userProfileData } from 'constants/CommonData/CommonData';
-import { getCartData } from 'networking/Apis/getCartData';
-import { useEffect } from 'react';
 import { removeProductApi } from 'networking/Apis/removeProduct';
+import { CartDataContext } from 'providers/CartDataProvider';
 
 const NavBar = () => {
   const { userDetails, handleLogout } = useContext(UserDataContext);
+  const { cartData, setCartData, handleCartData } = useContext(CartDataContext);
   const isWideScreen = useMediaQuery('(min-width: 867px)');
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
@@ -37,22 +37,6 @@ const NavBar = () => {
 
   const { navbar } = strings;
 
-  // cart data handling
-
-  const handleCartData = async () => {
-    try {
-      const gettingCartDataResponse = await getCartData(userDetails?._id);
-      setPurchaseData(gettingCartDataResponse.data.data.items);
-      console.log('gettingCartDataResponse', gettingCartDataResponse);
-    } catch {
-      console.log('error in getting cart data');
-    }
-  };
-
-  useEffect(() => {
-    handleCartData();
-  }, [userDetails]);
-
   // remove product from cart
 
   const removeProductFromCart = async (id) => {
@@ -62,6 +46,7 @@ const NavBar = () => {
     });
     if (response.data.type === 'success' && response.status === 200) {
       handleCartData();
+      alert('removing product from cart');
     }
   };
 
@@ -106,6 +91,7 @@ const NavBar = () => {
 
   const rightSection = () => {
     const authToken = localStorage.getItem('authToken');
+    const noOfCartItems=cartData?.reduce((sum,item)=>item.quantity+sum,0)
     return (
       <div className={styles.rightSection}>
         <p onClick={() => navigate('/events')} className={styles.eventsSection}>
@@ -126,7 +112,10 @@ const NavBar = () => {
         <div className={styles.cartSection}>
           <PopUp
             triggerElement={
-              <img src={cartImg} alt="" className={styles.imageWidth} />
+              <>
+                <img src={cartImg} alt="" className={styles.imageWidth} />
+                <p>{noOfCartItems}</p>
+              </>
             }
             content={
               <div className={styles.shoppingCart}>
@@ -145,7 +134,7 @@ const NavBar = () => {
                   </div>
 
                   <div className={styles.shoppingBottomSection}>
-                    {purchaseData?.map((item, index) => {
+                    {cartData?.map((item, index) => {
                       return (
                         <div key={index} className={styles.cartStylesSection}>
                           <div className={styles.shoppingImgSection}>
@@ -166,12 +155,13 @@ const NavBar = () => {
                                   {item.product.price.currency}
                                 </span>
                                 <span className={styles.priceSection}>
-                                  {item.product.price.selling_price}
+                                  {item.product.price.selling_price} X
+                                  {item.quantity}
                                 </span>
                               </p>
                             </div>
                             <div className={styles.removeSection}>
-                              <div className={styles.addSection}>
+                              {/* <div className={styles.addSection}>
                                 <div
                                   className={styles.subtractSection}
                                   onClick={() => subtractFunction(item.id)}
@@ -198,7 +188,7 @@ const NavBar = () => {
                                     className={styles.imageWidth}
                                   />
                                 </div>
-                              </div>
+                              </div> */}
                               <div
                                 className={styles.deleteSection}
                                 onClick={() =>

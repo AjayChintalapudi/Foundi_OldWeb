@@ -35,7 +35,7 @@ import styles from './styles.module.css';
 import Modal from 'components/Modal/Modal';
 import { snoCode } from 'networking/Apis/snoCode';
 import { useFormik } from 'formik';
-import { SnoCodeValidationSchema } from 'validators/Validators';
+import { SnoCodeValidationSchema, snoCodeValidationSchema } from 'validators/Validators';
 
 const Home = () => {
   const { homePage } = strings;
@@ -171,7 +171,7 @@ const Home = () => {
 
   const formik = useFormik({
     initialValues: { snoCode: '' },
-    validationSchema: SnoCodeValidationSchema,
+    validationSchema: snoCodeValidationSchema,
     onSubmit: handleSnoCodeResponse,
   });
 

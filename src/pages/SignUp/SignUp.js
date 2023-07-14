@@ -11,9 +11,9 @@ import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { useFormik } from 'formik';
 import {
-  EmailValidationSchema,
-  FullNameValidationSchema,
-  PassWordValidationSchema,
+  emailValidationSchema,
+  fullNameValidationSchema,
+  passWordValidationSchema,
 } from 'validators/Validators';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from 'networking/Apis/signUp';
@@ -59,9 +59,9 @@ const SignUp = () => {
 
   const formik = useFormik({
     initialValues: { fullName: '', email: '', password: '' },
-    validationSchema: FullNameValidationSchema.concat(
-      EmailValidationSchema
-    ).concat(PassWordValidationSchema),
+    validationSchema: fullNameValidationSchema
+      .concat(emailValidationSchema)
+      .concat(passWordValidationSchema),
 
     onSubmit: handleSignUp,
   });

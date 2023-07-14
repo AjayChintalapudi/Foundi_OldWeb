@@ -16,18 +16,18 @@ import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { useFormik } from 'formik';
 import {
-  CardHolderNameValidationSchema,
-  CityValidationSchema,
-  CvvValidationSchema,
-  DebitAndCreditValidationSchema,
-  DoorAndAddressValidationSchema,
-  EmailValidationSchema,
-  FirstNameValidationSchema,
-  LastNameValidationSchema,
-  MonthAndYearValidationSchema,
-  PhoneNumberValidationSchema,
-  StateAndCountryValidationSchema,
-  ZipCodeValidationSchema,
+  cardHolderNameValidationSchema,
+  cityValidationSchema,
+  cvvValidationSchema,
+  debitAndCreditValidationSchema,
+  doorAndAddressValidationSchema,
+  emailValidationSchema,
+  firstNameValidationSchema,
+  lastNameValidationSchema,
+  monthAndYearValidationSchema,
+  phoneNumberValidationSchema,
+  stateAndCountryValidationSchema,
+  zipCodeValidationSchema,
 } from 'validators/Validators';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { checkOut } from 'networking/Apis/checkOut';
@@ -144,35 +144,37 @@ const CheckOut = () => {
   // Keep Validation Schemas while changing the Tabs
 
   const [schema, setSchema] = useState(
-    FirstNameValidationSchema.concat(LastNameValidationSchema)
-      .concat(EmailValidationSchema)
-      .concat(PhoneNumberValidationSchema)
+    firstNameValidationSchema
+      .concat(lastNameValidationSchema)
+      .concat(emailValidationSchema)
+      .concat(phoneNumberValidationSchema)
   );
   // console.log('schema', schema);
   useEffect(() => {
     if (tab === 'contact') {
       setSchema(
-        FirstNameValidationSchema.concat(LastNameValidationSchema)
-          .concat(EmailValidationSchema)
-          .concat(PhoneNumberValidationSchema)
+        firstNameValidationSchema
+          .concat(lastNameValidationSchema)
+          .concat(emailValidationSchema)
+          .concat(phoneNumberValidationSchema)
       );
     }
     if (tab === 'address') {
       setSchema(
         schema
-          .concat(DoorAndAddressValidationSchema)
-          .concat(CityValidationSchema)
-          .concat(ZipCodeValidationSchema)
-          .concat(StateAndCountryValidationSchema)
+          .concat(doorAndAddressValidationSchema)
+          .concat(cityValidationSchema)
+          .concat(zipCodeValidationSchema)
+          .concat(stateAndCountryValidationSchema)
       );
     }
     if (tab === 'payment') {
       setSchema(
         schema
-          .concat(CardHolderNameValidationSchema)
-          .concat(DebitAndCreditValidationSchema)
-          .concat(MonthAndYearValidationSchema)
-          .concat(CvvValidationSchema)
+          .concat(cardHolderNameValidationSchema)
+          .concat(debitAndCreditValidationSchema)
+          .concat(monthAndYearValidationSchema)
+          .concat(cvvValidationSchema)
       );
     }
   }, [tab]);

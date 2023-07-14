@@ -15,17 +15,21 @@ import styles from './styles.module.css';
 import { productReviewData } from 'constants/CommonData/CommonData';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { ProductDetails } from 'networking/Apis/singleproduct';
+import {
+  ProductDetails,
+  individualProduct,
+} from 'networking/Apis/singleproduct';
 import { FeedBack } from 'networking/Apis/feedback';
 import { UserDataContext } from 'providers/UserDataProvider';
-import { Cart } from 'networking/Apis/cart';
-import { getCartData } from 'networking/Apis/getCartData';
+import { cart } from 'networking/Apis/cart';
+import { CartDataContext } from 'providers/CartDataProvider';
 
 const ProductsReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { productReviewPageStrings } = strings;
   const { userDetails } = useContext(UserDataContext);
+  const { cartData, handleCartData } = useContext(CartDataContext);
   //state
   const [productData, setProductData] = useState();
   const [productCount, setProductCount] = useState(0);
@@ -38,6 +42,7 @@ const ProductsReview = () => {
   const addFunction = () => {
     setProductCount(productCount + 1);
   };
+
   const subtractFunction = () => {
     if (productCount > 0) {
       setProductCount(productCount - 1);
@@ -48,14 +53,14 @@ const ProductsReview = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (location.state) {
-      productDetails(location.state);
+      userDetails && productDetails(location.state);
     }
   }, [location.state]);
 
   //api's
   const productDetails = async (id) => {
     try {
-      const response = await ProductDetails(id);
+      const response = await individualProduct(id);
       if (response.status === 200 && response.data.type === 'success') {
         // console.log(response, '....singleproduct');
         setProductData(response.data.data);
@@ -77,22 +82,51 @@ const ProductsReview = () => {
     // } catch (error) {}
   };
 
-  // handle productdata
+  // handle adding product to cart while clicking the add to cart buttonn
 
-  const handleProductData = async () => {
+  const handleaddToCart = async () => {
+    try {
+      const addToCartData = {
+        user_id: userDetails._id,
+        product_id: location.state,
+      };
+      const existedProduct = cartData.find(
+        (item) => item.product._id === productData._id
+      );
+      console.log('existedProduct', existedProduct);
+      const quantity = existedProduct ? existedProduct.quantity + 1 : 1;
+      console.log('quantity', quantity);
+      const updatedProduct = { ...addToCartData, quantity: quantity };
+      console.log('updatedProduct', updatedProduct);
+      const addToCartResponse = await cart(updatedProduct);
+      if (
+        addToCartResponse.data.type === 'success' &&
+        addToCartResponse.status === 200
+      ) {
+        alert('product added to cart');
+        handleCartData();
+      }
+    } catch (error) {
+      console.log('error in adding handle add to cart');
+    }
+  };
+
+  // handle adding product to cart while cliking the buynow
+
+  const handleBuyNowProductData = async () => {
     try {
       let buyNowProductData = {
         user_id: userDetails._id,
         product_id: location.state,
         quantity: 1,
       };
-      const addingProductToCartResponse = await Cart(buyNowProductData);
+      const addingProductToCartResponse = await cart(buyNowProductData);
       if (
         addingProductToCartResponse.data.type === 'success' &&
         addingProductToCartResponse.status === 200
       ) {
-        console.log(addingProductToCartResponse,"product added");
-
+        console.log(addingProductToCartResponse, 'product added');
+        handleCartData();
         navigate('/checkout', { state: productData._id });
 
         console.log('addingProductToCartResponse', addingProductToCartResponse);
@@ -103,8 +137,6 @@ const ProductsReview = () => {
       console.log('error in adding to cart ');
     }
   };
-
-
 
   const productDetailSection = () => {
     return (
@@ -252,7 +284,7 @@ const ProductsReview = () => {
           <div className={styles.cartButtonSection}>
             <div
               className={styles.subtractButtonSection}
-              onClick={() => subtractFunction()}
+              // onClick={() => subtractFunction()}
             >
               <img src={subtractlogo} alt="" className={styles.imageWidth} />
             </div>
@@ -262,7 +294,7 @@ const ProductsReview = () => {
 
             <div
               className={styles.addButtonSection}
-              onClick={() => addFunction()}
+              // onClick={() => addFunction()}
             >
               <img src={addlogo} alt="" className={styles.imageWidth} />
             </div>
@@ -271,14 +303,14 @@ const ProductsReview = () => {
           <Button
             btName={productReviewPageStrings.productBtnName}
             btnStyles={styles.cartBtnStyles}
-            onClick={() => addFunction()}
+            onClick={() => handleaddToCart()}
           />
         )}
-
+        {/* buy now  */}
         <div
           className={styles.productDetailRightDesc}
           // onClick={() => navigate('/checkout')}
-          onClick={() => handleProductData()}
+          onClick={() => handleBuyNowProductData()}
         >
           <p className={styles.buyNowText}>
             {productReviewPageStrings.buyNowText}
