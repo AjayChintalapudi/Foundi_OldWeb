@@ -82,9 +82,9 @@ const ProductsReview = () => {
     // } catch (error) {}
   };
 
-  // handle adding product to cart while clicking the add to cart buttonn
+  // handle adding product to cart while clicking the add to cart button
 
-  const handleaddToCart = async () => {
+  const handleAddToCart = async () => {
     try {
       const addToCartData = {
         user_id: userDetails._id,
@@ -111,7 +111,7 @@ const ProductsReview = () => {
     }
   };
 
-  // handle adding product to cart while cliking the buynow
+  // handle adding product to cart while clicking the buyNow
 
   const handleBuyNowProductData = async () => {
     try {
@@ -303,7 +303,7 @@ const ProductsReview = () => {
           <Button
             btName={productReviewPageStrings.productBtnName}
             btnStyles={styles.cartBtnStyles}
-            onClick={() => handleaddToCart()}
+            onClick={() => handleAddToCart()}
           />
         )}
         {/* buy now  */}

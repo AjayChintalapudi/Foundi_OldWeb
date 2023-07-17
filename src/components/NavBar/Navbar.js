@@ -22,13 +22,16 @@ import { useMediaQuery } from '@mui/material';
 import { userProfileData } from 'constants/CommonData/CommonData';
 import { removeProductApi } from 'networking/Apis/removeProduct';
 import { CartDataContext } from 'providers/CartDataProvider';
+import { checkOut } from 'networking/Apis/checkOut';
 
 const NavBar = () => {
   const { userDetails, handleLogout } = useContext(UserDataContext);
-  const { cartData, setCartData, handleCartData } = useContext(CartDataContext);
+  const { cartData, handleCartData } = useContext(CartDataContext);
   const isWideScreen = useMediaQuery('(min-width: 867px)');
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
+
+  const [closePopUp, setClosePopUp] = useState(false);
 
   //useState
   const [popOver, setPopOver] = useState(false);
@@ -49,6 +52,8 @@ const NavBar = () => {
       alert('removing product from cart');
     }
   };
+
+  // proceed to payment page onclick the proceed to checkoutButton
 
   // adding of product
 
@@ -91,7 +96,10 @@ const NavBar = () => {
 
   const rightSection = () => {
     const authToken = localStorage.getItem('authToken');
-    const noOfCartItems=cartData?.reduce((sum,item)=>item.quantity+sum,0)
+    const noOfCartItems = cartData?.reduce(
+      (sum, item) => item.quantity + sum,
+      0
+    );
     return (
       <div className={styles.rightSection}>
         <p onClick={() => navigate('/events')} className={styles.eventsSection}>
@@ -214,6 +222,7 @@ const NavBar = () => {
                     btName={'Proceed to checkout'}
                     btnStyles={styles.checkOutStyles}
                     onClick={() => navigate('/checkout')}
+                    // onClick={() => handleCheckOut()}
                   />
                 </div>
               </div>

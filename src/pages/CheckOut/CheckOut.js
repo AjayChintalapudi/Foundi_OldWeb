@@ -4,10 +4,10 @@ import {
   checkoutleftarrow,
   checkouttickmark,
   checkoutuncheckmark,
+  dangercircle,
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
 import styles from './styles.module.css';
-import { Schema, string } from 'yup';
 import {
   checkOutData,
   orderedDetailsData,
@@ -34,6 +34,7 @@ import { checkOut } from 'networking/Apis/checkOut';
 import { useContext } from 'react';
 import { UserDataContext } from 'providers/UserDataProvider';
 import { getCartData } from 'networking/Apis/getCartData';
+import PhoneNumberInput from 'components/PhoneNumberInput/PhoneNumberInput';
 
 const CheckOut = () => {
   const { checkOutPageStrings } = strings;
@@ -41,6 +42,7 @@ const CheckOut = () => {
   const [couponCode, setCouponCode] = useState('');
   const { userDetails } = useContext(UserDataContext);
   const [productData, setProductData] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
   // navigation
 
   const navigate = useNavigate();
@@ -72,12 +74,12 @@ const CheckOut = () => {
       console.log('error in gettingCartDataResponse');
     }
   };
-
+  // getting cartData details
   useEffect(() => {
     handleGettingCartData();
   }, [userDetails]);
 
-  // product price caluculation
+  // product price calculation
 
   const productsPrice = productData?.reduce((sum, item) => {
     return (
@@ -102,20 +104,22 @@ const CheckOut = () => {
         setDiscountPrice(
           (Number(couponCode.slice(-2)) / 100) * (productsPrice + deliveryPrice)
         );
+        setErrorMessage('');
       } else {
         // if coupon code not entered
         setDiscountPrice(0);
-        alert(' coupan code not valid');
+        setErrorMessage(' coupon code not valid');
       }
     } else {
       //if coupon code empty
       setDiscountPrice(0);
-      alert('enter a valid coupan code');
+      setErrorMessage('enter a valid coupon code');
     }
   };
 
   const handleChange = (event) => {
     setCouponCode(event.target.value);
+    setErrorMessage('');
   };
 
   const priceDetailsData = [
@@ -149,7 +153,7 @@ const CheckOut = () => {
       .concat(emailValidationSchema)
       .concat(phoneNumberValidationSchema)
   );
-  // console.log('schema', schema);
+  // console.log('schema', schema)
   useEffect(() => {
     if (tab === 'contact') {
       setSchema(
@@ -186,27 +190,34 @@ const CheckOut = () => {
       handleButtonClick();
       if (tab === 'payment') {
         console.log(values);
-      }
-
-      let checkoutData = {
-        items: productData?.items || [],
-        shipping: {
-          address: {
-            address_text: values.doorAndAddress,
-            carrier: 'post',
-            door_number: values.doorAndAddress,
-            tracking_number: productData?._id,
-            zipcode: values.zipCode,
+        let checkoutData = {
+          items: productData && productData,
+          shipping: {
+            address: {
+              address_text: values.doorAndAddress,
+              carrier: 'post',
+              door_number: values.doorAndAddress,
+              tracking_number: productData?._id,
+              zipcode: values.zipCode,
+            },
           },
-        },
-        user_id: userDetails?._id,
-      };
-      console.log('checkoutData', checkoutData);
+          user_id: userDetails?._id,
+        };
+        console.log('checkoutData', checkoutData);
 
-      // const handleCheckOutResponse = await checkOut(checkoutData);
-      // console.log('handleCheckOutResponse', handleCheckOutResponse);
-    } catch (error) {}
-    // console.log("subbmited")
+        const handleCheckOutResponse = await checkOut(checkoutData);
+        if (
+          handleCheckOutResponse.data.type === 'success' &&
+          handleCheckOutResponse.status === 200
+        ) {
+          alert('goto payment page');
+          window.location.href = handleCheckOutResponse.data.data.url;
+          console.log('handleCheckOutResponse', handleCheckOutResponse);
+        }
+      }
+    } catch (error) {
+      console.log('submitted');
+    }
   };
 
   // formik handling
@@ -355,7 +366,7 @@ const CheckOut = () => {
             type="text"
             value={formik.values.firstName}
             onBlur={formik.handleBlur}
-            // onFocus=""
+            onFocus={() => formik.setFieldError('firstName', '')}
             onChange={formik.handleChange}
             error={formik.touched.firstName && formik.errors.firstName}
             placeholder={checkOutPageStrings.firstNamePlaceHolderText}
@@ -369,7 +380,7 @@ const CheckOut = () => {
             type="text"
             value={formik.values.lastName}
             onBlur={formik.handleBlur}
-            // onFocus=""
+            onFocus={() => formik.setFieldError('lastName', '')}
             onChange={formik.handleChange}
             error={formik.touched.lastName && formik.errors.lastName}
             placeholder={checkOutPageStrings.lastNamePlaceHolderText}
@@ -391,11 +402,11 @@ const CheckOut = () => {
           type="email"
           value={formik.values.email}
           onBlur={formik.handleBlur}
-          // onFocus=""
+          onFocus={() => formik.setFieldError('email', '')}
           onChange={formik.handleChange}
           error={formik.touched.email && formik.errors.email}
           placeholder={checkOutPageStrings.emailPlaceHolderText}
-          image={checkouttickmark}
+          image={formik.errors.email ? checkouttickmark : checkoutcheckmark}
           customInputStyles={styles.emailInputStyles}
         />
       </div>
@@ -406,21 +417,18 @@ const CheckOut = () => {
     return (
       <div className={styles.phoneNumberContainer}>
         <p className={styles.phoneNumber}>{checkOutPageStrings.phoneNumber}</p>
-        {/* <div className={styles.phoneNumberTexts}> */}
-        {/* <p className={styles.phoneCode}>+42</p>
-          <span className={styles.phoneRightBorder}></span> */}
-        <Input
+        {/* <Input
           name="phoneNumber"
           type="tel"
           value={formik.values.phoneNumber}
           onBlur={formik.handleBlur}
-          // onFocus=""
+          onFocus={() => formik.setFieldError('phoneNumber', '')}
           onChange={formik.handleChange}
           error={formik.touched.phoneNumber && formik.errors.phoneNumber}
           placeholder={checkOutPageStrings.phoneNumberPlaceHolderText}
           customInputStyles={styles.phoneNumberInputStyles}
-        />
-        {/* </div> */}
+        /> */}
+        <PhoneNumberInput/>
       </div>
     );
   };
@@ -475,11 +483,11 @@ const CheckOut = () => {
       <div className={styles.addressInputContainer}>
         <p className={styles.doorAddress}>{checkOutPageStrings.doorAddress}</p>
         <Input
-          name="doorAndAddress"
+          name="doorAdAddress"
           type="text"
           value={formik.values.doorAndAddress}
           onBlur={formik.handleBlur}
-          // onFocus=""
+          onFocus={() => formik.setFieldError('doorAndAddress', '')}
           onChange={formik.handleChange}
           error={formik.touched.doorAndAddress && formik.errors.doorAndAddress}
           placeholder={checkOutPageStrings.doorAddressPlaceHolderText}
@@ -499,7 +507,7 @@ const CheckOut = () => {
             type="text"
             value={formik.values.city}
             onBlur={formik.handleBlur}
-            // onFocus=""
+            onFocus={() => formik.setFieldError('city', '')}
             onChange={formik.handleChange}
             error={formik.touched.city && formik.errors.city}
             placeholder={checkOutPageStrings.cityNamePlaceHolderText}
@@ -515,7 +523,7 @@ const CheckOut = () => {
             type="text"
             value={formik.values.zipCode}
             onBlur={formik.handleBlur}
-            // onFocus=""
+            onFocus={() => formik.setFieldError('zipCode', '')}
             onChange={formik.handleChange}
             error={formik.touched.zipCode && formik.errors.zipCode}
             placeholder={checkOutPageStrings.zipCodePlaceHolderText}
@@ -537,7 +545,7 @@ const CheckOut = () => {
           type="text"
           value={formik.values.stateAndCountry}
           onBlur={formik.handleBlur}
-          // onFocus=""
+          onFocus={() => formik.setFieldError('stateAndCountry', '')}
           onChange={formik.handleChange}
           error={
             formik.touched.stateAndCountry && formik.errors.stateAndCountry
@@ -576,7 +584,7 @@ const CheckOut = () => {
           type="text"
           value={formik.values.cardHolderName}
           onBlur={formik.handleBlur}
-          // onFocus=""
+          onFocus={() => formik.setFieldError('cardHolderName', '')}
           onChange={formik.handleChange}
           error={formik.touched.cardHolderName && formik.errors.cardHolderName}
           placeholder={checkOutPageStrings.cardPlaceHolderText}
@@ -595,7 +603,7 @@ const CheckOut = () => {
           type="text"
           value={formik.values.debitAndCredit}
           onBlur={formik.handleBlur}
-          // onFocus=""
+          onFocus={() => formik.setFieldError('debitAndCredit', '')}
           onChange={formik.handleChange}
           error={formik.touched.debitAndCredit && formik.errors.debitAndCredit}
           placeholder={checkOutPageStrings.debitCardNamePlaceHolderText}
@@ -615,7 +623,7 @@ const CheckOut = () => {
             type="text"
             value={formik.values.expiryDate}
             onBlur={formik.handleBlur}
-            // onFocus=""
+            onFocus={() => formik.setFieldError('expiryDate', '')}
             onChange={formik.handleChange}
             error={formik.touched.expiryDate && formik.errors.expiryDate}
             placeholder={checkOutPageStrings.expiryMonthPlaceHolderText}
@@ -629,7 +637,7 @@ const CheckOut = () => {
             type="text"
             value={formik.values.cvv}
             onBlur={formik.handleBlur}
-            // onFocus=""
+            onFocus={() => formik.setFieldError('', '')}
             onChange={formik.handleChange}
             error={formik.touched.cvv && formik.errors.cvv}
             placeholder={checkOutPageStrings.cvvCodePlaceHolderText}
@@ -665,6 +673,7 @@ const CheckOut = () => {
       <div className={styles.orderDetails}>
         {productData &&
           productData.map((item, index) => {
+            // console.log('productData', productData);
             return (
               <div key={index} className={styles.orderedProductContainer}>
                 <div className={styles.orderdProductLeftImgBlock}>
@@ -703,7 +712,10 @@ const CheckOut = () => {
             type="text"
             value={couponCode}
             onChange={handleChange}
+            onFocus={() => setErrorMessage('')}
+            image={errorMessage ? dangercircle : checkoutcheckmark}
           />
+          <p className={styles.discountInputErrorMsg}>{errorMessage}</p>
           <Button
             btName={checkOutPageStrings.applyBtnName}
             btnStyles={styles.applyBtnStyles}

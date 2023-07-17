@@ -58,6 +58,7 @@
   --tomato: #d00a0a;
   --red: #ff0000;
   --backgroundModalColor: rgba(0, 0, 0, 0.5);
+  --lightBlue: rgba(68, 110, 220, 0.64);
 }
 
 *::-webkit-scrollbar {

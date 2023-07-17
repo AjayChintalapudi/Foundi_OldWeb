@@ -14,7 +14,7 @@
 .phoneCode {
   padding: 13px 16px;
   border-right: 1px solid var(--grey);
-  color: #231f20;
+  color: var(--aubergine);
   font-family: 'Medium', sans-serif;
   font-size: 18px;
   font-style: normal;
@@ -30,8 +30,13 @@
 .inputStyles {
   width: 100%;
 }
+
+.inputStyles:focus {
+  outline: none;
+  border: 1px solid var(--lightBlue);
+}
 .errorStyles {
-  color: red;
+  color: var(--red);
   font-size: 18px;
   font-family: 'Medium', sans-serif;
   line-height: 30px;

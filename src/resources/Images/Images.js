@@ -51,6 +51,7 @@ export { default as checkouttickmark } from 'assets/Images/checkouttickmark.svg'
 export { default as orderedproductimg } from 'assets/Images/orderedproductimg.svg';
 export { default as checkoutcheckmark } from 'assets/Images/checkoucheckmark.svg';
 export { default as checkoutuncheckmark } from 'assets/Images/checkoutuncheckmark.svg';
+export { default as dangercircle } from 'assets/Images/dangercircle.svg';
 
 // Sustainability Page Images
 

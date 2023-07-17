@@ -183,7 +183,7 @@
   border: 1px solid var(--lightgrey24);
   border-radius: 8px;
   padding: 13px 16px;
-  color: var(--grey);
+  /* color: var(--grey); */
   font-size: 18px;
   font-family: 'Regular', sans-serif;
   line-height: 30px;
@@ -235,13 +235,13 @@
 .continueBtnStyles {
   width: 265px;
   height: 56px;
-  color: #fff;
+  color: var(--white);
   font-size: 18px;
   font-family: 'Regular', sans-serif;
   font-weight: 500;
   line-height: 30px;
   border-radius: 8px;
-  background: #194f59;
+  background: var(--darkgreen);
   box-shadow: 1px 8px 24px 0px var(--lightgreyshadow);
   cursor: pointer;
 }
@@ -342,10 +342,17 @@
   border-radius: 8px;
   border: 1px solid var(--lightgrey24);
   background: var(--grey95);
-  color: var(--grey);
+  /* color: var(--grey); */
   font-size: 18px;
   font-family: 'Regular', sans-serif;
   line-height: 30px;
+}
+
+.discountInputErrorMsg {
+  font-family: 'Regular', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--red);
 }
 
 .applyBtnStyles {
@@ -635,20 +642,6 @@
     font-size: 14px;
     line-height: 20px;
   }
-
-  /* .firstNameinputStyles,
-  .lastNameinputStyles,
-  .emailInputStyles,
-  .cityNameinputStyles,
-  .zipCodeinputStyles,
-  .doorNoInputStyles,
-  .stateAndCityInputStyles,
-  .cardHolderInputStyles,
-  .cardInputStyles,
-  .monthInputStyles,
-  .dateNameinputStyles {
-    width: 100%;
-  } */
 
   .emailInputStyles,
   .doorNoInputStyles,

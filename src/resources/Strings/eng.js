@@ -139,6 +139,18 @@ const checkOutPageStrings = {
   addressHeading: 'Address',
   paymentHeading: 'Payment',
   price: 'Price',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  phoneNumber: 'phoneNumber',
+  doorAndAddress: 'doorAndAddress',
+  city: 'city',
+  zipCode: 'zipCode',
+  stateAndCountry: 'stateAndCountry',
+  cardHolderName: 'cardHolderName',
+  debitAndCredit: 'debitAndCredit',
+  expiryDate: 'expiryDate',
+  cvv: 'cvv',
 
   // Contact Details
 
