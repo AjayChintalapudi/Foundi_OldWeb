@@ -358,7 +358,7 @@ const CheckOut = () => {
 
   const firstAndLastNameInputSection = () => {
     return (
-      <div className={styles.fisrtAndLastNameContainer}>
+      <div className={styles.firstAndLastNameContainer}>
         <div className={styles.firstNameContainer}>
           <p className={styles.firstName}>{checkOutPageStrings.firstName}</p>
           <Input
@@ -406,7 +406,7 @@ const CheckOut = () => {
           onChange={formik.handleChange}
           error={formik.touched.email && formik.errors.email}
           placeholder={checkOutPageStrings.emailPlaceHolderText}
-          image={formik.errors.email ? checkouttickmark : checkoutcheckmark}
+          image={formik.errors.email ? checkouttickmark : checkoutuncheckmark}
           customInputStyles={styles.emailInputStyles}
         />
       </div>
@@ -428,7 +428,17 @@ const CheckOut = () => {
           placeholder={checkOutPageStrings.phoneNumberPlaceHolderText}
           customInputStyles={styles.phoneNumberInputStyles}
         /> */}
-        <PhoneNumberInput/>
+        <PhoneNumberInput
+          name="phoneNumber"
+          type="tel"
+          value={formik.values.phoneNumber}
+          onBlur={formik.handleBlur}
+          onFocus={() => formik.setFieldError('phoneNumber', '')}
+          onChange={formik.handleChange}
+          error={formik.touched.phoneNumber && formik.errors.phoneNumber}
+          placeholder={checkOutPageStrings.phoneNumberPlaceHolderText}
+          customInputStyles={styles.phoneNumberInputStyles}
+        />
       </div>
     );
   };
@@ -483,7 +493,7 @@ const CheckOut = () => {
       <div className={styles.addressInputContainer}>
         <p className={styles.doorAddress}>{checkOutPageStrings.doorAddress}</p>
         <Input
-          name="doorAdAddress"
+          name="doorAndAddress"
           type="text"
           value={formik.values.doorAndAddress}
           onBlur={formik.handleBlur}

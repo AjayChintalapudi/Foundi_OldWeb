@@ -122,7 +122,7 @@ const NavBar = () => {
             triggerElement={
               <>
                 <img src={cartImg} alt="" className={styles.imageWidth} />
-                <p>{noOfCartItems}</p>
+                {authToken ? <p>{noOfCartItems}</p> : ''}
               </>
             }
             content={
@@ -142,34 +142,39 @@ const NavBar = () => {
                   </div>
 
                   <div className={styles.shoppingBottomSection}>
-                    {cartData?.map((item, index) => {
-                      return (
-                        <div key={index} className={styles.cartStylesSection}>
-                          <div className={styles.shoppingImgSection}>
-                            <img
-                              src={item.product.images.thumbnail}
-                              alt=""
-                              className={styles.imageWidth}
-                            />
-                          </div>
-                          <div className={styles.shoppingRightSection}>
-                            <div className={styles.textSection}>
-                              <h4 className={styles.productHeader}>
-                                {item.product.name}
-                              </h4>
-                              <p className={styles.priceSection}>
-                                Price - &nbsp;
-                                <span className={styles.priceSection}>
-                                  {item.product.price.currency}
-                                </span>
-                                <span className={styles.priceSection}>
-                                  {item.product.price.selling_price} X
-                                  {item.quantity}
-                                </span>
-                              </p>
-                            </div>
-                            <div className={styles.removeSection}>
-                              {/* <div className={styles.addSection}>
+                    {authToken ? (
+                      <>
+                        {cartData?.map((item, index) => {
+                          return (
+                            <div
+                              key={index}
+                              className={styles.cartStylesSection}
+                            >
+                              <div className={styles.shoppingImgSection}>
+                                <img
+                                  src={item.product.images.thumbnail}
+                                  alt=""
+                                  className={styles.imageWidth}
+                                />
+                              </div>
+                              <div className={styles.shoppingRightSection}>
+                                <div className={styles.textSection}>
+                                  <h4 className={styles.productHeader}>
+                                    {item.product.name}
+                                  </h4>
+                                  <p className={styles.priceSection}>
+                                    Price - &nbsp;
+                                    <span className={styles.priceSection}>
+                                      {item.product.price.currency}
+                                    </span>
+                                    <span className={styles.priceSection}>
+                                      {item.product.price.selling_price} X
+                                      {item.quantity}
+                                    </span>
+                                  </p>
+                                </div>
+                                <div className={styles.removeSection}>
+                                  {/* <div className={styles.addSection}>
                                 <div
                                   className={styles.subtractSection}
                                   onClick={() => subtractFunction(item.id)}
@@ -197,23 +202,27 @@ const NavBar = () => {
                                   />
                                 </div>
                               </div> */}
-                              <div
-                                className={styles.deleteSection}
-                                onClick={() =>
-                                  removeProductFromCart(item.product._id)
-                                }
-                              >
-                                <img
-                                  src={deleteIcon}
-                                  alt=""
-                                  className={styles.imageWidth}
-                                />
+                                  <div
+                                    className={styles.deleteSection}
+                                    onClick={() =>
+                                      removeProductFromCart(item.product._id)
+                                    }
+                                  >
+                                    <img
+                                      src={deleteIcon}
+                                      alt=""
+                                      className={styles.imageWidth}
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      );
-                    })}
+                          );
+                        })}
+                      </>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </div>
 
@@ -222,7 +231,6 @@ const NavBar = () => {
                     btName={'Proceed to checkout'}
                     btnStyles={styles.checkOutStyles}
                     onClick={() => navigate('/checkout')}
-                    // onClick={() => handleCheckOut()}
                   />
                 </div>
               </div>

@@ -53,9 +53,10 @@ const ProductsReview = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (location.state) {
-      userDetails && productDetails(location.state);
+      // userDetails && productDetails(location.state);
+      productDetails(location.state);
     }
-  }, [location.state]);
+  }, [location.state, userDetails]);
 
   //api's
   const productDetails = async (id) => {
@@ -90,7 +91,7 @@ const ProductsReview = () => {
         user_id: userDetails._id,
         product_id: location.state,
       };
-      const existedProduct = cartData.find(
+      const existedProduct = cartData?.find(
         (item) => item.product._id === productData._id
       );
       console.log('existedProduct', existedProduct);

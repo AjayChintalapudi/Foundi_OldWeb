@@ -12,7 +12,7 @@ export const UserDataProvider = (props) => {
     localStorage.setItem('user', JSON.stringify(data.user));
   };
 
-  // onload the page getting userdata
+  // onload the page getting userData
 
   useEffect(() => {
     let userDetails = localStorage.getItem('user');

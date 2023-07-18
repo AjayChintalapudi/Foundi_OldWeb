@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from 'pages/Home/Home';
 import Events from 'pages/Events/Events';
 import About from 'pages/About/About';
@@ -12,6 +12,8 @@ import ProductsReview from 'pages/ProductsReview/ProductsReview';
 import Sutainability from 'pages/Sustainability/Sutainability';
 import SnoProductDetails from 'pages/SnoProductDetails/SnoProductDetails';
 import Chat from 'pages/Chat/Chat';
+import Protected from './Protected';
+import { useState } from 'react';
 
 const AppRoutes = () => {
   return (
@@ -24,7 +26,14 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/productreview" element={<ProductsReview />}></Route>
-        <Route path="/checkout" element={<CheckOut />}></Route>
+        <Route
+          path="/checkout"
+          element={
+            <Protected isSignedIn={isSignedIn}>
+              <CheckOut />
+            </Protected>
+          }
+        ></Route>
         <Route path="/forgotpassword" element={<ForGotPassWord />}></Route>
         <Route path="/sustainability" element={<Sutainability />}></Route>
         <Route path="/privacypolicy" element={<PrivacyPolicy />}></Route>

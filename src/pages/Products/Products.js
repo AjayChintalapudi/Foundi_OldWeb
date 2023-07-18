@@ -23,7 +23,7 @@ const Products = () => {
   const productsResponse = async () => {
     try {
       const response = await EcomProducts();
-      console.log(response)
+      console.log(response);
       if (response.status === 200 && response.data.type === 'success') {
         setProductDetails(response.data.data);
       }

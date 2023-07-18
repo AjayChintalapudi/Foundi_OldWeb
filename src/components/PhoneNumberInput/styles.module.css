@@ -1,33 +1,53 @@
-.phoneInputContainer {
-  display: flex;
-  flex-direction: row;
-  background-color: var(--white);
-  border: 1px solid var(--lightgrey24);
-  border-radius: 8px;
-}
-
-.phoneInputContainer:focus{
-    outline: none;
-}
-
-.phoneCodeBtnStyles {
+.input {
+  width: 593px;
   height: 56px;
-  padding: 13px 16px;
   border-radius: 8px;
-  font-size: 18px;
+  border: none;
+  padding: 13px 16px;
+  font-size: 16px;
+  outline: none;
+  color: var(--aubergine);
   font-family: 'Regular', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
   line-height: 30px;
 }
 
-.phoneNumberInputStyles {
-  width: 520px;
-  height: 56px;
-  /* outline: none; */
-  /* border: 1px solid var(--lightgrey24); */
-  border-radius: 8px; 
-  border: none;
+.input:focus {
+  border: 1px solid var(--lightblue);
+}
+
+.search {
+  border: 1px solid var(--lightgrey24);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+}
+
+.phoneCode {
+  position: relative;
   padding: 13px 16px;
+  color: var(--aubergine);
+  font-family: 'Medium', sans-serif;
   font-size: 18px;
-  font-family: 'Regular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.rightBorder {
+  border-right: 1px solid var(--lightgrey24);
+  height: 36px;
+}
+
+.errorMsg {
+  color: var(--red);
+  font-family: 'Medium', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
   line-height: 30px;
 }

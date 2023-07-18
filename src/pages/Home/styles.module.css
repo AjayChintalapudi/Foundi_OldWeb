@@ -240,6 +240,7 @@
   border-right: none;
   border-top: none;
   padding-bottom: 12px;
+  outline: none;
 }
 
 .returnInputStyles:focus {
