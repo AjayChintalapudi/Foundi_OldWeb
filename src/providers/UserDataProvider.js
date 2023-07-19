@@ -5,7 +5,14 @@ export const UserDataContext = createContext();
 export const UserDataProvider = (props) => {
   const [userDetails, setUserDetails] = useState(null);
 
-  // onload the page getting userdata
+  //   set user details
+  const setUserData = (data) => {
+    console.log('signUpResponse', data);
+    setUserDetails(data.user);
+    localStorage.setItem('user', JSON.stringify(data.user));
+  };
+
+  // onload the page getting userData
 
   useEffect(() => {
     let userDetails = localStorage.getItem('user');
@@ -13,12 +20,6 @@ export const UserDataProvider = (props) => {
       setUserDetails(JSON.parse(userDetails));
     }
   }, []);
-
-  //   set user details
-  const setUserData = (user) => {
-    setUserDetails(user);
-    localStorage.setItem('user', JSON.stringify(user));
-  };
 
   // log out user
   const handleLogout = () => {

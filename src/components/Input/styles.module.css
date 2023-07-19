@@ -2,6 +2,26 @@
   position: relative;
   width: 100%;
 }
+
+.inputSubContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+.phoneCode {
+  padding: 13px 16px;
+  border-right: 1px solid var(--grey);
+  color: var(--aubergine);
+  font-family: 'Medium', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
 .inputIcon {
   position: absolute;
   right: 16px;
@@ -10,8 +30,13 @@
 .inputStyles {
   width: 100%;
 }
+
+.inputStyles:focus {
+  outline: none;
+  border: 1px solid var(--lightBlue);
+}
 .errorStyles {
-  color: red;
+  color: var(--red);
   font-size: 18px;
   font-family: 'Medium', sans-serif;
   line-height: 30px;

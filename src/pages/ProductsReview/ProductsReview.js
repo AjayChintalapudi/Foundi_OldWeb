@@ -15,28 +15,31 @@ import styles from './styles.module.css';
 import { productReviewData } from 'constants/CommonData/CommonData';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { ProductDetails } from 'networking/Apis/singleproduct';
+import {
+  ProductDetails,
+  individualProduct,
+} from 'networking/Apis/singleproduct';
 import { FeedBack } from 'networking/Apis/feedback';
-import { Cart } from 'networking/Apis/cart';
 import { UserDataContext } from 'providers/UserDataProvider';
-import { AppDataContext } from 'providers/AppDataProvider';
+import { cart } from 'networking/Apis/cart';
+import { CartDataContext } from 'providers/CartDataProvider';
 
 const ProductsReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userDetails } = useContext(UserDataContext);
+
   const { productReviewPageStrings } = strings;
+  const { userDetails } = useContext(UserDataContext);
+  const { cartData, handleCartData } = useContext(CartDataContext);
   //state
   const [productData, setProductData] = useState();
-
-  const [count, setCount] = useState(false);
+  const [productCount, setProductCount] = useState(0);
   const [feedback, setFeedback] = useState({
     rating: '',
     feedbackDescp: '',
   });
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const { setCartData, cartData } = useContext(AppDataContext);
+  // const { setCartData, cartData } = useContext(AppDataContext);
 
   const cartFun = () => {
     setCount(true);
@@ -50,17 +53,10 @@ const ProductsReview = () => {
       setCartData([...cartData, productData]);
     }
   };
-  const subtractProduct = () => {
-    if (cartData.find((item) => item._id === productData._id)) {
-      if (productData.quantity === 1) {
-        setCount(false);
-        const data = cartData.filter((item) => !(item._id === productData._id));
-        setCartData([...data]);
-      } else {
-        let data = cartData.find((item) => item._id === productData._id);
-        data.quantity = data.quantity - 1;
-        setCartData([...cartData]);
-      }
+
+  const subtractFunction = () => {
+    if (productCount > 0) {
+      setProductCount(productCount - 1);
     }
   };
 
@@ -68,31 +64,26 @@ const ProductsReview = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (location.state) {
+      // userDetails && productDetails(location.state);
       productDetails(location.state);
     }
-  }, [location.state]);
+  }, [location.state, userDetails]);
 
   //api's
   const productDetails = async (id) => {
     try {
-      const response = await ProductDetails(id);
+      const response = await individualProduct(id);
       if (response.status === 200 && response.data.type === 'success') {
-        console.log(response.data.data, '....singleproduct');
-
-        const existedInCartData = cartData.find(
-          (item) => item._id === response.data.data._id
-        );
-        if (existedInCartData) {
-          setCount(true);
-          setProductData(existedInCartData);
-        } else {
-          setProductData(response.data.data);
-        }
+        // console.log(response, '....singleproduct');
+        setProductData(response.data.data);
       }
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  // handle Feedback
+
   const handleFeedback = async (data) => {
     console.log(feedback, '....');
     // try {
@@ -118,6 +109,62 @@ const ProductsReview = () => {
   //     console.log(error);
   //   }
   // };
+
+  // handle adding product to cart while clicking the add to cart button
+
+  const handleAddToCart = async () => {
+    try {
+      const addToCartData = {
+        user_id: userDetails._id,
+        product_id: location.state,
+      };
+      const existedProduct = cartData?.find(
+        (item) => item.product._id === productData._id
+      );
+      console.log('existedProduct', existedProduct);
+      const quantity = existedProduct ? existedProduct.quantity + 1 : 1;
+      console.log('quantity', quantity);
+      const updatedProduct = { ...addToCartData, quantity: quantity };
+      console.log('updatedProduct', updatedProduct);
+      const addToCartResponse = await cart(updatedProduct);
+      if (
+        addToCartResponse.data.type === 'success' &&
+        addToCartResponse.status === 200
+      ) {
+        alert('product added to cart');
+        handleCartData();
+      }
+    } catch (error) {
+      console.log('error in adding handle add to cart');
+    }
+  };
+
+  // handle adding product to cart while clicking the buyNow
+
+  const handleBuyNowProductData = async () => {
+    try {
+      let buyNowProductData = {
+        user_id: userDetails._id,
+        product_id: location.state,
+        quantity: 1,
+      };
+      const addingProductToCartResponse = await cart(buyNowProductData);
+      if (
+        addingProductToCartResponse.data.type === 'success' &&
+        addingProductToCartResponse.status === 200
+      ) {
+        console.log(addingProductToCartResponse, 'product added');
+        handleCartData();
+        navigate('/checkout', { state: productData._id });
+
+        console.log('addingProductToCartResponse', addingProductToCartResponse);
+      } else {
+        console.log('error in handling product api response');
+      }
+    } catch {
+      console.log('error in adding to cart ');
+    }
+  };
 
   const productDetailSection = () => {
     return (
@@ -263,21 +310,20 @@ const ProductsReview = () => {
       <div className={styles.productDetailRightBottomSection}>
         {count ? (
           <div className={styles.cartButtonSection}>
-            <div className={styles.subtractButtonSection}>
-              <img
-                src={subtractlogo}
-                alt=""
-                className={styles.imageWidth}
-                onClick={() => {
-                  subtractProduct();
-                }}
-              />
+            <div
+              className={styles.subtractButtonSection}
+              // onClick={() => subtractFunction()}
+            >
+              <img src={subtractlogo} alt="" className={styles.imageWidth} />
             </div>
             <div className={styles.numTextSection}>
               <p className={styles.numText}>{productData.quantity}</p>
             </div>
 
-            <div className={styles.addButtonSection} onClick={() => cartFun()}>
+            <div
+              className={styles.addButtonSection}
+              // onClick={() => addFunction()}
+            >
               <img src={addlogo} alt="" className={styles.imageWidth} />
             </div>
           </div>
@@ -285,13 +331,14 @@ const ProductsReview = () => {
           <Button
             btName={productReviewPageStrings.productBtnName}
             btnStyles={styles.cartBtnStyles}
-            onClick={() => cartFun()}
+            onClick={() => handleAddToCart()}
           />
         )}
-
+        {/* buy now  */}
         <div
           className={styles.productDetailRightDesc}
-          onClick={() => navigate('/checkout')}
+          // onClick={() => navigate('/checkout')}
+          onClick={() => handleBuyNowProductData()}
         >
           <p className={styles.buyNowText}>
             {productReviewPageStrings.buyNowText}

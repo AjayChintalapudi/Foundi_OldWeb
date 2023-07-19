@@ -1,0 +1,120 @@
+.userProfileSubContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 24px;
+}
+.userProfileBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.userProfileInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.userPorfileInfoLeftBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.userProfileImgBlock {
+  width: 40px;
+  height: 40px;
+}
+
+.imageWidth {
+  width: 100%;
+  height: 100%;
+}
+
+.userName,
+.userProfileOptionsHeading,
+.userFeatureHeading {
+  color: var(--lightgrey72);
+  font-family: 'Regular', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+.userProfileInfoRightImgBlock {
+  cursor: pointer;
+}
+.userProfileOptionsHeading {
+  cursor: pointer;
+}
+
+.userProfileHomeCloseImgBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.homeImgBlock,
+.closeImgBlock,
+.UserProfileHambergerIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 40px;
+  background: #194f59;
+  box-shadow: 1px 8px 24px 0px var(--lightgreyshadow);
+  padding: 8px;
+  cursor: pointer;
+}
+.closeImgBlock,
+.UserProfileHambergerIcon {
+  background-color: var(--white);
+}
+.userProfileFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  border-radius: 8px;
+  border: 1px solid rgba(35, 31, 32, 0.24);
+  background: #fff;
+  padding: 24px;
+}
+
+.userFeaturesBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.userFeaturesImgBlock {
+  width: 24px;
+  height: 24px;
+}
+
+.userProfileOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Media Query Start */
+
+@media screen and (max-width: 550px) {
+  .userName,
+  .userProfileOptionsHeading,
+  .userFeatureHeading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .homeImgBlock,
+  .closeImgBlock,
+  .UserProfileHambergerIcon {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* Media Query End */

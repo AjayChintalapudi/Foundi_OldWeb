@@ -34,6 +34,8 @@
   --lightgrey24: rgba(35, 31, 32, 0.24);
   --lightgrey32: #cac9ca;
   --lightgrey42: #f2f2f2;
+  --lightgrey52: #e6e6e7;
+  --lightgrey62: #ccc;
   --darkgreen: #194f59;
   --lightgrey24: rgba(35, 31, 32, 0.24);
   --lightgrey72: rgba(35, 31, 32, 0.72);
@@ -44,6 +46,7 @@
   --lightgreyshadow: rgba(25, 79, 89, 0.08);
   --lightgreyshadow24: rgba(25, 79, 89, 0.24);
   --whitetransparent24: rgba(255, 255, 255, 0.24);
+  --whitetransparent32: rgba(0, 0, 0, 0.2);
   --skyblue: #c8d5d7;
   --lightblue: #446edc;
   --lightgreyshadow56: rgba(25, 79, 89, 0.56);
@@ -53,7 +56,9 @@
   --green20: #ddf2df;
   --green10: #009f10;
   --tomato: #d00a0a;
+  --red: #ff0000;
   --backgroundModalColor: rgba(0, 0, 0, 0.5);
+  --lightBlue: rgba(68, 110, 220, 0.64);
 }
 
 *::-webkit-scrollbar {

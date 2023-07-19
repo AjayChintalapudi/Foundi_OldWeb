@@ -1,28 +1,247 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   checkoutcheckmark,
   checkoutleftarrow,
   checkouttickmark,
   checkoutuncheckmark,
+  dangercircle,
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
 import styles from './styles.module.css';
-import { string } from 'yup';
 import {
   checkOutData,
   orderedDetailsData,
-  priceDetailsData,
 } from 'constants/CommonData/CommonData';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
+import { useFormik } from 'formik';
+import {
+  cardHolderNameValidationSchema,
+  cityValidationSchema,
+  cvvValidationSchema,
+  debitAndCreditValidationSchema,
+  doorAndAddressValidationSchema,
+  emailValidationSchema,
+  firstNameValidationSchema,
+  lastNameValidationSchema,
+  monthAndYearValidationSchema,
+  phoneNumberValidationSchema,
+  stateAndCountryValidationSchema,
+  zipCodeValidationSchema,
+} from 'validators/Validators';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { checkOut } from 'networking/Apis/checkOut';
+import { useContext } from 'react';
+import { UserDataContext } from 'providers/UserDataProvider';
+import { getCartData } from 'networking/Apis/getCartData';
+import PhoneNumberInput from 'components/PhoneNumberInput/PhoneNumberInput';
 
 const CheckOut = () => {
   const { checkOutPageStrings } = strings;
+  const [discountPrice, setDiscountPrice] = useState(0);
+  const [couponCode, setCouponCode] = useState('');
+  const { userDetails } = useContext(UserDataContext);
+  const [productData, setProductData] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
+  // navigation
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // handling getting cart data
+
+  const handleGettingCartData = async () => {
+    try {
+      const cartProductsResponse = await getCartData(userDetails._id);
+      console.log('cartProductsResponse', cartProductsResponse);
+      if (
+        cartProductsResponse.data.type === 'success' &&
+        cartProductsResponse.status === 200
+      ) {
+        if (location.state) {
+          const existedProductInCart =
+            cartProductsResponse.data.data.items.filter(
+              (item) => item.product._id === location.state
+            );
+          setProductData(existedProductInCart);
+        } else {
+          setProductData(cartProductsResponse.data.data.items);
+        }
+      } else {
+        console.log('product not found in cart');
+      }
+    } catch {
+      console.log('error in gettingCartDataResponse');
+    }
+  };
+  // getting cartData details
+  useEffect(() => {
+    handleGettingCartData();
+  }, [userDetails]);
+
+  // product price calculation
+
+  const productsPrice = productData?.reduce((sum, item) => {
+    return (
+      Number(item.product.price.selling_price) *
+        (item.quantity ? item.quantity : 1) +
+      sum
+    );
+  }, 0);
+  const deliveryPrice = productsPrice > 1000 ? 0 : 50;
+  const taxPrice = Number((productsPrice * 0.05).toFixed(2));
+  const totalPrice = productsPrice + deliveryPrice + taxPrice - discountPrice;
+
+  // coupon codes
+  const coupons = ['AJD10', 'OEA05', '6HF15'];
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (couponCode) {
+      // if any coupon code entered
+      if (coupons.includes(couponCode)) {
+        // if coupon code valid
+        setDiscountPrice(
+          (Number(couponCode.slice(-2)) / 100) * (productsPrice + deliveryPrice)
+        );
+        setErrorMessage('');
+      } else {
+        // if coupon code not entered
+        setDiscountPrice(0);
+        setErrorMessage(' coupon code not valid');
+      }
+    } else {
+      //if coupon code empty
+      setDiscountPrice(0);
+      setErrorMessage('enter a valid coupon code');
+    }
+  };
+
+  const handleChange = (event) => {
+    setCouponCode(event.target.value);
+    setErrorMessage('');
+  };
+
+  const priceDetailsData = [
+    {
+      productChargeDesc: 'Price of added products -',
+      price: productsPrice,
+    },
+    {
+      productChargeDesc: 'Delivery charges -',
+      price: deliveryPrice,
+    },
+    {
+      productChargeDesc: 'Tax & extras -',
+      price: taxPrice,
+    },
+    {
+      productChargeDesc: 'Coupon discount price-',
+      price: discountPrice,
+    },
+  ];
   // Title Section Tab Change [contact-address-payment]
 
   const [tab, setTab] = useState('contact');
   const [showContent, setShowContent] = useState(true);
+
+  // Keep Validation Schemas while changing the Tabs
+
+  const [schema, setSchema] = useState(
+    firstNameValidationSchema
+      .concat(lastNameValidationSchema)
+      .concat(emailValidationSchema)
+      .concat(phoneNumberValidationSchema)
+  );
+  // console.log('schema', schema)
+  useEffect(() => {
+    if (tab === 'contact') {
+      setSchema(
+        firstNameValidationSchema
+          .concat(lastNameValidationSchema)
+          .concat(emailValidationSchema)
+          .concat(phoneNumberValidationSchema)
+      );
+    }
+    if (tab === 'address') {
+      setSchema(
+        schema
+          .concat(doorAndAddressValidationSchema)
+          .concat(cityValidationSchema)
+          .concat(zipCodeValidationSchema)
+          .concat(stateAndCountryValidationSchema)
+      );
+    }
+    if (tab === 'payment') {
+      setSchema(
+        schema
+          .concat(cardHolderNameValidationSchema)
+          .concat(debitAndCreditValidationSchema)
+          .concat(monthAndYearValidationSchema)
+          .concat(cvvValidationSchema)
+      );
+    }
+  }, [tab]);
+
+  // handling checkout and buying of product
+
+  const handleCheckOut = async (values) => {
+    try {
+      handleButtonClick();
+      if (tab === 'payment') {
+        console.log(values);
+        let checkoutData = {
+          items: productData && productData,
+          shipping: {
+            address: {
+              address_text: values.doorAndAddress,
+              carrier: 'post',
+              door_number: values.doorAndAddress,
+              tracking_number: productData?._id,
+              zipcode: values.zipCode,
+            },
+          },
+          user_id: userDetails?._id,
+        };
+        console.log('checkoutData', checkoutData);
+
+        const handleCheckOutResponse = await checkOut(checkoutData);
+        if (
+          handleCheckOutResponse.data.type === 'success' &&
+          handleCheckOutResponse.status === 200
+        ) {
+          alert('goto payment page');
+          window.location.href = handleCheckOutResponse.data.data.url;
+          console.log('handleCheckOutResponse', handleCheckOutResponse);
+        }
+      }
+    } catch (error) {
+      console.log('submitted');
+    }
+  };
+
+  // formik handling
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+      doorAndAddress: '',
+      city: '',
+      zipCode: '',
+      stateAndCountry: '',
+      cardHolderName: '',
+      debitAndCredit: '',
+      expiryDate: '',
+      cvv: '',
+    },
+    validationSchema: schema,
+    onSubmit: handleCheckOut,
+  });
+
+  // getting product  data from product review page
 
   const checkOutPageSection = () => {
     return (
@@ -36,7 +255,10 @@ const CheckOut = () => {
   const checkOutPageTitleSection = () => {
     return (
       <div className={styles.checkOutPageTitleBlock}>
-        <div className={styles.checkOutBackArrow}>
+        <div
+          className={styles.checkOutBackArrow}
+          onClick={() => navigate('/productreview')}
+        >
           <img src={checkoutleftarrow} alt=" " className={styles.imageWidth} />
         </div>
         <h3 className={styles.checkOutTitle}>
@@ -60,13 +282,13 @@ const CheckOut = () => {
       <div className={styles.checkOutPageDetailsLeftBlock}>
         {checkOutPageLeftHeadingsSection()}
         {showContent && (
-          <>
+          <form onSubmit={formik.handleSubmit} className={styles.formContainer}>
             {tab === 'contact' && checkOutPageLeftContactInputsSection()}
             {tab === 'address' && checkOutPageLeftAddressInputsSection()}
             {tab === 'payment' && checkOutPageLeftPaymentInputsSection()}
-          </>
+            {checkOutLeftButtonSection()}
+          </form>
         )}
-        {checkOutLeftButtonSection()}
       </div>
     );
   };
@@ -136,10 +358,17 @@ const CheckOut = () => {
 
   const firstAndLastNameInputSection = () => {
     return (
-      <div className={styles.fisrtAndLastNameContainer}>
+      <div className={styles.firstAndLastNameContainer}>
         <div className={styles.firstNameContainer}>
           <p className={styles.firstName}>{checkOutPageStrings.firstName}</p>
           <Input
+            name="firstName"
+            type="text"
+            value={formik.values.firstName}
+            onBlur={formik.handleBlur}
+            onFocus={() => formik.setFieldError('firstName', '')}
+            onChange={formik.handleChange}
+            error={formik.touched.firstName && formik.errors.firstName}
             placeholder={checkOutPageStrings.firstNamePlaceHolderText}
             customInputStyles={styles.firstNameinputStyles}
           />
@@ -147,6 +376,13 @@ const CheckOut = () => {
         <div className={styles.lastNameContainer}>
           <p className={styles.lastName}>{checkOutPageStrings.lastName}</p>
           <Input
+            name="lastName"
+            type="text"
+            value={formik.values.lastName}
+            onBlur={formik.handleBlur}
+            onFocus={() => formik.setFieldError('lastName', '')}
+            onChange={formik.handleChange}
+            error={formik.touched.lastName && formik.errors.lastName}
             placeholder={checkOutPageStrings.lastNamePlaceHolderText}
             customInputStyles={styles.lastNameinputStyles}
           />
@@ -162,8 +398,15 @@ const CheckOut = () => {
           {checkOutPageStrings.emailAddress}
         </p>
         <Input
+          name="email"
+          type="email"
+          value={formik.values.email}
+          onBlur={formik.handleBlur}
+          onFocus={() => formik.setFieldError('email', '')}
+          onChange={formik.handleChange}
+          error={formik.touched.email && formik.errors.email}
           placeholder={checkOutPageStrings.emailPlaceHolderText}
-          image={checkouttickmark}
+          image={formik.errors.email ? checkouttickmark : checkoutuncheckmark}
           customInputStyles={styles.emailInputStyles}
         />
       </div>
@@ -174,33 +417,45 @@ const CheckOut = () => {
     return (
       <div className={styles.phoneNumberContainer}>
         <p className={styles.phoneNumber}>{checkOutPageStrings.phoneNumber}</p>
-        <div className={styles.phoneNumberTexts}>
-          <p className={styles.phoneCode}>+42</p>
-          <span className={styles.phoneRightBorder}></span>
-          <Input
-            placeholder={checkOutPageStrings.phoneNumberPlaceHolderText}
-            customInputStyles={styles.phoneNumberInputStyles}
-          />
-        </div>
+        {/* <Input
+          name="phoneNumber"
+          type="tel"
+          value={formik.values.phoneNumber}
+          onBlur={formik.handleBlur}
+          onFocus={() => formik.setFieldError('phoneNumber', '')}
+          onChange={formik.handleChange}
+          error={formik.touched.phoneNumber && formik.errors.phoneNumber}
+          placeholder={checkOutPageStrings.phoneNumberPlaceHolderText}
+          customInputStyles={styles.phoneNumberInputStyles}
+        /> */}
+        <PhoneNumberInput
+          name="phoneNumber"
+          type="tel"
+          value={formik.values.phoneNumber}
+          onBlur={formik.handleBlur}
+          onFocus={() => formik.setFieldError('phoneNumber', '')}
+          onChange={formik.handleChange}
+          error={formik.touched.phoneNumber && formik.errors.phoneNumber}
+          placeholder={checkOutPageStrings.phoneNumberPlaceHolderText}
+          customInputStyles={styles.phoneNumberInputStyles}
+        />
       </div>
     );
   };
 
-  const checkOutLeftButtonSection = () => {
-    const handleButtonClick = () => {
-      if (tab === 'contact') {
-        setTab('address');
-      } else if (tab === 'address') {
-        setTab('payment');
-      } else {
-        // setTab('contact');
-      }
-      setShowContent(true);
-    };
+  // handle button click to change the tab[contact -address- payment]
 
+  const handleButtonClick = () => {
+    if (tab === 'contact') {
+      setTab('address');
+    } else if (tab === 'address') {
+      setTab('payment');
+    } else {
+    }
+  };
+  const checkOutLeftButtonSection = () => {
     return (
       <Button
-        // btName={checkOutPageStrings.continueBtnText}
         btName={
           tab === 'contact'
             ? checkOutPageStrings.continueBtnName
@@ -209,7 +464,7 @@ const CheckOut = () => {
             : checkOutPageStrings.purchaseBtnName
         }
         btnStyles={styles.continueBtnStyles}
-        onClick={handleButtonClick}
+        type="submit"
       />
     );
   };
@@ -238,6 +493,13 @@ const CheckOut = () => {
       <div className={styles.addressInputContainer}>
         <p className={styles.doorAddress}>{checkOutPageStrings.doorAddress}</p>
         <Input
+          name="doorAndAddress"
+          type="text"
+          value={formik.values.doorAndAddress}
+          onBlur={formik.handleBlur}
+          onFocus={() => formik.setFieldError('doorAndAddress', '')}
+          onChange={formik.handleChange}
+          error={formik.touched.doorAndAddress && formik.errors.doorAndAddress}
           placeholder={checkOutPageStrings.doorAddressPlaceHolderText}
           customInputStyles={styles.doorNoInputStyles}
         />
@@ -251,6 +513,13 @@ const CheckOut = () => {
         <div className={styles.cityContainer}>
           <p className={styles.cityName}>{checkOutPageStrings.cityName}</p>
           <Input
+            name="city"
+            type="text"
+            value={formik.values.city}
+            onBlur={formik.handleBlur}
+            onFocus={() => formik.setFieldError('city', '')}
+            onChange={formik.handleChange}
+            error={formik.touched.city && formik.errors.city}
             placeholder={checkOutPageStrings.cityNamePlaceHolderText}
             customInputStyles={styles.cityNameinputStyles}
           />
@@ -260,6 +529,13 @@ const CheckOut = () => {
             {checkOutPageStrings.zipCodeName}
           </p>
           <Input
+            name="zipCode"
+            type="text"
+            value={formik.values.zipCode}
+            onBlur={formik.handleBlur}
+            onFocus={() => formik.setFieldError('zipCode', '')}
+            onChange={formik.handleChange}
+            error={formik.touched.zipCode && formik.errors.zipCode}
             placeholder={checkOutPageStrings.zipCodePlaceHolderText}
             customInputStyles={styles.zipCodeinputStyles}
           />
@@ -275,6 +551,15 @@ const CheckOut = () => {
           {checkOutPageStrings.stateAndCountry}
         </p>
         <Input
+          name="stateAndCountry"
+          type="text"
+          value={formik.values.stateAndCountry}
+          onBlur={formik.handleBlur}
+          onFocus={() => formik.setFieldError('stateAndCountry', '')}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.stateAndCountry && formik.errors.stateAndCountry
+          }
           placeholder={checkOutPageStrings.stateAndCityPlaceHolderText}
           customInputStyles={styles.stateAndCityInputStyles}
         />
@@ -305,6 +590,13 @@ const CheckOut = () => {
       <div className={styles.paymentInputContainer}>
         <p className={styles.payment}>{checkOutPageStrings.cardHolderName}</p>
         <Input
+          name="cardHolderName"
+          type="text"
+          value={formik.values.cardHolderName}
+          onBlur={formik.handleBlur}
+          onFocus={() => formik.setFieldError('cardHolderName', '')}
+          onChange={formik.handleChange}
+          error={formik.touched.cardHolderName && formik.errors.cardHolderName}
           placeholder={checkOutPageStrings.cardPlaceHolderText}
           customInputStyles={styles.cardHolderInputStyles}
         />
@@ -317,6 +609,13 @@ const CheckOut = () => {
       <div className={styles.cardInputContainer}>
         <p className={styles.cardDesc}>{checkOutPageStrings.debitCardName}</p>
         <Input
+          name="debitAndCredit"
+          type="text"
+          value={formik.values.debitAndCredit}
+          onBlur={formik.handleBlur}
+          onFocus={() => formik.setFieldError('debitAndCredit', '')}
+          onChange={formik.handleChange}
+          error={formik.touched.debitAndCredit && formik.errors.debitAndCredit}
           placeholder={checkOutPageStrings.debitCardNamePlaceHolderText}
           customInputStyles={styles.cardInputStyles}
         />
@@ -330,13 +629,27 @@ const CheckOut = () => {
         <div className={styles.monthContainer}>
           <p className={styles.month}>{checkOutPageStrings.expiryDate}</p>
           <Input
+            name="expiryDate"
+            type="text"
+            value={formik.values.expiryDate}
+            onBlur={formik.handleBlur}
+            onFocus={() => formik.setFieldError('expiryDate', '')}
+            onChange={formik.handleChange}
+            error={formik.touched.expiryDate && formik.errors.expiryDate}
             placeholder={checkOutPageStrings.expiryMonthPlaceHolderText}
             customInputStyles={styles.monthInputStyles}
           />
         </div>
-        <div className={styles.dateContainer}>
-          <p className={styles.date}>{checkOutPageStrings.cvvCode}</p>
+        <div className={styles.cvvContainer}>
+          <p className={styles.cvv}>{checkOutPageStrings.cvvCode}</p>
           <Input
+            name="cvv"
+            type="text"
+            value={formik.values.cvv}
+            onBlur={formik.handleBlur}
+            onFocus={() => formik.setFieldError('', '')}
+            onChange={formik.handleChange}
+            error={formik.touched.cvv && formik.errors.cvv}
             placeholder={checkOutPageStrings.cvvCodePlaceHolderText}
             customInputStyles={styles.dateNameinputStyles}
           />
@@ -364,27 +677,32 @@ const CheckOut = () => {
       </div>
     );
   };
-
+  // console.log(JSON.stringify(data))
   const orderDetailsSection = () => {
     return (
       <div className={styles.orderDetails}>
-        {orderedDetailsData &&
-          orderedDetailsData.map((item, index) => {
+        {productData &&
+          productData.map((item, index) => {
+            // console.log('productData', productData);
             return (
               <div key={index} className={styles.orderedProductContainer}>
                 <div className={styles.orderdProductLeftImgBlock}>
                   <img
-                    src={item.orderProductImg}
+                    src={item.product.images.thumbnail}
                     alt=""
                     className={styles.imageWidth}
                   />
                 </div>
                 <div className={styles.orderProductInfoBlock}>
                   <p className={styles.orderProductHeading}>
-                    {item.orderProductHeading}
+                    {item.product.name}
                   </p>
                   <p className={styles.orderProductPrice}>
-                    {item.orderProductPrice}
+                    <span>
+                      {checkOutPageStrings.price}(X{item.quantity})-
+                    </span>
+                    <span>{item.product.price.currency}</span>
+                    {item.product.price.selling_price}
                   </p>
                 </div>
               </div>
@@ -397,14 +715,23 @@ const CheckOut = () => {
   const orderInputButtonSection = () => {
     return (
       <div className={styles.orderInputButtonSection}>
-        <Input
-          placeholder={checkOutPageStrings.enterDiscountCode}
-          customInputStyles={styles.disCountInputStyles}
-        />
-        <Button
-          btName={checkOutPageStrings.applyBtnName}
-          btnStyles={styles.applyBtnStyles}
-        />
+        <form onSubmit={handleSubmit} className={styles.orderInputBlock}>
+          <Input
+            placeholder={checkOutPageStrings.enterDiscountCode}
+            customInputStyles={styles.disCountInputStyles}
+            type="text"
+            value={couponCode}
+            onChange={handleChange}
+            onFocus={() => setErrorMessage('')}
+            image={errorMessage ? dangercircle : checkoutcheckmark}
+          />
+          <p className={styles.discountInputErrorMsg}>{errorMessage}</p>
+          <Button
+            btName={checkOutPageStrings.applyBtnName}
+            btnStyles={styles.applyBtnStyles}
+            type="submit"
+          />
+        </form>
       </div>
     );
   };
@@ -419,7 +746,7 @@ const CheckOut = () => {
                 <p className={styles.productChargeDesc}>
                   {item.productChargeDesc}
                 </p>
-                <p className={styles.price}>{item.price}</p>
+                <p className={styles.price}>sek{item.price}</p>
               </div>
             );
           })}
@@ -431,9 +758,7 @@ const CheckOut = () => {
     return (
       <div className={styles.totalPriceBlock}>
         <p className={styles.totalPrice}>{checkOutPageStrings.totalPrice}</p>
-        <p className={styles.totalPriceDesc}>
-          {checkOutPageStrings.totalPriceDesc}
-        </p>
+        <p className={styles.totalPriceDesc}>sek{totalPrice}</p>
       </div>
     );
   };

@@ -11,8 +11,9 @@ import Button from 'components/Button/Button';
 import { strings } from 'resources/Strings/eng';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { EmailValidationSchema } from 'validators/Validators';
+import { emailValidationSchema } from 'validators/Validators';
 import { Userlogin } from 'networking/Apis/login';
+
 import { UserDataContext } from 'providers/UserDataProvider';
 import GoogleAuth from 'helpers/GoogleAuth';
 
@@ -30,7 +31,7 @@ const Login = () => {
       const response = await Userlogin(values);
       if (response.status === 200 && response.data.type === 'success') {
         localStorage.setItem('authToken', response.data.accessToken);
-        setUserData(response.data.user);
+        setUserData(response.data);
         navigate('/');
         console.log(response);
       } else {
@@ -46,7 +47,7 @@ const Login = () => {
       email: '',
       password: '',
     },
-    validationSchema: EmailValidationSchema,
+    validationSchema: emailValidationSchema,
     onSubmit: handleLogin,
   });
 

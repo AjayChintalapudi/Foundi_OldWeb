@@ -18,78 +18,46 @@ import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
+import { useMediaQuery } from '@mui/material';
 import { userProfileData } from 'constants/CommonData/CommonData';
-import { PopUpCart } from 'networking/Apis/popupcart';
-import { RemoveCart } from 'networking/Apis/removecart';
-import { AppDataContext } from 'providers/AppDataProvider';
+import { removeProductApi } from 'networking/Apis/removeProduct';
+import { CartDataContext } from 'providers/CartDataProvider';
+import { checkOut } from 'networking/Apis/checkOut';
 
 const NavBar = () => {
-  const { handleLogout } = useContext(UserDataContext);
+  const { userDetails, handleLogout } = useContext(UserDataContext);
+  const { cartData, handleCartData } = useContext(CartDataContext);
+  const isWideScreen = useMediaQuery('(min-width: 867px)');
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
-  const { userDetails } = useContext(UserDataContext);
-  const { cartData, setCartData } = useContext(AppDataContext);
-  //mapping data
-  // const cartData = [
-  //   {
-  //     id: 1,
-  //     image: '',
-  //     heading: 'Keychain tags - A pack of 4',
-  //     descp: ' ',
-  //     currency: '$',
-  //     quantity: 1,
-  //     price: '100',
-  //   },
-  //   {
-  //     id: 2,
-  //     image: '',
-  //     heading: 'Keychain tags - A pack of 4',
-  //     descp: 'Price - ',
-  //     currency: '$',
-  //     quantity: 1,
-  //     price: '100',
-  //   },
-  // ];
+
+  const [closePopUp, setClosePopUp] = useState(false);
 
   //useState
   const [popOver, setPopOver] = useState(false);
+
   const [purchaseData, setPurchaseData] = useState();
-  const [popUp, setPopUp] = useState(false);
 
   const { navbar } = strings;
 
-  useEffect(() => {
-    popUpCartApi();
-  }, []);
+  // remove product from cart
 
-  const popUpCartApi = async () => {
-    try {
-      let data = {
-        user_id: userDetails._id,
-      };
-      const response = await PopUpCart(data);
-      if (response.data.type === 'success' && response.status === 200) {
-        setPurchaseData(response.data.data.items);
-      }
-    } catch (error) {
-      console.log(error);
+  const removeProductFromCart = async (id) => {
+    const response = await removeProductApi({
+      user_id: userDetails?._id,
+      product_id: id,
+    });
+    if (response.data.type === 'success' && response.status === 200) {
+      handleCartData();
+      alert('removing product from cart');
     }
   };
 
-  const removeCartApi = async (product_id) => {
-    try {
-      let removeData = {
-        user_id: userDetails._id,
-        product_id: product_id,
-      };
-      const response = await RemoveCart(removeData);
-      if (response.status === 200 && response.data.type === 'success') {
-        popUpCartApi();
-      }
-    } catch (error) {}
-  };
+  // proceed to payment page onclick the proceed to checkoutButton
 
-  const addFunction = (_id) => {
+  // adding of product
+
+  const addFunction = (id) => {
     const newArray = purchaseData.map((product) => {
       if (product.product._id === _id) {
         return { ...product, quantity: product.quantity + 1 };
@@ -98,7 +66,10 @@ const NavBar = () => {
     });
     setPurchaseData(newArray);
   };
-  const subtractFunction = (_id) => {
+
+  // subtract the product
+
+  const subtractFunction = (id) => {
     const newArray = purchaseData.map((product) => {
       if (product.product._id === _id) {
         if (product.quantity === 1) {
@@ -125,6 +96,10 @@ const NavBar = () => {
 
   const rightSection = () => {
     const authToken = localStorage.getItem('authToken');
+    const noOfCartItems = cartData?.reduce(
+      (sum, item) => item.quantity + sum,
+      0
+    );
     return (
       <div className={styles.rightSection}>
         <p onClick={() => navigate('/events')} className={styles.eventsSection}>
@@ -139,13 +114,16 @@ const NavBar = () => {
         >
           {navbar.products}
         </p>
+
+        {/* Cart Section Start */}
+
         <div className={styles.cartSection}>
           <PopUp
             triggerElement={
-              <div>
+              <>
                 <img src={cartImg} alt="" className={styles.imageWidth} />
-                <p>{purchaseData && purchaseData.length}</p>
-              </div>
+                {authToken ? <p>{noOfCartItems}</p> : ''}
+              </>
             }
             content={
               <div className={styles.shoppingCart}>
@@ -167,51 +145,54 @@ const NavBar = () => {
                   </div>
 
                   <div className={styles.shoppingBottomSection}>
-                    {purchaseData &&
-                      purchaseData.map((item, index) => {
-                        return (
-                          <div key={index} className={styles.cartStylesSection}>
-                            <div className={styles.shoppingImgSection}>
-                              <img
-                                src={item.product.images.thumbnail}
-                                alt=""
-                                className={styles.imageWidth}
-                              />
-                            </div>
-                            <div className={styles.shoppingRightSection}>
-                              <div className={styles.textSection}>
-                                <h4 className={styles.productHeader}>
-                                  {item.product.name}
-                                </h4>
-                                <p className={styles.priceSection}>
-                                  Price - &nbsp;
-                                  <span className={styles.priceSection}>
-                                    {item.product.price.currency}
-                                  </span>
-                                  <span className={styles.priceSection}>
-                                    {item.product.price.selling_price}
-                                  </span>
-                                </p>
+                    {authToken ? (
+                      <>
+                        {cartData?.map((item, index) => {
+                          return (
+                            <div
+                              key={index}
+                              className={styles.cartStylesSection}
+                            >
+                              <div className={styles.shoppingImgSection}>
+                                <img
+                                  src={item.product.images.thumbnail}
+                                  alt=""
+                                  className={styles.imageWidth}
+                                />
                               </div>
-                              <div className={styles.removeSection}>
-                                <div className={styles.addSection}>
-                                  <div
-                                    className={styles.subtractSection}
-                                    onClick={() =>
-                                      subtractFunction(item.product._id)
-                                    }
-                                  >
-                                    <img
-                                      src={subtractlogo}
-                                      alt=""
-                                      className={styles.imageWidth}
-                                    />
-                                  </div>
-                                  <div className={styles.numSection}>
-                                    <p className={styles.numSectionStyles}>
+                              <div className={styles.shoppingRightSection}>
+                                <div className={styles.textSection}>
+                                  <h4 className={styles.productHeader}>
+                                    {item.product.name}
+                                  </h4>
+                                  <p className={styles.priceSection}>
+                                    Price - &nbsp;
+                                    <span className={styles.priceSection}>
+                                      {item.product.price.currency}
+                                    </span>
+                                    <span className={styles.priceSection}>
+                                      {item.product.price.selling_price} X
                                       {item.quantity}
-                                    </p>
-                                  </div>
+                                    </span>
+                                  </p>
+                                </div>
+                                <div className={styles.removeSection}>
+                                  {/* <div className={styles.addSection}>
+                                <div
+                                  className={styles.subtractSection}
+                                  onClick={() => subtractFunction(item.id)}
+                                >
+                                  <img
+                                    src={subtractlogo}
+                                    alt=""
+                                    className={styles.imageWidth}
+                                  />
+                                </div>
+                                <div className={styles.numSection}>
+                                  <p className={styles.numSectionStyles}>
+                                    {item.quantity}
+                                  </p>
+                                </div>
 
                                   <div
                                     className={styles.addSectionOne}
@@ -238,11 +219,28 @@ const NavBar = () => {
                                     className={styles.imageWidth}
                                   />
                                 </div>
+                              </div> */}
+                                  <div
+                                    className={styles.deleteSection}
+                                    onClick={() =>
+                                      removeProductFromCart(item.product._id)
+                                    }
+                                  >
+                                    <img
+                                      src={deleteIcon}
+                                      alt=""
+                                      className={styles.imageWidth}
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </div>
 
@@ -257,6 +255,8 @@ const NavBar = () => {
             }
           />
         </div>
+
+        {/* Cart Section End */}
 
         {authToken ? (
           <div>{userProfileSection()}</div>
@@ -286,28 +286,34 @@ const NavBar = () => {
 
   const userProfileSection = () => {
     return (
-      <div className={styles.userSignup}>
-        <div className={styles.userProfileImgBlock}>
-          <img
-            src={userprofileimg}
-            alt="userprofileimg"
-            className={styles.imageWidth}
-          />
-        </div>
-
-        <div className={styles.userProfileuparrowBlock}>
-          <PopUp
-            triggerElement={
+      <>
+        {isWideScreen && (
+          <div className={styles.userSignup}>
+            <div className={styles.userProfileImgBlock}>
               <img
-                src={userprofileuparrow}
+                src={userprofileimg}
                 alt="userprofileimg"
                 className={styles.imageWidth}
               />
-            }
-            content={handlePopoverContent()}
-          />
-        </div>
-      </div>
+            </div>
+
+            {isWideScreen && (
+              <div className={styles.userProfileuparrowBlock}>
+                <PopUp
+                  triggerElement={
+                    <img
+                      src={userprofileuparrow}
+                      alt="userprofileimg"
+                      className={styles.imageWidth}
+                    />
+                  }
+                  content={handlePopoverContent()}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </>
     );
   };
 
@@ -315,33 +321,33 @@ const NavBar = () => {
   const handlePopoverContent = () => {
     return (
       <div className={styles.userProfileSection}>
+        <div className={styles.userNameAndEmail}>
+          <p className={styles.userName}>{userDetails?.full_name}</p>
+          <p className={styles.userEmail}>{userDetails?.email}</p>
+        </div>
         {userProfileData &&
-          userProfileData.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={styles.userProfileFeaturesBlock}
-                onClick={() => {
-                  if (index === 2) {
-                    handleLogout();
-                  }
-                }}
-              >
-                <div className={styles.userProfileImgBlock}>
-                  <img
-                    src={item.profileImg}
-                    className={styles.imageWidth}
-                    alt="userProfileFeature"
-                  />
-                </div>
-                <div>
-                  <p className={styles.userProfileOptions}>
-                    {item.profileDesc}
-                  </p>
-                </div>
+          userProfileData.map((item, index) => (
+            <div
+              key={index}
+              className={styles.userProfileFeaturesBlock}
+              onClick={() => {
+                if (index === 2) {
+                  handleLogout();
+                }
+              }}
+            >
+              <div className={styles.userProfileImgBlock}>
+                <img
+                  src={item.profileImg}
+                  className={styles.imageWidth}
+                  alt="userProfileFeature"
+                />
               </div>
-            );
-          })}
+              <div>
+                <p className={styles.userProfileOptions}>{item.profileDesc}</p>
+              </div>
+            </div>
+          ))}
       </div>
     );
   };

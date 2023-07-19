@@ -138,6 +138,19 @@ const checkOutPageStrings = {
   contactHeading: 'Contact',
   addressHeading: 'Address',
   paymentHeading: 'Payment',
+  price: 'Price',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  phoneNumber: 'phoneNumber',
+  doorAndAddress: 'doorAndAddress',
+  city: 'city',
+  zipCode: 'zipCode',
+  stateAndCountry: 'stateAndCountry',
+  cardHolderName: 'cardHolderName',
+  debitAndCredit: 'debitAndCredit',
+  expiryDate: 'expiryDate',
+  cvv: 'cvv',
 
   // Contact Details
 
@@ -302,6 +315,28 @@ const homePage = {
   placeHolderName: 'Enter your name',
   placeHolderMail: 'Enter your mail ID',
   placeHolderMessage: 'Type your message here',
+
+  // sno code strings
+
+  snoTitle: 'with SNO',
+  enterSnoCode: ' Enter SNO no. manually',
+  serialNumber: 'SNO NO.',
+  enterSnoNumber: 'Enter the SNO number',
+};
+
+const snoProductDetailsStrings = {
+  overViewHeading: 'Overview',
+  itemInfoHeading: 'Item info',
+  snoNumber: 'SNO number:',
+  itemCategory: 'Item category:',
+  noteFinderHeading: 'Note to finder',
+  contactOwnerBtnName: 'Contact item owner',
+  notLoggedHeading: 'Seems like you haven’t logged in',
+  notLoggedDesc:
+    'To continue, enter your email address so that we can create a guest account.',
+  loginText: 'Log in',
+  orText: 'or',
+  signUpText: 'Sign up',
 };
 
 const loginPageStrings = {
@@ -483,6 +518,7 @@ export const strings = {
   userProfileStrings,
   navbar,
   homePage,
+  snoProductDetailsStrings,
   loginPageStrings,
   signUpPageStrings,
   forgotPwdStrings,

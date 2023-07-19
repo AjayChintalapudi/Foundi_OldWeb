@@ -1,13 +1,16 @@
-import { AppDataProvider } from 'providers/AppDataProvider';
+import CartDataProvider from 'providers/CartDataProvider';
+import { NetWorkProvider } from 'providers/NetWorkProvider';
 import { UserDataProvider } from 'providers/UserDataProvider';
 import AppRoutes from 'routes/AppRoutes';
 function App() {
   return (
-    <UserDataProvider>
-      <AppDataProvider>
-        <AppRoutes />
-      </AppDataProvider>
-    </UserDataProvider>
+    <NetWorkProvider>
+      <UserDataProvider>
+        <CartDataProvider>
+          <AppRoutes />
+        </CartDataProvider>
+      </UserDataProvider>
+    </NetWorkProvider>
   );
 }
 
