@@ -201,6 +201,18 @@
   line-height: 30px;
 }
 
+.cartMessage {
+  max-width: 486px;
+  width: 100%;
+  color: var(--lightgrey72);
+  font-family: 'Regular', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  padding: 32px;
+}
+
 .navBarButton {
   cursor: pointer;
   display: flex;
@@ -241,7 +253,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  text-align:center;
+  text-align: center;
 }
 
 .userProfileSection {
@@ -380,6 +392,7 @@
     border-radius: 8px;
     margin-inline: 8px;
   }
+
   .useProfileSection {
     display: flex;
     flex-direction: row;

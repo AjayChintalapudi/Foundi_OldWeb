@@ -26,5 +26,8 @@ export const checkOut = 'stripe/order-checkout';
 // getting cart data
 
 export const getCartData = 'cart/get/{user_id}';
+// remove product from cart
+export const removeProductFromCart = 'cart/remove';
+// getting ordered history data
 
-export const removeProductFromCart='cart/remove'
+export const getOrderHistory = 'orders/get/{user_id}';

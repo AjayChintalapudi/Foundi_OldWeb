@@ -1,73 +1,82 @@
-import React from 'react';
-import { trackOrderData } from 'constants/CommonData/CommonData';
+import React, { useContext } from 'react';
+import {
+  orderedDetailsData,
+  trackOrderData,
+} from 'constants/CommonData/CommonData';
 import { strings } from 'resources/Strings/eng';
 import Button from 'components/Button/Button';
 import styles from './styles.module.css';
+import { UserDataContext } from 'providers/UserDataProvider';
+import { getOrderHistory } from 'networking/Apis/getOrderHistory';
+import { useLocation } from 'react-router-dom';
 
 const OrderHistory = () => {
   const { orderHistoryPageStrings } = strings;
 
+  const location = useLocation();
+  const orderHistoryData = location.state?.orderHistoryData;
+  console.log('orderHistoryData', orderHistoryData);
   const trackOrderSection = () => {
-    return (
-      <div className={styles.trackOrderContainer}>
-        {trackOrderTopSection()}
-        {trackOrderBottomSection()}
-        {trackAndCancelButtonSection()}
+    return orderHistoryData?.map((order, index) => (
+      <div className={styles.trackOrderContainer} key={index}>
+        {trackOrderTopSection(order)}
+        {trackOrderBottomSection(order)}
+        {trackAndCancelButtonSection(order)}
       </div>
-    );
+    ));
   };
 
-  const trackOrderTopSection = () => {
+  const trackOrderTopSection = (order) => {
     return (
       <div className={styles.trackOrderTopSection}>
-        {trackOrderData &&
-          trackOrderData.map((item, index) => {
-            return (
-              <div key={index} className={styles.trackOrderDetailsBlock}>
-                <div className={styles.trackOrderDetailsLeftBlock}>
-                  <p className={styles.orderNo}>{item.orderNo}</p>
-                  <div className={styles.orderArrivingDetailsBlock}>
-                    <p className={styles.orderDate}>{item.orderDate}</p>
-                    <p className={styles.estimatedDelivery}>
-                      {item.estimatedDelivery}
-                      &nbsp;
-                      <span className={styles.estimatedDeliveryTime}>
-                        {item.estimatedDeliveryTime}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.trackOrderPriceRightBlock}>
-                  <p className={styles.totalPrice}>{item.totalPrice}</p>
-                </div>
-                <div className={styles.divider}></div>
-              </div>
-            );
-          })}
+        <div className={styles.trackOrderDetailsBlock}>
+          <div className={styles.trackOrderDetailsLeftBlock}>
+            <p className={styles.orderNo}>
+              {orderHistoryPageStrings.orderNo}
+              {order?.shipping?.tracking_no}
+            </p>
+            <div className={styles.orderArrivingDetailsBlock}>
+              <p className={styles.orderDate}>
+                {orderHistoryPageStrings.orderedOn}
+                {order?.createdAt}
+              </p>
+              <p className={styles.estimatedDelivery}>
+                {orderHistoryPageStrings.estimatedDelivery}&nbsp;
+                <span className={styles.estimatedDeliveryTime}>
+                  {orderHistoryPageStrings.time}
+                </span>
+              </p>
+            </div>
+          </div>
+          <div className={styles.trackOrderPriceRightBlock}>
+            <p className={styles.totalPrice}>
+              {orderHistoryPageStrings.totalPrice}
+              {order?.currency}
+              {order?.total}
+            </p>
+          </div>
+          <div className={styles.divider}></div>
+        </div>
       </div>
     );
   };
 
-  const trackOrderBottomSection = () => {
+  const trackOrderBottomSection = (order) => {
     return (
       <div className={styles.trackOrderBottomSection}>
-        {trackOrderData[0].trackingProductsInfo.map((item, index) => {
+        {order.items.map((item, index) => {
           return (
             <div key={index} className={styles.trackOrderBottomBlock}>
               <div className={styles.trackOrderBottomLeftBlock}>
                 <div className={styles.trackOrderBottomLeftImgBlock}>
-                  <img
-                    src={item.orderedProductImg}
-                    alt=""
-                    className={styles.imageWidth}
-                  />
+                  <img src={item.image} alt="" className={styles.imageWidth} />
                 </div>
                 <div className={styles.trackOrderBottomLeftDetailsBlock}>
-                  <p className={styles.orderedProductName}>
-                    {item.orderedProductName}
-                  </p>
+                  <p className={styles.orderedProductName}>{item.name}</p>
                   <p className={styles.orderedProductPricesDetails}>
-                    {item.orderedProductPricesDetails}
+                    {orderHistoryPageStrings.price}({item.quantity}) -&nbsp;
+                    {order?.currency}
+                    {item.total}
                   </p>
                 </div>
               </div>
@@ -117,9 +126,10 @@ const OrderHistory = () => {
   };
 
   const buyAgainTopSection = () => {
+    const buyAgainProductData = trackOrderData[0].buyAgainProductData;
     return (
       <div className={styles.buyAgainTopSection}>
-        {trackOrderData[0].buyAgainProductData.map((item, index) => {
+        {buyAgainProductData.map((item, index) => {
           return (
             <div key={index} className={styles.OrderDetailsBlock}>
               <div className={styles.OrderDetailsLeftBlock}>

@@ -250,6 +250,12 @@ const orderHistoryPageStrings = {
   cancelOrderBtName: 'Cancel order',
   buyAgain: 'Buy again',
   orderAgain: 'Order again',
+  orderNo: ' Order No:',
+  orderedOn: 'ordered On:',
+  estimatedDelivery: 'Estimated delivery:',
+  time: ' By tommorow 9 pm',
+  totalPrice: ' Total Price-',
+  price: 'price',
 };
 
 const footerStrings = {

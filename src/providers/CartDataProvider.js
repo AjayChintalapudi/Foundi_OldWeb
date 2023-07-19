@@ -20,7 +20,7 @@ const CartDataProvider = (props) => {
       const response = await getCartData(userDetails?._id);
       if (response.data.type === 'success' && response.status === 200) {
         setCartData(response.data.data.items);
-        // console.log('gettingCartDataResponse', response);
+        console.log('gettingCartDataResponse', response);
         alert('getting cart data successfully');
       }
     } catch {

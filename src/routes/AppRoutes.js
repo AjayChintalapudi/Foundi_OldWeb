@@ -12,8 +12,8 @@ import ProductsReview from 'pages/ProductsReview/ProductsReview';
 import Sutainability from 'pages/Sustainability/Sutainability';
 import SnoProductDetails from 'pages/SnoProductDetails/SnoProductDetails';
 import Chat from 'pages/Chat/Chat';
-import Protected from './Protected';
-import { useState } from 'react';
+import PrivateRoutes from './PrivateRoutes';
+import OrderHistory from 'pages/OrderHistory/OrderHistory';
 
 const AppRoutes = () => {
   return (
@@ -26,14 +26,10 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/productreview" element={<ProductsReview />}></Route>
-        <Route
-          path="/checkout"
-          element={
-            <Protected isSignedIn={isSignedIn}>
-              <CheckOut />
-            </Protected>
-          }
-        ></Route>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/orderhistory" element={<OrderHistory />} />
+        </Route>
         <Route path="/forgotpassword" element={<ForGotPassWord />}></Route>
         <Route path="/sustainability" element={<Sutainability />}></Route>
         <Route path="/privacypolicy" element={<PrivacyPolicy />}></Route>

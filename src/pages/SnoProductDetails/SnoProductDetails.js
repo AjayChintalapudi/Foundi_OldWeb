@@ -9,7 +9,10 @@ import Modal from 'components/Modal/Modal';
 import Input from 'components/Input/Input';
 import { guestLogin } from 'networking/Apis/guestLogin';
 import { useFormik } from 'formik';
-import { EmailValidationSchema, emailValidationSchema } from 'validators/Validators';
+import {
+  EmailValidationSchema,
+  emailValidationSchema,
+} from 'validators/Validators';
 
 const SnoProductDetails = () => {
   // navigation

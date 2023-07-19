@@ -23,6 +23,7 @@ import { userProfileData } from 'constants/CommonData/CommonData';
 import { removeProductApi } from 'networking/Apis/removeProduct';
 import { CartDataContext } from 'providers/CartDataProvider';
 import { checkOut } from 'networking/Apis/checkOut';
+import { getOrderHistory } from 'networking/Apis/getOrderHistory';
 
 const NavBar = () => {
   const { userDetails, handleLogout } = useContext(UserDataContext);
@@ -53,35 +54,52 @@ const NavBar = () => {
     }
   };
 
-  // proceed to payment page onclick the proceed to checkoutButton
+  // getting order history data
+
+  const handleOrderHistory = async () => {
+    try {
+      const orderHistoryResponse = await getOrderHistory(userDetails._id);
+      if (
+        orderHistoryResponse.data.type === 'success' &&
+        orderHistoryResponse.status === 200
+      ) {
+        navigate('/orderhistory', {
+          state: { orderHistoryData: orderHistoryResponse.data.data },
+        });
+        console.log('orderHistoryResponse', orderHistoryResponse);
+      }
+    } catch {
+      console.log('getting error in order history data');
+    }
+  };
 
   // adding of product
 
-  const addFunction = (id) => {
-    const newArray = purchaseData.map((product) => {
-      if (product.id === id) {
-        return { ...product, quantity: product.quantity + 1 };
-      }
-      return product;
-    });
-    setPurchaseData(newArray);
-  };
+  // const addFunction = (id) => {
+  //   const newArray = purchaseData.map((product) => {
+  //     if (product.id === id) {
+  //       return { ...product, quantity: product.quantity + 1 };
+  //     }
+  //     return product;
+  //   });
+  //   setPurchaseData(newArray);
+  // };
 
   // subtract the product
 
-  const subtractFunction = (id) => {
-    const newArray = purchaseData.map((product) => {
-      if (product.id === id) {
-        if (product.quantity === 1) {
-          return product;
-        } else {
-          return { ...product, quantity: product.quantity - 1 };
-        }
-      }
-      return product;
-    });
-    setPurchaseData(newArray);
-  };
+  // const subtractFunction = (id) => {
+  //   const newArray = purchaseData.map((product) => {
+  //     if (product.id === id) {
+  //       if (product.quantity === 1) {
+  //         return product;
+  //       } else {
+  //         return { ...product, quantity: product.quantity - 1 };
+  //       }
+  //     }
+  //     return product;
+  //   });
+  //   setPurchaseData(newArray);
+  // };
 
   const leftSection = () => {
     return (
@@ -100,6 +118,7 @@ const NavBar = () => {
       (sum, item) => item.quantity + sum,
       0
     );
+
     return (
       <div className={styles.rightSection}>
         <p onClick={() => navigate('/events')} className={styles.eventsSection}>
@@ -122,59 +141,60 @@ const NavBar = () => {
             triggerElement={
               <>
                 <img src={cartImg} alt="" className={styles.imageWidth} />
-                {authToken ? <p>{noOfCartItems}</p> : ''}
+                {authToken && noOfCartItems ? <p>{noOfCartItems}</p> : ''}
               </>
             }
             content={
-              <div className={styles.shoppingCart}>
-                <div className={styles.gapSection}>
-                  <div className={styles.shoppingTopSection}>
-                    <h4 className={styles.shopppingHeader}>
-                      {navbar.shopping}
-                    </h4>
-                    <div className={styles.shoppingCrossImg}>
-                      <img
-                        src={modalcloseiconimg}
-                        alt=""
-                        className={styles.imageWidth}
-                      />
-                    </div>
-                  </div>
+              <div>
+                {authToken && noOfCartItems > 0 ? (
+                  <div className={styles.shoppingCart}>
+                    <div className={styles.gapSection}>
+                      <div className={styles.shoppingTopSection}>
+                        <h4 className={styles.shopppingHeader}>
+                          {navbar.shopping}
+                        </h4>
+                        <div className={styles.shoppingCrossImg}>
+                          <img
+                            src={modalcloseiconimg}
+                            alt=""
+                            className={styles.imageWidth}
+                          />
+                        </div>
+                      </div>
 
-                  <div className={styles.shoppingBottomSection}>
-                    {authToken ? (
-                      <>
-                        {cartData?.map((item, index) => {
-                          return (
-                            <div
-                              key={index}
-                              className={styles.cartStylesSection}
-                            >
-                              <div className={styles.shoppingImgSection}>
-                                <img
-                                  src={item.product.images.thumbnail}
-                                  alt=""
-                                  className={styles.imageWidth}
-                                />
-                              </div>
-                              <div className={styles.shoppingRightSection}>
-                                <div className={styles.textSection}>
-                                  <h4 className={styles.productHeader}>
-                                    {item.product.name}
-                                  </h4>
-                                  <p className={styles.priceSection}>
-                                    Price - &nbsp;
-                                    <span className={styles.priceSection}>
-                                      {item.product.price.currency}
-                                    </span>
-                                    <span className={styles.priceSection}>
-                                      {item.product.price.selling_price} X
-                                      {item.quantity}
-                                    </span>
-                                  </p>
+                      <div className={styles.shoppingBottomSection}>
+                        <>
+                          {cartData?.map((item, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className={styles.cartStylesSection}
+                              >
+                                <div className={styles.shoppingImgSection}>
+                                  <img
+                                    src={item.product.images.thumbnail}
+                                    alt=""
+                                    className={styles.imageWidth}
+                                  />
                                 </div>
-                                <div className={styles.removeSection}>
-                                  {/* <div className={styles.addSection}>
+                                <div className={styles.shoppingRightSection}>
+                                  <div className={styles.textSection}>
+                                    <h4 className={styles.productHeader}>
+                                      {item.product.name}
+                                    </h4>
+                                    <p className={styles.priceSection}>
+                                      Price - &nbsp;
+                                      <span className={styles.priceSection}>
+                                        {item.product.price.currency}
+                                      </span>
+                                      <span className={styles.priceSection}>
+                                        {item.product.price.selling_price} X
+                                        {item.quantity}
+                                      </span>
+                                    </p>
+                                  </div>
+                                  <div className={styles.removeSection}>
+                                    {/* <div className={styles.addSection}>
                                 <div
                                   className={styles.subtractSection}
                                   onClick={() => subtractFunction(item.id)}
@@ -202,37 +222,45 @@ const NavBar = () => {
                                   />
                                 </div>
                               </div> */}
-                                  <div
-                                    className={styles.deleteSection}
-                                    onClick={() =>
-                                      removeProductFromCart(item.product._id)
-                                    }
-                                  >
-                                    <img
-                                      src={deleteIcon}
-                                      alt=""
-                                      className={styles.imageWidth}
-                                    />
+                                    <div
+                                      className={styles.deleteSection}
+                                      onClick={() =>
+                                        removeProductFromCart(item.product._id)
+                                      }
+                                    >
+                                      <img
+                                        src={deleteIcon}
+                                        alt=""
+                                        className={styles.imageWidth}
+                                      />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          );
-                        })}
-                      </>
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                </div>
+                            );
+                          })}
+                        </>
+                      </div>
+                    </div>
 
-                <div className={styles.checkoutBtn}>
-                  <Button
-                    btName={'Proceed to checkout'}
-                    btnStyles={styles.checkOutStyles}
-                    onClick={() => navigate('/checkout')}
-                  />
-                </div>
+                    <div className={styles.checkoutBtn}>
+                      <Button
+                        btName={'Proceed to checkout'}
+                        btnStyles={styles.checkOutStyles}
+                        onClick={() => navigate('/checkout')}
+                      />
+                    </div>
+                  </div>
+                ) : authToken ? (
+                  <p className={styles.cartMessage}>
+                    Currently you have 0 items added. Please go back and add
+                    items to view cart.
+                  </p>
+                ) : (
+                  <p className={styles.cartMessage}>
+                    You need to login to access the cart items
+                  </p>
+                )}
               </div>
             }
           />
@@ -313,6 +341,10 @@ const NavBar = () => {
               key={index}
               className={styles.userProfileFeaturesBlock}
               onClick={() => {
+                if (index === 1) {
+                  // navigate('/orderhistory');
+                  handleOrderHistory();
+                }
                 if (index === 2) {
                   handleLogout();
                 }
@@ -344,8 +376,11 @@ const NavBar = () => {
         <div className={styles.popOverSection}>
           <div className={styles.insidePopOver}>
             {authToken ? (
-              <div>hi</div>
+              <div className={styles.userDetails}>
+                <div className={styles.userProfileImgBlock}></div>
+              </div>
             ) : (
+              // <p>userDetails</p>
               <div className={styles.useProfileSection}>
                 <p className={styles.userProfileText}>{navbar.userProfile}</p>
                 <div className={styles.loginButtonSection}>

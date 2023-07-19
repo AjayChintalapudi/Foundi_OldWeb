@@ -35,7 +35,10 @@ import styles from './styles.module.css';
 import Modal from 'components/Modal/Modal';
 import { snoCode } from 'networking/Apis/snoCode';
 import { useFormik } from 'formik';
-import { SnoCodeValidationSchema, snoCodeValidationSchema } from 'validators/Validators';
+import {
+  SnoCodeValidationSchema,
+  snoCodeValidationSchema,
+} from 'validators/Validators';
 
 const Home = () => {
   const { homePage } = strings;

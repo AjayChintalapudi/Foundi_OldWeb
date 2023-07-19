@@ -230,21 +230,20 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 30px;
-  color: var(--lightgrey72);
   max-width: 491px;
 }
 
 .returnInputStyles {
+  border: none;
   border-bottom: 2px solid var(--grey);
-  border-left: none;
-  border-right: none;
-  border-top: none;
   padding-bottom: 12px;
   outline: none;
 }
 
 .returnInputStyles:focus {
   outline: none;
+  border: none;
+  border-bottom: 2px solid var(--grey);
 }
 
 .snoCodeBtnStyles {

@@ -108,6 +108,11 @@
   gap: 32px;
 }
 
+.imageWidth {
+  width: 100%;
+  height: 100%;
+}
+
 .traclOrderBottomBlock,
 .buyAgainBottomBlock,
 .orderedBottomBlock {
@@ -130,7 +135,10 @@
 .orderBottomLeftImgBlock {
   background-color: var(--lightgrey42);
   border-radius: 8px;
-  padding: 16px;
+  /* padding: 16px; */
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
 }
 
 .trackOrderBottomLeftDetailsBlock,
