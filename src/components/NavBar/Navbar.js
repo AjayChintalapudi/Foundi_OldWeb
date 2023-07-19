@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import {
   addImg,
@@ -19,53 +19,88 @@ import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
 import { userProfileData } from 'constants/CommonData/CommonData';
+import { PopUpCart } from 'networking/Apis/popupcart';
+import { RemoveCart } from 'networking/Apis/removecart';
+import { AppDataContext } from 'providers/AppDataProvider';
 
 const NavBar = () => {
   const { handleLogout } = useContext(UserDataContext);
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
-
+  const { userDetails } = useContext(UserDataContext);
+  const { cartData, setCartData } = useContext(AppDataContext);
   //mapping data
-  const cartData = [
-    {
-      id: 1,
-      image: '',
-      heading: 'Keychain tags - A pack of 4',
-      descp: 'Price - ',
-      currency: '$',
-      quantity: 1,
-      price: '100',
-    },
-    {
-      id: 2,
-      image: '',
-      heading: 'Keychain tags - A pack of 4',
-      descp: 'Price - ',
-      currency: '$',
-      quantity: 1,
-      price: '100',
-    },
-  ];
+  // const cartData = [
+  //   {
+  //     id: 1,
+  //     image: '',
+  //     heading: 'Keychain tags - A pack of 4',
+  //     descp: ' ',
+  //     currency: '$',
+  //     quantity: 1,
+  //     price: '100',
+  //   },
+  //   {
+  //     id: 2,
+  //     image: '',
+  //     heading: 'Keychain tags - A pack of 4',
+  //     descp: 'Price - ',
+  //     currency: '$',
+  //     quantity: 1,
+  //     price: '100',
+  //   },
+  // ];
 
   //useState
   const [popOver, setPopOver] = useState(false);
-
-  const [purchaseData, setPurchaseData] = useState(cartData);
+  const [purchaseData, setPurchaseData] = useState();
+  const [popUp, setPopUp] = useState(false);
 
   const { navbar } = strings;
 
-  const addFunction = (id) => {
+  useEffect(() => {
+    popUpCartApi();
+  }, []);
+
+  const popUpCartApi = async () => {
+    try {
+      let data = {
+        user_id: userDetails._id,
+      };
+      const response = await PopUpCart(data);
+      if (response.data.type === 'success' && response.status === 200) {
+        setPurchaseData(response.data.data.items);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeCartApi = async (product_id) => {
+    try {
+      let removeData = {
+        user_id: userDetails._id,
+        product_id: product_id,
+      };
+      const response = await RemoveCart(removeData);
+      if (response.status === 200 && response.data.type === 'success') {
+        popUpCartApi();
+      }
+    } catch (error) {}
+  };
+
+  const addFunction = (_id) => {
     const newArray = purchaseData.map((product) => {
-      if (product.id === id) {
+      if (product.product._id === _id) {
         return { ...product, quantity: product.quantity + 1 };
       }
       return product;
     });
     setPurchaseData(newArray);
   };
-  const subtractFunction = (id) => {
+  const subtractFunction = (_id) => {
     const newArray = purchaseData.map((product) => {
-      if (product.id === id) {
+      if (product.product._id === _id) {
         if (product.quantity === 1) {
           return product;
         } else {
@@ -76,6 +111,7 @@ const NavBar = () => {
     });
     setPurchaseData(newArray);
   };
+
   const leftSection = () => {
     return (
       <div onClick={() => navigate('/')} className={styles.leftSection}>
@@ -106,7 +142,10 @@ const NavBar = () => {
         <div className={styles.cartSection}>
           <PopUp
             triggerElement={
-              <img src={cartImg} alt="" className={styles.imageWidth} />
+              <div>
+                <img src={cartImg} alt="" className={styles.imageWidth} />
+                <p>{purchaseData && purchaseData.length}</p>
+              </div>
             }
             content={
               <div className={styles.shoppingCart}>
@@ -115,7 +154,10 @@ const NavBar = () => {
                     <h4 className={styles.shopppingHeader}>
                       {navbar.shopping}
                     </h4>
-                    <div className={styles.shoppingCrossImg}>
+                    <div
+                      className={styles.shoppingCrossImg}
+                      onClick={() => setPopUp(!popUp)}
+                    >
                       <img
                         src={modalcloseiconimg}
                         alt=""
@@ -125,71 +167,82 @@ const NavBar = () => {
                   </div>
 
                   <div className={styles.shoppingBottomSection}>
-                    {purchaseData.map((item, index) => {
-                      return (
-                        <div className={styles.cartStylesSection}>
-                          <div
-                            key={index}
-                            className={styles.shoppingImgSection}
-                          >
-                            <img src={item.image} alt="" />
-                          </div>
-                          <div className={styles.shoppingRightSection}>
-                            <div className={styles.textSection}>
-                              <h4 className={styles.productHeader}>
-                                {item.heading}
-                              </h4>
-                              <p className={styles.priceSection}>
-                                {item.descp} &nbsp;
-                                <span className={styles.priceSection}>
-                                  {item.currency}
-                                </span>
-                                <span className={styles.priceSection}>
-                                  {item.price}
-                                </span>
-                              </p>
+                    {purchaseData &&
+                      purchaseData.map((item, index) => {
+                        return (
+                          <div key={index} className={styles.cartStylesSection}>
+                            <div className={styles.shoppingImgSection}>
+                              <img
+                                src={item.product.images.thumbnail}
+                                alt=""
+                                className={styles.imageWidth}
+                              />
                             </div>
-                            <div className={styles.removeSection}>
-                              <div className={styles.addSection}>
-                                <div
-                                  className={styles.subtractSection}
-                                  onClick={() => subtractFunction(item.id)}
-                                >
-                                  <img
-                                    src={subtractlogo}
-                                    alt=""
-                                    className={styles.imageWidth}
-                                  />
-                                </div>
-                                <div className={styles.numSection}>
-                                  <p className={styles.numSectionStyles}>
-                                    {item.quantity}
-                                  </p>
-                                </div>
+                            <div className={styles.shoppingRightSection}>
+                              <div className={styles.textSection}>
+                                <h4 className={styles.productHeader}>
+                                  {item.product.name}
+                                </h4>
+                                <p className={styles.priceSection}>
+                                  Price - &nbsp;
+                                  <span className={styles.priceSection}>
+                                    {item.product.price.currency}
+                                  </span>
+                                  <span className={styles.priceSection}>
+                                    {item.product.price.selling_price}
+                                  </span>
+                                </p>
+                              </div>
+                              <div className={styles.removeSection}>
+                                <div className={styles.addSection}>
+                                  <div
+                                    className={styles.subtractSection}
+                                    onClick={() =>
+                                      subtractFunction(item.product._id)
+                                    }
+                                  >
+                                    <img
+                                      src={subtractlogo}
+                                      alt=""
+                                      className={styles.imageWidth}
+                                    />
+                                  </div>
+                                  <div className={styles.numSection}>
+                                    <p className={styles.numSectionStyles}>
+                                      {item.quantity}
+                                    </p>
+                                  </div>
 
+                                  <div
+                                    className={styles.addSectionOne}
+                                    onClick={() =>
+                                      addFunction(item.product._id)
+                                    }
+                                  >
+                                    <img
+                                      src={addImg}
+                                      alt=""
+                                      className={styles.imageWidth}
+                                    />
+                                  </div>
+                                </div>
                                 <div
-                                  className={styles.addSectionOne}
-                                  onClick={() => addFunction(item.id)}
+                                  className={styles.deleteSection}
+                                  onClick={() =>
+                                    removeCartApi(item.product._id)
+                                  }
                                 >
                                   <img
-                                    src={addImg}
+                                    src={deleteIcon}
                                     alt=""
                                     className={styles.imageWidth}
                                   />
                                 </div>
                               </div>
-                              <div className={styles.deleteSection}>
-                                <img
-                                  src={deleteIcon}
-                                  alt=""
-                                  className={styles.imageWidth}
-                                />
-                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
                   </div>
                 </div>
 

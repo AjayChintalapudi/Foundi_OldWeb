@@ -1,9 +1,12 @@
+import { AppDataProvider } from 'providers/AppDataProvider';
 import { UserDataProvider } from 'providers/UserDataProvider';
 import AppRoutes from 'routes/AppRoutes';
 function App() {
   return (
     <UserDataProvider>
-      <AppRoutes />
+      <AppDataProvider>
+        <AppRoutes />
+      </AppDataProvider>
     </UserDataProvider>
   );
 }

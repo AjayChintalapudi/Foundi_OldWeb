@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { strings } from 'resources/Strings/eng';
 import NavBar from 'components/NavBar/Navbar';
 import Footer from 'components/Footer/Footer';
@@ -17,27 +17,50 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ProductDetails } from 'networking/Apis/singleproduct';
 import { FeedBack } from 'networking/Apis/feedback';
+import { Cart } from 'networking/Apis/cart';
+import { UserDataContext } from 'providers/UserDataProvider';
+import { AppDataContext } from 'providers/AppDataProvider';
 
 const ProductsReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { userDetails } = useContext(UserDataContext);
   const { productReviewPageStrings } = strings;
   //state
   const [productData, setProductData] = useState();
-  const [productImages, setProductImages] = useState();
-  const [productCount, setProductCount] = useState(0);
+
+  const [count, setCount] = useState(false);
   const [feedback, setFeedback] = useState({
     rating: '',
     feedbackDescp: '',
   });
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const addFunction = () => {
-    setProductCount(productCount + 1);
+  const { setCartData, cartData } = useContext(AppDataContext);
+
+  const cartFun = () => {
+    setCount(true);
+    if (cartData.find((item) => item._id === productData._id)) {
+      let data = cartData.find((item) => item._id === productData._id);
+      data.quantity = data.quantity + 1;
+      setCartData([...cartData]);
+    } else {
+      Object.assign(productData, { quantity: 1 });
+      console.log('productData', productData);
+      setCartData([...cartData, productData]);
+    }
   };
-  const subtractFunction = () => {
-    if (productCount > 0) {
-      setProductCount(productCount - 1);
+  const subtractProduct = () => {
+    if (cartData.find((item) => item._id === productData._id)) {
+      if (productData.quantity === 1) {
+        setCount(false);
+        const data = cartData.filter((item) => !(item._id === productData._id));
+        setCartData([...data]);
+      } else {
+        let data = cartData.find((item) => item._id === productData._id);
+        data.quantity = data.quantity - 1;
+        setCartData([...cartData]);
+      }
     }
   };
 
@@ -54,15 +77,22 @@ const ProductsReview = () => {
     try {
       const response = await ProductDetails(id);
       if (response.status === 200 && response.data.type === 'success') {
-        console.log(response, '....singleproduct');
-        setProductData(response.data.data);
-        setProductImages(response.data.data.images.additional);
+        console.log(response.data.data, '....singleproduct');
+
+        const existedInCartData = cartData.find(
+          (item) => item._id === response.data.data._id
+        );
+        if (existedInCartData) {
+          setCount(true);
+          setProductData(existedInCartData);
+        } else {
+          setProductData(response.data.data);
+        }
       }
     } catch (error) {
       console.log(error.message);
     }
   };
-
   const handleFeedback = async (data) => {
     console.log(feedback, '....');
     // try {
@@ -72,6 +102,22 @@ const ProductsReview = () => {
     //   }
     // } catch (error) {}
   };
+  // const addToCartApi = async () => {
+  //   try {
+  //     let data = {
+  //       user_id: userDetails._id,
+  //       product_id: location.state,
+  //       quantity: productCount,
+  //     };
+
+  //     const response = await Cart(data);
+  //     if (response.status === 200 && response.data.type === 'success') {
+  //       console.log('cart response', response);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const productDetailSection = () => {
     return (
@@ -102,6 +148,8 @@ const ProductsReview = () => {
   };
 
   const productDetailLeftSection = () => {
+    const productImages =
+      productData && productData.images && productData.images.additional;
     return (
       <div className={styles.productDetailLeftBlock}>
         {productImages &&
@@ -213,22 +261,23 @@ const ProductsReview = () => {
   const productDetailRightBottomSection = () => {
     return (
       <div className={styles.productDetailRightBottomSection}>
-        {productCount > 0 ? (
+        {count ? (
           <div className={styles.cartButtonSection}>
-            <div
-              className={styles.subtractButtonSection}
-              onClick={() => subtractFunction()}
-            >
-              <img src={subtractlogo} alt="" className={styles.imageWidth} />
+            <div className={styles.subtractButtonSection}>
+              <img
+                src={subtractlogo}
+                alt=""
+                className={styles.imageWidth}
+                onClick={() => {
+                  subtractProduct();
+                }}
+              />
             </div>
             <div className={styles.numTextSection}>
-              <p className={styles.numText}>{productCount}</p>
+              <p className={styles.numText}>{productData.quantity}</p>
             </div>
 
-            <div
-              className={styles.addButtonSection}
-              onClick={() => addFunction()}
-            >
+            <div className={styles.addButtonSection} onClick={() => cartFun()}>
               <img src={addlogo} alt="" className={styles.imageWidth} />
             </div>
           </div>
@@ -236,11 +285,14 @@ const ProductsReview = () => {
           <Button
             btName={productReviewPageStrings.productBtnName}
             btnStyles={styles.cartBtnStyles}
-            onClick={() => addFunction()}
+            onClick={() => cartFun()}
           />
         )}
 
-        <div className={styles.productDetailRightDesc}>
+        <div
+          className={styles.productDetailRightDesc}
+          onClick={() => navigate('/checkout')}
+        >
           <p className={styles.buyNowText}>
             {productReviewPageStrings.buyNowText}
           </p>
