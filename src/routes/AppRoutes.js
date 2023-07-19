@@ -29,9 +29,9 @@ const AppRoutes = () => {
         <Route
           path="/checkout"
           element={
-            <Protected isSignedIn={isSignedIn}>
-              <CheckOut />
-            </Protected>
+            // <Protected isSignedIn={isSignedIn}>
+            <CheckOut />
+            // </Protected>
           }
         ></Route>
         <Route path="/forgotpassword" element={<ForGotPassWord />}></Route>

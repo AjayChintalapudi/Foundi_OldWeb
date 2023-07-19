@@ -41,18 +41,18 @@ const ProductsReview = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   // const { setCartData, cartData } = useContext(AppDataContext);
 
-  const cartFun = () => {
-    setCount(true);
-    if (cartData.find((item) => item._id === productData._id)) {
-      let data = cartData.find((item) => item._id === productData._id);
-      data.quantity = data.quantity + 1;
-      setCartData([...cartData]);
-    } else {
-      Object.assign(productData, { quantity: 1 });
-      console.log('productData', productData);
-      setCartData([...cartData, productData]);
-    }
-  };
+  // const cartFun = () => {
+  //   setCount(true);
+  //   if (cartData.find((item) => item._id === productData._id)) {
+  //     let data = cartData.find((item) => item._id === productData._id);
+  //     data.quantity = data.quantity + 1;
+  //     setCartData([...cartData]);
+  //   } else {
+  //     Object.assign(productData, { quantity: 1 });
+  //     console.log('productData', productData);
+  //     setCartData([...cartData, productData]);
+  //   }
+  // };
 
   const subtractFunction = () => {
     if (productCount > 0) {
@@ -308,32 +308,29 @@ const ProductsReview = () => {
   const productDetailRightBottomSection = () => {
     return (
       <div className={styles.productDetailRightBottomSection}>
-        {count ? (
-          <div className={styles.cartButtonSection}>
-            <div
-              className={styles.subtractButtonSection}
-              // onClick={() => subtractFunction()}
-            >
-              <img src={subtractlogo} alt="" className={styles.imageWidth} />
-            </div>
-            <div className={styles.numTextSection}>
-              <p className={styles.numText}>{productData.quantity}</p>
-            </div>
-
-            <div
-              className={styles.addButtonSection}
-              // onClick={() => addFunction()}
-            >
-              <img src={addlogo} alt="" className={styles.imageWidth} />
-            </div>
+        <div className={styles.cartButtonSection}>
+          {/* <div
+            className={styles.subtractButtonSection}
+            // onClick={() => subtractFunction()}
+          >
+            <img src={subtractlogo} alt="" className={styles.imageWidth} />
           </div>
-        ) : (
-          <Button
-            btName={productReviewPageStrings.productBtnName}
-            btnStyles={styles.cartBtnStyles}
-            onClick={() => handleAddToCart()}
-          />
-        )}
+          <div className={styles.numTextSection}>
+            <p className={styles.numText}>{productCount}</p>
+          </div>
+
+          <div
+            className={styles.addButtonSection}
+            // onClick={() => addFunction()}
+          >
+            <img src={addlogo} alt="" className={styles.imageWidth} />
+          </div> */}
+        </div>
+        <Button
+          btName={productReviewPageStrings.productBtnName}
+          btnStyles={styles.cartBtnStyles}
+          onClick={() => handleAddToCart()}
+        />
         {/* buy now  */}
         <div
           className={styles.productDetailRightDesc}
