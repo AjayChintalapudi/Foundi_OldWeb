@@ -277,6 +277,9 @@ const navbar = {
   login: 'Login',
   userProfile: 'User profile',
   shopping: 'Shopping cart',
+  cartMessageIfNoItemsFound:
+    ' Currently you have 0 items added. Please go back and add items to view cart.',
+  cartMessageIfUserNotLogin: ' You need to login to access the cart items',
 };
 
 const homePage = {

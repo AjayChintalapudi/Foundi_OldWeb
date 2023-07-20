@@ -1,16 +1,19 @@
 import CartDataProvider from 'providers/CartDataProvider';
 import { NetWorkProvider } from 'providers/NetWorkProvider';
+import SpinnerProvider from 'providers/SpinnerProvider';
 import { UserDataProvider } from 'providers/UserDataProvider';
 import AppRoutes from 'routes/AppRoutes';
 function App() {
   return (
-    <NetWorkProvider>
-      <UserDataProvider>
-        <CartDataProvider>
-          <AppRoutes />
-        </CartDataProvider>
-      </UserDataProvider>
-    </NetWorkProvider>
+    <SpinnerProvider>
+      <NetWorkProvider>
+        <UserDataProvider>
+          <CartDataProvider>
+            <AppRoutes />
+          </CartDataProvider>
+        </UserDataProvider>
+      </NetWorkProvider>
+    </SpinnerProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { strings } from 'resources/Strings/eng';
 import {
   additionlogo,
@@ -39,11 +39,13 @@ import {
   SnoCodeValidationSchema,
   snoCodeValidationSchema,
 } from 'validators/Validators';
+import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const Home = () => {
   const { homePage } = strings;
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
+  const { setIsLoading } = useContext(SpinnerContext);
 
   //state
   const [block, setBlock] = useState(0);
@@ -154,12 +156,14 @@ const Home = () => {
 
   const handleSnoCodeResponse = async (values) => {
     try {
+      setIsLoading(true);
       const snoCodeData = { sno: values.snoCode };
       const snoCodeResponse = await snoCode(snoCodeData);
       if (
         snoCodeResponse.status === 200 &&
         snoCodeResponse.data.type === 'success'
       ) {
+        setIsLoading(false);
         navigate('/lostproduct', {
           state: { snoCodeData: snoCodeResponse.data.data },
         });
@@ -168,6 +172,7 @@ const Home = () => {
       }
       console.log(snoCodeResponse, 'snoCodeResponse');
     } catch (error) {
+      setIsLoading(false);
       console.log(error.toString(), 'some error');
     }
   };

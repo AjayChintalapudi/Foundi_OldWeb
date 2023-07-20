@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import { snonotefinder, snoproduct } from 'resources/Images/Images';
 import Button from 'components/Button/Button';
@@ -13,11 +13,15 @@ import {
   EmailValidationSchema,
   emailValidationSchema,
 } from 'validators/Validators';
+import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const SnoProductDetails = () => {
   // navigation
 
   const navigate = useNavigate();
+
+  // spinner
+  const { setIsLoading } = useContext(SpinnerContext);
 
   // onload the page page return to the top
 
@@ -55,11 +59,13 @@ const SnoProductDetails = () => {
   const handleguestLogin = async (values) => {
     console.log(values);
     try {
+      setIsLoading(true);
       const guestResponse = await guestLogin(values);
       if (
         guestResponse.data.type === 'success' &&
         guestResponse.status === 200
       ) {
+        setIsLoading(false);
         localStorage.setItem('guest_email', values.email);
         alert('welcome to chat page');
         navigate('/chat');
@@ -69,6 +75,7 @@ const SnoProductDetails = () => {
       }
       console.log(guestResponse);
     } catch (error) {
+      setIsLoading(false);
       console.log(error.toString(), 'some error in guest login');
     }
   };

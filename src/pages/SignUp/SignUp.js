@@ -20,12 +20,13 @@ import { signUp } from 'networking/Apis/signUp';
 import { UserDataContext } from 'providers/UserDataProvider';
 import { NetworkStatusContext } from 'providers/NetWorkProvider';
 import GoogleAuth from 'helpers/GoogleAuth';
+import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const SignUp = () => {
   // getting user data
   const { setUserData } = useContext(UserDataContext);
   const { isOnline, showMessage } = useContext(NetworkStatusContext);
-
+  const { setIsLoading } = useContext(SpinnerContext);
   const [errorMessage, setErrorMessage] = useState();
 
   //formik Validation
@@ -33,6 +34,7 @@ const SignUp = () => {
 
   const handleSignUp = async (values) => {
     try {
+      setIsLoading(true);
       let signUpData = {
         full_name: values.fullName,
         email: values.email,
@@ -44,6 +46,7 @@ const SignUp = () => {
         signUpResponse.status === 200 &&
         signUpResponse.data.type === 'success'
       ) {
+        setIsLoading(false);
         setUserData(signUpResponse.data);
         localStorage.setItem('authToken', signUpResponse.data.accessToken);
         navigate('/');
@@ -53,6 +56,7 @@ const SignUp = () => {
         console.log('error in signup');
       }
     } catch (error) {
+      setIsLoading(false);
       console.log(error.toString(), 'signup error');
     }
   };

@@ -16,6 +16,7 @@ import { Userlogin } from 'networking/Apis/login';
 
 import { UserDataContext } from 'providers/UserDataProvider';
 import GoogleAuth from 'helpers/GoogleAuth';
+import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,12 +25,15 @@ const Login = () => {
 
   const { loginPageStrings } = strings;
   const { setUserData } = useContext(UserDataContext);
+  const { setIsLoading } = useContext(SpinnerContext);
 
   //formik validation
   const handleLogin = async (values) => {
     try {
+      setIsLoading(true);
       const response = await Userlogin(values);
       if (response.status === 200 && response.data.type === 'success') {
+        setIsLoading(false);
         localStorage.setItem('authToken', response.data.accessToken);
         setUserData(response.data);
         navigate('/');
@@ -39,6 +43,7 @@ const Login = () => {
       }
     } catch (error) {
       setErrorMsg(error.message);
+      setIsLoading(false);
     }
   };
 

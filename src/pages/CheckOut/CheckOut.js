@@ -35,12 +35,14 @@ import { useContext } from 'react';
 import { UserDataContext } from 'providers/UserDataProvider';
 import { getCartData } from 'networking/Apis/getCartData';
 import PhoneNumberInput from 'components/PhoneNumberInput/PhoneNumberInput';
+import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const CheckOut = () => {
   const { checkOutPageStrings } = strings;
+  const { userDetails } = useContext(UserDataContext);
+  const { setIsLoading } = useContext(SpinnerContext);
   const [discountPrice, setDiscountPrice] = useState(0);
   const [couponCode, setCouponCode] = useState('');
-  const { userDetails } = useContext(UserDataContext);
   const [productData, setProductData] = useState();
   const [errorMessage, setErrorMessage] = useState('');
   // navigation
@@ -52,12 +54,14 @@ const CheckOut = () => {
 
   const handleGettingCartData = async () => {
     try {
+      setIsLoading(true);
       const cartProductsResponse = await getCartData(userDetails._id);
       console.log('cartProductsResponse', cartProductsResponse);
       if (
         cartProductsResponse.data.type === 'success' &&
         cartProductsResponse.status === 200
       ) {
+        setIsLoading(false);
         if (location.state) {
           const existedProductInCart =
             cartProductsResponse.data.data.items.filter(
@@ -71,6 +75,7 @@ const CheckOut = () => {
         console.log('product not found in cart');
       }
     } catch {
+      setIsLoading(true);
       console.log('error in gettingCartDataResponse');
     }
   };
@@ -189,6 +194,7 @@ const CheckOut = () => {
     try {
       handleButtonClick();
       if (tab === 'payment') {
+        setIsLoading(true);
         console.log(values);
         let checkoutData = {
           items: productData && productData,
@@ -210,12 +216,14 @@ const CheckOut = () => {
           handleCheckOutResponse.data.type === 'success' &&
           handleCheckOutResponse.status === 200
         ) {
+          setIsLoading(false);
           alert('goto payment page');
           window.location.href = handleCheckOutResponse.data.data.url;
           console.log('handleCheckOutResponse', handleCheckOutResponse);
         }
       }
     } catch (error) {
+      setIsLoading(true);
       console.log('submitted');
     }
   };

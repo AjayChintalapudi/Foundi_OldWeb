@@ -4,6 +4,7 @@
   background-color: var(--white);
   position: sticky;
   top: 0;
+  z-index: 100;
 }
 .insideNavBar {
   max-width: 1366px;
@@ -285,9 +286,15 @@
 .userEmail {
   color: var(--lightgrey72);
   font-size: 18px;
-  font-family: 'Regular', sans-serif;
+  font-family: 'Medium', sans-serif;
   font-weight: 500;
   line-height: 30px;
+}
+
+.userProfileDataBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 .loginStyles {
@@ -393,6 +400,52 @@
     margin-inline: 8px;
   }
 
+  .userProfilePopOver {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .userProfileDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .userProfileImgAndNameBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .userProfileImageBlock {
+    width: 40px;
+    height: 40px;
+  }
+
+  .userProfileName {
+    color: rgba(35, 31, 32, 0.72);
+    font-family: 'Medium', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  .upAndArrowBlock {
+    width: 24px;
+    height: 24px;
+  }
+
+  .userProfilePopOverBlock {
+    border-radius: 8px;
+    border: 1px solid var(--lightgrey24);
+    background: #fff;
+    padding: 24px;
+  }
+
   .useProfileSection {
     display: flex;
     flex-direction: row;
@@ -403,8 +456,8 @@
   .popOverBusinessText,
   .popOverProductsText,
   .popOverAboutText {
-    font-family: 'Regular', sans-serif;
-    font-weight: 600;
+    font-family: 'Medium', sans-serif;
+    font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     color: var(--lightgrey72);
@@ -507,6 +560,11 @@
     width: 100%;
   }
   .checkOutStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .userProfileOptions {
     font-size: 16px;
     line-height: 24px;
   }

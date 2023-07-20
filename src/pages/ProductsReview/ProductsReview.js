@@ -23,6 +23,7 @@ import { FeedBack } from 'networking/Apis/feedback';
 import { UserDataContext } from 'providers/UserDataProvider';
 import { cart } from 'networking/Apis/cart';
 import { CartDataContext } from 'providers/CartDataProvider';
+import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const ProductsReview = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const ProductsReview = () => {
   const { productReviewPageStrings } = strings;
   const { userDetails } = useContext(UserDataContext);
   const { cartData, handleCartData } = useContext(CartDataContext);
+  const { setIsLoading } = useContext(SpinnerContext);
   //state
   const [productData, setProductData] = useState();
   const [productCount, setProductCount] = useState(0);
@@ -38,16 +40,6 @@ const ProductsReview = () => {
     feedbackDescp: '',
   });
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const addFunction = () => {
-    setProductCount(productCount + 1);
-  };
-
-  const subtractFunction = () => {
-    if (productCount > 0) {
-      setProductCount(productCount - 1);
-    }
-  };
 
   //useEffect
   useEffect(() => {
@@ -61,12 +53,15 @@ const ProductsReview = () => {
   //api's
   const productDetails = async (id) => {
     try {
+      setIsLoading(true);
       const response = await individualProduct(id);
       if (response.status === 200 && response.data.type === 'success') {
         // console.log(response, '....singleproduct');
+        setIsLoading(false);
         setProductData(response.data.data);
       }
     } catch (error) {
+      setIsLoading(true);
       console.log(error.message);
     }
   };
@@ -87,6 +82,7 @@ const ProductsReview = () => {
 
   const handleAddToCart = async () => {
     try {
+      setIsLoading(true);
       const addToCartData = {
         user_id: userDetails._id,
         product_id: location.state,
@@ -104,11 +100,13 @@ const ProductsReview = () => {
         addToCartResponse.data.type === 'success' &&
         addToCartResponse.status === 200
       ) {
-        alert('product added to cart');
+        setIsLoading(false);
+        // alert('product added to cart');
         handleCartData();
       }
     } catch (error) {
       console.log('error in adding handle add to cart');
+      setIsLoading(true);
     }
   };
 
@@ -116,6 +114,7 @@ const ProductsReview = () => {
 
   const handleBuyNowProductData = async () => {
     try {
+      setIsLoading(true);
       let buyNowProductData = {
         user_id: userDetails._id,
         product_id: location.state,
@@ -126,6 +125,7 @@ const ProductsReview = () => {
         addingProductToCartResponse.data.type === 'success' &&
         addingProductToCartResponse.status === 200
       ) {
+        setIsLoading(false);
         console.log(addingProductToCartResponse, 'product added');
         handleCartData();
         navigate('/checkout', { state: productData._id });
@@ -136,6 +136,7 @@ const ProductsReview = () => {
       }
     } catch {
       console.log('error in adding to cart ');
+      setIsLoading(false);
     }
   };
 
@@ -242,6 +243,7 @@ const ProductsReview = () => {
       </div>
     );
   };
+
   const productDetailRightInfoSection = () => {
     return (
       <div className={styles.productDetailRightInfoBlock}>
@@ -441,6 +443,14 @@ const ProductsReview = () => {
   const reviewRatingSection = () => {
     return (
       <div className={styles.reviewRatingBlock}>
+        {productReviewDataSection()}
+      </div>
+    );
+  };
+
+  const productReviewDataSection = () => {
+    return (
+      <>
         {productReviewData &&
           productReviewData.map((item, index) => {
             return (
@@ -463,7 +473,7 @@ const ProductsReview = () => {
               </div>
             );
           })}
-      </div>
+      </>
     );
   };
 

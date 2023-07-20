@@ -39,6 +39,7 @@
   --darkgreen: #194f59;
   --lightgrey24: rgba(35, 31, 32, 0.24);
   --lightgrey72: rgba(35, 31, 32, 0.72);
+  --lightgrey82: #f3f3f3;
   --lightgrey16: rgba(35, 31, 32, 0.16);
   --lightgreyishblue: #e6e6e7;
   --whitetransparent72: rgba(255, 255, 255, 0.72);
@@ -59,6 +60,7 @@
   --red: #ff0000;
   --backgroundModalColor: rgba(0, 0, 0, 0.5);
   --lightBlue: rgba(68, 110, 220, 0.64);
+  --blackTransparent: #383636;
 }
 
 *::-webkit-scrollbar {

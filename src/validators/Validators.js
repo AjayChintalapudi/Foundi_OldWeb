@@ -2,7 +2,9 @@ import * as Yup from 'yup';
 
 export const emailValidationSchema = Yup.object().shape({
   email: Yup.string()
+    .trim()
     .email('Enter a valid email address')
+    .matches(/^[^\s@]+@[^\s@]+\.(com|in|org)$/, 'Invalid Email')
     .required('Email is required'),
 });
 
@@ -39,6 +41,8 @@ export const lastNameValidationSchema = Yup.object().shape({
 export const phoneNumberValidationSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .matches(/^\d+$/, 'Only numbers are allowed')
+    .min(10, 'phone number atleat 10 digits')
+    .max(10, 'upto 10 digits')
     .required('Enter the Phone Number'),
 });
 
@@ -94,5 +98,6 @@ export const monthAndYearValidationSchema = Yup.object().shape({
 export const cvvValidationSchema = Yup.object().shape({
   cvv: Yup.string()
     .matches(/^\d+$/, 'Only numbers are allowed')
+    .max(3, 'Enter valid Cvv')
     .required('Enter the Cvv Number'),
 });

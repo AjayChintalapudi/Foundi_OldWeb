@@ -5,6 +5,7 @@ import {
   cartImg,
   crossIcon,
   deleteIcon,
+  downarrowimage,
   hamburgerlogo,
   modalcloseiconimg,
   navbarlogo,
@@ -24,10 +25,12 @@ import { removeProductApi } from 'networking/Apis/removeProduct';
 import { CartDataContext } from 'providers/CartDataProvider';
 import { checkOut } from 'networking/Apis/checkOut';
 import { getOrderHistory } from 'networking/Apis/getOrderHistory';
+import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const NavBar = () => {
   const { userDetails, handleLogout } = useContext(UserDataContext);
   const { cartData, handleCartData } = useContext(CartDataContext);
+  const { setIsLoading } = useContext(SpinnerContext);
   const isWideScreen = useMediaQuery('(min-width: 867px)');
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
@@ -38,19 +41,27 @@ const NavBar = () => {
   const [popOver, setPopOver] = useState(false);
 
   const [purchaseData, setPurchaseData] = useState();
+  const [showPopOver, setShowPopOver] = useState(false);
 
   const { navbar } = strings;
 
   // remove product from cart
 
   const removeProductFromCart = async (id) => {
-    const response = await removeProductApi({
-      user_id: userDetails?._id,
-      product_id: id,
-    });
-    if (response.data.type === 'success' && response.status === 200) {
-      handleCartData();
-      alert('removing product from cart');
+    try {
+      setIsLoading(true);
+      const response = await removeProductApi({
+        user_id: userDetails?._id,
+        product_id: id,
+      });
+      if (response.data.type === 'success' && response.status === 200) {
+        setIsLoading(false);
+        handleCartData();
+        // alert('removing product from cart');
+      }
+    } catch {
+      setIsLoading(true);
+      console.log('error in removing product');
     }
   };
 
@@ -253,12 +264,11 @@ const NavBar = () => {
                   </div>
                 ) : authToken ? (
                   <p className={styles.cartMessage}>
-                    Currently you have 0 items added. Please go back and add
-                    items to view cart.
+                    {navbar.cartMessageIfNoItemsFound}
                   </p>
                 ) : (
                   <p className={styles.cartMessage}>
-                    You need to login to access the cart items
+                    {navbar.cartMessageIfUserNotLogin}
                   </p>
                 )}
               </div>
@@ -335,6 +345,14 @@ const NavBar = () => {
           <p className={styles.userName}>{userDetails?.full_name}</p>
           <p className={styles.userEmail}>{userDetails?.email}</p>
         </div>
+        {userProfileDataSection()}
+      </div>
+    );
+  };
+
+  const userProfileDataSection = () => {
+    return (
+      <div className={styles.userProfileDataBlock}>
         {userProfileData &&
           userProfileData.map((item, index) => (
             <div
@@ -376,11 +394,48 @@ const NavBar = () => {
         <div className={styles.popOverSection}>
           <div className={styles.insidePopOver}>
             {authToken ? (
-              <div className={styles.userDetails}>
-                <div className={styles.userProfileImgBlock}></div>
+              <div className={styles.userProfilePopOver}>
+                <div className={styles.userProfileDetails}>
+                  <div className={styles.userProfileImgAndNameBlock}>
+                    <div className={styles.userProfileImageBlock}>
+                      <img
+                        src={userprofileimg}
+                        alt="userProfileImg"
+                        className={styles.imageWidth}
+                      />
+                    </div>
+                    <p className={styles.userProfileName}>
+                      {userDetails?.full_name}
+                    </p>
+                  </div>
+                  <div
+                    className={styles.upAndArrowBlock}
+                    onClick={() => setShowPopOver(!showPopOver)}
+                  >
+                    {showPopOver ? (
+                      <img
+                        src={downarrowimage}
+                        alt="userProfileOptions"
+                        className={styles.imageWidth}
+                      />
+                    ) : (
+                      <img
+                        src={userprofileuparrow}
+                        alt="userProfileOptions"
+                        className={styles.imageWidth}
+                      />
+                    )}
+                  </div>
+                </div>
+                {showPopOver ? (
+                  <div className={styles.userProfilePopOverBlock}>
+                    {userProfileDataSection()}
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             ) : (
-              // <p>userDetails</p>
               <div className={styles.useProfileSection}>
                 <p className={styles.userProfileText}>{navbar.userProfile}</p>
                 <div className={styles.loginButtonSection}>
