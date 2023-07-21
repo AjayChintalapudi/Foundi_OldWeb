@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UserProfile from 'components/UserProfile/UserProfile';
 import {
   backwardlogo,
@@ -9,9 +9,11 @@ import {
 import { strings } from 'resources/Strings/eng';
 import Input from 'components/Input/Input';
 import styles from './styles.module.css';
+import useWindowDimensions from 'hooks/UseWindowDimensionHook';
 
 const Chat = () => {
   const { chatPageStrings } = strings;
+  const [showChat, setShowChat] = useState(false);
 
   const mapData = [
     {
@@ -141,12 +143,52 @@ const Chat = () => {
     return (
       <div className={styles.chatListStyles}>
         {chatLeftSection()}
+        {chatRightSection()}
+      </div>
+    );
+  };
 
+  const chatLeftSection = () => {
+    return (
+      <div className={styles.chatLeftSection}>
+        <div className={styles.chatLeftSectionStyles}>
+          {mapData.map((item, index) => {
+            return (
+              <div key={index} className={styles.individualMessagesStyles}>
+                <div className={styles.gapSectionStyles}>
+                  <div className={styles.chatListImageStyles}>
+                    <img src="" />
+                  </div>
+                  <div className={styles.chatListTextStyles}>
+                    <h3 className={styles.chatListHeadersStyles}>
+                      {item.snoTag}
+                    </h3>
+                    <p className={styles.chatlistDescpStyles}>{item.descp}</p>
+                  </div>
+                </div>
+                <div className={styles.chatListtimeSectionStyles}>
+                  <p className={styles.chattingTimeStyles}>{item.date}</p>
+                  <div className={styles.chatListCountStyles}>
+                    <p className={styles.chatListNumber}>{item.count}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  const chatRightSection = () => {
+    return (
+      <>
         {/* <div className={styles.chatRightSectionStyles}>
           <p className={styles.chatStartMessageStyles}>
             Select a chat to start messaging
           </p>
         </div> */}
+
         <div className={styles.inBoxSection}>
           <div className={styles.inBoxSnoStyles}>
             <div className={styles.inBoxSnoLeftStyles}>
@@ -193,13 +235,6 @@ const Chat = () => {
                         {item.time}
                       </p>
                     </div>
-                    {/* <div className={styles.inBoxSenderSection}>
-                      <p className={styles.inBoxSenderStyles}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        elit.
-                      </p>
-                      <p className={styles.inBoxSendertimeStyles}>07:20</p>
-                    </div> */}
                   </div>
                 </>
               );
@@ -222,37 +257,7 @@ const Chat = () => {
             </div>
           </div>
         </div>
-      </div>
-    );
-  };
-
-  const chatLeftSection = () => {
-    return (
-      <div className={styles.chatLeftSectionStyles}>
-        {mapData.map((item, index) => {
-          return (
-            <div key={index} className={styles.individualMessagesStyles}>
-              <div className={styles.gapSectionStyles}>
-                <div className={styles.chatListImageStyles}>
-                  <img src="" />
-                </div>
-                <div className={styles.chatListTextStyles}>
-                  <h3 className={styles.chatListHeadersStyles}>
-                    {item.snoTag}
-                  </h3>
-                  <p className={styles.chatlistDescpStyles}>{item.descp}</p>
-                </div>
-              </div>
-              <div className={styles.chatListtimeSectionStyles}>
-                <p className={styles.chattingTimeStyles}>{item.date}</p>
-                <div className={styles.chatListCountStyles}>
-                  <p className={styles.chatListNumber}>{item.count}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      </>
     );
   };
 

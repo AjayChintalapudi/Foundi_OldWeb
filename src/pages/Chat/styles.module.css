@@ -1,5 +1,6 @@
 /* -------------------------DeskTop View Starts------------------------- */
 /* empty Chat Section Start */
+
 .chatSectionStyles {
   width: 100%;
   height: 100vh;
@@ -52,7 +53,7 @@
   font-weight: 400;
   line-height: 30px;
 }
-/* empty Chat Section Start */
+/* empty Chat Section End */
 
 /* chat Left Section  Start */
 .chatListStyles {
@@ -63,14 +64,17 @@
   padding-top: 48px;
   justify-content: center;
 }
-.chatLeftSectionStyles {
+.chatLeftSection {
   width: 491px;
   height: 448px;
   background: var(--white);
   overflow: scroll;
 }
+.chatLeftSectionStyles {
+  padding: 0px 24px 24px 24px;
+}
 .individualMessagesStyles {
-  padding: 24px;
+  padding: 24px 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -184,6 +188,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  display: block;
 }
 .inBoxSnoStyles {
   display: flex;
@@ -317,13 +322,14 @@
   flex-direction: row;
   gap: 32px;
   align-items: center;
+  width: 100%;
 }
 .chatAddIconStyles {
   width: 24px;
   height: 24px;
 }
 .messageInputStyles {
-  width: 400px;
+  width: 100%;
   border: none;
   background: var(--lightgreyishblue);
   color: var(--grey);
@@ -340,14 +346,69 @@
 
 /* styles start at  1023px */
 @media screen and (max-width: 1023px) {
+  /* empty Chat Section Start */
+  .chatSectionStyles {
+    padding: 32px 24px 0px;
+  }
+  /* empty Chat Section End */
+
+  /* chat Left Section Start */
+  /* .individualMessagesStyles {
+    padding: 10px 0px;
+  } */
+  .chatListImageStyles {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+  }
+
+  .chatlistDescpStyles {
+    max-width: 160px;
+  }
+  .chatListCountStyles {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+  }
+  /* chat Left Section  End */
+
+  /* chat Right Section  start */
+  /* chat Right Section  end */
+
+  /* chat Inbox Section  start */
+  .inBoxSnoStyles {
+    padding: 20px;
+  }
+  .inBoxSnoLeftStyles {
+    gap: 12px;
+  }
+  .inboxSnoImageStyles {
+    width: 32px;
+    height: 32px;
+    border-radius: 24px;
+  }
+  .inBoxSenderStyles {
+    max-width: 300px;
+  }
+  .inputGapSection {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+  .inBoxFinderStyles {
+    max-width: 300px;
+  }
+  /* chat Inbox Section  end */
 }
 
 /* styles End at  1023px */
 
 /* styles start at  867px */
 @media screen and (max-width: 867px) {
+  /* empty Chat Section Start */
   .chatSectionStyles {
-    padding: 32px 60px 0px;
+    padding: 32px 24px 0px;
   }
   .messageSectionStyles {
     gap: 16px;
@@ -363,15 +424,109 @@
     max-width: 366px;
     font-size: 16px;
   }
+  /* empty Chat Section End */
+
+  /* chat Left Section Start */
+  .chatListStyles {
+    padding-top: 32px;
+  }
+  .chatLeftSection {
+    width: 100%;
+    height: 100%;
+  }
+
+  .chatListImageStyles {
+    width: 48px;
+    height: 48px;
+    border-radius: 32px;
+  }
+
+  .chatlistDescpStyles {
+    max-width: 214px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .chatListCountStyles {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+  }
+
+  /* chat Left Section End */
+
+  /* chat Inbox Section  start */
+  .inBoxSection {
+    display: none;
+  }
+  /* chat Inbox Section  start */
 }
 
 /* styles End at  867px */
 
 /* styles start at  428px */
 @media screen and (max-width: 428px) {
+  /* empty Chat Section start */
   .chatSectionStyles {
-    padding: 40px 24px 0px;
+    padding: 40px 0px 24px;
   }
+  .topSectionStyles {
+    padding: 0px 24px;
+  }
+  /* empty Chat Section End */
+
+  /* chat Left Section  Start */
+  .chatListStyles {
+    padding-top: 24px;
+  }
+  .chatListImageStyles {
+    width: 54px;
+    height: 54px;
+  }
+  .chatListTextStyles {
+    gap: 4px;
+  }
+  .chatListHeadersStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .chatlistDescpStyles {
+    max-width: 176px;
+  }
+  .chattingTimeStyles {
+    line-height: 20px;
+  }
+  .chatListNumber {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  /* chat Left Section  End */
+}
+
+/* styles End at  428px */
+
+/* styles start at  350px */
+@media screen and (max-width: 350px) {
+  /* chat Left Section  Start */
+  .chatListStyles {
+    padding-top: 24px;
+  }
+  .chatListImageStyles {
+    width: 40px;
+    height: 40px;
+  }
+  .chatListHeadersStyles {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .chatlistDescpStyles {
+    max-width: 130px;
+  }
+  .chattingTimeStyles {
+    line-height: 14px;
+  }
+
+  /* chat Left Section  End */
 }
 
 /* styles End at  428px */
