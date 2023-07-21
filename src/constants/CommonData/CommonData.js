@@ -138,6 +138,7 @@ const productCategoriesHeadingData = [
   { productCategoryHeading: productPageStrings.productCategoryOne },
   { productCategoryHeading: productPageStrings.productCategoryTwo },
   { productCategoryHeading: productPageStrings.productCategoryThree },
+  // { productCategoryHeading: productPageStrings.productCategoryFour },
 ];
 
 const productsData = [

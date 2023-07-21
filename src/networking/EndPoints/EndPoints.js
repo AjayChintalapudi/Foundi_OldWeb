@@ -31,3 +31,7 @@ export const removeProductFromCart = 'cart/remove';
 // getting ordered history data
 
 export const getOrderHistory = 'orders/get/{user_id}';
+
+// get categories data api
+
+export const getEcomProductCategoryData = 'admin/ecom/category/get/all';

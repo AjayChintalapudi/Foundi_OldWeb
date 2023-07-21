@@ -145,21 +145,17 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 30px;
-  color: var(--lightgrey72);
+  color: var(--darkgreen);
   padding-bottom: 16px;
   border-bottom: 4px solid var(--darkgreen);
 }
-.productCategoryHeadingHover {
+.productCategoryHeadingSelected {
   font-family: 'Regular', sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 30px;
-  color: var(--lightgrey72);
   padding-bottom: 16px;
-}
-
-.productCategoryHeadingHover:hover {
-  color: var(--darkgreen);
+  color: var(--lightgrey72);
   cursor: pointer;
 }
 

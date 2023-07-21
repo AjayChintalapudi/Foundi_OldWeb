@@ -102,6 +102,7 @@ const productPageStrings = {
   productCategoryOne: 'Category 1',
   productCategoryTwo: 'Category 2',
   productCategoryThree: 'Category 3',
+  productCategoryFour: 'Category 4',
 };
 
 const productReviewPageStrings = {

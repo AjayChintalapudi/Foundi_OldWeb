@@ -12,13 +12,24 @@ import { EcomProducts } from 'networking/Apis/ecomproducts';
 const Products = () => {
   const navigate = useNavigate();
   const { productPageStrings } = strings;
-
   const [productDetails, setProductDetails] = useState();
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [categoryProducts, setCategoryProducts] = useState();
+  // select categories
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    const categoryProducts = productDetails.filter(
+      (item) => item.category.title === category
+    );
+    setCategoryProducts(category === 'All' ? productDetails : categoryProducts);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
     productsResponse();
   }, []);
+
+  // get Ecom products
 
   const productsResponse = async () => {
     try {
@@ -26,8 +37,11 @@ const Products = () => {
       console.log(response);
       if (response.status === 200 && response.data.type === 'success') {
         setProductDetails(response.data.data);
+        setCategoryProducts(response.data.data);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log('error in getting product details');
+    }
   };
 
   const productsBannerSection = () => {
@@ -102,10 +116,11 @@ const Products = () => {
               <p
                 key={index}
                 className={
-                  index === 0
+                  item.productCategoryHeading === selectedCategory
                     ? styles.productCategoryHeading
-                    : styles.productCategoryHeadingHover
+                    : styles.productCategoryHeadingSelected
                 }
+                onClick={() => handleCategoryClick(item.productCategoryHeading)}
               >
                 {item.productCategoryHeading}
               </p>
@@ -118,8 +133,8 @@ const Products = () => {
   const productsDetailsSection = () => {
     return (
       <div className={styles.productsDetails}>
-        {productDetails &&
-          productDetails.map((item, index) => {
+        {categoryProducts &&
+          categoryProducts.map((item, index) => {
             return (
               <ProductsCard
                 key={index}
