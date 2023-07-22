@@ -38,19 +38,70 @@ import PhoneNumberInput from 'components/PhoneNumberInput/PhoneNumberInput';
 import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const CheckOut = () => {
+  // navigation [react router dom]
+  const navigate = useNavigate();
+  const location = useLocation();
+  // strings
   const { checkOutPageStrings } = strings;
+  // contexts
   const { userDetails } = useContext(UserDataContext);
   const { setIsLoading } = useContext(SpinnerContext);
+  // states
   const [discountPrice, setDiscountPrice] = useState(0);
   const [couponCode, setCouponCode] = useState('');
   const [productData, setProductData] = useState();
   const [errorMessage, setErrorMessage] = useState('');
-  // navigation
+  // Title Section Tab Change [contact-address-payment]
+  const [tab, setTab] = useState('contact');
+  const [showContent, setShowContent] = useState(true);
+  // validation schema
+  const [schema, setSchema] = useState(
+    firstNameValidationSchema
+      .concat(lastNameValidationSchema)
+      .concat(emailValidationSchema)
+      .concat(phoneNumberValidationSchema)
+  );
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  // useEffect
 
-  // handling getting cart data
+  /* getting cartData details*/
+  useEffect(() => {
+    handleGettingCartData();
+  }, [userDetails]);
+
+  /*Keep Validation Schemas while changing the Tabs*/
+  useEffect(() => {
+    if (tab === 'contact') {
+      setSchema(
+        firstNameValidationSchema
+          .concat(lastNameValidationSchema)
+          .concat(emailValidationSchema)
+          .concat(phoneNumberValidationSchema)
+      );
+    }
+    if (tab === 'address') {
+      setSchema(
+        schema
+          .concat(doorAndAddressValidationSchema)
+          .concat(cityValidationSchema)
+          .concat(zipCodeValidationSchema)
+          .concat(stateAndCountryValidationSchema)
+      );
+    }
+    if (tab === 'payment') {
+      setSchema(
+        schema
+          .concat(cardHolderNameValidationSchema)
+          .concat(debitAndCreditValidationSchema)
+          .concat(monthAndYearValidationSchema)
+          .concat(cvvValidationSchema)
+      );
+    }
+  }, [tab]);
+
+  // api calls
+
+  /*handling getting cart data*/
 
   const handleGettingCartData = async () => {
     try {
@@ -79,12 +130,48 @@ const CheckOut = () => {
       console.log('error in gettingCartDataResponse');
     }
   };
-  // getting cartData details
-  useEffect(() => {
-    handleGettingCartData();
-  }, [userDetails]);
 
-  // product price calculation
+  /* handling checkout and buying of product*/
+
+  const handleCheckOut = async (values) => {
+    try {
+      handleButtonClick();
+      if (tab === 'payment') {
+        setIsLoading(true);
+        console.log(values);
+        let checkoutData = {
+          items: productData && productData,
+          shipping: {
+            address: {
+              address_text: values.doorAndAddress,
+              carrier: 'post',
+              door_number: values.doorAndAddress,
+              tracking_number: productData?._id,
+              zipcode: values.zipCode,
+            },
+          },
+          user_id: userDetails?._id,
+        };
+        console.log('checkoutData', checkoutData);
+
+        const handleCheckOutResponse = await checkOut(checkoutData);
+        if (
+          handleCheckOutResponse.data.type === 'success' &&
+          handleCheckOutResponse.status === 200
+        ) {
+          setIsLoading(false);
+          alert('goto payment page');
+          window.location.href = handleCheckOutResponse.data.data.url;
+          console.log('handleCheckOutResponse', handleCheckOutResponse);
+        }
+      }
+    } catch (error) {
+      setIsLoading(true);
+      console.log('submitted');
+    }
+  };
+
+  /*product price calculation */
 
   const productsPrice = productData?.reduce((sum, item) => {
     return (
@@ -127,6 +214,8 @@ const CheckOut = () => {
     setErrorMessage('');
   };
 
+  /* product price details*/
+
   const priceDetailsData = [
     {
       productChargeDesc: 'Price of added products -',
@@ -145,90 +234,8 @@ const CheckOut = () => {
       price: discountPrice,
     },
   ];
-  // Title Section Tab Change [contact-address-payment]
 
-  const [tab, setTab] = useState('contact');
-  const [showContent, setShowContent] = useState(true);
-
-  // Keep Validation Schemas while changing the Tabs
-
-  const [schema, setSchema] = useState(
-    firstNameValidationSchema
-      .concat(lastNameValidationSchema)
-      .concat(emailValidationSchema)
-      .concat(phoneNumberValidationSchema)
-  );
-  // console.log('schema', schema)
-  useEffect(() => {
-    if (tab === 'contact') {
-      setSchema(
-        firstNameValidationSchema
-          .concat(lastNameValidationSchema)
-          .concat(emailValidationSchema)
-          .concat(phoneNumberValidationSchema)
-      );
-    }
-    if (tab === 'address') {
-      setSchema(
-        schema
-          .concat(doorAndAddressValidationSchema)
-          .concat(cityValidationSchema)
-          .concat(zipCodeValidationSchema)
-          .concat(stateAndCountryValidationSchema)
-      );
-    }
-    if (tab === 'payment') {
-      setSchema(
-        schema
-          .concat(cardHolderNameValidationSchema)
-          .concat(debitAndCreditValidationSchema)
-          .concat(monthAndYearValidationSchema)
-          .concat(cvvValidationSchema)
-      );
-    }
-  }, [tab]);
-
-  // handling checkout and buying of product
-
-  const handleCheckOut = async (values) => {
-    try {
-      handleButtonClick();
-      if (tab === 'payment') {
-        setIsLoading(true);
-        console.log(values);
-        let checkoutData = {
-          items: productData && productData,
-          shipping: {
-            address: {
-              address_text: values.doorAndAddress,
-              carrier: 'post',
-              door_number: values.doorAndAddress,
-              tracking_number: productData?._id,
-              zipcode: values.zipCode,
-            },
-          },
-          user_id: userDetails?._id,
-        };
-        console.log('checkoutData', checkoutData);
-
-        const handleCheckOutResponse = await checkOut(checkoutData);
-        if (
-          handleCheckOutResponse.data.type === 'success' &&
-          handleCheckOutResponse.status === 200
-        ) {
-          setIsLoading(false);
-          alert('goto payment page');
-          window.location.href = handleCheckOutResponse.data.data.url;
-          console.log('handleCheckOutResponse', handleCheckOutResponse);
-        }
-      }
-    } catch (error) {
-      setIsLoading(true);
-      console.log('submitted');
-    }
-  };
-
-  // formik handling
+  /*formik handling*/
 
   const formik = useFormik({
     initialValues: {
@@ -248,8 +255,6 @@ const CheckOut = () => {
     validationSchema: schema,
     onSubmit: handleCheckOut,
   });
-
-  // getting product  data from product review page
 
   const checkOutPageSection = () => {
     return (
@@ -414,7 +419,7 @@ const CheckOut = () => {
           onChange={formik.handleChange}
           error={formik.touched.email && formik.errors.email}
           placeholder={checkOutPageStrings.emailPlaceHolderText}
-          image={formik.errors.email ? checkouttickmark : checkoutuncheckmark}
+          image={formik.values.email ? checkoutcheckmark : checkoutuncheckmark}
           customInputStyles={styles.emailInputStyles}
         />
       </div>
@@ -425,17 +430,6 @@ const CheckOut = () => {
     return (
       <div className={styles.phoneNumberContainer}>
         <p className={styles.phoneNumber}>{checkOutPageStrings.phoneNumber}</p>
-        {/* <Input
-          name="phoneNumber"
-          type="tel"
-          value={formik.values.phoneNumber}
-          onBlur={formik.handleBlur}
-          onFocus={() => formik.setFieldError('phoneNumber', '')}
-          onChange={formik.handleChange}
-          error={formik.touched.phoneNumber && formik.errors.phoneNumber}
-          placeholder={checkOutPageStrings.phoneNumberPlaceHolderText}
-          customInputStyles={styles.phoneNumberInputStyles}
-        /> */}
         <PhoneNumberInput
           name="phoneNumber"
           type="tel"
@@ -731,7 +725,13 @@ const CheckOut = () => {
             value={couponCode}
             onChange={handleChange}
             onFocus={() => setErrorMessage('')}
-            image={errorMessage ? dangercircle : checkoutcheckmark}
+            image={
+              errorMessage
+                ? dangercircle
+                : couponCode
+                ? checkoutcheckmark
+                : null
+            }
           />
           <p className={styles.discountInputErrorMsg}>{errorMessage}</p>
           <Button
