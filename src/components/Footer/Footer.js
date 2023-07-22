@@ -4,11 +4,29 @@ import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { footerIconsData } from 'constants/CommonData/CommonData';
 import styles from './styles.module.css';
+import { Formik, useFormik } from 'formik';
+import { emailValidationSchema } from 'validators/Validators';
 
 const Footer = () => {
   // Footer Section Strings
 
   const { footerStrings } = strings;
+
+  // handle email response
+
+  const handleEmailResponse = async (values) => {
+    console.log(values, 'email sending value');
+    try {
+    } catch {
+      console.log('error in handling email sending response');
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: { email: '' },
+    validationSchema: emailValidationSchema,
+    onSubmit: handleEmailResponse,
+  });
 
   const footerTopSection = () => {
     return (
@@ -34,14 +52,27 @@ const Footer = () => {
     return (
       <div className={styles.footerTopSectionRightBlock}>
         <div className={styles.footerInputContainer}>
-          <Input
-            customInputStyles={styles.footerInputStyles}
-            placeholder={footerStrings.footerPlaceHolderText}
-          />
-          <div className={styles.footerButtonContainer}>
-            <Button btName="submit" btnStyles={styles.footerBtnStyles} />
-            <Button btName=">" btnStyles={styles.footerBtnIconStyles} />
-          </div>
+          <form onSubmit={formik.handleSubmit}>
+            <Input
+              name="email"
+              type="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              onFocus={() => formik.setFieldError('email', '')}
+              customInputStyles={styles.footerInputStyles}
+              placeholder={footerStrings.footerPlaceHolderText}
+              error={formik.touched.email && formik.errors.email}
+            />
+            <div className={styles.footerButtonContainer}>
+              <Button
+                btName="submit"
+                type="submit"
+                btnStyles={styles.footerBtnStyles}
+              />
+              <Button btName=">" btnStyles={styles.footerBtnIconStyles} />
+            </div>
+          </form>
         </div>
       </div>
     );

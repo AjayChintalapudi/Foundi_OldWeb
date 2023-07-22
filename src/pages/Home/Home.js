@@ -35,10 +35,7 @@ import styles from './styles.module.css';
 import Modal from 'components/Modal/Modal';
 import { snoCode } from 'networking/Apis/snoCode';
 import { useFormik } from 'formik';
-import {
-  SnoCodeValidationSchema,
-  snoCodeValidationSchema,
-} from 'validators/Validators';
+import { snoCodeValidationSchema } from 'validators/Validators';
 import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const Home = () => {
@@ -436,6 +433,7 @@ const Home = () => {
             <Button
               btName={'View products'}
               btnStyles={styles.productsBtnStyles}
+              onClick={() => navigate('/products')}
             />
           </div>
         </div>

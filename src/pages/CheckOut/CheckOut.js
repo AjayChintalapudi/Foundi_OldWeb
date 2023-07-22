@@ -655,7 +655,7 @@ const CheckOut = () => {
             type="text"
             value={formik.values.cvv}
             onBlur={formik.handleBlur}
-            onFocus={() => formik.setFieldError('', '')}
+            onFocus={() => formik.setFieldError('cvv', '')}
             onChange={formik.handleChange}
             error={formik.touched.cvv && formik.errors.cvv}
             placeholder={checkOutPageStrings.cvvCodePlaceHolderText}

@@ -6,14 +6,12 @@ import styles from './styles.module.css';
 import { strings } from 'resources/Strings/eng';
 import { sustainabilityglobeimg } from 'resources/Images/Images';
 import { sustainabilityEffortsData } from 'constants/CommonData/CommonData';
-import { useNavigate } from 'react-router-dom';
 
 const Sutainability = () => {
   const { sustainabilityPageStrings } = strings;
   useEffect(() => {
-    window.screenTop(0, 0);
+    window.scrollTo(0, 0);
   }, []);
-  const navigate = useNavigate();
   const sustainabilityBannerSection = () => {
     return (
       <div className={styles.bannerMainContainer}>
@@ -85,6 +83,7 @@ const Sutainability = () => {
                   <div className={styles.sustainabilityImgBlock}>
                     <img
                       src={item.sustainabiltyImg}
+                      alt="sustainabiltyImg"
                       className={styles.sustainabilityImageWidth}
                     />
                   </div>
