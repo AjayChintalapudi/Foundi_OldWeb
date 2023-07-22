@@ -4,7 +4,7 @@ import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { footerIconsData } from 'constants/CommonData/CommonData';
 import styles from './styles.module.css';
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { emailValidationSchema } from 'validators/Validators';
 
 const Footer = () => {

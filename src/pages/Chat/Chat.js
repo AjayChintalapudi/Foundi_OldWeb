@@ -204,8 +204,8 @@ const Chat = () => {
           <div className={styles.inBoxChatStyles}>
             {chatData.map((item, index) => {
               return (
-                <>
-                  <div key={index} className={styles.inBoxDayText}>
+                <div key={index}>
+                  <div className={styles.inBoxDayText}>
                     <p className={styles.inBoxDayStyles}>Today</p>
                   </div>
                   <div className={styles.inBoxGapSection}>
@@ -236,7 +236,7 @@ const Chat = () => {
                       </p>
                     </div>
                   </div>
-                </>
+                </div>
               );
             })}
           </div>

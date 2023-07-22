@@ -47,7 +47,12 @@ const SnoProductDetails = () => {
   const handleOpenModal = () => {
     // based on token display modal response and navigate to chat page
     const authToken = localStorage.getItem('authToken');
-    authToken ? alert('navigate to chat page') : setModalOpen(true);
+    if (authToken) {
+      alert('navigating to chat page');
+      navigate('/chat');
+    } else {
+      setModalOpen(true);
+    }
   };
 
   const handleCloseModal = () => {

@@ -60,6 +60,10 @@
   border-radius: 8px;
 }
 
+.footerErrorMessageStyles {
+  color: white;
+}
+
 .footerButtonContainer {
   position: absolute;
   right: 8px;
