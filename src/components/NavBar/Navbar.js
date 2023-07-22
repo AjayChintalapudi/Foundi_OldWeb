@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './styles.module.css';
 import {
-  addImg,
+  // addImg,
   cartImg,
   crossIcon,
   deleteIcon,
@@ -9,7 +9,7 @@ import {
   hamburgerlogo,
   modalcloseiconimg,
   navbarlogo,
-  subtractlogo,
+  // subtractlogo,
   userprofileimg,
   userprofileuparrow,
 } from 'resources/Images/Images';
@@ -23,7 +23,6 @@ import { useMediaQuery } from '@mui/material';
 import { userProfileData } from 'constants/CommonData/CommonData';
 import { removeProductApi } from 'networking/Apis/removeProduct';
 import { CartDataContext } from 'providers/CartDataProvider';
-import { checkOut } from 'networking/Apis/checkOut';
 import { getOrderHistory } from 'networking/Apis/getOrderHistory';
 import { SpinnerContext } from 'providers/SpinnerProvider';
 
@@ -35,12 +34,9 @@ const NavBar = () => {
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
-  const [closePopUp, setClosePopUp] = useState(false);
-
   //useState
   const [popOver, setPopOver] = useState(false);
 
-  const [purchaseData, setPurchaseData] = useState();
   const [showPopOver, setShowPopOver] = useState(false);
 
   const { navbar } = strings;
