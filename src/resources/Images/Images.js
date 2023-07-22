@@ -122,3 +122,9 @@ export { default as googleglogo } from 'assets/Images/googlesvglogo.svg';
 //privacy policy Images
 export { default as privacyLocklogo } from 'assets/Images/privacybglogo.svg';
 export { default as privacyMobilelogo } from 'assets/Images/privacymobilelogo.svg';
+
+//chat page Images
+export { default as backwardlogo } from 'assets/Images/backwardarrowlogo.svg';
+export { default as threevectorlogo } from 'assets/Images/chatellipselogo.svg';
+export { default as chataddlogo } from 'assets/Images/chataddlogo.svg';
+export { default as messagesendlogo } from 'assets/Images/messagesendlogo.svg';

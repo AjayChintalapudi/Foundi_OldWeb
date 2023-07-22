@@ -524,6 +524,12 @@ const privacyPolicyStrings = {
   contactSpan: 'privacy@foundiapp.com',
 };
 
+const chatPageStrings = {
+  chatHeading: 'Messages',
+  chatDescp:
+    'It seems like you have 0 conversations at the moment. We will notify if you receive any messages in the future.',
+};
+
 export const strings = {
   userProfileStrings,
   navbar,
@@ -541,4 +547,5 @@ export const strings = {
   sustainabilityPageStrings,
   orderHistoryPageStrings,
   footerStrings,
+  chatPageStrings,
 };

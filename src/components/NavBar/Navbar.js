@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import {
   addImg,
@@ -222,12 +222,27 @@ const NavBar = () => {
                                   </p>
                                 </div>
 
+                                  <div
+                                    className={styles.addSectionOne}
+                                    onClick={() =>
+                                      addFunction(item.product._id)
+                                    }
+                                  >
+                                    <img
+                                      src={addImg}
+                                      alt=""
+                                      className={styles.imageWidth}
+                                    />
+                                  </div>
+                                </div>
                                 <div
-                                  className={styles.addSectionOne}
-                                  onClick={() => addFunction(item.id)}
+                                  className={styles.deleteSection}
+                                  onClick={() =>
+                                    removeCartApi(item.product._id)
+                                  }
                                 >
                                   <img
-                                    src={addImg}
+                                    src={deleteIcon}
                                     alt=""
                                     className={styles.imageWidth}
                                   />

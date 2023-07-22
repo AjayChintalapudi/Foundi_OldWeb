@@ -1,0 +1,532 @@
+/* -------------------------DeskTop View Starts------------------------- */
+/* empty Chat Section Start */
+
+.chatSectionStyles {
+  width: 100%;
+  height: 100vh;
+  background: var(--lightgrey42);
+  padding: 48px 80px 0px;
+}
+.topSectionStyles {
+  max-width: 1366px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.messageSectionStyles {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+}
+.backwardImgStyles {
+  max-width: 48px;
+  max-height: 48px;
+}
+.imageWidth {
+  width: 100%;
+  height: 100%;
+}
+.messageHeaderStyles {
+  color: var(--aubergine);
+  font-family: 'Semi-Bold', sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.bottomSectionStyles {
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chatDescpStyles {
+  max-width: 695px;
+  color: var(--grey);
+  text-align: center;
+  font-family: 'Medium', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+/* empty Chat Section End */
+
+/* chat Left Section  Start */
+.chatListStyles {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: calc(100vh - 100px);
+  padding-top: 48px;
+  justify-content: center;
+}
+.chatLeftSection {
+  width: 491px;
+  height: 448px;
+  background: var(--white);
+  overflow: scroll;
+}
+.chatLeftSectionStyles {
+  padding: 0px 24px 24px 24px;
+}
+.individualMessagesStyles {
+  padding: 24px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--lightgrey72);
+}
+.individualMessagesStyles:last-child {
+  border-bottom: none;
+}
+.individualMessagesStyles:active {
+  background: var(--skyblue);
+}
+.gapSectionStyles {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+.chatListImageStyles {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  background: var(--lightorange);
+}
+.chatListTextStyles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.chatListHeadersStyles {
+  color: var(--aubergine);
+  font-family: 'Semi-Bold', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+.chatlistDescpStyles {
+  max-width: 241px;
+  color: var(--lightgrey72);
+  font-family: 'Medium', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chattingTimeStyles {
+  color: var(--lightgrey72);
+  font-family: 'Light', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.chatListtimeSectionStyles {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+}
+.chatListCountStyles {
+  width: 24px;
+  height: 24px;
+  background: var(--darkgreen);
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chatListNumber {
+  color: var(--white);
+  font-family: 'Semi-Bold', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+/* chat Left Section  end */
+
+/* chat Right Section  start */
+.chatRightSectionStyles {
+  width: 695px;
+  height: 100%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chatStartMessageStyles {
+  color: var(--grey);
+  font-family: 'Medium', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+/* chat Right Section  end */
+
+/* chat Inbox Section  start */
+.inBoxSection {
+  width: 695px;
+  height: 100%;
+  background: var(--white);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  display: block;
+}
+.inBoxSnoStyles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 24px;
+  background: var(--skyblue);
+  align-items: center;
+}
+.inBoxSnoLeftStyles {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+.inboxSnoImageStyles {
+  width: 48px;
+  height: 48px;
+  border-radius: 32px;
+  background: var(--lightorange);
+}
+.inBoxTextStyles {
+  color: var(--aubergine);
+  font-family: 'Semi-Bold';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+.inBoxSnoRightStyles {
+  width: 24px;
+  height: 24px;
+}
+.inBoxChatStyles {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  padding: 16px 24px 24px;
+  height: calc(100% - 168px);
+}
+.inBoxDayText {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.inBoxDayStyles {
+  padding: 8px 16px;
+  height: 36px;
+  width: 72px;
+  color: rgba(35, 31, 32, 0.72);
+  font-family: 'Medium', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  border-radius: 40px;
+  border: 1px solid var(--lightgrey32);
+  background: var(--lightgrey42);
+}
+.inBoxGapSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.inBoxFinderSection {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+.inBoxFinderStyles {
+  max-width: 322px;
+  padding: 16px;
+  word-break: break-all;
+  border-radius: 0px 8px 8px 8px;
+  background: var(--lightgrey52);
+  box-shadow: 0px 2px 16px 0px rgba(198, 240, 255, 0.02);
+  color: var(--aubergine);
+  font-family: 'Light', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+.inBoxFindertimeStyles,
+.inBoxSendertimeStyles {
+  color: var(--lightgrey72);
+  font-family: 'Medium', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.inBoxSenderSection {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+.inBoxSenderStyles {
+  max-width: 322px;
+  padding: 16px;
+  word-break: break-all;
+  border-radius: 8px 0px 8px 8px;
+  background: var(--darkgreen);
+  box-shadow: 0px 2px 16px 0px rgba(198, 240, 255, 0.02);
+  color: var(--white);
+  font-family: 'Light', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+.chatInputSection {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+  width: calc(100% - 48px);
+  align-items: center;
+  border-radius: 8px;
+  background: var(--lightgreyishblue);
+  margin: 0px 24px 24px;
+}
+.inputGapSection {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+  width: 100%;
+}
+.chatAddIconStyles {
+  width: 24px;
+  height: 24px;
+}
+.messageInputStyles {
+  width: 100%;
+  border: none;
+  background: var(--lightgreyishblue);
+  color: var(--grey);
+  font-family: 'Light', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+/* chat Inbox Section  end */
+
+/* -------------------------DeskTop View Ends------------------------- */
+
+/* styles start at  1023px */
+@media screen and (max-width: 1023px) {
+  /* empty Chat Section Start */
+  .chatSectionStyles {
+    padding: 32px 24px 0px;
+  }
+  /* empty Chat Section End */
+
+  /* chat Left Section Start */
+  /* .individualMessagesStyles {
+    padding: 10px 0px;
+  } */
+  .chatListImageStyles {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+  }
+
+  .chatlistDescpStyles {
+    max-width: 160px;
+  }
+  .chatListCountStyles {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+  }
+  /* chat Left Section  End */
+
+  /* chat Right Section  start */
+  /* chat Right Section  end */
+
+  /* chat Inbox Section  start */
+  .inBoxSnoStyles {
+    padding: 20px;
+  }
+  .inBoxSnoLeftStyles {
+    gap: 12px;
+  }
+  .inboxSnoImageStyles {
+    width: 32px;
+    height: 32px;
+    border-radius: 24px;
+  }
+  .inBoxSenderStyles {
+    max-width: 300px;
+  }
+  .inputGapSection {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+  .inBoxFinderStyles {
+    max-width: 300px;
+  }
+  /* chat Inbox Section  end */
+}
+
+/* styles End at  1023px */
+
+/* styles start at  867px */
+@media screen and (max-width: 867px) {
+  /* empty Chat Section Start */
+  .chatSectionStyles {
+    padding: 32px 24px 0px;
+  }
+  .messageSectionStyles {
+    gap: 16px;
+  }
+  .backwardImgStyles {
+    max-width: 32px;
+    max-height: 32px;
+  }
+  .messageHeaderStyles {
+    font-size: 28px;
+  }
+  .chatDescpStyles {
+    max-width: 366px;
+    font-size: 16px;
+  }
+  /* empty Chat Section End */
+
+  /* chat Left Section Start */
+  .chatListStyles {
+    padding-top: 32px;
+  }
+  .chatLeftSection {
+    width: 100%;
+    height: 100%;
+  }
+
+  .chatListImageStyles {
+    width: 48px;
+    height: 48px;
+    border-radius: 32px;
+  }
+
+  .chatlistDescpStyles {
+    max-width: 214px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .chatListCountStyles {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+  }
+
+  /* chat Left Section End */
+
+  /* chat Inbox Section  start */
+  .inBoxSection {
+    display: none;
+  }
+  /* chat Inbox Section  start */
+}
+
+/* styles End at  867px */
+
+/* styles start at  428px */
+@media screen and (max-width: 428px) {
+  /* empty Chat Section start */
+  .chatSectionStyles {
+    padding: 40px 0px 24px;
+  }
+  .topSectionStyles {
+    padding: 0px 24px;
+  }
+  /* empty Chat Section End */
+
+  /* chat Left Section  Start */
+  .chatListStyles {
+    padding-top: 24px;
+  }
+  .chatListImageStyles {
+    width: 54px;
+    height: 54px;
+  }
+  .chatListTextStyles {
+    gap: 4px;
+  }
+  .chatListHeadersStyles {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .chatlistDescpStyles {
+    max-width: 176px;
+  }
+  .chattingTimeStyles {
+    line-height: 20px;
+  }
+  .chatListNumber {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  /* chat Left Section  End */
+}
+
+/* styles End at  428px */
+
+/* styles start at  350px */
+@media screen and (max-width: 350px) {
+  /* chat Left Section  Start */
+  .chatListStyles {
+    padding-top: 24px;
+  }
+  .chatListImageStyles {
+    width: 40px;
+    height: 40px;
+  }
+  .chatListHeadersStyles {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .chatlistDescpStyles {
+    max-width: 130px;
+  }
+  .chattingTimeStyles {
+    line-height: 14px;
+  }
+
+  /* chat Left Section  End */
+}
+
+/* styles End at  428px */

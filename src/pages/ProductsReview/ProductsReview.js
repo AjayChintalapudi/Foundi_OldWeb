@@ -28,6 +28,7 @@ import { SpinnerContext } from 'providers/SpinnerProvider';
 const ProductsReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
   const { productReviewPageStrings } = strings;
   const { userDetails } = useContext(UserDataContext);
   const { cartData, handleCartData } = useContext(CartDataContext);
@@ -40,6 +41,7 @@ const ProductsReview = () => {
     feedbackDescp: '',
   });
   const [currentIndex, setCurrentIndex] = useState(0);
+  // const { setCartData, cartData } = useContext(AppDataContext);
 
   //useEffect
   useEffect(() => {
@@ -77,6 +79,22 @@ const ProductsReview = () => {
     //   }
     // } catch (error) {}
   };
+  // const addToCartApi = async () => {
+  //   try {
+  //     let data = {
+  //       user_id: userDetails._id,
+  //       product_id: location.state,
+  //       quantity: productCount,
+  //     };
+
+  //     const response = await Cart(data);
+  //     if (response.status === 200 && response.data.type === 'success') {
+  //       console.log('cart response', response);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // handle adding product to cart while clicking the add to cart button
 
@@ -283,32 +301,29 @@ const ProductsReview = () => {
   const productDetailRightBottomSection = () => {
     return (
       <div className={styles.productDetailRightBottomSection}>
-        {productCount > 0 ? (
-          <div className={styles.cartButtonSection}>
-            <div
-              className={styles.subtractButtonSection}
-              // onClick={() => subtractFunction()}
-            >
-              <img src={subtractlogo} alt="" className={styles.imageWidth} />
-            </div>
-            <div className={styles.numTextSection}>
-              <p className={styles.numText}>{productCount}</p>
-            </div>
-
-            <div
-              className={styles.addButtonSection}
-              // onClick={() => addFunction()}
-            >
-              <img src={addlogo} alt="" className={styles.imageWidth} />
-            </div>
+        <div className={styles.cartButtonSection}>
+          {/* <div
+            className={styles.subtractButtonSection}
+            // onClick={() => subtractFunction()}
+          >
+            <img src={subtractlogo} alt="" className={styles.imageWidth} />
           </div>
-        ) : (
-          <Button
-            btName={productReviewPageStrings.productBtnName}
-            btnStyles={styles.cartBtnStyles}
-            onClick={() => handleAddToCart()}
-          />
-        )}
+          <div className={styles.numTextSection}>
+            <p className={styles.numText}>{productCount}</p>
+          </div>
+
+          <div
+            className={styles.addButtonSection}
+            // onClick={() => addFunction()}
+          >
+            <img src={addlogo} alt="" className={styles.imageWidth} />
+          </div> */}
+        </div>
+        <Button
+          btName={productReviewPageStrings.productBtnName}
+          btnStyles={styles.cartBtnStyles}
+          onClick={() => handleAddToCart()}
+        />
         {/* buy now  */}
         <div
           className={styles.productDetailRightDesc}

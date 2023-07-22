@@ -157,6 +157,7 @@
   border: 1px solid var(--lightgrey24);
   background: var(--white);
   box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+  cursor: pointer;
 }
 .numSection {
   display: flex;
@@ -179,6 +180,7 @@
   height: 32px;
   border-radius: 4px;
   background: var(--lightgreyishblue);
+  cursor: pointer;
 }
 .borderBottomStyles {
   border: 1px solid black;
