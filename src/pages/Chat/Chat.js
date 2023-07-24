@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import UserProfile from 'components/UserProfile/UserProfile';
 import {
   backwardlogo,
@@ -9,12 +9,14 @@ import {
 import { strings } from 'resources/Strings/eng';
 import Input from 'components/Input/Input';
 import styles from './styles.module.css';
-import useWindowDimensions from 'hooks/UseWindowDimensionHook';
+import { PubNubDataContext } from 'providers/PubNubDataProvider';
 
 const Chat = () => {
+  // context
+  const { sendMessage, setMessage, message } = useContext(PubNubDataContext);
+  // strings
   const { chatPageStrings } = strings;
-  const [showChat, setShowChat] = useState(false);
-
+  // users data
   const mapData = [
     {
       snoTag: 'SNO no. 1076069',
@@ -47,7 +49,7 @@ const Chat = () => {
       count: '2',
     },
   ];
-
+  // char data
   const chatData = [
     {
       user: 'sender',
@@ -246,13 +248,22 @@ const Chat = () => {
                 <img src={chataddlogo} alt="" className={styles.imageWidth} />
               </div>
               <Input
-                name="message"
-                customInputStyles={styles.messageInputStyles}
                 type="text"
+                name="message"
+                value={message}
+                onKeyDown={(e) => {
+                  if (e.key !== 'Enter') return;
+                  sendMessage(message);
+                }}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder="Type your message here"
+                customInputStyles={styles.messageInputStyles}
               />
             </div>
-            <div className={styles.chatMessageIconStyles}>
+            <div
+              className={styles.chatMessageIconStyles}
+              onClick={() => sendMessage(message)}
+            >
               <img src={messagesendlogo} alt="" className={styles.imageWidth} />
             </div>
           </div>

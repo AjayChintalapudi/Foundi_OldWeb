@@ -35,3 +35,15 @@ export const getOrderHistory = 'orders/get/{user_id}';
 // get categories data api
 
 export const getEcomProductCategoryData = 'admin/ecom/category/get/all';
+
+/*****chat endpoints****/
+/*sendMessage*/
+export const sendMessage = 'chat/send';
+/*get Chat List*/
+export const getChatList = 'chat/getchatlist/{user_id}';
+/*getChatInfo*/
+export const getChatInfo = 'chat/getchatinfo/{product_id}';
+/*getMessages*/
+export const getMessages = 'chat/getmessages/{chat_id}/{user_id}';
+/*updateMessageReadStatus*/
+export const updateMessageReadStatus = 'chat/messages/updatereadstatus';

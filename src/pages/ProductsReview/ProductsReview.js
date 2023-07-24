@@ -301,8 +301,8 @@ const ProductsReview = () => {
   const productDetailRightBottomSection = () => {
     return (
       <div className={styles.productDetailRightBottomSection}>
-        <div className={styles.cartButtonSection}>
-          {/* <div
+        {/* <div className={styles.cartButtonSection}> */}
+        {/* <div
             className={styles.subtractButtonSection}
             // onClick={() => subtractFunction()}
           >
@@ -318,7 +318,7 @@ const ProductsReview = () => {
           >
             <img src={addlogo} alt="" className={styles.imageWidth} />
           </div> */}
-        </div>
+        {/* </div> */}
         <Button
           btName={productReviewPageStrings.productBtnName}
           btnStyles={styles.cartBtnStyles}

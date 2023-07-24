@@ -9,6 +9,7 @@ const Input = (props) => {
     value,
     placeholder,
     onChange,
+    onKeyDown,
     onFocus,
     onBlur,
     customInputStyles,
@@ -24,6 +25,7 @@ const Input = (props) => {
         type={type}
         name={name}
         placeholder={placeholder}
+        onKeyDown={onKeyDown}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
