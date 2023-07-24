@@ -1,0 +1,52 @@
+.popoverContainer {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+}
+
+.popoverTrigger {
+  cursor: pointer;
+}
+
+.popoverContent {
+  position: absolute;
+  z-index: 1;
+  top: calc(100% + 24px);
+  left: -90%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  border: 1px solid var(--lightgrey24);
+  background: var(--white);
+  box-shadow: 1px 8px 24px 0px var(--lightgrey8);
+  min-width: 400px;
+  width: 100%;
+}
+
+/* Media Query Start */
+
+@media screen and (max-width: 460px) {
+  .popoverContent {
+    min-width: 398px;
+    width: 100%;
+    left: -95%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .popoverContent {
+    min-width: 300px;
+    width: 100%;
+    left: -60%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .popoverContent {
+    min-width: 300px;
+    width: 100%;
+    left: -43%;
+  }
+}
+
+/* Media Query End */

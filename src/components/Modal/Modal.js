@@ -1,48 +1,54 @@
-import React, { useState } from 'react';
-import Button from 'components/Button/Button';
+import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
-import { modalcloseiconimg, uprightlogo } from 'resources/Images/Images';
-import { HiLockClosed } from 'react-icons/hi';
-const Modal = ({ children, showCloseIcon }) => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => {
-    setIsOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
+const Modal = ({ open, onClose, children }) => {
+  const modalRef = useRef(null);
 
-  const closeModal = () => {
-    setIsOpen(false);
-    document.body.style.overflow = '';
-  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [open, onClose]);
+
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add(styles.noscroll);
+    } else {
+      document.body.classList.remove(styles.noscroll);
+    }
+    return () => {
+      document.body.classList.remove(styles.noscroll);
+    };
+  }, [open]);
+
+  if (!open) {
+    return null;
+  }
 
   return (
-    <div className={styles.modalMainContainer}>
-      <Button
-        btName="Return item"
-        onClick={openModal}
-        btnStyles={styles.modalBtnStyles}
-        image={uprightlogo}
-        imageWrapperStyles={styles.modalWrappperStyles}
-      />
-      {isOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContainer}>
-            <div className={styles.modalContent}>
-              {children}
-              {showCloseIcon && (
-                <div className={styles.modalCloseImgBlock} onClick={closeModal}>
-                  <img
-                    src={modalcloseiconimg}
-                    alt=""
-                    className={styles.imageWidth}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+    <div className={styles.modal}>
+      <div className={styles.modalContent} ref={modalRef}>
+        <span className={styles.closeIcon} onClick={onClose}></span>
+        {children}
+      </div>
     </div>
   );
 };

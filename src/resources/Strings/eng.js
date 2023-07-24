@@ -310,6 +310,21 @@ const homePage = {
   enterSnoNumber: 'Enter the SNO number',
 };
 
+const snoProductDetailsStrings = {
+  overViewHeading: 'Overview',
+  itemInfoHeading: 'Item info',
+  snoNumber: 'SNO number:',
+  itemCategory: 'Item category:',
+  noteFinderHeading: 'Note to finder',
+  contactOwnerBtnName: 'Contact item owner',
+  notLoggedHeading: 'Seems like you haven’t logged in',
+  notLoggedDesc:
+    'To continue, enter your email address so that we can create a guest account.',
+  loginText: 'Log in',
+  orText: 'or',
+  signUpText: 'Sign up',
+};
+
 const loginPageStrings = {
   login: 'Log in',
   email: 'Email address',
@@ -489,6 +504,7 @@ export const strings = {
   userProfileStrings,
   navbar,
   homePage,
+  snoProductDetailsStrings,
   loginPageStrings,
   signUpPageStrings,
   forgotPwdStrings,

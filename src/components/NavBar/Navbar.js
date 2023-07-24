@@ -14,9 +14,11 @@ import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from 'providers/UserDataProvider';
 import PopUp from 'components/PopUp/PopUp';
+import { useMediaQuery } from '@mui/material';
 import { userProfileData } from 'constants/CommonData/CommonData';
 const NavBar = () => {
-  const { handleLogout, userDetails } = useContext(UserDataContext);
+  const { userDetails, handleLogout } = useContext(UserDataContext);
+  const isWideScreen = useMediaQuery('(min-width: 867px)');
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
@@ -81,28 +83,34 @@ const NavBar = () => {
 
   const userProfileSection = () => {
     return (
-      <div className={styles.userSignup}>
-        <div className={styles.userProfileImgBlock}>
-          <img
-            src={userprofileimg}
-            alt="userprofileimg"
-            className={styles.imageWidth}
-          />
-        </div>
-
-        <div className={styles.userProfileuparrowBlock}>
-          <PopUp
-            triggerElement={
+      <>
+        {isWideScreen && (
+          <div className={styles.userSignup}>
+            <div className={styles.userProfileImgBlock}>
               <img
-                src={userprofileuparrow}
+                src={userprofileimg}
                 alt="userprofileimg"
                 className={styles.imageWidth}
               />
-            }
-            content={handlePopoverContent()}
-          />
-        </div>
-      </div>
+            </div>
+
+            {isWideScreen && (
+              <div className={styles.userProfileuparrowBlock}>
+                <PopUp
+                  triggerElement={
+                    <img
+                      src={userprofileuparrow}
+                      alt="userprofileimg"
+                      className={styles.imageWidth}
+                    />
+                  }
+                  content={handlePopoverContent()}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </>
     );
   };
 

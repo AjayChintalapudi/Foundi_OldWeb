@@ -32,6 +32,10 @@ import Footer from 'components/Footer/Footer';
 import Input from 'components/Input/Input';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
+import Modal from 'components/Modal/Modal';
+import { snoCode } from 'networking/Apis/snoCode';
+import { useFormik } from 'formik';
+import { SnoCodeValidationSchema } from 'validators/Validators';
 
 const Home = () => {
   const { homePage } = strings;
@@ -41,6 +45,23 @@ const Home = () => {
   //state
   const [block, setBlock] = useState(0);
   const [indexNo, setIndexNo] = useState(0);
+
+  // return section close icon
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+  // sno error message handling
+
+  const [errorMessage, setErrorMessage] = useState('');
+
+  //mapping data
 
   //Purchase Data
   const purchaseData = [
@@ -126,6 +147,34 @@ const Home = () => {
     }
   };
 
+  // handle snocode response
+
+  const handleSnoCodeResponse = async (values) => {
+    try {
+      const snoCodeData = { sno: values.snoCode };
+      const snoCodeResponse = await snoCode(snoCodeData);
+      if (
+        snoCodeResponse.status === 200 &&
+        snoCodeResponse.data.type === 'success'
+      ) {
+        navigate('/lostproduct', {
+          state: { snoCodeData: snoCodeResponse.data.data },
+        });
+      } else {
+        setErrorMessage(snoCodeResponse.data.message);
+      }
+      console.log(snoCodeResponse, 'snoCodeResponse');
+    } catch (error) {
+      console.log(error.toString(), 'some error');
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: { snoCode: '' },
+    validationSchema: SnoCodeValidationSchema,
+    onSubmit: handleSnoCodeResponse,
+  });
+
   const homebannerSection = () => {
     return (
       <div className={styles.bannerSection}>
@@ -186,9 +235,81 @@ const Home = () => {
               btnStyles={styles.returnBtnStyles}
               image={uprightlogo}
               imageWrapperStyles={styles.returnWrappperStyles}
+              onClick={handleOpenModal}
             />
+            <Modal open={modalOpen} onClose={handleCloseModal}>
+              <div className={styles.returnModalContainer}>
+                {snoTitleSection()}
+                {snoInputAndButtonSection()}
+              </div>
+            </Modal>
           </div>
         </div>
+      </div>
+    );
+  };
+
+  // return modal section contents
+
+  const snoTitleSection = () => {
+    return (
+      <div className={styles.snoTopSection}>
+        <div className={styles.snoTopInfoBlock}>
+          <div className={styles.snoTitleBlock}>
+            <p className={styles.snoTitle}>{homePage.snoTitle}</p>
+            <p className={styles.enterSnoCode}>{homePage.enterSnoCode}</p>
+          </div>
+          <div className={styles.snoCloseImgBlock} onClick={handleCloseModal}>
+            <img src={returncloseicon} alt="" className={styles.imageWidth} />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const snoInputAndButtonSection = () => {
+    return (
+      <form
+        onSubmit={formik.handleSubmit}
+        className={styles.snoInputButtonBlock}
+      >
+        {snoNumberInputTextSection()}
+
+        {errorMessage && (
+          <p className={styles.snoErrorMessage}>{errorMessage}</p>
+        )}
+        {snoBottomButtonSection()}
+      </form>
+    );
+  };
+
+  const snoNumberInputTextSection = () => {
+    return (
+      <div className={styles.snoNumberInputTextBlock}>
+        <p className={styles.serialNumber}>{homePage.serialNumber}</p>
+        <Input
+          type="text"
+          placeholder={homePage.enterSnoNumber}
+          value={formik.values.snoCode}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          onFocus={() => setErrorMessage('')}
+          name="snoCode"
+          customInputStyles={styles.returnInputStyles}
+          error={formik.touched.snoCode && formik.errors.snoCode}
+        />
+      </div>
+    );
+  };
+
+  const snoBottomButtonSection = () => {
+    return (
+      <div className={styles.snoBottomButtonSection}>
+        <Button
+          btName="Search"
+          btnStyles={styles.snoCodeBtnStyles}
+          type="submit"
+        />
       </div>
     );
   };
