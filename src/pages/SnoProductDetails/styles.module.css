@@ -4,6 +4,7 @@
 
 .snoItemDetailsContainer {
   max-width: 1366px;
+  height: 100vh;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -271,6 +272,7 @@
 
 @media screen and (max-width: 1279px) {
   .snoItemDetailsContainer {
+    height: 100%;
     padding: 42px 32px;
     gap: 40px;
   }

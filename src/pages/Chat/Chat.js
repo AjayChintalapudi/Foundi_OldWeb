@@ -13,7 +13,8 @@ import { PubNubDataContext } from 'providers/PubNubDataProvider';
 
 const Chat = () => {
   // context
-  const { sendMessage, setMessage, message } = useContext(PubNubDataContext);
+  const { sendMessage, setMessage, message, messages } =
+    useContext(PubNubDataContext);
   // strings
   const { chatPageStrings } = strings;
   // users data
@@ -203,8 +204,8 @@ const Chat = () => {
               <img src={threevectorlogo} alt="" className={styles.imageWidth} />
             </div>
           </div>
-          <div className={styles.inBoxChatStyles}>
-            {chatData.map((item, index) => {
+          <div className={styles.inBoxChatStyles} id="chat">
+            {messages.map((item, index) => {
               return (
                 <div key={index}>
                   <div className={styles.inBoxDayText}>
@@ -225,7 +226,7 @@ const Chat = () => {
                             : styles.inBoxSenderStyles
                         }
                       >
-                        {item.message}
+                        {item.text}
                       </p>
                       <p
                         className={
