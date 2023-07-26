@@ -49,7 +49,8 @@ const SnoProductDetails = () => {
     const authToken = localStorage.getItem('authToken');
     if (authToken) {
       alert('navigating to chat page');
-      navigate('/chat');
+      navigate('/chat', { state: snoCodeData });
+      localStorage.setItem(localStorage.setItem('snoCodeId', snoCodeData?._id));
     } else {
       setModalOpen(true);
     }

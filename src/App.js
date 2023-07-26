@@ -7,6 +7,7 @@ import AppRoutes from 'routes/AppRoutes';
 import PubNub from 'pubnub';
 import { PubNubProvider } from 'pubnub-react';
 import PubNubDataProvider from 'providers/PubNubDataProvider';
+import SnoCodeDataProvider from 'providers/SnoCodeDataProvider';
 const pubnub = new PubNub({
   publishKey: 'pub-c-b4dffdda-55eb-4064-b886-e90b6bbe2693',
   subscribeKey: 'sub-c-9473eb0a-a082-11ec-acf5-86a1e6519840',
