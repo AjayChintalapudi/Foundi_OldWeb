@@ -11,55 +11,32 @@ const PubNubDataProvider = (props) => {
   // console.log(userDetails, 'uuid');
   const pubnub = usePubNub();
   // states
-  const [channels] = useState(['product-chat']);
+  const [channels] = useState(['619cad100c52830ea6cf7631']);
   const [messages, addMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [productDetails, setProductDetails] = useState();
   const [ids, setIds] = useState([]);
-
   // handle chat message
 
   const handleMessage = (event) => {
     const message = event.message;
-    console.log(event, 'event---');
-    if (typeof message === 'string' || message.hasOwnProperty('text')) {
-      const text = message.text || message;
+    // console.log(event, 'event---');
+    if (typeof message.msg === 'string' || message.msg.hasOwnProperty('text')) {
       // Get PubNub server's current time
       pubnub.time((status, response) => {
         if (!status.error) {
-          const currentDate = new Date(response.timetoken / 10000);
-          console.log(currentDate, 'currentDate');
-
-          const formattedTime = currentDate.toLocaleTimeString([], {
-            hour: '2-digit',
-            minute: '2-digit',
-          });
-          console.log(formattedTime, 'formattedTime');
-          const isToday = isSameDay(
-            currentDate,
-            new Date(messages[messages.length - 1]?.timestamp)
-          );
-          console.log(isToday, 'isToday');
-
-          const messageData = { text, time: formattedTime };
-          console.log(messageData, 'messageData');
-          addMessages((prev) => [...prev, messageData]);
+          console.log(response, 'pubunub response');
+          // convert the pubnub currect time into date
+          const messageSentDate = response.timetoken;
+          const getTodayDate = new Date(messageSentDate / 10000);
+          console.log(getTodayDate, 'getTodayDate');
+          message.time = getTodayDate.toLocaleString();
+          addMessages((prev) => [...prev, message]);
         } else {
           console.error('Error fetching PubNub time', status);
         }
       });
     }
-  };
-  // console.log(messages, 'messages');
-
-  // same day
-
-  const isSameDay = (date1, date2) => {
-    return (
-      date1.getDate() === date2.getDate() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getFullYear() === date2.getFullYear()
-    );
   };
 
   /****save chat messages in to local storage****/
@@ -78,10 +55,12 @@ const PubNubDataProvider = (props) => {
   }, [messages]);
 
   // send chat  message
-  const sendMessage = (message, channelId) => {
+  const sendMessage = (message) => {
+    console.log('sending message', message);
     if (message) {
       pubnub
-        .publish({ channel: channelId, message })
+        // .publish({ channel: channelId, message })
+        .publish({ channel: channels[0], message })
         .then(() => setMessage(''));
     }
   };
@@ -116,10 +95,12 @@ const PubNubDataProvider = (props) => {
   useEffect(() => {
     const listenerParams = { message: handleMessage };
     pubnub.addListener(listenerParams);
-    pubnub.subscribe({ channels: ids });
+    // pubnub.subscribe({ channels: ids });
+    pubnub.subscribe({ channels });
     pubnub.setUUID(userDetails?._id + ' ');
     return () => {
-      pubnub.unsubscribe({ channels: ids });
+      // pubnub.unsubscribe({ channels: ids });
+      pubnub.unsubscribe({ channels });
       pubnub.removeListener(listenerParams);
     };
   }, [pubnub, channels, userDetails]);

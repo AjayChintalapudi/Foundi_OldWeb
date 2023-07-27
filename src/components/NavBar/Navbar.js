@@ -179,7 +179,7 @@ const NavBar = () => {
                               >
                                 <div className={styles.shoppingImgSection}>
                                   <img
-                                    src={item.product.images.thumbnail}
+                                    src={item.product?.images?.thumbnail}
                                     alt=""
                                     className={styles.imageWidth}
                                   />
@@ -187,16 +187,16 @@ const NavBar = () => {
                                 <div className={styles.shoppingRightSection}>
                                   <div className={styles.textSection}>
                                     <h4 className={styles.productHeader}>
-                                      {item.product.name}
+                                      {item?.product?.name}
                                     </h4>
                                     <p className={styles.priceSection}>
                                       Price - &nbsp;
                                       <span className={styles.priceSection}>
-                                        {item.product.price.currency}
+                                        {item?.product?.price?.currency}
                                       </span>
                                       <span className={styles.priceSection}>
-                                        {item.product.price.selling_price} X
-                                        {item.quantity}
+                                        {item?.product?.price?.selling_price} X
+                                        {item?.quantity}
                                       </span>
                                     </p>
                                   </div>
@@ -247,7 +247,7 @@ const NavBar = () => {
                                     <div
                                       className={styles.deleteSection}
                                       onClick={() =>
-                                        removeProductFromCart(item.product._id)
+                                        removeProductFromCart(item?.product._id)
                                       }
                                     >
                                       <img

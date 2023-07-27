@@ -39,6 +39,7 @@ const Login = () => {
         navigate('/');
         console.log(response);
       } else {
+        setIsLoading(false);
         setErrorMsg(response.data.message);
       }
     } catch (error) {

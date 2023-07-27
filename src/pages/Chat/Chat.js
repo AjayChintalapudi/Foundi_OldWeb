@@ -12,6 +12,8 @@ import styles from './styles.module.css';
 import { PubNubDataContext } from 'providers/PubNubDataProvider';
 import { useLocation } from 'react-router-dom';
 import { snoCode } from 'networking/Apis/snoCode';
+import { UserDataContext } from 'providers/UserDataProvider';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 const Chat = () => {
   // get  snoProduct details
@@ -19,11 +21,12 @@ const Chat = () => {
   // state
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [snoCodeData, setSnoCodeData] = useState([location?.state]);
-  console.log(snoCodeData, 'snoCodeData');
+  // console.log(snoCodeData, 'snoCodeData');
 
   // context
   const { sendMessage, setMessage, message, messages, productDetails, ids } =
     useContext(PubNubDataContext);
+  const { userDetails } = useContext(UserDataContext);
   // strings
   const { chatPageStrings } = strings;
 
@@ -36,93 +39,16 @@ const Chat = () => {
     }
   }, [messages]);
 
-  const mapData = [
-    {
-      snoTag: 'SNO no. 1076069',
-      descp: '   Hi, have you reached?',
-      date: '19:20',
-      count: '1',
-    },
-    {
-      snoTag: 'SNO no. 1076069',
-      descp: '   Lorem ipsum dolor sit amet cskdjnsdkjawqlndd sqjjnjjnadadclnc',
-      date: 'May 08',
-      count: '2',
-    },
-    {
-      snoTag: 'SNO no. 1076069',
-      descp: '   Lorem ipsum dolor sit amet cskdjnsdkjawqlndd sqjjnjjnadadclnc',
-      date: 'May 08',
-      count: '2',
-    },
-    {
-      snoTag: 'SNO no. 1076069',
-      descp: '   Lorem ipsum dolor sit amet cskdjnsdkjawqlndd sqjjnjjnadadclnc',
-      date: 'May 08',
-      count: '2',
-    },
-    {
-      snoTag: 'SNO no. 1076069',
-      descp: '   Lorem ipsum dolor sit amet cskdjnsdkjawqlndd sqjjnjjnadadclnc',
-      date: 'May 08',
-      count: '2',
-    },
-  ];
-  // chat data
-  const chatData = [
-    {
-      user: 'sender',
-      message: 'hi',
-      time: '07:20',
-    },
-    {
-      user: 'owner',
-      message: 'hi',
-      time: '07:26',
-    },
+  // send message
 
-    {
-      user: 'sender',
-      message: 'slnsjgnsgjjns',
-      time: '07:30',
-    },
-    {
-      user: 'owner',
-      message:
-        'ljnjjhasfuihwejifoewjfoewjiofjioewjfoweiofewjfjowejfffljnefjnffqwdlnqflnelfnenfhi',
-      time: '07:31',
-    },
-    {
-      user: 'sender',
-      message: 'hllknflnwgwpkrnwrpgnpgnpwrng',
-      time: '07:32',
-    },
-    {
-      user: 'sender',
-      message: 'wwrrgjjngwngvfmmff',
-      time: '07:33',
-    },
-    {
-      user: 'owner',
-      message: 'ok',
-      time: '07:55',
-    },
-    {
-      user: 'sender',
-      message: 'lenfljenfoenfanroqn',
-      time: '07:56',
-    },
-    {
-      user: 'owner',
-      message: 'hqkefkbfkbefewlnneflenfi',
-      time: '07:56',
-    },
-    {
-      user: 'owner',
-      message: 'w;erjwfepjwpjwpjwewkkeelkkeglkenglknnhi',
-      time: '07:58',
-    },
-  ];
+  const handleSendMessage = (msgText) => {
+    const msgObj = {
+      userDetails: { _id: userDetails._id },
+      type: 'sender',
+      msg: msgText,
+    };
+    sendMessage(msgObj);
+  };
 
   const emptyChatSection = () => {
     return (
@@ -187,16 +113,16 @@ const Chat = () => {
                 <div className={styles.gapSectionStyles}>
                   <div className={styles.chatListImageStyles}>
                     <img
-                      src={item.product_image}
+                      src={item?.product_image}
                       className={styles.imageWidth}
                     />
                   </div>
                   <div className={styles.chatListTextStyles}>
                     <h3 className={styles.chatListHeadersStyles}>
                       {/* {item.snoTag} */}
-                      SNO no. &nbsp;{item.sno}
+                      SNO no. &nbsp;{item?.sno}
                     </h3>
-                    <p className={styles.chatlistDescpStyles}>{item.descp}</p>
+                    <p className={styles.chatlistDescpStyles}>{item?.descp}</p>
                   </div>
                 </div>
                 <div className={styles.chatListtimeSectionStyles}>
@@ -228,12 +154,12 @@ const Chat = () => {
                 <div className={styles.inBoxSnoLeftStyles}>
                   <div className={styles.inboxSnoImageStyles}>
                     <img
-                      src={selectedProduct.product_image}
+                      src={selectedProduct?.product_image}
                       className={styles.imageWidth}
                     />
                   </div>
                   <p className={styles.inBoxTextStyles}>
-                    {selectedProduct.product_name}
+                    {selectedProduct?.product_name}
                   </p>
                 </div>
                 <div className={styles.inBoxSnoRightStyles}>
@@ -246,45 +172,51 @@ const Chat = () => {
               </div>
             )}
 
-            <div className={styles.inBoxChatStyles} ref={chatRef}>
+            <ScrollToBottom className={styles.inBoxChatStyles} ref={chatRef}>
               {messages.map((item, index) => {
+                // console.log(messages, 'messages');
                 return (
                   <div key={index}>
                     <div className={styles.inBoxDayText}>
-                      <p className={styles.inBoxDayStyles}>Today</p>
+                      <p className={styles.inBoxDayStyles}>
+                        {new Date(item.time).toDateString()}
+                      </p>
                     </div>
                     <div className={styles.inBoxGapSection}>
                       <div
                         className={
-                          item.user === 'sender'
-                            ? styles.inBoxFinderSection
-                            : styles.inBoxSenderSection
+                          userDetails?._id === item?.userDetails?._id
+                            ? styles.inBoxSenderSection
+                            : styles.inBoxFinderSection
                         }
                       >
                         <p
                           className={
-                            item.user === 'sender'
-                              ? styles.inBoxFinderStyles
-                              : styles.inBoxSenderStyles
+                            userDetails?._id === item?.userDetails?._id
+                              ? styles.inBoxSenderStyles
+                              : styles.inBoxFinderStyles
                           }
                         >
-                          {item.text}
+                          {item?.msg}
                         </p>
                         <p
                           className={
-                            item.user === 'sender'
-                              ? styles.inBoxFindertimeStyles
-                              : styles.inBoxSendertimeStyles
+                            userDetails?._id === item?.userDetails?._id
+                              ? styles.inBoxSendertimeStyles
+                              : styles.inBoxFindertimeStyles
                           }
                         >
-                          {item.time}
+                          {new Date(item.time).toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
                         </p>
                       </div>
                     </div>
                   </div>
                 );
               })}
-            </div>
+            </ScrollToBottom>
             <div className={styles.chatInputSection}>
               <div className={styles.inputGapSection}>
                 <div className={styles.chatAddIconStyles}>
@@ -296,7 +228,8 @@ const Chat = () => {
                   value={message}
                   onKeyDown={(e) => {
                     if (e.key !== 'Enter') return;
-                    sendMessage(message, selectedProduct._id);
+                    handleSendMessage(message);
+                    // sendMessage(message);
                   }}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Type your message here"
@@ -305,7 +238,7 @@ const Chat = () => {
               </div>
               <div
                 className={styles.chatMessageIconStyles}
-                onClick={() => sendMessage(message)}
+                onClick={() => handleSendMessage(message)}
               >
                 <img
                   src={messagesendlogo}

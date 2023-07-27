@@ -165,6 +165,7 @@ const Home = () => {
           state: { snoCodeData: snoCodeResponse.data.data },
         });
       } else {
+        setIsLoading(false);
         setErrorMessage(snoCodeResponse.data.message);
       }
       console.log(snoCodeResponse, 'snoCodeResponse');

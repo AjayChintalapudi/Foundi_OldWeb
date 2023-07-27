@@ -41,7 +41,6 @@ const SnoProductDetails = () => {
   const [showMessage, setShowMessage] = useState();
 
   // handle modal
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -50,7 +49,7 @@ const SnoProductDetails = () => {
     if (authToken) {
       alert('navigating to chat page');
       navigate('/chat', { state: snoCodeData });
-      localStorage.setItem(localStorage.setItem('snoCodeId', snoCodeData?._id));
+      localStorage.setItem('snoCodeId', snoCodeData?._id);
     } else {
       setModalOpen(true);
     }

@@ -61,6 +61,9 @@ const ProductsReview = () => {
         // console.log(response, '....singleproduct');
         setIsLoading(false);
         setProductData(response.data.data);
+      } else {
+        console.log('error in fetching product details');
+        setIsLoading(false);
       }
     } catch (error) {
       setIsLoading(true);
@@ -150,6 +153,7 @@ const ProductsReview = () => {
 
         console.log('addingProductToCartResponse', addingProductToCartResponse);
       } else {
+        setIsLoading(false);
         console.log('error in handling product api response');
       }
     } catch {

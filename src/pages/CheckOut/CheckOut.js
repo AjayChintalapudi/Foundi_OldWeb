@@ -123,6 +123,7 @@ const CheckOut = () => {
           setProductData(cartProductsResponse.data.data.items);
         }
       } else {
+        setIsLoading(false);
         console.log('product not found in cart');
       }
     } catch {
@@ -163,10 +164,13 @@ const CheckOut = () => {
           alert('goto payment page');
           window.location.href = handleCheckOutResponse.data.data.url;
           console.log('handleCheckOutResponse', handleCheckOutResponse);
+        } else {
+          setIsLoading(false);
+          console.log('error in handling the payment');
         }
       }
     } catch (error) {
-      setIsLoading(true);
+      setIsLoading(false);
       console.log('submitted');
     }
   };

@@ -52,6 +52,7 @@ const SignUp = () => {
         navigate('/');
         console.log('signUpResponse', signUpResponse);
       } else {
+        setIsLoading(false);
         setErrorMessage(signUpResponse.data.message);
         console.log('error in signup');
       }
