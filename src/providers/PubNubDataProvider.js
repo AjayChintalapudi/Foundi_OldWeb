@@ -1,7 +1,6 @@
 import { usePubNub } from 'pubnub-react';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { UserDataContext } from './UserDataProvider';
-import { EcomProducts } from 'networking/Apis/ecomproducts';
 
 export const PubNubDataContext = createContext();
 
@@ -14,8 +13,7 @@ const PubNubDataProvider = (props) => {
   const [channels] = useState(['619cad100c52830ea6cf7631']);
   const [messages, addMessages] = useState([]);
   const [message, setMessage] = useState('');
-  const [productDetails, setProductDetails] = useState();
-  const [ids, setIds] = useState([]);
+
   // handle chat message
 
   const handleMessage = (event) => {
@@ -65,31 +63,6 @@ const PubNubDataProvider = (props) => {
     }
   };
 
-  // getting chatlist
-
-  useEffect(() => {
-    handleGettingChatList();
-  }, []);
-
-  const handleGettingChatList = async () => {
-    try {
-      const chatListResponse = await EcomProducts();
-      if (
-        chatListResponse.data.type === 'success' &&
-        chatListResponse.status === 200
-      ) {
-        const productData = chatListResponse.data.data;
-        const allIds = productData.map((item) => item._id);
-        setIds(allIds);
-        setProductDetails(productData);
-        console.log(allIds);
-        console.log(chatListResponse, 'chatListResponse');
-      }
-    } catch {
-      console.log('error in chatlist response');
-    }
-  };
-
   // add event listeners w.r.t events and messages
 
   useEffect(() => {
@@ -112,8 +85,6 @@ const PubNubDataProvider = (props) => {
         setMessage,
         message,
         messages,
-        productDetails,
-        ids,
       }}
     >
       {props.children}

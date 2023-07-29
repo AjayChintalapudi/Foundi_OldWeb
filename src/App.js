@@ -12,6 +12,7 @@ const pubnub = new PubNub({
   publishKey: 'pub-c-b4dffdda-55eb-4064-b886-e90b6bbe2693',
   subscribeKey: 'sub-c-9473eb0a-a082-11ec-acf5-86a1e6519840',
   userId: 'myUniqueUUID',
+  typingIndicator: true,
 });
 
 // console.log(pubnub._config.publishKey, 'pubnub.publishKey');

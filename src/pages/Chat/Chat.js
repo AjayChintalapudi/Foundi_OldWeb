@@ -3,8 +3,10 @@ import UserProfile from 'components/UserProfile/UserProfile';
 import {
   backwardlogo,
   chataddlogo,
+  downarrowimage,
   messagesendlogo,
   threevectorlogo,
+  userprofileuparrow,
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
 import Input from 'components/Input/Input';
@@ -13,33 +15,62 @@ import { PubNubDataContext } from 'providers/PubNubDataProvider';
 import { useLocation } from 'react-router-dom';
 import { snoCode } from 'networking/Apis/snoCode';
 import { UserDataContext } from 'providers/UserDataProvider';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 const Chat = () => {
-  // get  snoProduct details
-  const location = useLocation();
-  // state
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [snoCodeData, setSnoCodeData] = useState([location?.state]);
-  // console.log(snoCodeData, 'snoCodeData');
-
-  // context
-  const { sendMessage, setMessage, message, messages, productDetails, ids } =
-    useContext(PubNubDataContext);
-  const { userDetails } = useContext(UserDataContext);
-  // strings
+  /*strings*/
   const { chatPageStrings } = strings;
 
-  // send message will appear first instead of all messages
+  /*uselocation to fetch sno product details*/
+  const location = useLocation();
 
+  /*state*/
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [snoCodeData, setSnoCodeData] = useState([location?.state]);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [isInputFocussed, setIsInputFocussed] = useState(false);
+  // console.log(snoCodeData, 'snoCodeData');
+
+  /*context*/
+  const { sendMessage, setMessage, message, messages } =
+    useContext(PubNubDataContext);
+  const { userDetails } = useContext(UserDataContext);
+
+  /* input focus change*/
+
+  const handleInputFocusChange = (focused) => {
+    setIsInputFocussed(focused);
+  };
+
+  /*scroll and send message will appear first instead all messages*/
   const chatRef = useRef(null);
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
-    }
-  }, [messages]);
 
-  // send message
+      const handleScroll = () => {
+        if (chatRef.current.scrollTop >= 10) {
+          setShowScrollToTop(false);
+        } else {
+          setShowScrollToTop(true);
+        }
+      };
+
+      chatRef.current.addEventListener('scroll', handleScroll);
+
+      return () => {
+        chatRef.current.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [messages, selectedProduct]);
+
+  const handleScrollToBottom = () => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+      setShowScrollToTop(false);
+    }
+  };
+
+  /*send message*/
 
   const handleSendMessage = (msgText) => {
     const msgObj = {
@@ -48,6 +79,22 @@ const Chat = () => {
       msg: msgText,
     };
     sendMessage(msgObj);
+  };
+
+  /* formatted time:*/
+
+  const formatDate = (date) => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if (date.toDateString() === today.toDateString()) {
+      return 'Today';
+    } else if (date.toDateString() === yesterday.toDateString()) {
+      return 'Yesterday';
+    } else {
+      return date.toLocaleDateString();
+    }
   };
 
   const emptyChatSection = () => {
@@ -172,16 +219,24 @@ const Chat = () => {
               </div>
             )}
 
-            <ScrollToBottom className={styles.inBoxChatStyles} ref={chatRef}>
+            <div className={styles.inBoxChatStyles} ref={chatRef}>
               {messages.map((item, index) => {
-                // console.log(messages, 'messages');
+                const currentMessageDate = new Date(item.time);
+                const prevMessageDate =
+                  index > 0 ? new Date(messages[index - 1].time) : undefined;
+                const showDate =
+                  !prevMessageDate ||
+                  currentMessageDate - prevMessageDate >= 48 * 60 * 60 * 1000;
+                console.log(messages, 'messages');
                 return (
                   <div key={index}>
-                    <div className={styles.inBoxDayText}>
-                      <p className={styles.inBoxDayStyles}>
-                        {new Date(item.time).toDateString()}
-                      </p>
-                    </div>
+                    {showDate && (
+                      <div className={styles.inBoxDayText}>
+                        <p className={styles.inBoxDayStyles}>
+                          {formatDate(currentMessageDate)}
+                        </p>
+                      </div>
+                    )}
                     <div className={styles.inBoxGapSection}>
                       <div
                         className={
@@ -198,6 +253,10 @@ const Chat = () => {
                           }
                         >
                           {item?.msg}
+
+                          {userDetails?._id === item?.userDetails?._id
+                            ? 'Founer typing'
+                            : 'owner typing'}
                         </p>
                         <p
                           className={
@@ -206,7 +265,7 @@ const Chat = () => {
                               : styles.inBoxFindertimeStyles
                           }
                         >
-                          {new Date(item.time).toLocaleTimeString([], {
+                          {currentMessageDate.toLocaleTimeString([], {
                             hour: '2-digit',
                             minute: '2-digit',
                           })}
@@ -216,7 +275,8 @@ const Chat = () => {
                   </div>
                 );
               })}
-            </ScrollToBottom>
+            </div>
+
             <div className={styles.chatInputSection}>
               <div className={styles.inputGapSection}>
                 <div className={styles.chatAddIconStyles}>
@@ -226,6 +286,8 @@ const Chat = () => {
                   type="text"
                   name="message"
                   value={message}
+                  onFocus={() => handleInputFocusChange(true)}
+                  onBlur={() => handleInputFocusChange(false)}
                   onKeyDown={(e) => {
                     if (e.key !== 'Enter') return;
                     handleSendMessage(message);
@@ -247,6 +309,15 @@ const Chat = () => {
                 />
               </div>
             </div>
+
+            {showScrollToTop && (
+              <div
+                className={styles.scrollToTopBlock}
+                onClick={handleScrollToBottom}
+              >
+                <img src={downarrowimage} className={styles.imageWidth} />
+              </div>
+            )}
           </div>
         ) : (
           <div className={styles.chatRightSectionStyles}>
