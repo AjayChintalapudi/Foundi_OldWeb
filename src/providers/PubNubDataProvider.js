@@ -18,8 +18,13 @@ const PubNubDataProvider = (props) => {
 
   const handleMessage = (event) => {
     const message = event.message;
+    console.log(message);
     // console.log(event, 'event---');
-    if (typeof message.msg === 'string' || message.msg.hasOwnProperty('text')) {
+    if (
+      typeof message.msg === 'string' ||
+      message.image ||
+      message.msg.hasOwnProperty('text')
+    ) {
       // Get PubNub server's current time
       pubnub.time((status, response) => {
         if (!status.error) {
@@ -57,7 +62,6 @@ const PubNubDataProvider = (props) => {
     console.log('sending message', message);
     if (message) {
       pubnub
-        // .publish({ channel: channelId, message })
         .publish({ channel: channels[0], message })
         .then(() => setMessage(''));
     }

@@ -5,10 +5,10 @@ export const signUp = '/auth/register';
 // googleAuth Endpoint
 export const googleSignUp = 'auth/googleSignin';
 // products Endpoint
-export const products = 'admin/ecom/product/get/all';
+export const products = '/products/get';
 
 // snocode EndPoint
-export const snoCode = '/products/getproductdetails';
+export const snoCode = '/products/get-details-by-sno-or-id';
 
 // guestLogin EndPoint
 
@@ -47,3 +47,6 @@ export const getChatInfo = 'chat/getchatinfo/{product_id}';
 export const getMessages = 'chat/getmessages/{chat_id}/{user_id}';
 /*updateMessageReadStatus*/
 export const updateMessageReadStatus = 'chat/messages/updatereadstatus';
+
+/*upLoads*/
+export const upLoads = '/uploads/image';

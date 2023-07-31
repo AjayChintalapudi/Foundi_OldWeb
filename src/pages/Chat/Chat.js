@@ -6,15 +6,16 @@ import {
   downarrowimage,
   messagesendlogo,
   threevectorlogo,
-  userprofileuparrow,
+  // userprofileuparrow,
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
 import Input from 'components/Input/Input';
 import styles from './styles.module.css';
 import { PubNubDataContext } from 'providers/PubNubDataProvider';
 import { useLocation } from 'react-router-dom';
-import { snoCode } from 'networking/Apis/snoCode';
+// import { snoCode } from 'networking/Apis/snoCode';
 import { UserDataContext } from 'providers/UserDataProvider';
+import { upLoads } from 'networking/Apis/upLoads';
 
 const Chat = () => {
   /*strings*/
@@ -27,19 +28,14 @@ const Chat = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [snoCodeData, setSnoCodeData] = useState([location?.state]);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
-  const [isInputFocussed, setIsInputFocussed] = useState(false);
+  const [isUserTyping, setIsUserTyping] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState(null);
   // console.log(snoCodeData, 'snoCodeData');
 
   /*context*/
   const { sendMessage, setMessage, message, messages } =
     useContext(PubNubDataContext);
   const { userDetails } = useContext(UserDataContext);
-
-  /* input focus change*/
-
-  const handleInputFocusChange = (focused) => {
-    setIsInputFocussed(focused);
-  };
 
   /*scroll and send message will appear first instead all messages*/
   const chatRef = useRef(null);
@@ -58,7 +54,9 @@ const Chat = () => {
       chatRef.current.addEventListener('scroll', handleScroll);
 
       return () => {
-        chatRef.current.removeEventListener('scroll', handleScroll);
+        if (chatRef.current) {
+          chatRef.current.removeEventListener('scroll', handleScroll);
+        }
       };
     }
   }, [messages, selectedProduct]);
@@ -77,8 +75,40 @@ const Chat = () => {
       userDetails: { _id: userDetails._id },
       type: 'sender',
       msg: msgText,
+      image: uploadedFile,
     };
     sendMessage(msgObj);
+  };
+
+  /*file upload*/
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    console.log('selcted file', file);
+    if (e.target.files && e.target.files[0]) {
+      setUploadedFile(URL.createObjectURL(e.target.files[0]));
+      setTimeout(() => {
+        handleUpLoadImage(file);
+      }, 2000);
+    }
+  };
+
+  /*upload api call*/
+
+  const handleUpLoadImage = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+      const upLoadResponse = await upLoads(formData);
+      if (
+        (upLoadResponse.data.type = 'success' && upLoadResponse.status === 200)
+      ) {
+        setUploadedFile(upLoadResponse.data.data);
+        console.log(upLoadResponse.data.data);
+        console.log('upLoadResponse', upLoadResponse);
+      }
+    } catch {
+      console.log('Error in handling upload response');
+    }
   };
 
   /* formatted time:*/
@@ -112,7 +142,11 @@ const Chat = () => {
       <div className={styles.topSectionStyles}>
         <div className={styles.messageSectionStyles}>
           <div className={styles.backwardImgStyles}>
-            <img src={backwardlogo} className={styles.imageWidth} />
+            <img
+              src={backwardlogo}
+              className={styles.imageWidth}
+              alt="backwardlogo"
+            />
           </div>
           <h3 className={styles.messageHeaderStyles}>
             {chatPageStrings.chatHeading}
@@ -162,6 +196,7 @@ const Chat = () => {
                     <img
                       src={item?.product_image}
                       className={styles.imageWidth}
+                      // alt="productImg"
                     />
                   </div>
                   <div className={styles.chatListTextStyles}>
@@ -203,6 +238,7 @@ const Chat = () => {
                     <img
                       src={selectedProduct?.product_image}
                       className={styles.imageWidth}
+                      // alt="productImg"
                     />
                   </div>
                   <p className={styles.inBoxTextStyles}>
@@ -226,8 +262,9 @@ const Chat = () => {
                   index > 0 ? new Date(messages[index - 1].time) : undefined;
                 const showDate =
                   !prevMessageDate ||
-                  currentMessageDate - prevMessageDate >= 48 * 60 * 60 * 1000;
-                console.log(messages, 'messages');
+                  currentMessageDate.toDateString() !==
+                    prevMessageDate.toDateString();
+                // console.log(messages, 'messages');
                 return (
                   <div key={index}>
                     {showDate && (
@@ -245,19 +282,25 @@ const Chat = () => {
                             : styles.inBoxFinderSection
                         }
                       >
-                        <p
-                          className={
-                            userDetails?._id === item?.userDetails?._id
-                              ? styles.inBoxSenderStyles
-                              : styles.inBoxFinderStyles
-                          }
-                        >
-                          {item?.msg}
-
-                          {userDetails?._id === item?.userDetails?._id
-                            ? 'Founer typing'
-                            : 'owner typing'}
-                        </p>
+                        {item?.msg ? (
+                          <p
+                            className={
+                              userDetails?._id === item?.userDetails?._id
+                                ? styles.inBoxSenderStyles
+                                : styles.inBoxFinderStyles
+                            }
+                          >
+                            {item?.msg}
+                          </p>
+                        ) : (
+                          <div className={styles.imageUploadStyles}>
+                            <img
+                              src={item?.image}
+                              alt=""
+                              className={styles.imageWidth}
+                            />
+                          </div>
+                        )}
                         <p
                           className={
                             userDetails?._id === item?.userDetails?._id
@@ -271,23 +314,45 @@ const Chat = () => {
                           })}
                         </p>
                       </div>
+                      {/* {userDetails?._id !== item?.userDetails?._id ? (
+                        <p>{isUserTyping ? 'owner typing' : ''}</p>
+                      ) : (
+                        <p>{isUserTyping ? 'founder typing' : ''}</p>
+                      )} */}
                     </div>
                   </div>
                 );
               })}
+
+              {/*File upload for image    */}
+              <div className={styles.previewImageUploadStyles}>
+                <img src={uploadedFile} className={styles.imageWidth} alt="" />
+              </div>
             </div>
 
             <div className={styles.chatInputSection}>
               <div className={styles.inputGapSection}>
                 <div className={styles.chatAddIconStyles}>
-                  <img src={chataddlogo} alt="" className={styles.imageWidth} />
+                  <label htmlFor="fileInput">
+                    <img
+                      src={chataddlogo}
+                      alt=""
+                      className={styles.imageWidth}
+                    />
+                  </label>
+                  <input
+                    type="file"
+                    id="fileInput"
+                    className={styles.fileUploadStyles}
+                    onChange={handleFileUpload} /* file upload */
+                  />
                 </div>
                 <Input
                   type="text"
                   name="message"
                   value={message}
-                  onFocus={() => handleInputFocusChange(true)}
-                  onBlur={() => handleInputFocusChange(false)}
+                  onFocus={() => setIsUserTyping(true)}
+                  onBlur={() => setIsUserTyping(false)}
                   onKeyDown={(e) => {
                     if (e.key !== 'Enter') return;
                     handleSendMessage(message);
@@ -315,7 +380,11 @@ const Chat = () => {
                 className={styles.scrollToTopBlock}
                 onClick={handleScrollToBottom}
               >
-                <img src={downarrowimage} className={styles.imageWidth} />
+                <img
+                  src={downarrowimage}
+                  alt="userprofileuparrow"
+                  className={styles.imageWidth}
+                />
               </div>
             )}
           </div>
