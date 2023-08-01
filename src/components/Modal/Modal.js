@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 
-const Modal = ({ open, onClose, children }) => {
+const Modal = ({ open, onClose, customClassName, modalContent, children }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -44,8 +44,11 @@ const Modal = ({ open, onClose, children }) => {
   }
 
   return (
-    <div className={styles.modal}>
-      <div className={styles.modalContent} ref={modalRef}>
+    <div className={`${styles.modal} ${customClassName}`}>
+      <div
+        className={`${styles.modalContent} ${customClassName}`}
+        ref={modalRef}
+      >
         <span className={styles.closeIcon} onClick={onClose}></span>
         {children}
       </div>

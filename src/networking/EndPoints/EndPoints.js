@@ -5,7 +5,7 @@ export const signUp = '/auth/register';
 // googleAuth Endpoint
 export const googleSignUp = 'auth/googleSignin';
 // products Endpoint
-export const products = '/products/get';
+export const products = 'ecom/products/get';
 
 // snocode EndPoint
 export const snoCode = '/products/get-details-by-sno-or-id';

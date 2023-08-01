@@ -305,7 +305,8 @@
   font-weight: 400;
   line-height: 30px;
 }
-.chatInputSection {
+.chatInputSection,
+.disabledChatInputStyles {
   position: absolute;
   bottom: 0;
   display: flex;
@@ -319,15 +320,80 @@
   margin: 0px 24px 24px;
 }
 
+.disabledChatInputStyles {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.chatModalStyles {
+  position: fixed;
+  top: 35%;
+  left: 44.2%;
+  width: 45%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+  z-index: 1000;
+  background-color: beige;
+}
+
 .previewImageUploadStyles {
+  position: relative;
   border: none;
   width: 100%;
   height: 100%;
+  justify-content: center;
 }
 
 .imageUploadStyles {
   width: 100px;
   height: 100px;
+}
+
+.centeredChatLoader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--backgroundModalColor);
+}
+
+.chatLoader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-top: 4px solid #fff;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+
+.chatLoader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-left: 4px solid #ff3d00;
+  border-bottom: 4px solid transparent;
+  animation: rotation 0.5s linear infinite reverse;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .inputGapSection {
@@ -371,6 +437,14 @@
 /* chat Inbox Section  end */
 
 /* -------------------------DeskTop View Ends------------------------- */
+
+@media screen and (max-width: 1200px) {
+  .chatModalStyles {
+    position: fixed;
+    top: 35%;
+    left: 45.5%;
+  }
+}
 
 /* styles start at  1023px */
 @media screen and (max-width: 1023px) {
@@ -427,6 +501,14 @@
   .inBoxFinderStyles {
     max-width: 300px;
   }
+
+  .chatModalStyles {
+    top: 33.5%;
+    left: 48.5%;
+    width: 45%;
+    height: 50%;
+  }
+
   /* chat Inbox Section  end */
 }
 

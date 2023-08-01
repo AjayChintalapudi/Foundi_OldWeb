@@ -128,3 +128,4 @@ export { default as backwardlogo } from 'assets/Images/backwardarrowlogo.svg';
 export { default as threevectorlogo } from 'assets/Images/chatellipselogo.svg';
 export { default as chataddlogo } from 'assets/Images/chataddlogo.svg';
 export { default as messagesendlogo } from 'assets/Images/messagesendlogo.svg';
+export { default as chatloader } from 'assets/Images/loader.gif';

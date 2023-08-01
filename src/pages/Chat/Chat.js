@@ -3,6 +3,7 @@ import UserProfile from 'components/UserProfile/UserProfile';
 import {
   backwardlogo,
   chataddlogo,
+  chatloader,
   downarrowimage,
   messagesendlogo,
   threevectorlogo,
@@ -16,6 +17,8 @@ import { useLocation } from 'react-router-dom';
 // import { snoCode } from 'networking/Apis/snoCode';
 import { UserDataContext } from 'providers/UserDataProvider';
 import { upLoads } from 'networking/Apis/upLoads';
+import Modal from 'components/Modal/Modal';
+import { SpinnerContext } from 'providers/SpinnerProvider';
 
 const Chat = () => {
   /*strings*/
@@ -30,6 +33,11 @@ const Chat = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const [isUserTyping, setIsUserTyping] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [loader, setLoader] = useState(false);
+  const [chatInputDisabled, setChatInputDisabled] = useState(false);
+
   // console.log(snoCodeData, 'snoCodeData');
 
   /*context*/
@@ -75,7 +83,7 @@ const Chat = () => {
       userDetails: { _id: userDetails._id },
       type: 'sender',
       msg: msgText,
-      image: uploadedFile,
+      image: image,
     };
     sendMessage(msgObj);
   };
@@ -83,11 +91,14 @@ const Chat = () => {
   /*file upload*/
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    console.log('selcted file', file);
     if (e.target.files && e.target.files[0]) {
+      setLoader(true);
+      setChatInputDisabled(true);
+      console.log('selcted local file', e.target.files[0]);
       setUploadedFile(URL.createObjectURL(e.target.files[0]));
       setTimeout(() => {
         handleUpLoadImage(file);
+        setChatInputDisabled(false);
       }, 2000);
     }
   };
@@ -96,17 +107,23 @@ const Chat = () => {
 
   const handleUpLoadImage = async (file) => {
     try {
+      setLoader(true);
       const formData = new FormData();
       formData.append('image', file);
       const upLoadResponse = await upLoads(formData);
       if (
-        (upLoadResponse.data.type = 'success' && upLoadResponse.status === 200)
+        upLoadResponse.data.type === 'success' &&
+        upLoadResponse.status === 200
       ) {
-        setUploadedFile(upLoadResponse.data.data);
-        console.log(upLoadResponse.data.data);
-        console.log('upLoadResponse', upLoadResponse);
+        setLoader(false);
+        console.log('upLoadResponse', upLoadResponse.data.data);
+        setImage(upLoadResponse.data.data);
+      } else {
+        setLoader(false);
+        console.log('error in upLoadResponse');
       }
     } catch {
+      setLoader(false);
       console.log('Error in handling upload response');
     }
   };
@@ -325,12 +342,31 @@ const Chat = () => {
               })}
 
               {/*File upload for image    */}
-              <div className={styles.previewImageUploadStyles}>
-                <img src={uploadedFile} className={styles.imageWidth} alt="" />
-              </div>
+              {uploadedFile && (
+                <div className={styles.chatModalStyles}>
+                  <div className={styles.previewImageUploadStyles}>
+                    <img
+                      src={uploadedFile}
+                      className={styles.imageWidth}
+                      alt=""
+                    />
+                  </div>
+                  {loader && (
+                    <div className={styles.centeredChatLoader}>
+                      <div className={styles.chatLoader}></div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
-            <div className={styles.chatInputSection}>
+            <div
+              className={
+                chatInputDisabled
+                  ? styles.disabledChatInputStyles
+                  : styles.chatInputSection
+              }
+            >
               <div className={styles.inputGapSection}>
                 <div className={styles.chatAddIconStyles}>
                   <label htmlFor="fileInput">
@@ -345,6 +381,7 @@ const Chat = () => {
                     id="fileInput"
                     className={styles.fileUploadStyles}
                     onChange={handleFileUpload} /* file upload */
+                    disabled={chatInputDisabled}
                   />
                 </div>
                 <Input
@@ -355,17 +392,22 @@ const Chat = () => {
                   onBlur={() => setIsUserTyping(false)}
                   onKeyDown={(e) => {
                     if (e.key !== 'Enter') return;
+                    console.log('enter press');
                     handleSendMessage(message);
                     // sendMessage(message);
                   }}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Type your message here"
                   customInputStyles={styles.messageInputStyles}
+                  disabled={chatInputDisabled}
                 />
               </div>
               <div
                 className={styles.chatMessageIconStyles}
-                onClick={() => handleSendMessage(message)}
+                onClick={() => {
+                  console.log('button click');
+                  handleSendMessage(message);
+                }}
               >
                 <img
                   src={messagesendlogo}
