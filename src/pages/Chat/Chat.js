@@ -17,8 +17,8 @@ import { useLocation } from 'react-router-dom';
 // import { snoCode } from 'networking/Apis/snoCode';
 import { UserDataContext } from 'providers/UserDataProvider';
 import { upLoads } from 'networking/Apis/upLoads';
-import Modal from 'components/Modal/Modal';
-import { SpinnerContext } from 'providers/SpinnerProvider';
+import { getChatList } from 'networking/Apis/getChatList';
+import { getChatInfo } from 'networking/Apis/getChatInfo';
 
 const Chat = () => {
   /*strings*/
@@ -29,20 +29,26 @@ const Chat = () => {
 
   /*state*/
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [snoCodeData, setSnoCodeData] = useState([location?.state]);
+  // const [snoCodeData, setSnoCodeData] = useState([location?.state]);
+  const [chatList, setChatList] = useState();
   const [showScrollToTop, setShowScrollToTop] = useState(false);
-  const [isUserTyping, setIsUserTyping] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState(null);
+  // const [isUserTyping, setIsUserTyping] = useState(false);
   const [image, setImage] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
   const [loader, setLoader] = useState(false);
   const [chatInputDisabled, setChatInputDisabled] = useState(false);
+  const [latestMessage, setLatestMesssage] = useState();
 
   // console.log(snoCodeData, 'snoCodeData');
 
   /*context*/
-  const { sendMessage, setMessage, message, messages } =
-    useContext(PubNubDataContext);
+  const {
+    sendMessage,
+    setMessage,
+    message,
+    messages,
+    uploadedFile,
+    setUploadedFile,
+  } = useContext(PubNubDataContext);
   const { userDetails } = useContext(UserDataContext);
 
   /*scroll and send message will appear first instead all messages*/
@@ -86,7 +92,17 @@ const Chat = () => {
       image: image,
     };
     sendMessage(msgObj);
+    // setLatestMesssage(message);
+    // localStorage.setItem('latestMessage', message);
   };
+
+  // set the selected message in local
+  // useEffect(() => {
+  //   const latestStoredMessage = localStorage.getItem('latestMessage');
+  //   if (latestStoredMessage) {
+  //     setLatestMesssage(latestStoredMessage);
+  //   }
+  // }, []);
 
   /*file upload*/
   const handleFileUpload = (e) => {
@@ -128,9 +144,40 @@ const Chat = () => {
     }
   };
 
+  /*get chat list*/
+
+  const gettingChatList = async () => {
+    try {
+      const gettingChatListResponse = await getChatList(userDetails?._id);
+      if (
+        gettingChatListResponse.data.type === 'success' &&
+        gettingChatListResponse.status === 200
+      ) {
+        setChatList(gettingChatListResponse.data.data);
+        console.log(gettingChatListResponse, 'gettingChatListResponse');
+      }
+    } catch {
+      console.log('error in getting chat data');
+    }
+  };
+
+  useEffect(() => {
+    gettingChatList();
+  }, [userDetails]);
+
+  /*getChatInfo api call*/
+  const handleGetChatInfo = async () => {
+    try {
+      const getChatInfoResponse = await getChatInfo();
+    } catch {
+      console.log('error in get chat info');
+    }
+  };
+
   /* formatted time:*/
 
   const formatDate = (date) => {
+    console.log(date);
     const today = new Date();
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
@@ -201,7 +248,7 @@ const Chat = () => {
     return (
       <div className={styles.chatLeftSection}>
         <div className={styles.chatLeftSectionStyles}>
-          {snoCodeData?.map((item, index) => {
+          {chatList?.map((item, index) => {
             return (
               <div
                 key={index}
@@ -211,7 +258,7 @@ const Chat = () => {
                 <div className={styles.gapSectionStyles}>
                   <div className={styles.chatListImageStyles}>
                     <img
-                      src={item?.product_image}
+                      src={item?.product_id?.product_image}
                       className={styles.imageWidth}
                       // alt="productImg"
                     />
@@ -219,15 +266,19 @@ const Chat = () => {
                   <div className={styles.chatListTextStyles}>
                     <h3 className={styles.chatListHeadersStyles}>
                       {/* {item.snoTag} */}
-                      SNO no. &nbsp;{item?.sno}
+                      SNO no. &nbsp;{item?.product_id?.sno}
                     </h3>
-                    <p className={styles.chatlistDescpStyles}>{item?.descp}</p>
+                    <p className={styles.chatlistDescpStyles}>
+                      {latestMessage}
+                      {/* lastmessage */}
+                      {item?.last_message}
+                    </p>
                   </div>
                 </div>
                 <div className={styles.chatListtimeSectionStyles}>
                   <p className={styles.chattingTimeStyles}>
-                    date:
-                    {/* {item.date} */}
+                    Date:
+                    {/* {formatDate(item)} */}
                   </p>
                   <div className={styles.chatListCountStyles}>
                     <p className={styles.chatListNumber}>
@@ -253,13 +304,13 @@ const Chat = () => {
                 <div className={styles.inBoxSnoLeftStyles}>
                   <div className={styles.inboxSnoImageStyles}>
                     <img
-                      src={selectedProduct?.product_image}
+                      src={selectedProduct?.product_id?.product_image}
                       className={styles.imageWidth}
                       // alt="productImg"
                     />
                   </div>
                   <p className={styles.inBoxTextStyles}>
-                    {selectedProduct?.product_name}
+                    {selectedProduct?.product_id?.product_name}
                   </p>
                 </div>
                 <div className={styles.inBoxSnoRightStyles}>
@@ -299,7 +350,28 @@ const Chat = () => {
                             : styles.inBoxFinderSection
                         }
                       >
-                        {item?.msg ? (
+                        {item?.msg && item?.image ? (
+                          <div
+                            className={styles.imageAndTextUploadContainerStyles}
+                          >
+                            <div className={styles.imageAndTextUploadStyles}>
+                              <img
+                                src={item?.image}
+                                alt=""
+                                className={styles.imageWidth}
+                              />
+                            </div>
+                            <p
+                              className={
+                                userDetails?._id === item?.userDetails?._id
+                                  ? `${styles.inBoxSenderStyles} ${styles.imageAndTextSenderStyles}`
+                                  : `${styles.inBoxFinderStyles} ${styles.imageAndTextFinderStyles}`
+                              }
+                            >
+                              {item?.msg}
+                            </p>
+                          </div>
+                        ) : item?.msg ? (
                           <p
                             className={
                               userDetails?._id === item?.userDetails?._id
@@ -318,6 +390,7 @@ const Chat = () => {
                             />
                           </div>
                         )}
+
                         <p
                           className={
                             userDetails?._id === item?.userDetails?._id
@@ -388,8 +461,8 @@ const Chat = () => {
                   type="text"
                   name="message"
                   value={message}
-                  onFocus={() => setIsUserTyping(true)}
-                  onBlur={() => setIsUserTyping(false)}
+                  // onFocus={() => setIsUserTyping(true)}
+                  // onBlur={() => setIsUserTyping(false)}
                   onKeyDown={(e) => {
                     if (e.key !== 'Enter') return;
                     console.log('enter press');

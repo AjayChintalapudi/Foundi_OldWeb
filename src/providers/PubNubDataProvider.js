@@ -13,6 +13,7 @@ const PubNubDataProvider = (props) => {
   const [channels] = useState(['619cad100c52830ea6cf7631']);
   const [messages, addMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const [uploadedFile, setUploadedFile] = useState(null);
 
   // handle chat message
 
@@ -61,9 +62,10 @@ const PubNubDataProvider = (props) => {
   const sendMessage = (message) => {
     console.log('sending message', message);
     if (message) {
-      pubnub
-        .publish({ channel: channels[0], message })
-        .then(() => setMessage(''));
+      pubnub.publish({ channel: channels[0], message }).then(() => {
+        setMessage('');
+        setUploadedFile(null);
+      });
     }
   };
 
@@ -89,6 +91,8 @@ const PubNubDataProvider = (props) => {
         setMessage,
         message,
         messages,
+        uploadedFile,
+        setUploadedFile,
       }}
     >
       {props.children}
