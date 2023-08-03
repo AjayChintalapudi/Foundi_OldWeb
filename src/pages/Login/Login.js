@@ -4,6 +4,7 @@ import {
   eyelogo,
   googleglogo,
   loginbglogo,
+  passwordopenicon,
   signupleftarrowlogo,
 } from 'resources/Images/Images';
 import Input from 'components/Input/Input';
@@ -108,7 +109,7 @@ const Login = () => {
               customInputStyles={styles.passwordInputStyles}
               type={pwvisible ? 'text' : 'password'}
               placeholder={loginPageStrings.passwordPlaceHolder}
-              image={pwvisible ? eyelogo : eyelogo}
+              image={pwvisible ? passwordopenicon : eyelogo}
               onClick={() => setPwVisible(!pwvisible)}
               value={formik.values.password}
               onBlur={formik.handleBlur}

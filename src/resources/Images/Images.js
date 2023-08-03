@@ -118,6 +118,7 @@ export { default as loginbglogo } from 'assets/Images/loginbglogo.svg';
 export { default as signupleftarrowlogo } from 'assets/Images/signupleftarrowlogo.svg';
 export { default as eyelogo } from 'assets/Images/eyelogo.svg';
 export { default as googleglogo } from 'assets/Images/googlesvglogo.svg';
+export { default as passwordopenicon } from 'assets/Images/passwordopenicon.svg';
 
 //privacy policy Images
 export { default as privacyLocklogo } from 'assets/Images/privacybglogo.svg';

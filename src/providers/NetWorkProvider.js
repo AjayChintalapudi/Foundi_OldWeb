@@ -1,14 +1,16 @@
+import NetworkToaster from 'components/Toaster/NetworkToaster';
 import React, { createContext, useEffect, useState } from 'react';
 
 export const NetworkStatusContext = createContext();
 
 export const NetWorkProvider = (props) => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [showMessage, setShowMessage] = useState(true);
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     const handleNetwork = () => {
       setIsOnline(navigator.onLine);
+      console.log(navigator.onLine, 'navigator.onLine');
       if (navigator.onLine) {
         setShowMessage(true);
 
@@ -18,15 +20,16 @@ export const NetWorkProvider = (props) => {
         return () => {
           clearTimeout(timer);
         };
+      } else {
+        setShowMessage(true);
       }
     };
 
-    window.addEventListener('online', handleNetwork);
-    window.addEventListener('offline', handleNetwork);
-
+    window.addEventListener('online', () => handleNetwork());
+    window.addEventListener('offline', () => handleNetwork());
     return () => {
-      window.removeEventListener('online', handleNetwork);
-      window.removeEventListener('offline', handleNetwork);
+      window.removeEventListener('online', () => handleNetwork());
+      window.removeEventListener('offline', () => handleNetwork());
     };
   }, []);
 
@@ -34,9 +37,11 @@ export const NetWorkProvider = (props) => {
     isOnline: isOnline,
     showMessage: showMessage,
   };
+
   return (
     <NetworkStatusContext.Provider value={networkStatusValue}>
       {props.children}
+      <NetworkToaster />
     </NetworkStatusContext.Provider>
   );
 };

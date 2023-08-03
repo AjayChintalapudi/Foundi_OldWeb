@@ -19,6 +19,8 @@ import { UserDataContext } from 'providers/UserDataProvider';
 import { upLoads } from 'networking/Apis/upLoads';
 import { getChatList } from 'networking/Apis/getChatList';
 import { getChatInfo } from 'networking/Apis/getChatInfo';
+import { getMessages } from 'networking/Apis/getMessages';
+import Modal from 'components/Modal/Modal';
 
 const Chat = () => {
   /*strings*/
@@ -30,13 +32,15 @@ const Chat = () => {
   /*state*/
   const [selectedProduct, setSelectedProduct] = useState(null);
   // const [snoCodeData, setSnoCodeData] = useState([location?.state]);
-  const [chatList, setChatList] = useState();
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   // const [isUserTyping, setIsUserTyping] = useState(false);
   const [image, setImage] = useState(null);
   const [loader, setLoader] = useState(false);
   const [chatInputDisabled, setChatInputDisabled] = useState(false);
-  const [latestMessage, setLatestMesssage] = useState();
+  // const [latestMessage, setLatestMesssage] = useState();
+  const [chatMessage, setChatMessage] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   // console.log(snoCodeData, 'snoCodeData');
 
@@ -48,6 +52,7 @@ const Chat = () => {
     messages,
     uploadedFile,
     setUploadedFile,
+    chatList,
   } = useContext(PubNubDataContext);
   const { userDetails } = useContext(UserDataContext);
 
@@ -144,36 +149,6 @@ const Chat = () => {
     }
   };
 
-  /*get chat list*/
-
-  const gettingChatList = async () => {
-    try {
-      const gettingChatListResponse = await getChatList(userDetails?._id);
-      if (
-        gettingChatListResponse.data.type === 'success' &&
-        gettingChatListResponse.status === 200
-      ) {
-        setChatList(gettingChatListResponse.data.data);
-        console.log(gettingChatListResponse, 'gettingChatListResponse');
-      }
-    } catch {
-      console.log('error in getting chat data');
-    }
-  };
-
-  useEffect(() => {
-    gettingChatList();
-  }, [userDetails]);
-
-  /*getChatInfo api call*/
-  const handleGetChatInfo = async () => {
-    try {
-      const getChatInfoResponse = await getChatInfo();
-    } catch {
-      console.log('error in get chat info');
-    }
-  };
-
   /* formatted time:*/
 
   const formatDate = (date) => {
@@ -189,6 +164,16 @@ const Chat = () => {
     } else {
       return date.toLocaleDateString();
     }
+  };
+
+  /*handleImageClick*/
+
+  const handleImageClick = (image) => {
+    const modalContent = (
+      <img src={image} alt="Modal Content" className={styles.modalImage} />
+    );
+    setModalContent(modalContent);
+    setModalOpen(true);
   };
 
   const emptyChatSection = () => {
@@ -269,7 +254,7 @@ const Chat = () => {
                       SNO no. &nbsp;{item?.product_id?.sno}
                     </h3>
                     <p className={styles.chatlistDescpStyles}>
-                      {latestMessage}
+                      {/* {latestMessage} */}
                       {/* lastmessage */}
                       {item?.last_message}
                     </p>
@@ -382,7 +367,10 @@ const Chat = () => {
                             {item?.msg}
                           </p>
                         ) : (
-                          <div className={styles.imageUploadStyles}>
+                          <div
+                            className={styles.imageUploadStyles}
+                            onClick={() => handleImageClick(item.image)}
+                          >
                             <img
                               src={item?.image}
                               alt=""
@@ -410,6 +398,13 @@ const Chat = () => {
                         <p>{isUserTyping ? 'founder typing' : ''}</p>
                       )} */}
                     </div>
+                    {/* onclick display image in model */}
+                    <Modal
+                      open={modalOpen}
+                      onClose={() => setModalOpen(false)}
+                      modalContent={modalContent}
+                      customClassName={styles.modelImageStyles}
+                    ></Modal>
                   </div>
                 );
               })}

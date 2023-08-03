@@ -50,6 +50,7 @@ const Modal = ({ open, onClose, customClassName, modalContent, children }) => {
         ref={modalRef}
       >
         <span className={styles.closeIcon} onClick={onClose}></span>
+        {modalContent}
         {children}
       </div>
     </div>

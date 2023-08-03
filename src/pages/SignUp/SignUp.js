@@ -4,6 +4,7 @@ import {
   eyelogo,
   googleglogo,
   loginbglogo,
+  passwordopenicon,
   signupleftarrowlogo,
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
@@ -21,6 +22,7 @@ import { UserDataContext } from 'providers/UserDataProvider';
 import { NetworkStatusContext } from 'providers/NetWorkProvider';
 import GoogleAuth from 'helpers/GoogleAuth';
 import { SpinnerContext } from 'providers/SpinnerProvider';
+import NetworkToaster from 'components/Toaster/NetworkToaster';
 
 const SignUp = () => {
   // getting user data
@@ -139,7 +141,7 @@ const SignUp = () => {
               customInputStyles={styles.passwordInputStyles}
               type={pwdVisible ? 'text' : 'password'}
               placeholder={signUpPageStrings.passwordPlaceHolder}
-              image={pwdVisible ? eyelogo : eyelogo}
+              image={pwdVisible ? passwordopenicon : eyelogo}
               onClick={() => setPwdVisible(!pwdVisible)}
               name="password"
               value={formik.values.password}
@@ -190,9 +192,6 @@ const SignUp = () => {
 
   return (
     <div className={styles.signUpSection}>
-      {isOnline
-        ? showMessage && <p className={styles.onLine}>Your online</p>
-        : showMessage && <p className={styles.offLine}>Your offline</p>}
       <div className={styles.insideSignUpSection}>
         {signUpLeftSection()}
         {signUpRightSection()}

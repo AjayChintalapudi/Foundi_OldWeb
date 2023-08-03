@@ -1,6 +1,7 @@
 import { usePubNub } from 'pubnub-react';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { UserDataContext } from './UserDataProvider';
+import { getChatList } from 'networking/Apis/getChatList';
 
 export const PubNubDataContext = createContext();
 
@@ -14,6 +15,7 @@ const PubNubDataProvider = (props) => {
   const [messages, addMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [chatList, setChatList] = useState();
 
   // handle chat message
 
@@ -69,6 +71,27 @@ const PubNubDataProvider = (props) => {
     }
   };
 
+  /*get chat list*/
+
+  const gettingChatList = async () => {
+    try {
+      const gettingChatListResponse = await getChatList(userDetails?._id);
+      if (
+        gettingChatListResponse.data.type === 'success' &&
+        gettingChatListResponse.status === 200
+      ) {
+        setChatList(gettingChatListResponse.data.data);
+        console.log(gettingChatListResponse, 'gettingChatListResponse');
+      }
+    } catch {
+      console.log('error in getting chat data');
+    }
+  };
+
+  useEffect(() => {
+    gettingChatList();
+  }, [userDetails]);
+
   // add event listeners w.r.t events and messages
 
   useEffect(() => {
@@ -93,6 +116,8 @@ const PubNubDataProvider = (props) => {
         messages,
         uploadedFile,
         setUploadedFile,
+        chatList,
+        setChatList,
       }}
     >
       {props.children}
