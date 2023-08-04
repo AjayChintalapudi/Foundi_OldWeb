@@ -384,7 +384,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--backgroundModalColor);
+  background-color: var(--backgroundUploadColor);
 }
 
 .chatLoader {
@@ -516,7 +516,7 @@
     border-radius: 24px;
   }
   .inBoxSenderStyles {
-    max-width: 300px;
+    max-width: 305px;
   }
   .inputGapSection {
     display: flex;
@@ -591,9 +591,12 @@
   /* chat Left Section End */
 
   /* chat Inbox Section  start */
-  .inBoxSection {
+  .inBoxSectionStylesOne {
     display: none;
   }
+  /* .inBoxSection {
+    display: block;
+  } */
   /* chat Inbox Section  start */
 }
 

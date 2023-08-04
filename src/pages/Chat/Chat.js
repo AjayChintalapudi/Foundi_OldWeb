@@ -11,7 +11,6 @@ import {
 } from 'resources/Images/Images';
 import { strings } from 'resources/Strings/eng';
 import Input from 'components/Input/Input';
-import styles from './styles.module.css';
 import { PubNubDataContext } from 'providers/PubNubDataProvider';
 import { useLocation } from 'react-router-dom';
 // import { snoCode } from 'networking/Apis/snoCode';
@@ -21,6 +20,8 @@ import { getChatList } from 'networking/Apis/getChatList';
 import { getChatInfo } from 'networking/Apis/getChatInfo';
 import { getMessages } from 'networking/Apis/getMessages';
 import Modal from 'components/Modal/Modal';
+import { useToast } from 'providers/ToastProvider';
+import styles from './styles.module.css';
 
 const Chat = () => {
   /*strings*/
@@ -55,6 +56,7 @@ const Chat = () => {
     chatList,
   } = useContext(PubNubDataContext);
   const { userDetails } = useContext(UserDataContext);
+  const { showToast } = useToast();
 
   /*scroll and send message will appear first instead all messages*/
   const chatRef = useRef(null);
@@ -99,6 +101,7 @@ const Chat = () => {
     sendMessage(msgObj);
     // setLatestMesssage(message);
     // localStorage.setItem('latestMessage', message);
+    showToast('message sent', msgObj.data);
   };
 
   // set the selected message in local
@@ -339,7 +342,10 @@ const Chat = () => {
                           <div
                             className={styles.imageAndTextUploadContainerStyles}
                           >
-                            <div className={styles.imageAndTextUploadStyles}>
+                            <div
+                              className={styles.imageAndTextUploadStyles}
+                              onClick={() => handleImageClick(item.image)}
+                            >
                               <img
                                 src={item?.image}
                                 alt=""
