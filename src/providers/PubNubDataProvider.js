@@ -2,6 +2,7 @@ import { usePubNub } from 'pubnub-react';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { UserDataContext } from './UserDataProvider';
 import { getChatList } from 'networking/Apis/getChatList';
+import sendMessageSound from 'assets/Audio/notification.mp3';
 
 export const PubNubDataContext = createContext();
 
@@ -16,6 +17,7 @@ const PubNubDataProvider = (props) => {
   const [message, setMessage] = useState('');
   const [uploadedFile, setUploadedFile] = useState(null);
   const [chatList, setChatList] = useState();
+  const [isSending, setIsSending] = useState(false);
 
   // handle chat message
 
@@ -60,10 +62,23 @@ const PubNubDataProvider = (props) => {
     localStorage.setItem('messages', JSON.stringify(messages));
   }, [messages]);
 
+  // message with sound
+
+  useEffect(() => {
+    if (isSending) {
+      const audio = new Audio(sendMessageSound);
+      audio.play();
+      audio.onended = () => {
+        setIsSending(false);
+      };
+    }
+  }, [isSending]);
+
   // send chat  message
   const sendMessage = (message) => {
     console.log('sending message', message);
     if (message) {
+      setIsSending(true);
       pubnub.publish({ channel: channels[0], message }).then(() => {
         setMessage('');
         setUploadedFile(null);
