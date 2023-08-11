@@ -165,7 +165,7 @@ const Chat = () => {
     } else if (date.toDateString() === yesterday.toDateString()) {
       return 'Yesterday';
     } else {
-      return date.toLocaleDateString();
+      return date.toLocaleDateString('en-GB');
     }
   };
 
@@ -409,6 +409,7 @@ const Chat = () => {
                       open={modalOpen}
                       onClose={() => setModalOpen(false)}
                       modalContent={modalContent}
+                      modalContentClassName={styles.modalContentStyles}
                       customClassName={styles.modelImageStyles}
                     ></Modal>
                   </div>

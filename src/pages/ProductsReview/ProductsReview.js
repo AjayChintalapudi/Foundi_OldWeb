@@ -41,6 +41,7 @@ const ProductsReview = () => {
     feedbackDescp: '',
   });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayedReviewCount, setDisplayedReviewCount] = useState(3);
   // const { setCartData, cartData } = useContext(AppDataContext);
 
   //useEffect
@@ -471,27 +472,31 @@ const ProductsReview = () => {
     return (
       <>
         {productReviewData &&
-          productReviewData.map((item, index) => {
-            return (
-              <div key={index} className={styles.productRatingSubContainer}>
-                <div className={styles.ratingTopSection}>
-                  <Rating
-                    customIcons={customIcons}
-                    initialValue={item.rating}
-                    allowFraction
-                    readonly={true}
-                    fillColor="#194f59"
-                    className="reviewstars"
-                  />
-                  <div className={styles.ratedUserInfoBlock}>
-                    <p className={styles.ratedUserName}>{item.ratedUserName}</p>
-                    <p className={styles.ratedDesc}>{item.ratedDesc}</p>
+          productReviewData
+            .slice(0, displayedReviewCount)
+            .map((item, index) => {
+              return (
+                <div key={index} className={styles.productRatingSubContainer}>
+                  <div className={styles.ratingTopSection}>
+                    <Rating
+                      customIcons={customIcons}
+                      initialValue={item.rating}
+                      allowFraction
+                      readonly={true}
+                      fillColor="#194f59"
+                      className="reviewstars"
+                    />
+                    <div className={styles.ratedUserInfoBlock}>
+                      <p className={styles.ratedUserName}>
+                        {item.ratedUserName}
+                      </p>
+                      <p className={styles.ratedDesc}>{item.ratedDesc}</p>
+                    </div>
                   </div>
+                  <div className={styles.ratingBottomBorder}></div>
                 </div>
-                <div className={styles.ratingBottomBorder}></div>
-              </div>
-            );
-          })}
+              );
+            })}
       </>
     );
   };
@@ -502,6 +507,7 @@ const ProductsReview = () => {
         <Button
           btName={productReviewPageStrings.ratingLoadMoreBtnName}
           btnStyles={styles.ratingLoadMoreBtnStyles}
+          onClick={() => setDisplayedReviewCount(displayedReviewCount + 3)}
         />
       </div>
     );

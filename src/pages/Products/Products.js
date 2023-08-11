@@ -12,10 +12,39 @@ import { EcomProducts } from 'networking/Apis/ecomproducts';
 const Products = () => {
   const navigate = useNavigate();
   const { productPageStrings } = strings;
+
+  /*productInfoData*/
+
+  const productInfoData = [
+    {
+      productsBannerMainHeading:
+        productPageStrings.productsBannerMainHeading + '1',
+      productsBannerSubDesc: productPageStrings.productsBannerSubDesc + '1',
+    },
+    {
+      productsBannerMainHeading:
+        productPageStrings.productsBannerMainHeading + '2',
+      productsBannerSubDesc: productPageStrings.productsBannerSubDesc + '2',
+    },
+    {
+      productsBannerMainHeading:
+        productPageStrings.productsBannerMainHeading + '3',
+      productsBannerSubDesc: productPageStrings.productsBannerSubDesc + '3',
+    },
+  ];
   const [productDetails, setProductDetails] = useState();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [categoryProducts, setCategoryProducts] = useState();
-  // select categories
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleScrollButtonClick = (increment) => {
+    const newIndex =
+      (currentIndex + increment + productInfoData.length) %
+      productInfoData.length;
+    setCurrentIndex(newIndex);
+  };
+
+  /*select categories*/
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
     const categoryProducts = productDetails.filter(
@@ -56,14 +85,26 @@ const Products = () => {
   };
 
   const productsBannerInfoSection = () => {
+    const currentItem = productInfoData[currentIndex];
+    // console.log('currentIndex:', currentIndex);
+    // console.log('currentItem:', currentItem);
     return (
       <div className={styles.productsBannerInfoBlock}>
-        <h2 className={styles.productsBannerMainHeading}>
-          {productPageStrings.productsBannerMainHeading}
-        </h2>
-        <p className={styles.productsBannerSubDesc}>
-          {productPageStrings.productsBannerSubDesc}
-        </p>
+        {productInfoData &&
+          productInfoData.map((item, index) => {
+            return (
+              currentIndex === index && (
+                <div className={styles.productsBannerInfoSubBlock} key={index}>
+                  <h2 className={styles.productsBannerMainHeading}>
+                    {currentItem.productsBannerMainHeading}
+                  </h2>
+                  <p className={styles.productsBannerSubDesc}>
+                    {currentItem.productsBannerSubDesc}
+                  </p>
+                </div>
+              )
+            );
+          })}
       </div>
     );
   };
@@ -75,10 +116,19 @@ const Products = () => {
           btName={productPageStrings.productsBannerButtonName}
           btnStyles={styles.productsBtnStyles}
         />
+
         <div className={styles.scollButtonBlock}>
-          <span className={styles.scrollButton}></span>
-          <span className={styles.scrollButton}></span>
-          <span className={styles.scrollButton}></span>
+          {productInfoData.map((item, index) => (
+            <span
+              key={index}
+              className={
+                currentIndex === index
+                  ? styles.scrollButton
+                  : styles.scrollButtonInActive
+              }
+              onClick={() => handleScrollButtonClick(index - currentIndex)}
+            ></span>
+          ))}
         </div>
       </div>
     );

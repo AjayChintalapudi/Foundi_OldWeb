@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   text-align: start;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .modalContent {

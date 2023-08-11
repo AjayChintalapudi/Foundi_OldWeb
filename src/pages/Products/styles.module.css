@@ -82,8 +82,10 @@
   border-radius: 50%;
 }
 
-.scrollButton:nth-child(2),
-.scrollButton:nth-child(3) {
+.scrollButtonInActive {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
   background-color: transparent;
   border: 1px solid var(--white);
 }

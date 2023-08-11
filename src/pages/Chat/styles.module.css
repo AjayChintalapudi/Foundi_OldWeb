@@ -239,7 +239,7 @@
   height: 36px;
   /* width: 72px; */
   width: fit-content;
-  color: rgba(35, 31, 32, 0.72);
+  color: var(--lightgrey72);
   font-family: 'Medium', sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -268,7 +268,7 @@
   word-break: break-all;
   border-radius: 0px 8px 8px 8px;
   background: var(--lightgrey52);
-  box-shadow: 0px 2px 16px 0px rgba(198, 240, 255, 0.02);
+  box-shadow: 0px 2px 16px 0px var(--lightgreyshadow16);
   color: var(--aubergine);
   font-family: 'Light', sans-serif;
   font-size: 18px;
@@ -299,7 +299,7 @@
   word-break: break-all;
   border-radius: 8px 0px 8px 8px;
   background: var(--darkgreen);
-  box-shadow: 0px 2px 16px 0px rgba(198, 240, 255, 0.02);
+  box-shadow: 0px 2px 16px 0px var(--lightgreyshadow16);
   color: var(--white);
   font-family: 'Light', sans-serif;
   font-size: 18px;
@@ -322,9 +322,14 @@
   margin: 0px 24px 24px;
 }
 
+.modalContentStyles {
+  padding: 15px;
+}
+
 .modelImageStyles {
   z-index: 10;
-  padding: 20px;
+  padding: 10px;
+  background-color: var(--backgroundModalColor);
 }
 
 .disabledChatInputStyles {
@@ -343,7 +348,7 @@
   justify-content: center;
   text-align: start;
   z-index: 1000;
-  background-color: beige;
+  /* background-color: beige; */
 }
 
 .previewImageUploadStyles {
@@ -409,7 +414,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border-left: 4px solid #ff3d00;
+  border-left: 4px solid var(--lightRed);
   border-bottom: 4px solid transparent;
   animation: rotation 0.5s linear infinite reverse;
 }
