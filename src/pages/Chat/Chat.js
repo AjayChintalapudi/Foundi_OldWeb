@@ -32,7 +32,7 @@ const Chat = () => {
 
   /*state*/
   const [selectedProduct, setSelectedProduct] = useState(null);
-  // const [snoCodeData, setSnoCodeData] = useState([location?.state]);
+  const [snoCodeData, setSnoCodeData] = useState([location?.state]);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   // const [isUserTyping, setIsUserTyping] = useState(false);
   const [image, setImage] = useState(null);
@@ -236,7 +236,7 @@ const Chat = () => {
     return (
       <div className={styles.chatLeftSection}>
         <div className={styles.chatLeftSectionStyles}>
-          {chatList?.map((item, index) => {
+          {snoCodeData?.map((item, index) => {
             return (
               <div
                 key={index}
